@@ -49,12 +49,6 @@ InsideOfTruck_EventScript_SetIntroFlagsFemale::
 
 InsideOfTruck_EventScript_MovingBox::
 	msgbox InsideOfTruck_Text_BoxPrintedWithMonLogo, MSGBOX_SIGN
-	givemon SPECIES_TORCHIC, 5
-	giveegg SPECIES_TOGEPI
-	setflag FLAG_SYS_POKEMON_GET
-	setflag FLAG_SYS_B_DASH
-	additem ITEM_EXP_SHARE, 1
-	warp MAP_OLDALE_TOWN, 0, 0, 0
 	end
 
 InsideOfTruck_Text_BoxPrintedWithMonLogo:
