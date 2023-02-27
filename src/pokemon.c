@@ -47,6 +47,8 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
+#include "day_night.h"
+#include "constants/day_night.h"
 
 struct SpeciesItem
 {
@@ -5487,12 +5489,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
                 break;
             case EVO_FRIENDSHIP_DAY:
                 RtcCalcLocalTime();
-                if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && friendship >= 220)
+                if (GetCurrentTimeOfDay() != TIME_NIGHT && friendship >= 220)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_FRIENDSHIP_NIGHT:
                 RtcCalcLocalTime();
-                if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && friendship >= 220)
+                if (GetCurrentTimeOfDay() == TIME_NIGHT && friendship >= 220)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_LEVEL:
