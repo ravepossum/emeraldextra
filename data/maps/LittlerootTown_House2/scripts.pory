@@ -1,0 +1,28 @@
+mapscripts LittlerootTown_House2_MapScripts {}
+
+script LittlerootTown_House2_EventScript_Woman {
+    msgbox(format("Make yourself at home. It's always nice to have guests."), MSGBOX_NPC)
+}
+
+script LittlerootTown_House2_EventScript_Man {
+    lock
+    faceplayer
+    if(flag(FLAG_RECEIVED_BIG_ROOT)){
+        msgbox(format("Seeing my flowers prosper makes me smile."))
+        release
+        end
+    }
+    msgbox(format("I maintain the garden outside. LITTLEROOT has lush soil.\p"
+                  "Here, take this BIG ROOT. It'll help your GRASS-type POKéMON stay in tip-top shape."))
+    giveitem(ITEM_BIG_ROOT)
+    if(var(VAR_RESULT) == FALSE) {
+        goto(Common_EventScript_ShowBagIsFull)
+    } else {
+        setflag(FLAG_RECEIVED_BIG_ROOT)
+        release
+    }
+}
+
+script LittlerootTown_House2_EventScript_LittleGirl {
+    msgbox(format("I need to train more so I can defeat my big brother."), MSGBOX_NPC)
+}

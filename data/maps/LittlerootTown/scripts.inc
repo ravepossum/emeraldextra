@@ -948,19 +948,19 @@ LittlerootTown_Text_WearTheseRunningShoes:
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with POKéMON!\p"
 	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, wear these RUNNING SHOES.\p"
-	.string "They'll put a zip in your step!$"
+	.string "adventure, wear these WALKING SHOES.\p"
+	.string "They'll put a mosy in your step!$"
 
 LittlerootTown_Text_SwitchShoesWithRunningShoes:
 	.string "{PLAYER} switched shoes with the\n"
-	.string "RUNNING SHOES.$"
+	.string "WALKING SHOES.$"
 
 LittlerootTown_Text_ExplainRunningShoes:
 	.string "MOM: {PLAYER}, those shoes came with\n"
 	.string "instructions.\p"
 	.string "“Press the B Button while wearing these\n"
-	.string "RUNNING SHOES to run extra-fast!\p"
-	.string "“Slip on these RUNNING SHOES and race\n"
+	.string "WALKING SHOES to walk a bit slower!\p"
+	.string "“Slip on these WALKING SHOES and take\n"
 	.string "in the great outdoors!”$"
 
 LittlerootTown_Text_ComeHomeIfAnythingHappens:
@@ -1043,3 +1043,12 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I gave you?\p"
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
+
+LittlerootTown_EventScript_Expert_F::
+	msgbox LittlerootTown_EventScript_Expert_F_Text_0, MSGBOX_NPC
+	return
+
+
+LittlerootTown_EventScript_Expert_F_Text_0:
+	.string "LITTLEROOT has always been a quaint\n"
+	.string "place. I hope that never changes.$"

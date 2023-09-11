@@ -27,4 +27,36 @@ LittlerootTown_PokemonCenter_1F_EventScript_Nurse::
 	waitbuttonpress
 	release
 	end
+
+LittlerootTown_PokemonCenter_1F_EventScript_Girl::
+	msgbox LittlerootTown_PokemonCenter_1F_Text_SkittyContest, MSGBOX_NPC
+	end
+
+LittlerootTown_PokemonCenter_1F_EventScript_Skitty::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_SKITTY, CRY_MODE_NORMAL
+	msgbox LittlerootTown_PokemonCenter_1F_Text_Skitty, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+LittlerootTown_PokemonCenter_1F_EventScript_Youngster::
+	msgbox LittlerootTown_PokemonCenter_1F_Text_Youngster, MSGBOX_NPC
+	end
+
+LittlerootTown_PokemonCenter_1F_Text_SkittyContest:
+	.string "My SKITTY and I are going to enter\n"
+	.string "the POKéMON CONTEST in SLATEPORT.\p"
+	.string "The judges won't be able to resist\n"
+	.string "its charm!$"
+
+LittlerootTown_PokemonCenter_1F_Text_Skitty:
+	.string "SKITTY: Miyaa!$"
+
+LittlerootTown_PokemonCenter_1F_Text_Youngster:
+	.string "My family loves living in LITTLEROOT.\n"
+	.string "We enjoy spending time in nature.$"
+
 `

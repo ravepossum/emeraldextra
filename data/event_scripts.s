@@ -1065,3 +1065,11 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/LittlerootTown_PokemonCenter_2F/scripts.inc"
 
 	.include "data/maps/LittlerootTown_Mart/scripts.inc"
+
+
+
+	.include "data/maps/LittlerootTown_House1/scripts.inc"
+
+	.include "data/maps/LittlerootTown_House3/scripts.inc"
+
+	.include "data/maps/LittlerootTown_House2/scripts.inc"
