@@ -2,6 +2,7 @@
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
 .set LOCALID_BIRCH, 8
+.set LOCALID_BLACKBELT, 9
 
 LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
@@ -44,6 +45,7 @@ LittlerootTown_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
 	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
+	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetBlackBeltPos
 	call_if_eq VAR_LITTLEROOT_TOWN_STATE, 3, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
 	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
@@ -76,17 +78,22 @@ LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent::
 	return
 
 LittlerootTown_EventScript_MoveMomToMaysDoor::
-	setobjectxyperm LOCALID_MOM, 14, 8
+	setobjectxyperm LOCALID_MOM, 24, 8
+	return
+
+LittlerootTown_EventScript_SetBlackBeltPos::
+	setobjectxyperm LOCALID_BLACKBELT, 4, 9
+	setobjectmovementtype LOCALID_BLACKBELT, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 LittlerootTown_EventScript_SetTwinPos::
 	goto_if_eq VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_SetTwinGuardingRoutePos
-	setobjectxyperm LOCALID_TWIN, 10, 1
+	setobjectxyperm LOCALID_TWIN, 20, 1
 	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_UP
 	return
 
 LittlerootTown_EventScript_SetTwinGuardingRoutePos::
-	setobjectxyperm LOCALID_TWIN, 7, 2
+	setobjectxyperm LOCALID_TWIN, 17, 2
 	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_DOWN
 	return
 
@@ -99,11 +106,11 @@ LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos::
 	return
 
 LittlerootTown_EventScript_SetMomInFrontOfDoorMale::
-	setobjectxyperm LOCALID_MOM, 5, 9
+	setobjectxyperm LOCALID_MOM, 15, 9
 	return
 
 LittlerootTown_EventScript_SetMomInFrontOfDoorFemale::
-	setobjectxyperm LOCALID_MOM, 14, 9
+	setobjectxyperm LOCALID_MOM, 24, 9
 	return
 
 LittlerootTown_OnFrame:
@@ -114,7 +121,7 @@ LittlerootTown_OnFrame:
 
 LittlerootTown_EventScript_StepOffTruckMale::
 	lockall
-	setvar VAR_0x8004, 5
+	setvar VAR_0x8004, 15
 	setvar VAR_0x8005, 8
 	call LittlerootTown_EventScript_GoInsideWithMom
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
@@ -125,7 +132,7 @@ LittlerootTown_EventScript_StepOffTruckMale::
 
 LittlerootTown_EventScript_StepOffTruckFemale::
 	lockall
-	setvar VAR_0x8004, 14
+	setvar VAR_0x8004, 24
 	setvar VAR_0x8005, 8
 	call LittlerootTown_EventScript_GoInsideWithMom
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
@@ -244,6 +251,15 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale::
 LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
 	setobjectxy LOCALID_RIVAL, 13, 10
 	setobjectxy LOCALID_BIRCH, 14, 10
+	end
+
+LittlerootTown_EventScript_BlackBelt::
+    goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_Cardio
+	msgbox LittlerootTown_Text_DoingStretches, MSGBOX_NPC
+	end
+
+LittlerootTown_EventScript_Cardio::
+	msgbox LittlerootTown_Text_Cardio, MSGBOX_NPC
 	end
 
 LittlerootTown_EventScript_FatMan::
@@ -490,12 +506,12 @@ LittlerootTown_EventScript_GiveRunningShoesTrigger::
 	end
 
 LittlerootTown_EventScript_SetHomeDoorCoordsMale::
-	setvar VAR_0x8009, 5
+	setvar VAR_0x8009, 15
 	setvar VAR_0x800A, 8
 	return
 
 LittlerootTown_EventScript_SetHomeDoorCoordsFemale::
-	setvar VAR_0x8009, 14
+	setvar VAR_0x8009, 24
 	setvar VAR_0x800A, 8
 	return
 
@@ -957,6 +973,15 @@ LittlerootTown_Text_ComeHomeIfAnythingHappens:
 	.string "If anything happens, you can come home.\p"
 	.string "Go on, go get them, honey!$"
 
+LittlerootTown_Text_DoingStretches:
+    .string "Huff, huff…\n"
+    .string "I'm doing my stretches right now.\p"
+    .string "Can you come back later?$"
+
+LittlerootTown_Text_Cardio:
+    .string "It's important to do cardio\n"
+    .string "so you can stay healthy.$"
+
 LittlerootTown_Text_CanUsePCToStoreItems:
 	.string "If you use a PC, you can store items\n"
 	.string "and POKéMON.\p"
@@ -1018,4 +1043,3 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I gave you?\p"
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
-
