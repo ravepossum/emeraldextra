@@ -1137,7 +1137,7 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId)
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
-
+// todo: this is probably just obsolete now
 static void DebugAction_Util_RunningShoes(u8 taskId)
 {
     if (FlagGet(FLAG_SYS_B_DASH))
