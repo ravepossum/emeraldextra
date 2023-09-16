@@ -3329,6 +3329,18 @@ const u16 gEggMoves[] = {
               MOVE_SWEET_SCENT,
               MOVE_WORRY_SEED),
 
+    egg_moves(BASCULIN,
+              MOVE_AGILITY,
+              MOVE_BRINE,
+              MOVE_BUBBLE_BEAM,
+              MOVE_HEAD_SMASH,
+              MOVE_MUD_SHOT,
+              MOVE_MUDDY_WATER,
+              MOVE_RAGE,
+              MOVE_REVENGE,
+              MOVE_SWIFT,
+              MOVE_WHIRLPOOL),
+
     egg_moves(BASCULIN_BLUE_STRIPED,
               MOVE_AGILITY,
               MOVE_BRINE,
