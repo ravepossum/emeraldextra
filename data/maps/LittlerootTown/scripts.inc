@@ -954,7 +954,7 @@ LittlerootTown_Text_ExplainExpShare:
 	.string "instructions.\p"
 	.string "“Turn the EXP. SHARE on from your bag,\n"
 	.string "and all POKéMON in the party will gain\p"
-	.string "experience from battle!$"
+	.string "experience from battle!”$"
 
 
 LittlerootTown_Text_ComeHomeIfAnythingHappens:
