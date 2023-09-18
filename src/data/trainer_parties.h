@@ -3370,21 +3370,28 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     .lvl = 12,
     .species = SPECIES_GEODUDE,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROLLOUT, MOVE_ROCK_TOMB}
     },
     {
     .iv = 100,
     .lvl = 12,
-    .species = SPECIES_GEODUDE,
+    .species = SPECIES_ARON,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    .moves = {MOVE_METAL_CLAW, MOVE_ROAR, MOVE_TACKLE, MOVE_ROCK_TOMB}
+    },
+    {
+    .iv = 100,
+    .lvl = 13,
+    .species = SPECIES_ROCKRUFF,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_TACKLE, MOVE_DOUBLE_TEAM, MOVE_ROCK_THROW, MOVE_LEER}
     },
     {
     .iv = 200,
     .lvl = 15,
     .species = SPECIES_NOSEPASS,
     .heldItem = ITEM_ORAN_BERRY,
-    .moves = {MOVE_BLOCK, MOVE_HARDEN, MOVE_TACKLE, MOVE_ROCK_TOMB}
+    .moves = {MOVE_THUNDER_WAVE, MOVE_HARDEN, MOVE_REST, MOVE_ROCK_TOMB}
     }
 };
 
