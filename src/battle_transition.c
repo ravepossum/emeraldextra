@@ -4,6 +4,7 @@
 #include "battle_transition_frontier.h"
 #include "bg.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "event_object_movement.h"
 #include "field_camera.h"
 #include "field_effect.h"
@@ -107,6 +108,7 @@ static void Task_Slice(u8);
 static void Task_WhiteBarsFade(u8);
 static void Task_GridSquares(u8);
 static void Task_AngledWipes(u8);
+static void Task_Mugshot(u8);
 static void Task_Sidney(u8);
 static void Task_Phoebe(u8);
 static void Task_Glacia(u8);
@@ -388,6 +390,7 @@ static const TaskFunc sTasks_Main[B_TRANSITION_COUNT] =
     [B_TRANSITION_FRONTIER_CIRCLES_CROSS_IN_SEQ] = Task_FrontierCirclesCrossInSeq,
     [B_TRANSITION_FRONTIER_CIRCLES_ASYMMETRIC_SPIRAL_IN_SEQ] = Task_FrontierCirclesAsymmetricSpiralInSeq,
     [B_TRANSITION_FRONTIER_CIRCLES_SYMMETRIC_SPIRAL_IN_SEQ] = Task_FrontierCirclesSymmetricSpiralInSeq,
+    [B_TRANSITION_MUGSHOT] = Task_Mugshot
 };
 
 static const TransitionStateFunc sTaskHandlers[] =
@@ -543,27 +546,51 @@ static const TransitionStateFunc sMugshot_Funcs[] =
 
 static const u8 sMugshotsTrainerPicIDsTable[MUGSHOTS_COUNT] =
 {
-    [MUGSHOT_SIDNEY]   = TRAINER_PIC_ELITE_FOUR_SIDNEY,
-    [MUGSHOT_PHOEBE]   = TRAINER_PIC_ELITE_FOUR_PHOEBE,
-    [MUGSHOT_GLACIA]   = TRAINER_PIC_ELITE_FOUR_GLACIA,
-    [MUGSHOT_DRAKE]    = TRAINER_PIC_ELITE_FOUR_DRAKE,
-    [MUGSHOT_CHAMPION] = TRAINER_PIC_CHAMPION_WALLACE,
+    [MUGSHOT_SIDNEY]         = TRAINER_PIC_ELITE_FOUR_SIDNEY,
+    [MUGSHOT_PHOEBE]         = TRAINER_PIC_ELITE_FOUR_PHOEBE,
+    [MUGSHOT_GLACIA]         = TRAINER_PIC_ELITE_FOUR_GLACIA,
+    [MUGSHOT_DRAKE]          = TRAINER_PIC_ELITE_FOUR_DRAKE,
+    [MUGSHOT_CHAMPION]       = TRAINER_PIC_CHAMPION_WALLACE,
+    [MUGSHOT_ROXANNE]        = TRAINER_PIC_LEADER_ROXANNE,
+    [MUGSHOT_BRAWLY]         = TRAINER_PIC_LEADER_BRAWLY,
+    [MUGSHOT_WATTSON]        = TRAINER_PIC_LEADER_WATTSON,
+    [MUGSHOT_FLANNERY]       = TRAINER_PIC_LEADER_FLANNERY,
+    [MUGSHOT_NORMAN]         = TRAINER_PIC_LEADER_NORMAN,
+    [MUGSHOT_WINONA]         = TRAINER_PIC_LEADER_WINONA,
+    [MUGSHOT_TATE_AND_LIZA]  = TRAINER_PIC_LEADER_TATE_AND_LIZA,
+    [MUGSHOT_JUAN]           = TRAINER_PIC_LEADER_JUAN
 };
 static const s16 sMugshotsOpponentRotationScales[MUGSHOTS_COUNT][2] =
 {
-    [MUGSHOT_SIDNEY] =   {0x200, 0x200},
-    [MUGSHOT_PHOEBE] =   {0x200, 0x200},
-    [MUGSHOT_GLACIA] =   {0x1B0, 0x1B0},
-    [MUGSHOT_DRAKE] =    {0x1A0, 0x1A0},
-    [MUGSHOT_CHAMPION] = {0x188, 0x188},
+    [MUGSHOT_SIDNEY]         = {0x200, 0x200},
+    [MUGSHOT_PHOEBE]         = {0x200, 0x200},
+    [MUGSHOT_GLACIA]         = {0x1B0, 0x1B0},
+    [MUGSHOT_DRAKE]          = {0x1A0, 0x1A0},
+    [MUGSHOT_CHAMPION]       = {0x188, 0x188},
+    [MUGSHOT_ROXANNE]        = {0x200, 0x200},
+    [MUGSHOT_BRAWLY]         = {0x1A0, 0x1A0},
+    [MUGSHOT_WATTSON]        = {0x1B0, 0x1B0},
+    [MUGSHOT_FLANNERY]       = {0x1A0, 0x1A0},
+    [MUGSHOT_NORMAN]         = {0x1A0, 0x1A0},
+    [MUGSHOT_WINONA]         = {0x1A0, 0x1A0},
+    [MUGSHOT_TATE_AND_LIZA]  = {0x1D8, 0x1D8},
+    [MUGSHOT_JUAN]           = {0x188, 0x188}
 };
 static const s16 sMugshotsOpponentCoords[MUGSHOTS_COUNT][2] =
 {
-    [MUGSHOT_SIDNEY] =   { 0,  0},
-    [MUGSHOT_PHOEBE] =   { 0,  0},
-    [MUGSHOT_GLACIA] =   {-4,  4},
-    [MUGSHOT_DRAKE] =    { 0,  5},
-    [MUGSHOT_CHAMPION] = {-8,  7},
+    [MUGSHOT_SIDNEY]         = { 0,  0},
+    [MUGSHOT_PHOEBE]         = { 0,  0},
+    [MUGSHOT_GLACIA]         = {-4,  4},
+    [MUGSHOT_DRAKE]          = { 0,  5},
+    [MUGSHOT_CHAMPION]       = {-8,  7},
+    [MUGSHOT_ROXANNE]        = { 0,  0},
+    [MUGSHOT_BRAWLY]         = {-12, 5},
+    [MUGSHOT_WATTSON]        = { 0,  4},
+    [MUGSHOT_FLANNERY]       = {-4,  5},
+    [MUGSHOT_NORMAN]         = { 0,  5},
+    [MUGSHOT_WINONA]         = {-14, 5},
+    [MUGSHOT_TATE_AND_LIZA]  = {-22, 2},
+    [MUGSHOT_JUAN]           = { 0,  7}
 };
 
 static const TransitionSpriteCallback sMugshotTrainerPicFuncs[] =
@@ -896,11 +923,20 @@ static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/battle_transitions/may
 
 static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
 {
-    [MUGSHOT_SIDNEY] = sMugshotPal_Sidney,
-    [MUGSHOT_PHOEBE] = sMugshotPal_Phoebe,
-    [MUGSHOT_GLACIA] = sMugshotPal_Glacia,
-    [MUGSHOT_DRAKE] = sMugshotPal_Drake,
-    [MUGSHOT_CHAMPION] = sMugshotPal_Champion
+    [MUGSHOT_SIDNEY]         = sMugshotPal_Sidney,
+    [MUGSHOT_PHOEBE]         = sMugshotPal_Phoebe,
+    [MUGSHOT_GLACIA]         = sMugshotPal_Glacia,
+    [MUGSHOT_DRAKE]          = sMugshotPal_Drake,
+    [MUGSHOT_CHAMPION]       = sMugshotPal_Champion,
+    // todo actually have a real pallette for new trainers
+    [MUGSHOT_ROXANNE]        = sMugshotPal_Champion,
+    [MUGSHOT_BRAWLY]         = sMugshotPal_Champion,
+    [MUGSHOT_WATTSON]        = sMugshotPal_Champion,
+    [MUGSHOT_FLANNERY]       = sMugshotPal_Champion,
+    [MUGSHOT_NORMAN]         = sMugshotPal_Champion,
+    [MUGSHOT_WINONA]         = sMugshotPal_Champion,
+    [MUGSHOT_TATE_AND_LIZA]  = sMugshotPal_Champion,
+    [MUGSHOT_JUAN]           = sMugshotPal_Champion
 };
 
 static const u16 *const sPlayerMugshotsPals[GENDER_COUNT] =
@@ -2260,6 +2296,12 @@ static void VBlankCB_Wave(void)
 #define sDone        data[6]
 #define sSlideDir    data[7]
 
+static void Task_Mugshot(u8 taskId)
+{
+    gTasks[taskId].tMugshotId = VarGet(VAR_MUGSHOT_ID);
+    DoMugshotTransition(taskId);
+}
+
 static void Task_Sidney(u8 taskId)
 {
     gTasks[taskId].tMugshotId = MUGSHOT_SIDNEY;
@@ -2585,7 +2627,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
                                                   sMugshotsOpponentCoords[mugshotId][1] + 42,
                                                   0, gDecompressionBuffer);
     task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender),
-                                                DISPLAY_WIDTH + 32,
+                                                DISPLAY_WIDTH + 36,
                                                 106,
                                                 0, gDecompressionBuffer);
 
