@@ -7682,6 +7682,7 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
     }
 }
 
+// TODO remove obsolete function
 bool32 IsHMMove2(u16 move)
 {
     int i = 0;

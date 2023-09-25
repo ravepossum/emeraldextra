@@ -1710,8 +1710,8 @@ SootopolisCity_Text_ThankYouForHelpAcceptThis:
 SootopolisCity_Text_ExplainWaterfallGoToGym:
 	.string "That HIDDEN MACHINE contains\n"
 	.string "WATERFALL.\p"
-	.string "If you have the RAIN BADGE, a POKéMON\n"
-	.string "that has learned that HM move can\l"
+	.string "If you have the RAIN BADGE, any\n"
+	.string "POKéMON can use that HM move to\l"
 	.string "force its way up waterfalls.\p"
 	.string "And where does one get the RAIN BADGE?\n"
 	.string "You know, don't you?\p"

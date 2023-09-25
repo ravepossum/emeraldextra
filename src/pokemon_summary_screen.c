@@ -2302,19 +2302,12 @@ static void Task_HandleReplaceMoveInput(u8 taskId)
             }
             else if (JOY_NEW(A_BUTTON))
             {
-                if (CanReplaceMove() == TRUE)
-                {
-                    StopPokemonAnimations();
-                    PlaySE(SE_SELECT);
-                    sMoveSlotToReplace = sMonSummaryScreen->firstMoveIndex;
-                    gSpecialVar_0x8005 = sMoveSlotToReplace;
-                    BeginCloseSummaryScreen(taskId);
-                }
-                else
-                {
-                    PlaySE(SE_FAILURE);
-                    ShowCantForgetHMsWindow(taskId);
-                }
+                // removed check here to see if move can be replaced
+                StopPokemonAnimations();
+                PlaySE(SE_SELECT);
+                sMoveSlotToReplace = sMonSummaryScreen->firstMoveIndex;
+                gSpecialVar_0x8005 = sMoveSlotToReplace;
+                BeginCloseSummaryScreen(taskId);
             }
             else if (JOY_NEW(B_BUTTON))
             {
@@ -2328,6 +2321,7 @@ static void Task_HandleReplaceMoveInput(u8 taskId)
     }
 }
 
+// TODO remove this obsolete method
 static bool8 CanReplaceMove(void)
 {
     if (sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES
