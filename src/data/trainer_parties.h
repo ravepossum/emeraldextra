@@ -10316,6 +10316,20 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne2[] = {
     {
     .iv = 255,
     .lvl = 35,
+    .species = SPECIES_LAIRON,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_IRON_HEAD, MOVE_ROCK_SLIDE, MOVE_PROTECT, MOVE_ROAR}
+    },
+    {
+    .iv = 255,
+    .lvl = 35,
+    .species = SPECIES_LYCANROC_MIDNIGHT,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_COUNTER, MOVE_ROCK_SLIDE, MOVE_HOWL, MOVE_BITE}
+    },
+    {
+    .iv = 255,
+    .lvl = 35,
     .species = SPECIES_KABUTO,
     .heldItem = ITEM_SITRUS_BERRY,
     .moves = {MOVE_SWORDS_DANCE, MOVE_ICE_BEAM, MOVE_SURF, MOVE_ROCK_SLIDE}
@@ -10330,9 +10344,9 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne2[] = {
     {
     .iv = 255,
     .lvl = 37,
-    .species = SPECIES_NOSEPASS,
+    .species = SPECIES_PROBOPASS,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_DOUBLE_TEAM, MOVE_EXPLOSION, MOVE_PROTECT, MOVE_ROCK_SLIDE}
+    .moves = {MOVE_TRI_ATTACK, MOVE_DISCHARGE, MOVE_PROTECT, MOVE_POWER_GEM}
     }
 };
 

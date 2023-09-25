@@ -244,13 +244,13 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade::
 	end
 
 LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale::
-	setobjectxy LOCALID_RIVAL, 6, 10
-	setobjectxy LOCALID_BIRCH, 5, 10
+	setobjectxy LOCALID_RIVAL, 16, 10
+	setobjectxy LOCALID_BIRCH, 15, 10
 	end
 
 LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
-	setobjectxy LOCALID_RIVAL, 13, 10
-	setobjectxy LOCALID_BIRCH, 14, 10
+	setobjectxy LOCALID_RIVAL, 23, 10
+	setobjectxy LOCALID_BIRCH, 24, 10
 	end
 
 LittlerootTown_EventScript_BlackBelt::
@@ -451,14 +451,14 @@ LittlerootTown_EventScript_PlayersHouseSignFemale::
 LittlerootTown_EventScript_GiveExpShareTrigger0::
 	lockall
 	setvar VAR_0x8008, 0
-	setobjectxy LOCALID_MOM, 10, 9
+	setobjectxy LOCALID_MOM, 20, 9
 	goto LittlerootTown_EventScript_GiveExpShareTrigger
 	end
 
 LittlerootTown_EventScript_GiveExpShareTrigger1::
 	lockall
 	setvar VAR_0x8008, 1
-	setobjectxy LOCALID_MOM, 11, 9
+	setobjectxy LOCALID_MOM, 21, 9
 	goto LittlerootTown_EventScript_GiveExpShareTrigger
 	end
 
