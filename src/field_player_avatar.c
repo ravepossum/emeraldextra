@@ -629,9 +629,14 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
     {
-        // same speed as running
-        PlayerWalkFast(direction);
-        return;
+        if (heldKeys & B_BUTTON) {
+            // TODO add animation here to indicate speedup
+            PlayerWalkFaster(direction);
+        } else {
+            // same speed as running
+            PlayerWalkFast(direction);
+            return;
+        }
     }
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON)

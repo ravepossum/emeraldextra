@@ -14,6 +14,13 @@ gText_RestoredPkmnToFullHealth::
 	.string "We've restored your POKéMON\n"
 	.string "to full health.$"
 
+gText_RestoredPkmnToFullHealthLevelCap::
+	.string "Thank you for waiting.\p"
+	.string "We've restored your POKéMON\n"
+	.string "to full health.\p"
+	.string "Please note, your POKéMON cannot\n"
+	.string "level beyond {STR_VAR_1} due to your badge count.$"
+
 gText_WeHopeToSeeYouAgain::
 	.string "We hope to see you again!$"
 

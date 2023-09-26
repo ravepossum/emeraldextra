@@ -5,6 +5,7 @@
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_z_move.h"
+#include "battle_setup.h"
 #include "graphics.h"
 #include "sprite.h"
 #include "window.h"
@@ -2508,7 +2509,7 @@ static void MoveBattleBarGraphically(u8 battlerId, u8 whichBar)
                     &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
                     array, B_EXPBAR_PIXELS / 8);
         level = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_LEVEL);
-        if (level == MAX_LEVEL)
+        if (level == MAX_LEVEL || LevelCapped(level))
         {
             for (i = 0; i < 8; i++)
                 array[i] = 0;
