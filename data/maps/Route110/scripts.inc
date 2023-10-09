@@ -897,9 +897,9 @@ Route110_Text_ChallengeReactionWorst:
 Route110_Text_RatedForNumberOfCollisions:
 	.string "This is CYCLING ROAD.\p"
 	.string "If you were to ride from MAUVILLE to\n"
-	.string "SLATEPORT on a MACH BIKE, you would\l"
-	.string "be rated for the number of collisions\l"
-	.string "and your total time.$"
+	.string "SLATEPORT on a BIKE in MACH gear,\l"
+	.string "you would be rated for the number\l"
+	.string "of collisions and your total time.$"
 
 Route110_Text_AlwaysAimHigher:
 	.string "Regardless of the results, I count on\n"
@@ -908,9 +908,10 @@ Route110_Text_AlwaysAimHigher:
 
 Route110_Text_AcroBikesDoNotQualify:
 	.string "On this CYCLING ROAD, those riding\n"
-	.string "MACH BIKES are rated for their number\l"
-	.string "of collisions and their total times.\p"
-	.string "ACRO BIKES do not qualify for rating.\n"
+	.string "BIKES in MACH gear are rated for their\l"
+	.string "number of collisions and total times.\p"
+	.string "BIKES in ACRO gear do not qualify for\n"
+	.string "rating.\p"
 	.string "They are easy to turn, so it's not fair.$"
 
 Route110_Text_SlateportCitySign:

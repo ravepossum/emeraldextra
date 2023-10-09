@@ -8644,7 +8644,7 @@ const struct Item gItems[] =
 
     [ITEM_MACH_BIKE] =
     {
-        .name = _("Mach Bike"),
+        .name = _("Bike"),
         .price = 0,
         .description = sMachBikeDesc,
         .importance = 1,
@@ -8653,7 +8653,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_Bike,
         .secondaryId = MACH_BIKE,
     },
-
+    // currently unused
     [ITEM_ACRO_BIKE] =
     {
         .name = _("Acro Bike"),
