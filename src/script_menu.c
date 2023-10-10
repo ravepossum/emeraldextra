@@ -183,11 +183,13 @@ static void MultichoiceDynamicEventShowItem_OnSelectionChanged(struct DynamicLis
         FreeSpritePaletteByTag(TAG_CB_ITEM_ICON);
         DestroySprite(&gSprites[sItemSpriteId]);
     }
-
-    sItemSpriteId = AddItemIconSprite(TAG_CB_ITEM_ICON, TAG_CB_ITEM_ICON, eventArgs->selectedItem);
-    gSprites[sItemSpriteId].oam.priority = 0;
-    gSprites[sItemSpriteId].x = x;
-    gSprites[sItemSpriteId].y = y;
+    
+    if (eventArgs->selectedItem != ITEM_NONE) {
+        sItemSpriteId = AddItemIconSprite(TAG_CB_ITEM_ICON, TAG_CB_ITEM_ICON, eventArgs->selectedItem);
+        gSprites[sItemSpriteId].oam.priority = 0;
+        gSprites[sItemSpriteId].x = x;
+        gSprites[sItemSpriteId].y = y;
+    }
 }
 
 static void MultichoiceDynamicEventShowItem_OnDestroy(struct DynamicListMenuEventArgs *eventArgs)
