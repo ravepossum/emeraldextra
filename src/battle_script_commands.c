@@ -7193,7 +7193,18 @@ static void Cmd_yesnoboxlearnmove(void)
             else
             {
                 u16 moveId = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MOVE1 + movePosition);
-                // removed check for HM move here
+                gBattlescriptCurrInstr = cmd->forgotMovePtr;
+
+                PREPARE_MOVE_BUFFER(gBattleTextBuff2, moveId)
+
+                RemoveMonPPBonus(&gPlayerParty[gBattleStruct->expGetterMonId], movePosition);
+                SetMonMoveSlot(&gPlayerParty[gBattleStruct->expGetterMonId], gMoveToLearn, movePosition);
+
+                if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId && MOVE_IS_PERMANENT(0, movePosition))
+                {
+                    RemoveBattleMonPPBonus(&gBattleMons[0], movePosition);
+                    SetBattleMonMoveSlot(&gBattleMons[0], gMoveToLearn, movePosition);
+                }
                 if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                     && gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId
                     && MOVE_IS_PERMANENT(2, movePosition))
