@@ -1,5 +1,5 @@
 mapscripts LittlerootTown_House1_MapScripts {}
 
 script LittlerootTown_House1_EventScript_Boy {
-    msgbox(format("It's no longer taboo in Hoenn to run indoors. However, if you do need to slow down, hold the B button to walk and take in the sights."), MSGBOX_NPC)
+    msgbox(format("It's no longer taboo in HOENN to run indoors. However, if you do need to slow down, hold the B button to walk and take in the sights."), MSGBOX_NPC)
 }
