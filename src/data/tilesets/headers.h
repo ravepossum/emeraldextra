@@ -31,6 +31,7 @@ const struct Tileset gTileset_Rustboro =
     .metatiles = gMetatiles_Rustboro,
     .metatileAttributes = gMetatileAttributes_Rustboro,
     .callback = InitTilesetAnim_Rustboro,
+    .paletteOverrides = gTilesetPalOverrides_Rustboro,
 };
 
 const struct Tileset gTileset_Dewford =
