@@ -54,6 +54,7 @@ const struct Tileset gTileset_Slateport =
     .metatiles = gMetatiles_Slateport,
     .metatileAttributes = gMetatileAttributes_Slateport,
     .callback = InitTilesetAnim_Slateport,
+    .paletteOverrides = gTilesetPalOverrides_Slateport,
 };
 
 const struct Tileset gTileset_Mauville =
