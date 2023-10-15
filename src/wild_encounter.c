@@ -370,8 +370,8 @@ static u16 GetCurrentMapWildMonHeaderId(void)
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
 
-            if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) &&
-               gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE))
+            if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) ||
+                gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE))
             {
                 RtcCalcLocalTime();
                 if (GetCurrentTimeOfDay() == TIME_NIGHT &&
