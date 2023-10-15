@@ -13,10 +13,13 @@
 #include "roamer.h"
 #include "tv.h"
 #include "link.h"
+#include "rtc.h"
 #include "script.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "day_night.h"
+#include "constants/day_night.h"
 #include "constants/abilities.h"
 #include "constants/game_stat.h"
 #include "constants/item.h"
@@ -366,6 +369,25 @@ static u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
+
+            if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) &&
+               gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE))
+            {
+                RtcCalcLocalTime();
+                if (GetCurrentTimeOfDay() == TIME_NIGHT &&
+                    gWildMonHeaders[i + 1].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+                    gWildMonHeaders[i + 1].mapNum == gSaveBlock1Ptr->location.mapNum)
+                {
+                    i += 1; // Night
+                }
+                else if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+                         gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
+                {
+                    i += 0; // Day
+                }
+            }
+        
+
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(ALTERING_CAVE))
             {
