@@ -1077,3 +1077,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/LittlerootTown_House2/scripts.inc"
 
 	.include "data/maps/Route135/scripts.inc"
+
+	.include "data/maps/RusturfTunnel_B1F/scripts.inc"

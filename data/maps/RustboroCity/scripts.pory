@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_LITTLE_BOY, 7
 .set LOCALID_LITTLE_GIRL, 8
 .set LOCALID_DEVON_EMPLOYEE, 9
@@ -1298,12 +1300,9 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "Don't you think it'd be cool if you\n"
 	.string "could beat two TRAINERS by yourself?$"
 
-RustboroCity_EventScript_Hiker::
-	msgbox RustboroCity_EventScript_Hiker_Text_0, MSGBOX_NPC
-	return
+`
 
-
-RustboroCity_EventScript_Hiker_Text_0:
-	.string "I heard some miners uncovered an icy\n"
-	.string "cavern underneath RUSTURF TUNNEL.\p"
-	.string "I can't wait to go check it out!$"
+script RustboroCity_EventScript_Hiker {
+    msgbox(format("I heard some miners uncovered an icy cavern underneath RUSTURF TUNNEL.\p"
+				  "I can't wait to go check it out!"), MSGBOX_NPC)
+}

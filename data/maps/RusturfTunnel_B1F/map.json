@@ -1,9 +1,9 @@
 {
-  "id": "MAP_SHOAL_CAVE_HIGH_TIDE_INNER_ROOM",
-  "name": "ShoalCave_HighTideInnerRoom",
-  "layout": "LAYOUT_SHOAL_CAVE_HIGH_TIDE_INNER_ROOM",
-  "music": "MUS_MT_PYRE",
-  "region_map_section": "MAPSEC_SHOAL_CAVE",
+  "id": "MAP_RUSTURF_TUNNEL_B1F",
+  "name": "RusturfTunnel_B1F",
+  "layout": "LAYOUT_RUSTURF_TUNNEL_B1F",
+  "music": "MUS_PETALBURG_WOODS",
+  "region_map_section": "MAPSEC_RUSTURF_TUNNEL",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -17,7 +17,13 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 2,
+      "y": 2,
+      "elevation": 3,
+      "dest_map": "MAP_RUSTURF_TUNNEL",
+      "dest_warp_id": "3"
+    }
   ],
   "coord_events": [
 
