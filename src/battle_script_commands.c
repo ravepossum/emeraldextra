@@ -62,6 +62,8 @@
 #include "battle_util.h"
 #include "constants/pokemon.h"
 #include "config/battle.h"
+#include "day_night.h"
+#include "constants/day_night.h"
 
 // Helper for accessing command arguments and advancing gBattlescriptCurrInstr.
 //
@@ -15014,7 +15016,7 @@ static void Cmd_handleballthrow(void)
                 break;
             case ITEM_DUSK_BALL:
                 RtcCalcLocalTime();
-                if ((gLocalTime.hours >= 20 && gLocalTime.hours <= 3) || gMapHeader.cave || gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
+                if ((GetCurrentTimeOfDay() == TIME_NIGHT) || gMapHeader.cave || gMapHeader.mapType == MAP_TYPE_UNDERGROUND)
                 #if B_DUSK_BALL_MODIFIER >= GEN_7
                     ballMultiplier = 300;
                 #else
