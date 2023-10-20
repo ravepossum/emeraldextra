@@ -1,1 +1,9 @@
 mapscripts LittlerootTown_House3_MapScripts {}
+
+script LittlerootTown_House3_EventScript_Man {
+    msgbox(format("At night time, you can find nocturnal POKéMON that don't come out during the day."), MSGBOX_NPC)
+}
+
+script LittlerootTown_House3_EventScript_Woman {
+    msgbox(format("POKéMON will only grow stronger up until a certain point. You need to defeat gym leaders and earn their badges to have them become more powerful."), MSGBOX_NPC)
+}
