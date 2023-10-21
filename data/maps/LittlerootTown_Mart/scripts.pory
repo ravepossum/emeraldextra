@@ -29,3 +29,6 @@ LittlerootTown_Mart_Pokemart_Basic:
 	release
 	end
 `
+script LittlerootTown_Mart_EventScript_BugCatcher {
+	msgbox(format("Have you heard about POKéVIALs? They can hold enough medicine to heal all of your POKéMON."),MSGBOX_NPC)
+}

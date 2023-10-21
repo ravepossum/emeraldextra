@@ -27,3 +27,13 @@ LittlerootTown_Mart_Pokemart_Basic:
 	.2byte ITEM_NONE
 	release
 	end
+
+LittlerootTown_Mart_EventScript_BugCatcher::
+	msgbox LittlerootTown_Mart_EventScript_BugCatcher_Text_0, MSGBOX_NPC
+	return
+
+
+LittlerootTown_Mart_EventScript_BugCatcher_Text_0:
+	.string "Have you heard about POKéVIALs? They\n"
+	.string "can hold enough medicine to heal all of\l"
+	.string "your POKéMON.$"
