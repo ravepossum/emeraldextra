@@ -914,7 +914,9 @@
 #define ITEM_PEAT_BLOCK 797
 #define ITEM_BERSERK_GENE 798
 
-#define ITEMS_COUNT 799
+#define ITEM_POKEVIAL 799 // Pokevial Branch
+
+#define ITEMS_COUNT 800
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
@@ -946,11 +948,11 @@
 #define NUM_TECHNICAL_MACHINES 100
 #define NUM_HIDDEN_MACHINES 8
 
-#define MAX_BAG_ITEM_CAPACITY  99
+#define MAX_BAG_ITEM_CAPACITY  999
 #define MAX_PC_ITEM_CAPACITY   999
 #define MAX_BERRY_CAPACITY     999
 
-#define BAG_ITEM_CAPACITY_DIGITS 2
+#define BAG_ITEM_CAPACITY_DIGITS 3
 #define BERRY_CAPACITY_DIGITS 3
 #define MAX_ITEM_DIGITS BERRY_CAPACITY_DIGITS
 
@@ -993,5 +995,9 @@
 
 // Enigma Berry dummy constant
 #define EFFECT_ITEM_ENIGMA_BERRY_EREADER    1
+
+// Check if the item is one that can be used on a Pokemon.
+//#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= MAX_BERRY_INDEX)
+#define ITEM_HAS_EFFECT(item) (((item) == ITEM_POKEVIAL) || ((item) >= ITEM_POTION && (item) <= MAX_BERRY_INDEX)) //Modified by Pokevial Branch
 
 #endif  // GUARD_CONSTANTS_ITEMS_H

@@ -23,6 +23,7 @@
 #include "tv.h"
 #include "constants/items.h"
 #include "constants/battle_frontier.h"
+#include "pokevial.h" //Pokevial Branch
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleFrontierParty(void);
@@ -33,6 +34,7 @@ void HealPlayerParty(void)
     u8 ppBonuses;
     u8 arg[4];
 
+    PokevialRefill(); //Pokevial Branch
     // restore HP.
     for(i = 0; i < gPlayerPartyCount; i++)
     {

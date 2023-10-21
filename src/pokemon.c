@@ -55,6 +55,12 @@
 #include "day_night.h"
 #include "constants/day_night.h"
 
+#define DAY_EVO_HOUR_BEGIN   12
+#define DAY_EVO_HOUR_END     HOURS_PER_DAY
+
+#define NIGHT_EVO_HOUR_BEGIN 0
+#define NIGHT_EVO_HOUR_END   12
+
 struct SpeciesItem
 {
     u16 species;

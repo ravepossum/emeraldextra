@@ -184,6 +184,15 @@ const u8 gItemEffect_SacredAsh[7] = {
     [6] = ITEM6_HEAL_HP_FULL,
 };
 
+//Start Pokevial Branch
+const u8 gItemEffect_Pokevial[7] = {
+    [0] = ITEM0_POKEVIAL,
+    [3] = ITEM3_STATUS_ALL,
+    [4] = ITEM4_REVIVE | ITEM4_HEAL_HP | ITEM4_HEAL_PP,
+    [6] = ITEM6_HEAL_HP_FULL | ITEM6_HEAL_PP_FULL,
+};
+//End Pokevial Branch
+
 #define VITAMIN_FRIENDSHIP_CHANGE(i)             \
     [(i) + 0] = 5, /* Friendship change, low */  \
     [(i) + 1] = 3, /* Friendship change, mid */  \
@@ -479,6 +488,7 @@ const u8 *const gItemEffectTable[ITEMS_COUNT] =
     [ITEM_SACRED_ASH]         = gItemEffect_SacredAsh,
     [ITEM_SWEET_HEART]        = gItemEffect_Potion,
     [ITEM_MAX_HONEY]          = gItemEffect_MaxRevive,
+    [ITEM_POKEVIAL]           = gItemEffect_Pokevial, //Pokevial Branch
 
     // Regional Specialties
     [ITEM_PEWTER_CRUNCHIES]   = gItemEffect_FullHeal,

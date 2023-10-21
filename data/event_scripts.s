@@ -56,6 +56,7 @@
 #include "constants/union_room.h"
 #include "constants/vars.h"
 #include "constants/weather.h"
+#include "constants/pokevial.h" //Pokevial Branch
 #include "constants/day_night.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
