@@ -14,7 +14,7 @@ static const u16 sTilesetPalOverride_Slateport06_08[] = INCBIN_U16("data/tileset
 
 static const u16 sTilesetPalOverride_Slateport10[] = INCBIN_U16("data/tilesets/secondary/slateport/override_palettes/10.gbapal");
 
-static const u16 sTilesetPalOverride_Slateport11[] = INCBIN_U16("data/tilesets/secondary/slateport/override_palettes/11.gbapal");
+//static const u16 sTilesetPalOverride_Slateport11[] = INCBIN_U16("data/tilesets/secondary/slateport/override_palettes/11.gbapal");
 
 static const u16 sTilesetPalOverride_Slateport12[] = INCBIN_U16("data/tilesets/secondary/slateport/override_palettes/12.gbapal");
 

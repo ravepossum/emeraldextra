@@ -10,7 +10,7 @@ OldaleTown_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	setflag FLAG_VISITED_OLDALE_TOWN
 	call_if_unset FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_BlockWestEntrance
-	call_if_unset FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_MoveMartEmployee
+	call_if_unset FLAG_RECEIVED_POKEVIAL_OLDALE, OldaleTown_EventScript_MoveMartEmployee
 	call_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_SetOldaleState
 	end
 
@@ -40,7 +40,7 @@ OldaleTown_EventScript_Girl::
 OldaleTown_EventScript_MartEmployee::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_ExplainPotion
+	goto_if_set FLAG_RECEIVED_POKEVIAL_OLDALE, OldaleTown_EventScript_ExplainPotion
 	goto_if_set FLAG_TEMP_1, OldaleTown_EventScript_ExplainPotion
 	setflag FLAG_TEMP_1
 	playbgm MUS_FOLLOW_ME, FALSE
@@ -78,7 +78,7 @@ OldaleTown_EventScript_ExplainPokemonMart::
 	giveitem ITEM_POKEVIAL
 	goto_if_eq VAR_RESULT, FALSE, OldaleTown_EventScript_BagIsFull
 	msgbox OldaleTown_Text_PotionExplanation, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_POTION_OLDALE
+	setflag FLAG_RECEIVED_POKEVIAL_OLDALE
 	fadedefaultbgm
 	release
 	end
@@ -397,7 +397,6 @@ OldaleTown_Text_TownSign:
 OldaleTown_Text_PotionExplanation::
 	.string "The POKéVIAL can be used at any time to\n"
 	.string "heal all of your POKéMON. It's useful in\l"
-	.string "a pinch when your POKéMON are\l"
-	.string "exhausted. However, you can't use it\l"
-	.string "again until you refill it at a POKéMON\l"
-	.string "CENTER.$"
+	.string "a pinch when your POKéMON are hurt.\l"
+	.string "However, you can't use it again until\l"
+	.string "you refill it at a POKéMON CENTER.$"
