@@ -70,9 +70,7 @@ Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
 
 Debug_Script_1::
-	setvar VAR_RESULT, 1
-	trainerbattle_rematch_double TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxannePreRematch, RustboroCity_Gym_Text_RoxanneRematchDefeat, RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons
-	msgbox RustboroCity_Gym_Text_RoxannePostRematch, MSGBOX_AUTOCLOSE
+	giveegg SPECIES_DREEPY
 	end
 
 Debug_Script_2::
