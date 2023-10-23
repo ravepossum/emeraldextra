@@ -24,12 +24,18 @@
 #include "main.h"
 #include "trainer_hill.h"
 #include "constants/rgb.h"
+#include "main_menu.h"
+#include "save.h"
+#include "new_game.h"
+
+EWRAM_DATA u8 gSoftResetFlag;
 
 static void VBlankIntr(void);
 static void HBlankIntr(void);
 static void VCountIntr(void);
 static void SerialIntr(void);
 static void IntrDummy(void);
+static void CB2_PostSoftResetInit(void);
 
 // Defined in the linker script so that the test build can override it.
 extern void gInitialMainCB2(void);
@@ -93,7 +99,8 @@ void AgbMain()
     // Modern compilers are liberal with the stack on entry to this function,
     // so RegisterRamReset may crash if it resets IWRAM.
 #if !MODERN
-    RegisterRamReset(RESET_ALL);
+    //removed for quicker soft reset
+    //RegisterRamReset(RESET_ALL);
 #endif //MODERN
     *(vu16 *)BG_PLTT = RGB_WHITE; // Set the backdrop to white on startup
     InitGpuRegManager();
@@ -188,7 +195,11 @@ static void InitMainCallbacks(void)
     gTrainerHillVBlankCounter = NULL;
     gMain.vblankCounter2 = 0;
     gMain.callback1 = NULL;
-    SetMainCallback2(gInitialMainCB2);
+    if(gSoftResetFlag){
+        SetMainCallback2(CB2_PostSoftResetInit);
+    } else {
+        SetMainCallback2(gInitialMainCB2);
+    }
     gSaveBlock2Ptr = &gSaveblock2.block;
     gPokemonStoragePtr = &gPokemonStorage.block;
 }
@@ -446,4 +457,15 @@ void DoSoftReset(void)
 void ClearPokemonCrySongs(void)
 {
     CpuFill16(0, gPokemonCrySongs, MAX_POKEMON_CRIES * sizeof(struct PokemonCrySong));
+}
+
+static void CB2_PostSoftResetInit(void){
+    SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
+    ResetMenuAndMonGlobals();
+    Save_ResetSaveCounters();
+    LoadGameSave(SAVE_NORMAL);
+    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+        Sav2_ClearSetDefault();
+    SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
+    SetMainCallback2(CB2_InitMainMenu);
 }
