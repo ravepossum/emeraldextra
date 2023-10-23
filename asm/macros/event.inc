@@ -1767,6 +1767,13 @@
 	_dynmultichoice \left, \top, \ignoreBPress, \maxBeforeScroll, \shouldSort, \initialSelected, \callbacks, NULL
 	.endm
 
+	@ Writes the name of the given region to the specified buffer.
+	.macro bufferregionname stringVarId:req, region:req
+	.byte 0xe6
+	stringvar \stringVarId
+	.2byte \region
+	.endm
+
 
 @ Supplementary
 

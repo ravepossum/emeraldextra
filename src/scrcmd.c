@@ -54,6 +54,7 @@
 #include "day_night.h"
 #include "constants/items.h"
 #include "pokevial.h" //Pokevial Branch
+#include "starter_choose.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *ctx);
@@ -1452,6 +1453,15 @@ bool8 ScrCmd_dynmultipush(struct ScriptContext *ctx)
     MultichoiceDynamic_PushElement(item);
 }
 
+bool8 ScrCmd_bufferregionname(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 region = VarGet(ScriptReadHalfword(ctx));
+
+    StringCopy(sScriptStringVars[stringVarIndex], GetRegionName(region));
+    return FALSE;
+}
+
 bool8 ScrCmd_multichoice(struct ScriptContext *ctx)
 {
     u8 left = ScriptReadByte(ctx);
@@ -2480,3 +2490,4 @@ bool8 ScrCmd_pokevial(struct ScriptContext *ctx)
     return TRUE;
 }
 //End Pokevial Branch
+
