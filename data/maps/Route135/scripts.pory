@@ -1,1 +1,31 @@
 mapscripts Route135_MapScripts {}
+
+script Route135_EventScript_BlackBelt {
+    lock
+    faceplayer
+    if(flag(FLAG_RECEIVED_EXPERT_BELT)){
+        msgbox(format("I'm working on creating a secret handshake for us."))
+        release
+        end
+    }
+    msgbox(format("Hey there stranger! Would you like to be friends?"), MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO) {
+        msgbox(format("Aw, that's too bad…"))
+        release
+        end
+    } else {
+        msgbox(format("Splendid! How about you take this as a token of our new friendship?"))
+        giveitem(ITEM_EXPERT_BELT)
+        if(var(VAR_RESULT) == FALSE) {
+            goto(Common_EventScript_ShowBagIsFull)
+        } else {
+            msgbox(format("Through the power of friendship, that EXPERT BELT will boost your POKéMON's super-effective moves."))
+            setflag(FLAG_RECEIVED_EXPERT_BELT)
+            release
+        }
+    }
+}
+
+script Route135_EventScript_Boy {
+    msgbox(format("I wish I had a BIKE…\nI could go visit my friends in VERDANTURF."), MSGBOX_NPC)
+}
