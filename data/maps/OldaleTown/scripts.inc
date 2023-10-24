@@ -394,6 +394,14 @@ OldaleTown_Text_TownSign:
 	.string "Oldale Town\n"
 	.string "“Where things start off scarce.”$"
 
+OldaleTown_EventScript_Zigzagoon::
+	msgbox OldaleTown_EventScript_Zigzagoon_Text_0, MSGBOX_NPC
+	return
+
+
+OldaleTown_EventScript_Zigzagoon_Text_0:
+	.string "Zigzagoon: Guguuh?$"
+
 OldaleTown_Text_PotionExplanation::
 	.string "The Pokévial can be used at any time to\n"
 	.string "heal all of your Pokémon. It's useful in\l"

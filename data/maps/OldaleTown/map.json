@@ -81,6 +81,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "OldaleTown_EventScript_Rival",
       "flag": "FLAG_HIDE_OLDALE_TOWN_RIVAL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON_2",
+      "x": 28,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OldaleTown_EventScript_Zigzagoon",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -123,7 +136,7 @@
       "x": 32,
       "y": 12,
       "elevation": 0,
-      "dest_map": "MAP_OLDALE_TOWN",
+      "dest_map": "MAP_OLDALE_TOWN_HOUSE4",
       "dest_warp_id": "0"
     }
   ],

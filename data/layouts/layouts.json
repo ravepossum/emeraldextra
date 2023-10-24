@@ -4500,6 +4500,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/OldaleTown_House3/border.bin",
       "blockdata_filepath": "data/layouts/OldaleTown_House3/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLDALE_TOWN_HOUSE4",
+      "name": "OldaleTown_House4_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OldaleTown_House4/border.bin",
+      "blockdata_filepath": "data/layouts/OldaleTown_House4/map.bin"
     }
   ]
 }

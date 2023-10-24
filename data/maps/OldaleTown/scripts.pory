@@ -401,3 +401,7 @@ OldaleTown_Text_TownSign:
 text OldaleTown_Text_PotionExplanation {
     format("The Pokévial can be used at any time to heal all of your Pokémon. It's useful in a pinch when your Pokémon are hurt. However, you can't use it again until you refill it at a Pokémon Center.")
 }
+
+script OldaleTown_EventScript_Zigzagoon {
+	msgbox(format("Zigzagoon: Guguuh?"),MSGBOX_NPC)
+}

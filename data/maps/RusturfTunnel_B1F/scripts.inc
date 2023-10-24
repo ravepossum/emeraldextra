@@ -14,7 +14,7 @@ RusturfTunnel_B1F_Text_DelvinIntro::
 	.string "Pokémon!$"
 
 RusturfTunnel_B1F_Text_DelvinOutro::
-	.string "I guess I need to train it some more...$"
+	.string "I guess I need to train it some more…$"
 
 RusturfTunnel_B1F_Text_DelvinPostBattle::
 	.string "I heard that you can find Pokémon in\n"

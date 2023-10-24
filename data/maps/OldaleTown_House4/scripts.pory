@@ -1,0 +1,18 @@
+mapscripts OldaleTown_House4_MapScripts {}
+
+script OldaleTown_House4_EventScript_Snorlax {
+    lock
+    msgbox(format("Snorlax: … … … Zzz … … … \p… … … laaax … … … \p… … … Zzz … … …"))
+    if(flag(FLAG_RECEIVED_LAX_INCENSE)){
+        release
+        end
+    }
+    msgbox(format("Huh? The creature dropped something."))
+    giveitem(ITEM_LAX_INCENSE)
+    if(var(VAR_RESULT) == FALSE) {
+        goto(Common_EventScript_ShowBagIsFull)
+    } else {
+        setflag(FLAG_RECEIVED_LAX_INCENSE)
+        release
+    }
+}

@@ -48,7 +48,7 @@
 #define FLAG_NO_COLLISION           0x23 // No collision flag for debugging
 #define FLAG_LEVEL_CAP              0x24 // Indicates level cap is turned on
 #define FLAG_RECEIVED_EXPERT_BELT   0x25 // Player has received expert belt
-#define FLAG_UNUSED_0x026           0x26 // Unused Flag
+#define FLAG_RECEIVED_LAX_INCENSE   0x26 // Player has received lax incense
 #define FLAG_UNUSED_0x027           0x27 // Unused Flag
 #define FLAG_UNUSED_0x028           0x28 // Unused Flag
 #define FLAG_UNUSED_0x029           0x29 // Unused Flag

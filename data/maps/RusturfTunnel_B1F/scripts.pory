@@ -12,7 +12,7 @@ text RusturfTunnel_B1F_Text_DelvinIntro {
 }
 
 text RusturfTunnel_B1F_Text_DelvinOutro {
-    format("I guess I need to train it some more...")
+    format("I guess I need to train it some more…")
 }
 
 text RusturfTunnel_B1F_Text_DelvinPostBattle {
