@@ -12,8 +12,8 @@ script LittlerootTown_House2_EventScript_Man {
         release
         end
     }
-    msgbox(format("I maintain the garden outside. LITTLEROOT has lush soil.\p"
-                  "Here, take this BIG ROOT. It'll help your GRASS-type POKéMON stay in tip-top shape."))
+    msgbox(format("I maintain the garden outside. Littleroot has lush soil.\p"
+                  "Here, take this Big Root. It'll help your Grass-type Pokémon stay in tip-top shape."))
     giveitem(ITEM_BIG_ROOT)
     if(var(VAR_RESULT) == FALSE) {
         goto(Common_EventScript_ShowBagIsFull)

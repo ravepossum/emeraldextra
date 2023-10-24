@@ -19,7 +19,7 @@ script Route135_EventScript_BlackBelt {
         if(var(VAR_RESULT) == FALSE) {
             goto(Common_EventScript_ShowBagIsFull)
         } else {
-            msgbox(format("Through the power of friendship, that EXPERT BELT will boost your POKéMON's super-effective moves."))
+            msgbox(format("Through the power of friendship, that Expert Belt will boost your Pokémon's super-effective moves."))
             setflag(FLAG_RECEIVED_EXPERT_BELT)
             release
         }
@@ -27,5 +27,5 @@ script Route135_EventScript_BlackBelt {
 }
 
 script Route135_EventScript_Boy {
-    msgbox(format("I wish I had a BIKE…\nI could go visit my friends in VERDANTURF."), MSGBOX_NPC)
+    msgbox(format("I wish I had a Bike…\nI could go visit my friends in Verdanturf."), MSGBOX_NPC)
 }

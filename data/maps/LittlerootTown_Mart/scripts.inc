@@ -34,6 +34,6 @@ LittlerootTown_Mart_EventScript_BugCatcher::
 
 
 LittlerootTown_Mart_EventScript_BugCatcher_Text_0:
-	.string "Have you heard about POKéVIALs? They\n"
+	.string "Have you heard about Pokévials? They\n"
 	.string "can hold enough medicine to heal all of\l"
-	.string "your POKéMON.$"
+	.string "your Pokémon.$"

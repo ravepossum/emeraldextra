@@ -11,12 +11,12 @@ RusturfTunnel_B1F_EventScript_Delvin::
 
 RusturfTunnel_B1F_Text_DelvinIntro::
 	.string "I'll defeat you with my brand new\n"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 
 RusturfTunnel_B1F_Text_DelvinOutro::
 	.string "I guess I need to train it some more...$"
 
 RusturfTunnel_B1F_Text_DelvinPostBattle::
-	.string "I heard that you can find POKéMON in\n"
+	.string "I heard that you can find Pokémon in\n"
 	.string "rare and unique colors. I've been\l"
 	.string "searching everywhere for one.$"

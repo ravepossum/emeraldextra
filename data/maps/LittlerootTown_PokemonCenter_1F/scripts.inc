@@ -46,14 +46,14 @@ LittlerootTown_PokemonCenter_1F_EventScript_Youngster::
 	end
 
 LittlerootTown_PokemonCenter_1F_Text_SkittyContest:
-	.string "My SKITTY and I are going to enter\n"
-	.string "the POKéMON CONTEST in SLATEPORT.\p"
+	.string "My Skitty and I are going to enter\n"
+	.string "the Pokémon Contest in Slateport.\p"
 	.string "The judges won't be able to resist\n"
 	.string "its charm!$"
 
 LittlerootTown_PokemonCenter_1F_Text_Skitty:
-	.string "SKITTY: Miyaa!$"
+	.string "Skitty: Miyaa!$"
 
 LittlerootTown_PokemonCenter_1F_Text_Youngster:
-	.string "My family loves living in LITTLEROOT.\n"
+	.string "My family loves living in Littleroot.\n"
 	.string "We enjoy spending time in nature.$"

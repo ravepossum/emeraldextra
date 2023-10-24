@@ -62,14 +62,14 @@ const u32 gPokeballSelection_Gfx[] = INCBIN_U32("graphics/starter_choose/pokebal
 static const u32 sStarterCircle_Gfx[] = INCBIN_U32("graphics/starter_choose/starter_circle.4bpp.lz");
 
 const u8 gRegionNames[REGION_COUNT][REGION_MAX_NAME_LENGTH + 1] = {
-    [REGION_KANTO]  = _("KANTO"),
-    [REGION_JOHTO]  = _("JOHTO"),
-    [REGION_HOENN]  = _("HOENN"),
-    [REGION_SINNOH] = _("SINNOH"),
-    [REGION_UNOVA]  = _("UNOVA"),
-    [REGION_KALOS]  = _("KALOS"),
-    [REGION_ALOLA]  = _("ALOLA"),
-    [REGION_GALAR]  = _("GALAR"),
+    [REGION_KANTO]  = _("Kanto"),
+    [REGION_JOHTO]  = _("Johto"),
+    [REGION_HOENN]  = _("Hoenn"),
+    [REGION_SINNOH] = _("Sinnoh"),
+    [REGION_UNOVA]  = _("Unova"),
+    [REGION_KALOS]  = _("Kalos"),
+    [REGION_ALOLA]  = _("Alola"),
+    [REGION_GALAR]  = _("Galar"),
 };
 
 const u8 *GetRegionName(u16 region)

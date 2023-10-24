@@ -8,7 +8,7 @@ script RusturfTunnel_B1F_EventScript_Delvin {
 }
 
 text RusturfTunnel_B1F_Text_DelvinIntro {
-    format("I'll defeat you with my brand new POKéMON!")
+    format("I'll defeat you with my brand new Pokémon!")
 }
 
 text RusturfTunnel_B1F_Text_DelvinOutro {
@@ -16,5 +16,5 @@ text RusturfTunnel_B1F_Text_DelvinOutro {
 }
 
 text RusturfTunnel_B1F_Text_DelvinPostBattle {
-    format("I heard that you can find POKéMON in rare and unique colors. I've been searching everywhere for one.")
+    format("I heard that you can find Pokémon in rare and unique colors. I've been searching everywhere for one.")
 }

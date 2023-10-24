@@ -8,7 +8,7 @@ LittlerootTown_House1_EventScript_Boy::
 
 
 LittlerootTown_House1_EventScript_Boy_Text_0:
-	.string "It's no longer taboo in HOENN to run\n"
+	.string "It's no longer taboo in Hoenn to run\n"
 	.string "indoors. However, if you do need to slow\l"
 	.string "down, hold the B button to walk and\l"
 	.string "take in the sights.$"

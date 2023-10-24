@@ -9653,7 +9653,7 @@ const struct Item gItems[] =
     //Start Pokevial Branch
     [ITEM_POKEVIAL] =
     {
-        .name = _("POKéVIAL"),
+        .name = _("Pokévial"),
        // .itemId = ITEM_POKEVIAL,
         .price = 0,
         .description = sPokevialDesc,

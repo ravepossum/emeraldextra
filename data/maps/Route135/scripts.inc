@@ -55,10 +55,10 @@ Route135_EventScript_BlackBelt_Text_3:
 
 Route135_EventScript_BlackBelt_Text_4:
 	.string "Through the power of friendship, that\n"
-	.string "EXPERT BELT will boost your POKéMON's\l"
+	.string "Expert Belt will boost your Pokémon's\l"
 	.string "super-effective moves.$"
 
 Route135_EventScript_Boy_Text_0:
-	.string "I wish I had a BIKE…\n"
+	.string "I wish I had a Bike…\n"
 	.string "I could go visit my friends in\l"
-	.string "VERDANTURF.$"
+	.string "Verdanturf.$"

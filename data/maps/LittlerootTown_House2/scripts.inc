@@ -44,9 +44,9 @@ LittlerootTown_House2_EventScript_Man_Text_0:
 
 LittlerootTown_House2_EventScript_Man_Text_1:
 	.string "I maintain the garden outside.\n"
-	.string "LITTLEROOT has lush soil.\p"
-	.string "Here, take this BIG ROOT. It'll help your\n"
-	.string "GRASS-type POKéMON stay in tip-top\l"
+	.string "Littleroot has lush soil.\p"
+	.string "Here, take this Big Root. It'll help your\n"
+	.string "Grass-type Pokémon stay in tip-top\l"
 	.string "shape.$"
 
 LittlerootTown_House2_EventScript_LittleGirl_Text_0:
