@@ -1,0 +1,98 @@
+script Common_EventScript_PkmnCenterUnionNurse {
+	lock
+	faceplayer
+	message(format("Hi, I'm the Pokéhelper! How may I help you today?"))
+	waitmessage
+    call(EventScript_PkmnCenterUnionNurse_Multichoice)
+    release
+	end
+}
+
+script EventScript_PkmnCenterUnionNurse_Multichoice {
+    dynmultichoice(0,0,FALSE,3,0,DYN_MULTICHOICE_CB_NONE,"Relearn a move","Change a nickname","Change the time")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            call(EventScript_PkmnCenterUnionNurse_MoveRelearn)
+            message(PkmnCenterUnionNurse_AnythingElse)
+            waitmessage
+            call(EventScript_PkmnCenterUnionNurse_Multichoice)
+        case 1:
+            call(EventScript_PkmnCenterUnionNurse_ChangeNickname)
+            message(PkmnCenterUnionNurse_AnythingElse)
+            waitmessage
+            call(EventScript_PkmnCenterUnionNurse_Multichoice)
+        case 2:
+            call(PlayersHouse_2F_EventScript_SetWallClock)
+            message(PkmnCenterUnionNurse_AnythingElse)
+            waitmessage
+            call(EventScript_PkmnCenterUnionNurse_Multichoice)
+        default:
+            return
+    }
+}
+
+script EventScript_PkmnCenterUnionNurse_MoveRelearn {
+    special(ChooseMonForMoveRelearner)
+	waitstate
+
+    if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+        return
+    }
+
+    special(IsSelectedMonEgg)
+    
+    if (var(VAR_RESULT) == TRUE) {
+
+        msgbox(format("There are no moves available to teach to an Egg."))
+        call(EventScript_PkmnCenterUnionNurse_MoveRelearn)
+    
+    } elif (var(VAR_0x8005) == 0) {
+    
+        msgbox(format("Unfortunately, there are no moves available for that Pokémon."))
+        call(EventScript_PkmnCenterUnionNurse_MoveRelearn)
+    
+    } else {
+	
+        special(TeachMoveRelearnerMove)
+        waitstate
+
+        if (var(VAR_0x8004) == 0) {
+            call(EventScript_PkmnCenterUnionNurse_MoveRelearn)
+        } else {
+            msgbox(format("Thank you for using the Move Relearner!"))
+            return
+        }
+    }
+}
+
+script EventScript_PkmnCenterUnionNurse_ChangeNickname {
+    special(ChoosePartyMon)
+	waitstate
+
+    if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+        return
+    }
+
+    specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+    
+    if (var(VAR_RESULT) == SPECIES_EGG) {
+        msgbox(format("You cannot nickname an Egg."))
+        call(EventScript_PkmnCenterUnionNurse_ChangeNickname)
+    } else {
+        call(Common_EventScript_NameReceivedPartyMon)
+        specialvar(VAR_RESULT, TryPutNameRaterShowOnTheAir)
+        special(BufferMonNickname)
+	    if (var(VAR_RESULT) == TRUE) {
+        // player picked a new name
+            msgbox(format("From now on, this Pokémon will be known as {STR_VAR_1}."))
+        } else {
+        // player picked the same name
+            msgbox(format("The Pokémon's name will remain unchanged."))
+        }
+        return
+    }
+}
+
+text PkmnCenterUnionNurse_AnythingElse {
+    format("Is there anything else I can help you with today?")
+}

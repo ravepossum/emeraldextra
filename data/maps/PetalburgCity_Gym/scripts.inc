@@ -1162,6 +1162,7 @@ PetalburgCity_Gym_Text_WallyIveNeverCaughtAPokemon:
 PetalburgCity_Gym_Text_DadHmISee:
 	.string "Dad: Hm. I see.$"
 
+// unused
 PetalburgCity_Gym_Text_DadPlayerGoWithWally:
 	.string "Dad: {PLAYER}, you heard that,\n"
 	.string "right?\p"
@@ -1183,21 +1184,21 @@ PetalburgCity_Gym_Text_WallyThankYou:
 	.string "so I have to go!\p"
 	.string "Bye, Norman! Bye, {PLAYER}!$"
 
-// unusued
+// unused
 PetalburgCity_Gym_Text_WallyOhWowThankYou:
 	.string "Wally: Oh, wow!\n"
 	.string "Thank you!$"
 
-// unusued
+// unused
 PetalburgCity_Gym_Text_WouldYouReallyComeWithMe:
 	.string "{PLAYER}… Would you really come\n"
 	.string "with me?$"
 
-// unusued
+// unused
 PetalburgCity_Gym_Text_DadSoDidItWorkOut:
 	.string "Dad: So, did it work out?$"
 
-// unusued
+// unused
 PetalburgCity_Gym_Text_WallyThankYouBye:
 	.string "Wally: Thank you, yes, it did.\n"
 	.string "Here's your Pokémon back.\p"
