@@ -57,3 +57,11 @@ LittlerootTown_PokemonCenter_1F_Text_Skitty:
 LittlerootTown_PokemonCenter_1F_Text_Youngster:
 	.string "My family loves living in Littleroot.\n"
 	.string "We enjoy spending time in nature.$"
+
+LittlerootTown_PokemonCenter_1F_EventScript_UnionNurse::
+	call Common_EventScript_PkmnCenterUnionNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+

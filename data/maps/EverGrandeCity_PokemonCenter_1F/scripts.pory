@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_NURSE, 1
 .set LOCALID_SCOTT, 4
 
@@ -99,11 +101,12 @@ EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou:
 	.string "I'll get in touch with you then.\p"
 	.string "Okay, {PLAYER}{KUN}.\n"
 	.string "Go for greatness!$"
+`
 
-EverGrandeCity_PokemonCenter_1F_EventScript_UnionNurse::
-	call Common_EventScript_PkmnCenterUnionNurse
+script EverGrandeCity_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
 	waitmessage
 	waitbuttonpress
 	release
 	end
-
+}

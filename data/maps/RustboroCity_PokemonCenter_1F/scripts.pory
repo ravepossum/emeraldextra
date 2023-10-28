@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_NURSE, 1
 
 RustboroCity_PokemonCenter_1F_MapScripts::
@@ -46,11 +48,12 @@ RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor:
 	.string "The man next door gave me an HM!\p"
 	.string "I used it to teach my Pokémon how to\n"
 	.string "Cut down skinny trees.$"
+`
 
-RustboroCity_PokemonCenter_1F_EventScript_UnionNurse::
-	call Common_EventScript_PkmnCenterUnionNurse
+script RustboroCity_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
 	waitmessage
 	waitbuttonpress
 	release
 	end
-
+}

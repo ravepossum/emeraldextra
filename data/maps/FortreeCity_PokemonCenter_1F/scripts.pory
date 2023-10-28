@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_NURSE, 1
 
 FortreeCity_PokemonCenter_1F_MapScripts::
@@ -54,11 +56,12 @@ FortreeCity_PokemonCenter_1F_Text_DoYouKnowAboutPokenav:
 	.string "want a rematch with you.\p"
 	.string "It's really nifty! Those Devon guys\n"
 	.string "sure know what they're doing!$"
+`
 
-FortreeCity_PokemonCenter_1F_EventScript_UnionNurse::
-	call Common_EventScript_PkmnCenterUnionNurse
+script FortreeCity_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
 	waitmessage
 	waitbuttonpress
 	release
 	end
-
+}

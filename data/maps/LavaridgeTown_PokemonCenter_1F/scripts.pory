@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_NURSE, 1
 
 LavaridgeTown_PokemonCenter_1F_MapScripts::
@@ -47,11 +49,12 @@ LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo:
 	.string "the hot springs from here.\p"
 	.string "If Pokémon are getting rest, so too\n"
 	.string "should their Trainers.$"
+`
 
-LavaridgeTown_PokemonCenter_1F_EventScript_UnionNurse::
-	call Common_EventScript_PkmnCenterUnionNurse
+script LavaridgeTown_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
 	waitmessage
 	waitbuttonpress
 	release
 	end
-
+}

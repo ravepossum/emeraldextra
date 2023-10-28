@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_NURSE, 1
 
 BattleFrontier_PokemonCenter_1F_MapScripts::
@@ -58,11 +60,12 @@ BattleFrontier_PokemonCenter_1F_Text_GoingThroughEveryChallenge:
 
 BattleFrontier_PokemonCenter_1F_Text_Skitty:
 	.string "Skitty: Mya myaaah!$"
+`
 
-BattleFrontier_PokemonCenter_1F_EventScript_UnionNurse::
-	call Common_EventScript_PkmnCenterUnionNurse
+script BattleFrontier_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
 	waitmessage
 	waitbuttonpress
 	release
 	end
-
+}

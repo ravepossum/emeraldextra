@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_NURSE, 1
 
 VerdanturfTown_PokemonCenter_1F_MapScripts::
@@ -41,11 +43,12 @@ VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent:
 	.string "saying.\p"
 	.string "Or is there somebody here that you\n"
 	.string "came to see?$"
+`
 
-VerdanturfTown_PokemonCenter_1F_EventScript_UnionNurse::
-	call Common_EventScript_PkmnCenterUnionNurse
+script VerdanturfTown_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
 	waitmessage
 	waitbuttonpress
 	release
 	end
-
+}

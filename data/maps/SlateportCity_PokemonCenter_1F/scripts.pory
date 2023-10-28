@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_NURSE, 1
 
 SlateportCity_PokemonCenter_1F_MapScripts::
@@ -39,11 +41,12 @@ SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend:
 	.string "I trade Pokémon with my friends.\p"
 	.string "If a traded Pokémon is holding an\n"
 	.string "item, it makes me twice as happy!$"
+`
 
-SlateportCity_PokemonCenter_1F_EventScript_UnionNurse::
-	call Common_EventScript_PkmnCenterUnionNurse
+script SlateportCity_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
 	waitmessage
 	waitbuttonpress
 	release
 	end
-
+}

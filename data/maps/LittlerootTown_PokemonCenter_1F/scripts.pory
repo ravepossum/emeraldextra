@@ -60,3 +60,10 @@ LittlerootTown_PokemonCenter_1F_Text_Youngster:
 	.string "We enjoy spending time in nature.$"
 
 `
+script LittlerootTown_PokemonCenter_1F_EventScript_UnionNurse {
+	call(Common_EventScript_PkmnCenterUnionNurse)
+	waitmessage
+	waitbuttonpress
+	release
+	end
+}

@@ -1,5 +1,4 @@
 .set LOCALID_NURSE, 1
-.set LOCALID_UNIONNURSE, 5
 
 OldaleTown_PokemonCenter_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_PokemonCenter_1F_OnTransition
@@ -64,7 +63,6 @@ OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub:
 	.string "I traded Pokémon right away.$"
 
 OldaleTown_PokemonCenter_1F_EventScript_UnionNurse::
-	setvar VAR_0x800B, LOCALID_UNIONNURSE
 	call Common_EventScript_PkmnCenterUnionNurse
 	waitmessage
 	waitbuttonpress
