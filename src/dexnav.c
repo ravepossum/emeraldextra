@@ -33,6 +33,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_screen.h"
+#include "pokenav.h"
 #include "random.h"
 #include "region_map.h"
 #include "scanline_effect.h"
@@ -449,7 +450,7 @@ static void DrawDexNavSearchMonIcon(u16 species, u8 *dst, bool8 owned)
     u8 spriteId;
 
     LoadMonIconPalette(species);
-    spriteId = CreateMonIcon(species, SpriteCB_MonIcon, SPECIES_ICON_X - 6, GetSearchWindowY() + 8, 0, 0xFFFFFFFF, 0);
+    spriteId = CreateMonIcon(species, SpriteCB_MonIcon, SPECIES_ICON_X - 6, GetSearchWindowY() + 8, 0, 0xFFFFFFFF);
     gSprites[spriteId].oam.priority = 0;
     *dst = spriteId;
     
@@ -2000,9 +2001,9 @@ static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
     if (species == SPECIES_NONE || species > NUM_SPECIES)
         CreateNoDataIcon(x, y);   //'X' in slot
     else if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF, 0); //question mark
+        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
     else
-        CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF, 0);
+        CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
 }
 
 static void DrawSpeciesIcons(void)
@@ -2038,7 +2039,7 @@ static void DrawSpeciesIcons(void)
        else if (species == SPECIES_NONE || species > NUM_SPECIES)
             CreateNoDataIcon(x, y);
         else
-            CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF, 0); //question mark if detector mode inactive
+            CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark if detector mode inactive
     }
 }
 
@@ -2102,9 +2103,7 @@ static const u8 sMoveTypeToOamPaletteNum[NUMBER_OF_MON_TYPES] =
     [TYPE_ICE] = TYPE_ICON_PAL_NUM_1,
     [TYPE_DRAGON] = TYPE_ICON_PAL_NUM_2,
     [TYPE_DARK] = TYPE_ICON_PAL_NUM_0,
-    #ifdef TYPE_FAIRY
     [TYPE_FAIRY] = TYPE_ICON_PAL_NUM_1, //based on battle_engine
-    #endif
 };
 static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 {
@@ -2354,6 +2353,22 @@ void Task_OpenDexNavFromStartMenu(u8 taskId)
     }
 }
 
+u32 PokeNavMenuDexNavCallback(void)
+{
+    CreateTask(Task_OpenDexNavFromPokenav, 0);
+    return TRUE;
+}
+
+void Task_OpenDexNavFromPokenav(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        DexNavGuiInit(CB2_InitPokeNav);
+        DestroyTask(taskId);
+    }
+}
+
 static void Task_DexNavWaitFadeIn(u8 taskId)
 {
     if (!gPaletteFade.active)
@@ -2399,7 +2414,8 @@ static void Task_DexNavMain(u8 taskId)
         {
             sDexNavUiDataPtr->cursorRow = ROW_WATER;
         }
-        else if (sDexNavUiDataPtr->cursorRow == ROW_LAND_BOT)
+        else
+        if (sDexNavUiDataPtr->cursorRow == ROW_LAND_BOT)
         {
             if (sDexNavUiDataPtr->cursorCol >= COL_HIDDEN_COUNT)
                 sDexNavUiDataPtr->cursorCol = COL_HIDDEN_MAX;
@@ -2473,16 +2489,28 @@ static void Task_DexNavMain(u8 taskId)
         
         if (species != SPECIES_NONE)
         {            
-            PrintSearchableSpecies(species);
-            //PlaySE(SE_DEX_SEARCH);
-            PlayCry_Script(species, 0);
-            
-            // create value to store in a var
-            VarSet(VAR_DEXNAV_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
+            if (((sDexNavUiDataPtr->environment << 14) | species) == VarGet(VAR_DEXNAV_SPECIES)) {
+                PlaySE(SE_BOO);
+                PrintSearchableSpecies(SPECIES_NONE);
+                VarSet(VAR_DEXNAV_SPECIES, SPECIES_NONE);
+            } else {
+                PrintSearchableSpecies(species);
+                //PlaySE(SE_DEX_SEARCH);
+                PlayCry_Script(species, 0);
+                
+                // create value to store in a var
+                VarSet(VAR_DEXNAV_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
+            }
         }
         else
         {
-            PlaySE(SE_FAILURE);
+            if (VarGet(VAR_DEXNAV_SPECIES) != SPECIES_NONE) {
+                PlaySE(SE_BOO);
+                PrintSearchableSpecies(SPECIES_NONE);
+                VarSet(VAR_DEXNAV_SPECIES, SPECIES_NONE);
+            } else {
+                PlaySE(SE_FAILURE);
+            }
         }
     }
     else if (JOY_NEW(A_BUTTON))
@@ -2496,7 +2524,7 @@ static void Task_DexNavMain(u8 taskId)
         {
             gSpecialVar_0x8000 = species;
             gSpecialVar_0x8001 = sDexNavUiDataPtr->environment;
-            gSpecialVar_0x8002 = (sDexNavUiDataPtr->cursorRow == ROW_HIDDEN) ? TRUE : FALSE;
+            gSpecialVar_0x8002 = /*(sDexNavUiDataPtr->cursorRow == ROW_HIDDEN) ? TRUE :*/ FALSE;
             PlaySE(SE_DEX_SEARCH);
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             task->func = Task_DexNavExitAndSearch;

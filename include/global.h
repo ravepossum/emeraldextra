@@ -17,6 +17,12 @@
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
 
+// free saveblock 1 defines
+#define FREE_MYSTERY_EVENT_BUFFERS      //frees up mystery event and ramScript. roughly 1880 bytes
+//#define FREE_UNION_ROOM_CHAT            //frees up field unk3C88. 210 bytes
+//#define FREE_ENIGMA_BERRY               //frees up enigma berry. 52 bytes
+//#define FREE_LINK_BATTLE_RECORDS        //frees link battle record data. 88 bytes
+
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
 
@@ -998,7 +1004,7 @@ struct SaveBlock1
     /*0x690*/ struct ItemSlot bagPocket_TMHM[BAG_TMHM_COUNT];
     /*0x790*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
-    /*0x988*/ u8 filler1[0x18]; // Previously Dex Flags, feel free to remove.
+    /*0x988*/ u8 filler1[0x29C]; // Previously Dex Flags, feel free to remove.
     /*0x9BC*/ u16 berryBlenderRecords[3];
     /*0x9C2*/ u8 unused_9C2[6];
     /*0x9C8*/ u16 trainerRematchStepCounter;
@@ -1052,11 +1058,15 @@ struct SaveBlock1
     /*0x31C7*/ struct ExternalEventFlags externalEventFlags;
     /*0x31DC*/ struct Roamer roamer;
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
-    /*0x322C*/ struct MysteryGiftSave mysteryGift;
+    #ifndef FREE_MYSTERY_EVENT_BUFFERS
+    /*0x322C*/ struct MysteryGiftSave mysteryGift;   //876 bytes
+    #endif
     /*0x3???*/ u8 dexSeen[NUM_DEX_FLAG_BYTES];
     /*0x3???*/ u8 dexCaught[NUM_DEX_FLAG_BYTES];
     /*0x3???*/ u32 trainerHillTimes[NUM_TRAINER_HILL_MODES];
-    /*0x3???*/ struct RamScript ramScript;
+    #ifndef FREE_MYSTERY_EVENT_BUFFERS
+        /*0x3???*/ struct RamScript ramScript;
+    #endif
     /*0x3???*/ struct RecordMixingGift recordMixingGift;
     /*0x3???*/ LilycoveLady lilycoveLady;
     /*0x3???*/ struct TrainerNameRecord trainerNameRecords[20];
