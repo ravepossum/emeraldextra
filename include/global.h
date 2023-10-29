@@ -1064,7 +1064,10 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
     /*0x3???*/ struct Pokevial pokevial; //Pokevial Branch
+    /*0x3???*/ u8 dexNavSearchLevels[NUM_SPECIES];
+    /*0x3???*/ u8 dexNavChain;
     // sizeof: 0x3???
+    // negative 1236 bytes
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;
