@@ -1100,9 +1100,9 @@ MatchCall_PersonalizedText39::
 	.string "Whiff-whiff! Whiff-whiff!\p"
 	.string "Hey! Sorry about that!\n"
 	.string "I just put on some suntan oil.\p"
-	.string "So my Pokénav went whoopsy\n"
+	.string "So my PokéNav went whoopsy\n"
 	.string "out of my hand into the water!\p"
-	.string "But, boy, Devon's Pokénav is built\n"
+	.string "But, boy, Devon's PokéNav is built\n"
 	.string "tough. It survived that dunking!\p"
 	.string "Anyways, I'm busy sunbathing,\n"
 	.string "so let's chat another time.$"
@@ -2629,7 +2629,7 @@ MatchCall_Text_Wally6::
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
 	.string "Wally appears to be out of\n"
-	.string "the Pokénav's service area…$"
+	.string "the PokéNav's service area…$"
 
 MatchCall_Text_Wally7:: @ 2B5100
 	.string "Wally: Oh, {PLAYER}!\p"
@@ -2707,7 +2707,7 @@ MatchCall_Text_Scott7::
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
 	.string "Scott appears to be out of\n"
-	.string "the Pokénav's service area…$"
+	.string "the PokéNav's service area…$"
 
 MatchCall_Text_Norman1:: @ 82B5719
 	.string "Dad: In Rustboro, there's a man\n"
@@ -2834,7 +2834,7 @@ MatchCall_Text_Steven7:: @ 82B5ED9
 MatchCall_Text_BirchRegisterCall: @ 82B5F52
 	.string "Prof. Birch: Oh, {PLAYER}{KUN}!\n"
 	.string "I've already heard about you!\p"
-	.string "It seems your Pokénav's been\n"
+	.string "It seems your PokéNav's been\n"
 	.string "upgraded with Match Call.\p"
 	.string "Well, I should register, too!\p"
 	.string "That way, I'd be able to examine\n"
@@ -2844,17 +2844,17 @@ MatchCall_Text_BirchRegisterCall: @ 82B5F52
 
 MatchCall_Text_RegisteredBirch: @ 82B603A
 	.string "Registered Prof. Birch\n"
-	.string "in the Pokénav.$"
+	.string "in the PokéNav.$"
 	
 MatchCall_Text_UnusedProfBirch:
 	.string "Prof. Birch: When one has both\n"
-	.string "the Pokédex and Pokénav, studying\l"
+	.string "the Pokédex and PokéNav, studying\l"
 	.string "Pokémon becomes more fun, eh?$"
 
 MatchCall_Text_MrStone1:: @ 82B60C0
 	.string "Mr. Stone: Oh? {PLAYER}{KUN}!\p"
-	.string "Since you called me, the Pokénav\n"
-	.string "must be working properly!\p"
+	.string "Since you called me, the PokéNav\n"
+	.string "upgrade must be working properly!\p"
 	.string "Other people will be registered,\n"
 	.string "so try calling them up, too!\p"
 	.string "Good! Good!\n"

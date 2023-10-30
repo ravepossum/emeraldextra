@@ -214,7 +214,7 @@ MauvilleCity_BikeShop_Text_WaitASecond:
 	.string "the Acro Gear!\p"
 	.string "The Mach Gear is for cyclists who want\n"
 	.string "to feel the wind with their bodies!\p"
-	.string "And the Acro gear is for those who\n"
+	.string "And the Acro Gear is for those who\n"
 	.string "prefer technical rides!\p"
 	.string "I'm a real sweetheart, so I gave\n"
 	.string "you my state-of-the-art model that\l"

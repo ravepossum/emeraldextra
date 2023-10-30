@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_AIDE, 1
 .set LOCALID_BIRCH, 2
 .set LOCALID_RIVAL, 3
@@ -991,68 +993,69 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "we meet. I'll be waiting!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
+`
 
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls::
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_2
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanTakePokenav, MSGBOX_DEFAULT
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_1:
-	playfanfare MUS_OBTAIN_ITEM
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_PlayerReceivedPokenav, MSGBOX_DEFAULT
-	waitfanfare
-	setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_RECEIVED_POKENAV
-	setflag FLAG_SYS_DEXNAV_GET
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_6
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanExplainPokenav, MSGBOX_DEFAULT
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_5:
-	setvar VAR_RESULT, 0
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls {
+
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+	    msgbox(LittlerootTown_ProfessorBirchsLab_Text_MayTakePokenav, MSGBOX_DEFAULT)
+    } else {
+	    msgbox(LittlerootTown_ProfessorBirchsLab_Text_BrendanTakePokenav, MSGBOX_DEFAULT)
+    }
+
+
+    playfanfare(MUS_OBTAIN_ITEM)
+    msgbox(LittlerootTown_ProfessorBirchsLab_Text_PlayerReceivedPokenav, MSGBOX_DEFAULT)
+    waitfanfare
+    setflag(FLAG_SYS_POKENAV_GET)
+	setflag(FLAG_RECEIVED_POKENAV)
+    setflag(FLAG_SYS_DEXNAV_GET)
+
+
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+	    msgbox(LittlerootTown_ProfessorBirchsLab_Text_MayExplainPokenav, MSGBOX_DEFAULT)
+    } else {
+	    msgbox(LittlerootTown_ProfessorBirchsLab_Text_BrendanExplainPokenav, MSGBOX_DEFAULT)
+    }
+
+	setvar(VAR_RESULT, 0)
 	return
+}
 
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_2:
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayTakePokenav, MSGBOX_DEFAULT
-	goto LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_1
+text LittlerootTown_ProfessorBirchsLab_Text_MayTakePokenav {
+	format("May: Oh, wow, {PLAYER}{KUN}!\n
+            You got a Pokédex, too!\p
+            That's great! Just like me!\n
+            I've got something for you, too!")
+}
 
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_6:
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayExplainPokenav, MSGBOX_DEFAULT
-	goto LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls_5
+text LittlerootTown_ProfessorBirchsLab_Text_MayExplainPokenav {
+    format("May: It's a Pokémon Navigator, or PokéNav!
+            It's got a map of Hoenn and a handy way to evaluate your Pokémon.\p
+            I thought you might like it if I upgraded it 
+            with the DexNav function too.\p It's really great 
+            for tracking and catching Pokémon! I'll use it to find 
+            lots of cute Pokémon!")
+}
 
+text LittlerootTown_ProfessorBirchsLab_Text_BrendanTakePokenav {
+	format("Brendan: Huh…\n
+            So you got a Pokédex, too.\p
+            Well then, here.\n
+            I'll give you this.$")
+}
 
-LittlerootTown_ProfessorBirchsLab_Text_MayTakePokenav::
-	.string "May: Oh, wow, {PLAYER}{KUN}!\n"
-	.string "You got a Pokédex, too!\p"
-	.string "That's great! Just like me!\n"
-	.string "I've got something for you, too!$"
+text LittlerootTown_ProfessorBirchsLab_Text_BrendanExplainPokenav {
+    format("Brendan: It's a Pokémon Navigator, or PokéNav!
+            It's got a map of Hoenn and a handy way
+            to evaluate your Pokémon.\p Just for you, I've
+            even upgraded it with the DexNav function.\p It's
+            perfect for tracking and catching lots of Pokémon!
+            Maybe it'll help you keep up with all the Pokémon I catch.")
+}
 
-LittlerootTown_ProfessorBirchsLab_Text_MayExplainPokenav::
-	.string "May: It's a Pokémon Navigator, or\n"
-	.string "PokéNav! It's got a map of Hoenn and a\l"
-	.string "handy way to evaluate your Pokémon.\p"
-	.string "I thought you might like it if I\n"
-	.string "upgraded it with the DexNav function\l"
-	.string "too.\p"
-	.string "It's really great for tracking and\n"
-	.string "catching Pokémon! I'll use it to find\l"
-	.string "lots of cute Pokémon!$"
-
-LittlerootTown_ProfessorBirchsLab_Text_BrendanTakePokenav::
-	.string "Brendan: Huh…\n"
-	.string "So you got a Pokédex, too.\p"
-	.string "Well then, here.\n"
-	.string "I'll give you this.$"
-
-LittlerootTown_ProfessorBirchsLab_Text_BrendanExplainPokenav::
-	.string "Brendan: It's a Pokémon Navigator, or\n"
-	.string "PokéNav! It's got a map of Hoenn and a\l"
-	.string "handy way to evaluate your Pokémon.\p"
-	.string "Just for you, I've even upgraded it with\n"
-	.string "the DexNav function.\p"
-	.string "It's perfect for tracking and catching\n"
-	.string "lots of Pokémon! Maybe it'll help you\l"
-	.string "keep up with all the Pokémon I catch.$"
-
-LittlerootTown_ProfessorBirchsLab_Text_PlayerReceivedPokenav::
-	.string "{PLAYER} received the PokéNav!$"
+text LittlerootTown_ProfessorBirchsLab_Text_PlayerReceivedPokenav {
+    format("{PLAYER} received the PokéNav!")
+}

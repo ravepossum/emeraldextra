@@ -94,7 +94,7 @@
 // Shiny odds
 #define SHINY_ODDS 16 // Actual probability is SHINY_ODDS/65536
 
-// Ribbon IDs used by TV and Pokénav
+// Ribbon IDs used by TV and PokéNav
 #define CHAMPION_RIBBON       0
 #define COOL_RIBBON_NORMAL    1
 #define COOL_RIBBON_SUPER     2

@@ -44,9 +44,9 @@ FortreeCity_PokemonCenter_1F_Text_RecordCornerIsNeat:
 	.string "but it's cool. It's exciting, even!$"
 
 FortreeCity_PokemonCenter_1F_Text_DoYouKnowAboutPokenav:
-	.string "Oh, wow, you have a Pokénav!\n"
+	.string "Oh, wow, you have a PokéNav!\n"
 	.string "And it's just like mine!\p"
-	.string "Do you know about Pokénav's\n"
+	.string "Do you know about PokéNav's\n"
 	.string "Match Call system?\p"
 	.string "Access it, and you can chat with\n"
 	.string "registered Trainers anytime.\p"

@@ -311,7 +311,7 @@ void MailboxMenu_Free(void)
 //---------------------------------------
 // Condition graph
 //
-// This is the graph in the Pokénav and
+// This is the graph in the PokéNav and
 // Pokéblock case that shows a Pokémon's
 // conditions (Beauty, Tough, etc.).
 // It works by using scanlines to

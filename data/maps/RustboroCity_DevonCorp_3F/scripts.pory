@@ -1,3 +1,5 @@
+raw
+`
 .set LOCALID_DEVON_EMPLOYEE, 2
 
 RustboroCity_DevonCorp_3F_MapScripts::
@@ -301,59 +303,49 @@ RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular:
 RustboroCity_DevonCorp_3F_Text_RareRocksDisplay:
 	.string "It's a collection of rare rocks and\n"
 	.string "stones assembled by the President.$"
+`
 
-RustboroCity_DevonCorp_3F_EventScript_GiveMon::
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_EEVEE
-	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
-	playfanfare MUS_OBTAIN_ITEM
-	message RustboroCity_DevonCorp_3F_Text_ReceivedMon
+script RustboroCity_DevonCorp_3F_EventScript_GiveMon {
+
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_EEVEE)
+    showmonpic(VAR_TEMP_TRANSFERRED_SPECIES, 10, 3)
+    playfanfare(MUS_OBTAIN_ITEM)
+	message(RustboroCity_DevonCorp_3F_Text_ReceivedMon)
 	waitfanfare
-	hidemonpic
-	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
-	givemon VAR_TEMP_TRANSFERRED_SPECIES, 15, ITEM_NONE
-	compare VAR_RESULT, MON_GIVEN_TO_PARTY
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_2
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_1:
-	compare VAR_RESULT, MON_GIVEN_TO_PC
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_5
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_4:
-	return
+    hidemonpic
+	bufferspeciesname(STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES)
 
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_2:
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_7
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_1
+    givemon(VAR_TEMP_TRANSFERRED_SPECIES, 15, ITEM_NONE)
+    if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+        msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            call(Common_EventScript_GetGiftMonPartySlot)
+	        call(Common_EventScript_NameReceivedPartyMon)
+        }
+    }
+    if (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+        msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            call(Common_EventScript_NameReceivedBoxMon)
+        }
+        call(Common_EventScript_TransferredToPC)
+    }
+    
+    return
+}
 
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_5:
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_10
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_9:
-	call Common_EventScript_TransferredToPC
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_4
+text RustboroCity_DevonCorp_3F_Text_ReceivedMon {
+	format("{PLAYER} received Eevee!$")
+}
 
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_7:
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_1
-
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_10:
-	call Common_EventScript_NameReceivedBoxMon
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_9
-
-
-RustboroCity_DevonCorp_3F_Text_ReceivedMon::
-	.string "{PLAYER} received Eevee!$"
-
-RustboroCity_DevonCorp_3F_Text_MrStoneExplainMonRestUp::
-	.string "Mr. Stone: That Pokémon…\p"
-	.string "Eevee is an exotic Pokémon from the\n"
-	.string "Kanto region that can take on many\l"
-	.string "different forms.\p"
-	.string "Please take good care of it.\p"
-	.string "By the way, I've heard that sinister\n"
-	.string "criminals--Magma and Aqua, I believe--\l"
-	.string "have been making trouble far and wide.\p"
-	.string "I think it would be best if you rested\n"
-	.string "up before you go on your way.$"
+text RustboroCity_DevonCorp_3F_Text_MrStoneExplainMonRestUp {
+	format("Mr. Stone: That Pokémon…\p
+            Eevee is an exotic Pokémon from the Kanto
+            region that can take on many different forms.\p
+            Please take good care of it.\p
+            By the way, I've heard that sinister\n
+            criminals--Magma and Aqua, I believe--\l
+            have been making trouble far and wide.\p
+            I think it would be best if you rested\n
+            up before you go on your way.")
+}
