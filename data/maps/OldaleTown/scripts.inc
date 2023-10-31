@@ -399,8 +399,23 @@ OldaleTown_EventScript_Zigzagoon::
 	return
 
 
+OldaleTown_EventScript_Boy::
+	msgbox OldaleTown_EventScript_Boy_Text_0, MSGBOX_NPC
+	return
+
+
 OldaleTown_EventScript_Zigzagoon_Text_0:
 	.string "Zigzagoon: Guguuh?$"
+
+OldaleTown_EventScript_Boy_Text_0:
+	.string "The DexNav is an amazing new upgrade\n"
+	.string "for the PokéNav.\p"
+	.string "You can use it view all Pokémon that\n"
+	.string "live in the current area, or even to\l"
+	.string "scan for specific Pokémon.\p"
+	.string "Just select them in the DexNav menu or\n"
+	.string "register them to the R Button for\l"
+	.string "convenience.$"
 
 OldaleTown_Text_PotionExplanation::
 	.string "The Pokévial can be used at any time to\n"

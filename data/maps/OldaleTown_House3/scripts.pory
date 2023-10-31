@@ -3,3 +3,7 @@ mapscripts OldaleTown_House3_MapScripts {}
 script OldaleTown_House3_EventScript_Scientist {
     msgbox(format("Thanks to new technology, you can now see your Pokémon's Effort Values (EVs) by pressing the L Button while viewing their stats.\pYou can also view their Individual Values (IVs) by pressing the R Button while viewing their stats."), MSGBOX_NPC)
 }
+
+script OldaleTown_House3_EventScript_Scientist2 {
+    msgbox(format("When you search for Pokémon using the DexNav, you'll be able to see additional information about them.\pThis can include their level, their ability, their held item, and even certain moves they know."), MSGBOX_NPC)
+}

@@ -516,7 +516,7 @@ RustboroCity_EventScript_EmployeeAskToGetGoods::
 	releaseall
 	end
 
-@ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
+//@ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
 RustboroCity_EventScript_EmployeeFacePlayerUp1::
 	applymovement LOCALID_DEVON_EMPLOYEE, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
@@ -1304,4 +1304,8 @@ RustboroCity_Text_YouCanHave2On2Battle:
 script RustboroCity_EventScript_Hiker {
     msgbox(format("I heard some miners uncovered an icy cavern underneath Rusturf Tunnel.\p"
 				  "I can't wait to go check it out!"), MSGBOX_NPC)
+}
+
+script RustboroCity_EventScript_Beauty {
+	msgbox(format("The more you encounter a particular species of Pokémon, the higher your DexNav search level will be.\pA higher search level and chain will result in finding more rare Pokémon!"), MSGBOX_NPC)
 }

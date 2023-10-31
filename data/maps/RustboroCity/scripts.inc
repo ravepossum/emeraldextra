@@ -514,7 +514,7 @@ RustboroCity_EventScript_EmployeeAskToGetGoods::
 	releaseall
 	end
 
-@ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
+//@ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
 RustboroCity_EventScript_EmployeeFacePlayerUp1::
 	applymovement LOCALID_DEVON_EMPLOYEE, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
@@ -1143,7 +1143,7 @@ RustboroCity_Text_MayHiLetsRegister:
 	.string "… … … … … …$"
 
 RustboroCity_Text_RegisteredMay:
-	.string "Registered May\n"
+	.string "Registered MAY\n"
 	.string "in the PokéNav.$"
 
 RustboroCity_Text_MayPassedBrineyWantToBattle:
@@ -1302,7 +1302,19 @@ RustboroCity_EventScript_Hiker::
 	return
 
 
+RustboroCity_EventScript_Beauty::
+	msgbox RustboroCity_EventScript_Beauty_Text_0, MSGBOX_NPC
+	return
+
+
 RustboroCity_EventScript_Hiker_Text_0:
 	.string "I heard some miners uncovered an icy\n"
 	.string "cavern underneath Rusturf Tunnel.\p"
 	.string "I can't wait to go check it out!$"
+
+RustboroCity_EventScript_Beauty_Text_0:
+	.string "The more you encounter a particular\n"
+	.string "species of Pokémon, the higher your\l"
+	.string "DexNav search level will be.\p"
+	.string "A higher search level and chain will\n"
+	.string "result in finding more rare Pokémon!$"
