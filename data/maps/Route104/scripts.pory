@@ -1,3 +1,5 @@
+raw
+`
 @ NOTE: Route 104's sail to Dewford script references local IDs from Dewford's map.
 @  These are labeled in DewfordTown/scripts.inc
 .set LOCALID_RIVAL, 34
@@ -1169,42 +1171,21 @@ Route104_Text_BrendanPostBattle:
 	.string "making Pokémon battle.\p"
 	.string "Like Mr. Briney, it's important to\n"
 	.string "become friends with your Pokémon.$"
+`
 
-Route104_EventScript_TrySetDemoNPC::
-	goto_if_set FLAG_DEMO_MODE, Route104_EventScript_TrySetDemoNPC_3
-Route104_EventScript_TrySetDemoNPC_1:
-	return
+script Route104_EventScript_TrySetDemoNPC {
+    if (flag(FLAG_DEMO_MODE) && flag(FLAG_BADGE01_GET)) {
+        setobjectxyperm(LOCALID_MAN, 17, 51)
+    }
+    return
+}
 
-Route104_EventScript_TrySetDemoNPC_2:
-	setobjectxyperm LOCALID_MAN, 17, 51
-	goto Route104_EventScript_TrySetDemoNPC_1
-
-Route104_EventScript_TrySetDemoNPC_3:
-	goto_if_set FLAG_BADGE01_GET, Route104_EventScript_TrySetDemoNPC_2
-	goto Route104_EventScript_TrySetDemoNPC_1
-
-
-Route104_EventScript_Man::
-	goto_if_set FLAG_DEMO_MODE, Route104_EventScript_Man_3
-Route104_EventScript_Man_2:
-	msgbox Route104_EventScript_Man_Text_1, MSGBOX_NPC
-	return
-
-Route104_EventScript_Man_1:
-	msgbox Route104_EventScript_Man_Text_0, MSGBOX_NPC
-	return
-
-Route104_EventScript_Man_3:
-	goto_if_set FLAG_BADGE01_GET, Route104_EventScript_Man_1
-	goto Route104_EventScript_Man_2
-
-
-Route104_EventScript_Man_Text_0:
-	.string "Thanks for playing! This is the end of\n"
-	.string "the demo mode for Extra Emerald.$"
-
-Route104_EventScript_Man_Text_1:
-	.string "My friend told me that terrifying\n"
-	.string "ghosts come out at night in Petalburg\l"
-	.string "Woods…\p"
-	.string "I'm staying far away.$"
+script Route104_EventScript_Man {
+    if (flag(FLAG_DEMO_MODE) && flag(FLAG_BADGE01_GET)) {
+        msgbox(format("Thanks for playing! This is the end of the demo mode for 
+                       Extra Emerald."), MSGBOX_NPC)
+    } else {
+        msgbox(format("My friend told me that terrifying ghosts come out at night in 
+                       Petalburg Woods…\pI'm staying far away."), MSGBOX_NPC)
+    }
+}

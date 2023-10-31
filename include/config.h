@@ -75,5 +75,6 @@
 
 // General settings
 #define EXPANSION_INTRO   TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
+#define DEMO_MODE         TRUE    // If TRUE, game is in demo mode
 
 #endif // GUARD_CONFIG_H
