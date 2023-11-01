@@ -154,6 +154,11 @@ void SetDemoMode(void)
     #endif
 }
 
+void SetLevelCapFlag(void)
+{
+    FlagSet(FLAG_LEVEL_CAP);
+}
+
 void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
@@ -213,6 +218,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     SetDemoMode();
+    SetLevelCapFlag();
     memset(gSaveBlock1Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock1Ptr->dexNavSearchLevels));
     gSaveBlock1Ptr->dexNavChain = 0;
 }

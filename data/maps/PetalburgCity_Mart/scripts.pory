@@ -1,3 +1,5 @@
+raw
+`
 PetalburgCity_Mart_MapScripts::
 	.byte 0
 
@@ -76,9 +78,8 @@ PetalburgCity_Mart_Text_RepelIsUseful:
 	.string "Do you use Repel?\n"
 	.string "It keeps Pokémon away, so it's\l"
 	.string "useful when you're in a hurry.$"
+`
 
-PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou::
-	.string "Do you have any Antidotes with you?\p"
-	.string "If your Pokémon gets poisoned in\n"
-	.string "battle, it will lose HP every turn.\p"
-	.string "Take some Antidotes with you.$"
+text PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou {
+    format("Do you have any Antidotes with you?\pIf your Pokémon gets poisoned in battle, it will lose HP every turn.\pTake some Antidotes with you.")
+}

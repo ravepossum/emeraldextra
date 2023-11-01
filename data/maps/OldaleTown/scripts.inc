@@ -410,7 +410,7 @@ OldaleTown_EventScript_Zigzagoon_Text_0:
 OldaleTown_EventScript_Boy_Text_0:
 	.string "The DexNav is an amazing new upgrade\n"
 	.string "for the PokéNav.\p"
-	.string "You can use it view all Pokémon that\n"
+	.string "You can use it to view all Pokémon that\n"
 	.string "live in the current area, or even to\l"
 	.string "scan for specific Pokémon.\p"
 	.string "Just select them in the DexNav menu or\n"
