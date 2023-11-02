@@ -1573,8 +1573,8 @@ u8 LoadSpritePaletteDouble(const struct SpritePalette *palette)
     else
     {
         sSpritePaletteTags[index] = palette->tag;
-        DoLoadSpritePalette(palette->data, index * 16);
-        DoLoadSpritePalette(palette->data, 112 + index * 16);
+        DoLoadSpritePalette(palette->data, index * 16, FALSE);
+        DoLoadSpritePalette(palette->data, 112 + index * 16, FALSE);
         return index + 112;
     }
 }

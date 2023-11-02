@@ -1,3 +1,5 @@
+raw
+`
 .set ITEMID, VAR_0x8000
 .set AMOUNT, VAR_0x8001
 
@@ -199,3 +201,5 @@ EventScript_NoRoomForHiddenItem::
 	setvar VAR_RESULT, 0
 	releaseall
 	end
+
+`

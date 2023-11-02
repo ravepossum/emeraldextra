@@ -922,7 +922,7 @@ static void GetItemName(s8 *dest, u16 itemId)
         if (itemId == ITEM_TM_CASE)
         {
             CopyItemName(itemId, gStringVar2);
-            StringExpandPlaceholders(dest, gText_TMCase_Blue);
+            StringExpandPlaceholders(dest, gText_TMCase);
         }
         else
             CopyItemName(itemId, dest);
