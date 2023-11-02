@@ -70,7 +70,7 @@ PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf::
 PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally:
 	.string "You're…\n"
 	.string "Ah, you must be {PLAYER}{KUN}, right?\p"
-	.string "Thank you for playing with Wally a\n"
+	.string "Thank you for helping out Wally a\n"
 	.string "little while ago.\p"
 	.string "He's been frail and sickly ever\n"
 	.string "since he was a baby.\p"
@@ -93,7 +93,7 @@ PetalburgCity_WallysHouse_Text_PleaseExcuseUs:
 	.string "since he went to Verdanturf Town.\p"
 	.string "We owe it all to you!\p"
 	.string "When Wally left town, you helped\n"
-	.string "him catch a Pokémon, right?\p"
+	.string "him get a Pokémon, right?\p"
 	.string "I think that made Wally really\n"
 	.string "happy.\p"
 	.string "Actually, not just Wally.\n"
@@ -121,7 +121,7 @@ PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity:
 
 PetalburgCity_WallysHouse_Text_WallyWasReallyHappy:
 	.string "Wally was really happy when he told\n"
-	.string "us that he caught a Pokémon.\p"
+	.string "us that he received a Pokémon.\p"
 	.string "It's been ages since I've seen him\n"
 	.string "smile like that.$"
 
