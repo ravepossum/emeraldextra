@@ -731,6 +731,31 @@ Common_EventScript_OutOfCenterPartyHeal::
 	fadescreen FADE_FROM_BLACK
 	return
 
+Common_EventScript_UnionNurseRest::
+	fadescreen FADE_TO_BLACK
+	setobjectxy OBJ_EVENT_ID_PLAYER, 12, 8
+	special HealPlayerParty
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, EventScript_Movement_PanToPokemonCenterChair
+	waitmovement 0
+	playfanfare MUS_HEAL
+	waitfanfare
+	special RemoveCameraObject
+	fadescreen FADE_FROM_BLACK
+	return
+
+EventScript_Movement_PanToPokemonCenterChair:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+
 EventScript_RegionMap::
 	lockall
 	msgbox Common_Text_LookCloserAtMap, MSGBOX_DEFAULT

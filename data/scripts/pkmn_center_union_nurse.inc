@@ -31,7 +31,7 @@ EventScript_PkmnCenterUnionNurse_Multichoice_3:
 	return
 
 EventScript_PkmnCenterUnionNurse_Multichoice_4:
-	call PlayersHouse_2F_EventScript_SetWallClock
+	call EventScript_PkmnCenterUnionNurse_ChangeTime
 	message PkmnCenterUnionNurse_AnythingElse
 	waitmessage
 	call EventScript_PkmnCenterUnionNurse_Multichoice
@@ -103,6 +103,23 @@ EventScript_PkmnCenterUnionNurse_ChangeNickname_8:
 	goto EventScript_PkmnCenterUnionNurse_ChangeNickname_7
 
 
+EventScript_PkmnCenterUnionNurse_ChangeTime::
+	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_PkmnCenterUnionNurse_ChangeTime_2
+	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_1, MSGBOX_DEFAULT
+	checkplayergender
+	copyvar VAR_0x8004, VAR_RESULT
+	call PlayersHouse_2F_EventScript_SetWallClock
+	call Common_EventScript_UnionNurseRest
+	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_2, MSGBOX_DEFAULT
+	release
+	end
+
+EventScript_PkmnCenterUnionNurse_ChangeTime_2:
+	return
+
+
 Common_EventScript_PkmnCenterUnionNurse_Text_0:
 	.string "Hi, I'm the Pokéhelper! How may I help\n"
 	.string "you today?$"
@@ -114,7 +131,7 @@ EventScript_PkmnCenterUnionNurse_Multichoice_Text_1:
 	.string "Change a nickname$"
 
 EventScript_PkmnCenterUnionNurse_Multichoice_Text_2:
-	.string "Change the time$"
+	.string "Rest until later$"
 
 EventScript_PkmnCenterUnionNurse_MoveRelearn_Text_0:
 	.string "There are no moves available to teach\n"
@@ -137,6 +154,17 @@ EventScript_PkmnCenterUnionNurse_ChangeNickname_Text_1:
 EventScript_PkmnCenterUnionNurse_ChangeNickname_Text_2:
 	.string "The Pokémon's name will remain\n"
 	.string "unchanged.$"
+
+EventScript_PkmnCenterUnionNurse_ChangeTime_Text_0:
+	.string "You can stay at the Pokémon center as\n"
+	.string "long as you'd like.\p"
+	.string "Would you like to rest here?$"
+
+EventScript_PkmnCenterUnionNurse_ChangeTime_Text_1:
+	.string "What time would you like to rest until?$"
+
+EventScript_PkmnCenterUnionNurse_ChangeTime_Text_2:
+	.string "You and your Pokémon are well rested.$"
 
 PkmnCenterUnionNurse_AnythingElse::
 	.string "Is there anything else I can help you\n"
