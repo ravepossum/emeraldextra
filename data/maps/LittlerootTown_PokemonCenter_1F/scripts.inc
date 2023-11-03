@@ -65,3 +65,14 @@ LittlerootTown_PokemonCenter_1F_EventScript_UnionNurse::
 	release
 	end
 
+
+LittlerootTown_PokemonCenter_1F_EventScript_Woman::
+	msgbox LittlerootTown_PokemonCenter_1F_EventScript_Woman_Text_0, MSGBOX_NPC
+	return
+
+
+LittlerootTown_PokemonCenter_1F_EventScript_Woman_Text_0:
+	.string "Trying speaking with the Pokéhelper up\n"
+	.string "at the counter.\p"
+	.string "She can assist you with a variety of\n"
+	.string "things.$"

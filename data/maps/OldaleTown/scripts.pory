@@ -407,5 +407,9 @@ script OldaleTown_EventScript_Zigzagoon {
 }
 
 script OldaleTown_EventScript_Boy {
-	msgbox(format("The DexNav is an amazing new upgrade for the PokéNav.\pYou can use it to view all Pokémon that live in the current area, or even to scan for specific Pokémon.\pJust select them in the DexNav menu or register them to the R Button for convenience."), MSGBOX_NPC)
+	if (flag(FLAG_SYS_DEXNAV_GET)) {
+		msgbox(format("Oh wow, you have a DexNav!\pIt's an amazing new upgrade for the PokéNav.\pYou can use it to view all Pokémon that live in the current area, or even to scan for specific Pokémon.\pJust select them in the DexNav menu or register them to the R Button for convenience.\pAlso, don't forget to hold the A Button to sneak up on a Pokémon you're tracking.\pOtherwise they might run away!"), MSGBOX_NPC)
+	} else {
+		msgbox(format("If you had a DexNav, I could show you how to use it."),MSGBOX_NPC)
+	}
 }

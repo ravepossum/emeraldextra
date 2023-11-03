@@ -67,3 +67,7 @@ script LittlerootTown_PokemonCenter_1F_EventScript_UnionNurse {
 	release
 	end
 }
+
+script LittlerootTown_PokemonCenter_1F_EventScript_Woman {
+	msgbox(format("Trying speaking with the Pokéhelper up at the counter.\pShe can assist you with a variety of things."),MSGBOX_NPC)
+}

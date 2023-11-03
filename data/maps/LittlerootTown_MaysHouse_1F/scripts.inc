@@ -441,8 +441,8 @@ RivalsHouse_1F_EventScript_RegionChoice_Text_7:
 	.string "Galar$"
 
 RivalsHouse_1F_EventScript_RegionChoice_Text_8:
-	.string "Ah yes that's right - they're from the\n"
-	.string "other side of Hoenn!$"
+	.string "Ah yes that's right - they're from our\n"
+	.string "very own Hoenn region!$"
 
 RivalsHouse_1F_EventScript_RegionChoice_Text_9:
 	.string "Ah yes that's right - they're from the\n"
