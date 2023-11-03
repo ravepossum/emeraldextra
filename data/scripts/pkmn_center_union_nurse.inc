@@ -156,7 +156,7 @@ EventScript_PkmnCenterUnionNurse_ChangeNickname_Text_2:
 	.string "unchanged.$"
 
 EventScript_PkmnCenterUnionNurse_ChangeTime_Text_0:
-	.string "You can stay at the Pokémon center as\n"
+	.string "You can stay at the Pokémon Center as\n"
 	.string "long as you'd like.\p"
 	.string "Would you like to rest here?$"
 

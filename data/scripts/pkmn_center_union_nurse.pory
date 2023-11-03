@@ -94,7 +94,7 @@ script EventScript_PkmnCenterUnionNurse_ChangeNickname {
 }
 
 script EventScript_PkmnCenterUnionNurse_ChangeTime {
-        msgbox(format("You can stay at the Pokémon center as long as you'd like.\pWould you like to rest here?"),MSGBOX_YESNO)
+        msgbox(format("You can stay at the Pokémon Center as long as you'd like.\pWould you like to rest here?"),MSGBOX_YESNO)
         if (var(VAR_RESULT) == NO) {return}
         msgbox(format("What time would you like to rest until?"),MSGBOX_DEFAULT)        
         checkplayergender

@@ -825,7 +825,7 @@ static void Task_SetClock_HandleInput(u8 taskId)
             if (gTasks[taskId].tMoveDir != MOVE_NONE)
             {
                 if (gTasks[taskId].tMoveSpeed < 0xFF)
-                    gTasks[taskId].tMoveSpeed++;
+                    gTasks[taskId].tMoveSpeed = 0xFF;
 
                 gTasks[taskId].tMinuteHandAngle = CalcNewMinHandAngle(gTasks[taskId].tMinuteHandAngle, gTasks[taskId].tMoveDir, gTasks[taskId].tMoveSpeed);
                 AdvanceClock(taskId, gTasks[taskId].tMoveDir);
