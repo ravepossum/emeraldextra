@@ -1973,7 +1973,7 @@ static u8 GetLevelCap(void)
     partyData = gTrainers[nextLeader].party;
     for (i = 0; i < gTrainers[nextLeader].partySize; i++){
         if (partyData[i].lvl > levelCap)
-            levelCap = partyData[i].lvl;
+            levelCap = (partyData[i].lvl) - 2;
     }
     return levelCap;
 }
