@@ -351,5 +351,6 @@ Route103_Text_ShortcutToOldale:
 
 Route103_Text_RouteSign:
 	.string "Route 103\n"
-	.string "{DOWN_ARROW} Oldale Town$"
+	.string "{DOWN_ARROW} Oldale Town\p"
+	.string "{UP_ARROW} Route 135$"
 

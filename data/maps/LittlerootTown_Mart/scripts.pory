@@ -30,5 +30,5 @@ LittlerootTown_Mart_Pokemart_Basic:
 	end
 `
 script LittlerootTown_Mart_EventScript_BugCatcher {
-	msgbox(format("Have you heard about Pokévials? They can hold enough medicine to heal all of your Pokémon."),MSGBOX_NPC)
+	msgbox(format("Have you heard about Pokévials?\pThey can hold enough medicine to heal all of your Pokémon."),MSGBOX_NPC)
 }

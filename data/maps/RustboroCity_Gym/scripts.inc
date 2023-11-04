@@ -202,10 +202,8 @@ RustboroCity_Gym_Text_ReceivedStoneBadge:
 	.string "from Roxanne.$"
 
 RustboroCity_Gym_Text_StoneBadgeInfoTakeThis:
-	.string "The Stone Badge heightens the Attack\n"
-	.string "power of your Pokémon.\p"
-	.string "It also enables them to use the HM move\n"
-	.string "Cut outside of battle.\p"
+	.string "The Stone Badge enables your Pokémon to\n"
+	.string "use the HM move Cut outside of battle.\p"
 	.string "Please take this with you, too.$"
 
 RustboroCity_Gym_Text_ExplainRockTomb:
@@ -216,7 +214,7 @@ RustboroCity_Gym_Text_ExplainRockTomb:
 	.string "If you use a TM, it instantly teaches\n"
 	.string "the move to a Pokémon.\p"
 	.string "A TM can be used as many times as you'd\n"
-	.string "like, so please enjoy it.$"
+	.string "like, so use it to your advantage.$"
 
 RustboroCity_Gym_Text_RoxannePostBattle:
 	.string "Since you are so strong, you should\n"

@@ -1439,7 +1439,7 @@ const struct Item gItems[] =
         .name = _("Escape Rope"),
         .description = sEscapeRopeDesc,
         #if I_KEY_ESCAPE_ROPE >= GEN_8
-            .price = 0,
+            .price = 5000,
             .importance = 1,
             .pocket = POCKET_KEY_ITEMS,
         #else
@@ -5648,6 +5648,7 @@ const struct Item gItems[] =
         .description = sExpShareDesc,
         .pocket = I_EXP_SHARE_ITEM >= GEN_6 ? POCKET_KEY_ITEMS : POCKET_ITEMS,
         .type = ITEM_USE_FIELD,
+        .importance = 1,
         .fieldUseFunc = ItemUseOutOfBattle_ExpShare,
         .flingPower = 30,
     },

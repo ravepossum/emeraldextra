@@ -7,14 +7,6 @@ Std_ObtainItem::
 	call EventScript_ObtainItemMessage
 	return
 
-EventScript_ObtainItemMessage::
-	bufferitemnameplural STR_VAR_2, ITEMID, AMOUNT
-	checkitemtype ITEMID
-	call EventScript_BufferPocketNameAndTryFanfare
-	call_if_eq VAR_0x8007, TRUE, EventScript_ObtainedItem
-	call_if_eq VAR_0x8007, FALSE, EventScript_NoRoomForItem
-	return
-
 EventScript_BufferPocketNameAndTryFanfare::
 	switch VAR_RESULT
 	case POCKET_ITEMS,      EventScript_BufferItemsPocket
@@ -199,3 +191,51 @@ EventScript_NoRoomForHiddenItem::
 	setvar VAR_RESULT, 0
 	releaseall
 	end
+
+EventScript_ObtainItemMessage::
+	bufferitemnameplural STR_VAR_2, ITEMID, AMOUNT
+	checkitemtype ITEMID
+	compare VAR_RESULT, POCKET_TM_HM
+	goto_if_eq EventScript_ObtainItemMessage_2
+	call EventScript_BufferPocketNameAndTryFanfare
+	compare VAR_0x8007, TRUE
+	goto_if_eq EventScript_ObtainItemMessage_9
+EventScript_ObtainItemMessage_8:
+	compare VAR_0x8007, FALSE
+	goto_if_eq EventScript_ObtainItemMessage_13
+EventScript_ObtainItemMessage_1:
+	return
+
+EventScript_ObtainItemMessage_2:
+	call EventScript_BufferPocketNameAndTryFanfare
+	compare VAR_0x8007, TRUE
+	goto_if_eq EventScript_ObtainItemMessage_6
+EventScript_ObtainItemMessage_5:
+	compare VAR_0x8007, FALSE
+	goto_if_eq EventScript_ObtainItemMessage_11
+	goto EventScript_ObtainItemMessage_1
+
+EventScript_ObtainItemMessage_6:
+	call EventScript_ObtainedTMHM
+	goto EventScript_ObtainItemMessage_5
+
+EventScript_ObtainItemMessage_9:
+	call EventScript_ObtainedItem
+	goto EventScript_ObtainItemMessage_8
+
+EventScript_ObtainItemMessage_11:
+	call EventScript_NoRoomForItem
+	goto EventScript_ObtainItemMessage_1
+
+EventScript_ObtainItemMessage_13:
+	call EventScript_NoRoomForItem
+	goto EventScript_ObtainItemMessage_1
+
+
+EventScript_ObtainedTMHM::
+	message gText_ObtainedTheItem
+	waitfanfare
+	msgbox gText_PutTMInCase, MSGBOX_DEFAULT
+	setvar VAR_RESULT, TRUE
+	return
+
