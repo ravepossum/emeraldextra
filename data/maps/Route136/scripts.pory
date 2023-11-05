@@ -1,1 +1,5 @@
 mapscripts Route136_MapScripts {}
+
+script Route136_EventScript_RouteSignGraniteCave {
+	msgbox("Granite Cave\n{UP_ARROW} Dewford Town\p{LEFT_ARROW} Oma'oma Town$",MSGBOX_SIGN)
+}

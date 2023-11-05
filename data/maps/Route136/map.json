@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE136",
   "name": "Route136",
   "layout": "LAYOUT_ROUTE136",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_RG_VIRIDIAN_FOREST",
   "region_map_section": "MAPSEC_ROUTE_136",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -12,17 +12,36 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "map": "MAP_OMAOMA_TOWN",
+      "offset": 22,
+      "direction": "left"
+    }
+  ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 48,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_GRANITE_CAVE_1F",
+      "dest_warp_id": "4"
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 47,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route136_EventScript_RouteSignGraniteCave"
+    }
   ]
 }
