@@ -9858,14 +9858,14 @@ static const struct TrainerMon sParty_Roxanne2[] = {
     .moves = {MOVE_IRON_HEAD, MOVE_ROCK_SLIDE, MOVE_PROTECT, MOVE_ROAR}
     },
     {
-    .iv = 255,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
     .lvl = 35,
     .species = SPECIES_LYCANROC_MIDNIGHT,
     .heldItem = ITEM_NONE,
     .moves = {MOVE_COUNTER, MOVE_ROCK_SLIDE, MOVE_HOWL, MOVE_BITE}
     },
     {
-    .iv = 255,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
     .lvl = 35,
     .species = SPECIES_KABUTO,
     .heldItem = ITEM_SITRUS_BERRY,
