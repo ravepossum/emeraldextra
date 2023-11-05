@@ -1711,6 +1711,22 @@
       "y": 7,
       "width": 1,
       "height": 1
+    },
+    {
+      "map_section": "MAPSEC_ROUTE_136",
+      "name": "Route 136",
+      "x": 1,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_OMAOMA_TOWN",
+      "name": "Oma'oma Town",
+      "x": 0,
+      "y": 14,
+      "width": 1,
+      "height": 1
     }
   ]
 }

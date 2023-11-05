@@ -1113,3 +1113,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/OldaleTown_House4/scripts.inc"
     .include "data/scripts/dexnav.inc"
     
+
+	.include "data/maps/Route136/scripts.inc"
+
+	.include "data/maps/OmaomaTown/scripts.inc"
