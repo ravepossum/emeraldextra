@@ -1117,3 +1117,11 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Route136/scripts.inc"
 
 	.include "data/maps/OmaomaTown/scripts.inc"
+
+	.include "data/maps/Route137/scripts.inc"
+
+	.include "data/maps/OmaomaTown_PokemonCenter_1F/scripts.inc"
+
+	.include "data/maps/OmaomaTown_PokemonCenter_2F/scripts.inc"
+
+	.include "data/maps/OmaomaTown_Mart/scripts.inc"

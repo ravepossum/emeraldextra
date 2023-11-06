@@ -4524,12 +4524,52 @@
     {
       "id": "LAYOUT_OMAOMA_TOWN",
       "name": "OmaomaTown_Layout",
-      "width": 40,
-      "height": 40,
+      "width": 50,
+      "height": 60,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fortree",
       "border_filepath": "data/layouts/OmaomaTown/border.bin",
       "blockdata_filepath": "data/layouts/OmaomaTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE137",
+      "name": "Route137_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Route137/border.bin",
+      "blockdata_filepath": "data/layouts/Route137/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_POKEMON_CENTER_1F",
+      "name": "OmaomaTown_PokemonCenter_1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/OmaomaTown_PokemonCenter_1F/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_PokemonCenter_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_POKEMON_CENTER_2F",
+      "name": "OmaomaTown_PokemonCenter_2F_Layout",
+      "width": 14,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/OmaomaTown_PokemonCenter_2F/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_PokemonCenter_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_MART",
+      "name": "OmaomaTown_Mart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/OmaomaTown_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_Mart/map.bin"
     }
   ]
 }

@@ -33,7 +33,8 @@
     "gMapGroup_IndoorRoute113",
     "gMapGroup_IndoorRoute123",
     "gMapGroup_IndoorRoute119",
-    "gMapGroup_IndoorRoute124"
+    "gMapGroup_IndoorRoute124",
+    "gMapGroup_IndoorOmaoma"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -95,7 +96,8 @@
     "Underwater_Route125",
     "Route135",
     "Route136",
-    "OmaomaTown"
+    "OmaomaTown",
+    "Route137"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -632,5 +634,10 @@
   ],
   "gMapGroup_IndoorRoute124": [
     "Route124_DivingTreasureHuntersHouse"
+  ],
+  "gMapGroup_IndoorOmaoma": [
+    "OmaomaTown_PokemonCenter_1F",
+    "OmaomaTown_PokemonCenter_2F",
+    "OmaomaTown_Mart"
   ]
 }

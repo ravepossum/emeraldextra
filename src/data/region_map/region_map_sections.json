@@ -1727,6 +1727,14 @@
       "y": 14,
       "width": 1,
       "height": 1
+    },
+    {
+      "map_section": "MAPSEC_ROUTE_137",
+      "name": "Route 137",
+      "x": 0,
+      "y": 13,
+      "width": 1,
+      "height": 1
     }
   ]
 }
