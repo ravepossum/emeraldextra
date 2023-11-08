@@ -9,3 +9,8 @@ script OmaomaTown_OnTransition {
     setflag(FLAG_VISITED_OMAOMA_TOWN)
     end
 }
+
+script OmaomaTown_EventScript_TownSign {
+	msgbox("Oma'oma Town\n“A town that is one with the tide.”", MSGBOX_SIGN)
+	end
+}
