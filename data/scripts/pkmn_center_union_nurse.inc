@@ -9,7 +9,7 @@ Common_EventScript_PkmnCenterUnionNurse::
 
 
 EventScript_PkmnCenterUnionNurse_Multichoice::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, EventScript_PkmnCenterUnionNurse_Multichoice_Text_0, EventScript_PkmnCenterUnionNurse_Multichoice_Text_1, EventScript_PkmnCenterUnionNurse_Multichoice_Text_2
+	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, EventScript_PkmnCenterUnionNurse_Multichoice_Text_0, EventScript_PkmnCenterUnionNurse_Multichoice_Text_1, EventScript_PkmnCenterUnionNurse_Multichoice_Text_2, EventScript_PkmnCenterUnionNurse_Multichoice_Text_3
 	switch VAR_RESULT
 	case 0, EventScript_PkmnCenterUnionNurse_Multichoice_2
 	case 1, EventScript_PkmnCenterUnionNurse_Multichoice_3
@@ -104,15 +104,19 @@ EventScript_PkmnCenterUnionNurse_ChangeNickname_8:
 
 
 EventScript_PkmnCenterUnionNurse_ChangeTime::
-	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, NO
+	message EventScript_PkmnCenterUnionNurse_ChangeTime_Text_0
+	waitmessage
+	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_1, TIME_MORNING
+	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_2, TIME_DAY
+	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_3, TIME_NIGHT
+	dynmultipush EventScript_PkmnCenterUnionNurse_Multichoice_Text_3, 127
+	dynmultistack 0, 0, FALSE, 4, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE
+	compare VAR_RESULT, 127
 	goto_if_eq EventScript_PkmnCenterUnionNurse_ChangeTime_2
-	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_1, MSGBOX_DEFAULT
-	checkplayergender
-	copyvar VAR_0x8004, VAR_RESULT
-	call PlayersHouse_2F_EventScript_SetWallClock
+	closemessage
+	settimeofday VAR_RESULT
 	call Common_EventScript_UnionNurseRest
-	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_2, MSGBOX_DEFAULT
+	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_4, MSGBOX_DEFAULT
 	release
 	end
 
@@ -125,13 +129,16 @@ Common_EventScript_PkmnCenterUnionNurse_Text_0:
 	.string "you today?$"
 
 EventScript_PkmnCenterUnionNurse_Multichoice_Text_0:
-	.string "Relearn a move$"
+	.string "Relearn move$"
 
 EventScript_PkmnCenterUnionNurse_Multichoice_Text_1:
-	.string "Change a nickname$"
+	.string "Change nickname$"
 
 EventScript_PkmnCenterUnionNurse_Multichoice_Text_2:
 	.string "Rest until later$"
+
+EventScript_PkmnCenterUnionNurse_Multichoice_Text_3:
+	.string "Cancel$"
 
 EventScript_PkmnCenterUnionNurse_MoveRelearn_Text_0:
 	.string "There are no moves available to teach\n"
@@ -158,12 +165,18 @@ EventScript_PkmnCenterUnionNurse_ChangeNickname_Text_2:
 EventScript_PkmnCenterUnionNurse_ChangeTime_Text_0:
 	.string "You can stay at the Pokémon Center as\n"
 	.string "long as you'd like.\p"
-	.string "Would you like to rest here?$"
+	.string "When would you like to rest until?$"
 
 EventScript_PkmnCenterUnionNurse_ChangeTime_Text_1:
-	.string "What time would you like to rest until?$"
+	.string "Morning$"
 
 EventScript_PkmnCenterUnionNurse_ChangeTime_Text_2:
+	.string "Day$"
+
+EventScript_PkmnCenterUnionNurse_ChangeTime_Text_3:
+	.string "Night$"
+
+EventScript_PkmnCenterUnionNurse_ChangeTime_Text_4:
 	.string "You and your Pokémon are well rested.$"
 
 PkmnCenterUnionNurse_AnythingElse::

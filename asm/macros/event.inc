@@ -1774,6 +1774,12 @@
 	.2byte \region
 	.endm
 
+	@ Advances the fake RTC to the time of day provided
+	.macro settimeofday timeOfDay:req
+	.byte 0xe7
+	.2byte \timeOfDay
+	.endm
+
 
 @ Supplementary
 

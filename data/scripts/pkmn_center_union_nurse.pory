@@ -9,7 +9,7 @@ script Common_EventScript_PkmnCenterUnionNurse {
 }
 
 script EventScript_PkmnCenterUnionNurse_Multichoice {
-    dynmultichoice(0,0,FALSE,3,0,DYN_MULTICHOICE_CB_NONE,"Relearn a move","Change a nickname","Rest until later")
+    dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE,"Relearn move","Change nickname","Rest until later","Cancel")
     switch (var(VAR_RESULT)) {
         case 0:
             call(EventScript_PkmnCenterUnionNurse_MoveRelearn)
@@ -94,14 +94,22 @@ script EventScript_PkmnCenterUnionNurse_ChangeNickname {
 }
 
 script EventScript_PkmnCenterUnionNurse_ChangeTime {
-        msgbox(format("You can stay at the Pokémon Center as long as you'd like.\pWould you like to rest here?"),MSGBOX_YESNO)
-        if (var(VAR_RESULT) == NO) {return}
-        msgbox(format("What time would you like to rest until?"),MSGBOX_DEFAULT)        
-        checkplayergender
-        copyvar(VAR_0x8004, VAR_RESULT)
-        call(PlayersHouse_2F_EventScript_SetWallClock)
+        message(format("You can stay at the Pokémon Center as long as you'd like.\pWhen would you like to rest until?"))
+        waitmessage
+
+        dynmultipush("Morning", TIME_MORNING)
+        dynmultipush("Day", TIME_DAY)
+        dynmultipush("Night", TIME_NIGHT)
+        dynmultipush("Cancel", 127)
+        dynmultistack(0, 0, FALSE, 4, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE)
+
+        if (var(VAR_RESULT) == 127) {return}
+
+        closemessage
+        settimeofday(VAR_RESULT)
         call(Common_EventScript_UnionNurseRest)
         msgbox(format("You and your Pokémon are well rested."),MSGBOX_DEFAULT)
+
         release
         end
 }

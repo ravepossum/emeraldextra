@@ -52,6 +52,7 @@
 #include "malloc.h"
 #include "constants/event_objects.h"
 #include "day_night.h"
+#include "constants/day_night.h"
 #include "constants/items.h"
 #include "pokevial.h" //Pokevial Branch
 #include "starter_choose.h"
@@ -1459,6 +1460,30 @@ bool8 ScrCmd_bufferregionname(struct ScriptContext *ctx)
     u16 region = VarGet(ScriptReadHalfword(ctx));
 
     StringCopy(sScriptStringVars[stringVarIndex], GetRegionName(region));
+    return FALSE;
+}
+
+bool8 ScrCmd_settimeofday(struct ScriptContext *ctx)
+{
+    u8 timeOfDay = VarGet(ScriptReadHalfword(ctx));
+    u8 hour;
+
+    switch(timeOfDay)
+    {
+        case TIME_MORNING:
+            hour = HOUR_MORNING;
+            break;
+        case TIME_DAY:
+            hour = HOUR_DAY;
+            break;
+        case TIME_NIGHT:
+            hour = HOUR_NIGHT;
+            break;
+        default: 
+            hour = 0;
+    }
+
+    RtcAdvanceTimeTo(hour, 0, 0);
     return FALSE;
 }
 
