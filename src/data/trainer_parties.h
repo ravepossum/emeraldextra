@@ -11762,14 +11762,41 @@ static const struct TrainerMon sParty_Delvin[] = {
     {
     .lvl = 9,
     .species = SPECIES_DIGLETT,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
     },
     {
     .lvl = 9,
     .species = SPECIES_DRILBUR,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
     },
     {
     .lvl = 9,
     .species = SPECIES_SWINUB,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
+    }
+};
+
+static const struct TrainerMon sParty_Connor[] = {
+    {
+    .lvl = 9,
+    .species = SPECIES_SWINUB,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
+    }
+};
+
+static const struct TrainerMon sParty_Renee[] = {
+    {
+    .lvl = 9,
+    .species = SPECIES_SWINUB,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
+    }
+};
+
+static const struct TrainerMon sParty_Eduardo[] = {
+    {
+    .lvl = 9,
+    .species = SPECIES_SWINUB,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
     }
 };
 

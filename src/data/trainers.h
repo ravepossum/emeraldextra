@@ -10280,10 +10280,43 @@ const struct Trainer gTrainers[] = {
         .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_HIKER,
-        .trainerName = _("DELVIN"),
+        .trainerName = _("Delvin"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Delvin),
+    },
+    [TRAINER_CONNOR] =
+    {
+        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
+        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
+        .trainerName = _("Connor"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_STANDARD_FLAGS,
+        .party = TRAINER_PARTY(sParty_Connor),
+    },
+    [TRAINER_RENEE] =
+    {
+        .trainerClass = TRAINER_CLASS_PKMN_RANGER,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_COOL,
+        .trainerPic = TRAINER_PIC_POKEMON_RANGER_F,
+        .trainerName = _("Renee"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_STANDARD_FLAGS,
+        .party = TRAINER_PARTY(sParty_Renee),
+    },
+    [TRAINER_EDUARDO] =
+    {
+        .trainerClass = TRAINER_CLASS_HIKER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
+        .trainerPic = TRAINER_PIC_HIKER,
+        .trainerName = _("Eduardo"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_STANDARD_FLAGS,
+        .party = TRAINER_PARTY(sParty_Eduardo),
     }
 };
