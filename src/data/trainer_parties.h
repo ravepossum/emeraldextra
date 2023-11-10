@@ -11778,24 +11778,44 @@ static const struct TrainerMon sParty_Delvin[] = {
 
 static const struct TrainerMon sParty_Connor[] = {
     {
-    .lvl = 9,
-    .species = SPECIES_SWINUB,
+    .lvl = 15,
+    .species = SPECIES_CARKOL,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
+    },
+    {
+    .lvl = 15,
+    .species = SPECIES_LITLEO,
     .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
     }
 };
 
 static const struct TrainerMon sParty_Renee[] = {
     {
-    .lvl = 9,
-    .species = SPECIES_SWINUB,
+    .lvl = 14,
+    .species = SPECIES_EXEGGCUTE,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
+    },
+    {
+    .lvl = 15,
+    .species = SPECIES_GOSSIFLEUR,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
+    },
+    {
+    .lvl = 16,
+    .species = SPECIES_NUZLEAF,
     .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
     }
 };
 
 static const struct TrainerMon sParty_Eduardo[] = {
     {
-    .lvl = 9,
-    .species = SPECIES_SWINUB,
+    .lvl = 16,
+    .species = SPECIES_GEODUDE_ALOLAN,
+    .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
+    },
+    {
+    .lvl = 17,
+    .species = SPECIES_ARON,
     .iv = TRAINER_PARTY_IVS(5, 5, 5, 5, 5, 5),
     }
 };

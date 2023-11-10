@@ -1,5 +1,59 @@
 mapscripts Route136_MapScripts {}
 
 script Route136_EventScript_RouteSignGraniteCave {
-	msgbox("Granite Cave\n{UP_ARROW} Dewford Town\p{LEFT_ARROW} Oma'oma Town$",MSGBOX_SIGN)
+	msgbox("Granite Cave\n{UP_ARROW} Dewford Town\p{LEFT_ARROW} Oma'oma Town$", MSGBOX_SIGN)
+}
+
+script Route136_EventScript_Connor {
+	trainerbattle_single(TRAINER_CONNOR, Route136_Text_ConnorIntro, Route136_Text_ConnorDefeat)
+	msgbox(Route136_Text_ConnorPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route136_EventScript_Renee {
+	trainerbattle_single(TRAINER_RENEE, Route136_Text_ReneeIntro, Route136_Text_ReneeDefeat)
+	msgbox(Route136_Text_ReneePostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route136_EventScript_Eduardo {
+	trainerbattle_single(TRAINER_EDUARDO, Route136_Text_EduardoIntro, Route136_Text_EduardoDefeat)
+	msgbox(Route136_Text_EduardoPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+text Route136_Text_ConnorIntro {
+	format("I'm all fired up and ready! Time to battle!")
+}
+
+text Route136_Text_ConnorDefeat {
+	format("Quenched like it was a cinch…")
+}
+
+text Route136_Text_ConnorPostBattle {
+	format("I'm on my way to Oma'oma town--Are you heading there too?")
+}
+
+text Route136_Text_ReneeIntro {
+	format("Let me see if you have what it takes to survive the wilds of Dewford Island.")
+}
+
+text Route136_Text_ReneeDefeat {
+	format("I think you'll have no problem out here…")
+}
+
+text Route136_Text_ReneePostBattle {
+	format("Enjoy the island! There's plenty of unique Pokémon to find here.")
+}
+
+text Route136_Text_EduardoIntro {
+	format("I'm on a mission. Let's make this quick.")
+}
+
+text Route136_Text_EduardoDefeat {
+	format("I guess I got what I wanted!")
+}
+
+text Route136_Text_EduardoPostBattle {
+	format("I'm hot on the trail of a secret cave here. I just need to keep exploring.")
 }

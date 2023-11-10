@@ -10288,9 +10288,9 @@ const struct Trainer gTrainers[] = {
     },
     [TRAINER_CONNOR] =
     {
-        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .trainerClass = TRAINER_CLASS_KINDLER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
-        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
+        .trainerPic = TRAINER_PIC_KINDLER,
         .trainerName = _("Connor"),
         .items = {},
         .doubleBattle = FALSE,
