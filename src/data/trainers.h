@@ -2156,7 +2156,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Takao"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Takao),
     },
 
@@ -3202,7 +3202,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Brawly"),
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .aiFlags = AI_ELITE_FLAGS,
         .party = TRAINER_PARTY(sParty_Brawly1),
         .hasCustomTransition = TRUE,
         .transition = B_TRANSITION_MUGSHOT,
@@ -5124,7 +5124,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Jocelyn"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Jocelyn),
     },
 
@@ -5136,7 +5136,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Laura"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Laura),
     },
 
@@ -6888,7 +6888,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Brenden"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Brenden),
     },
 
@@ -6900,7 +6900,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Lilith"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Lilith),
     },
 
@@ -6912,7 +6912,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Cristian"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Cristian),
     },
 
