@@ -169,6 +169,48 @@ static const u16 sMarineCaveMapSecIds[] =
     MAPSEC_UNDERWATER_MARINE_CAVE
 };
 
+static const u16 sFlyableMapSecIds[FLYABLE_MAPSEC_COUNT] =
+{
+    MAPSEC_LITTLEROOT_TOWN,
+    MAPSEC_OLDALE_TOWN,
+    MAPSEC_DEWFORD_TOWN,
+    MAPSEC_LAVARIDGE_TOWN,
+    MAPSEC_FALLARBOR_TOWN,
+    MAPSEC_VERDANTURF_TOWN,
+    MAPSEC_PACIFIDLOG_TOWN,
+    MAPSEC_PETALBURG_CITY,
+    MAPSEC_SLATEPORT_CITY,
+    MAPSEC_MAUVILLE_CITY,
+    MAPSEC_RUSTBORO_CITY,
+    MAPSEC_FORTREE_CITY,
+    MAPSEC_LILYCOVE_CITY,
+    MAPSEC_MOSSDEEP_CITY,
+    MAPSEC_SOOTOPOLIS_CITY,
+    MAPSEC_EVER_GRANDE_CITY,
+    MAPSEC_OMAOMA_TOWN
+};
+
+static const u16 sFlyableMapFlags[FLYABLE_MAPSEC_COUNT] =
+{
+    FLAG_VISITED_LITTLEROOT_TOWN,
+    FLAG_VISITED_OLDALE_TOWN,
+    FLAG_VISITED_DEWFORD_TOWN,
+    FLAG_VISITED_LAVARIDGE_TOWN,
+    FLAG_VISITED_FALLARBOR_TOWN,
+    FLAG_VISITED_VERDANTURF_TOWN,
+    FLAG_VISITED_PACIFIDLOG_TOWN,
+    FLAG_VISITED_PETALBURG_CITY,
+    FLAG_VISITED_SLATEPORT_CITY,
+    FLAG_VISITED_MAUVILLE_CITY,
+    FLAG_VISITED_RUSTBORO_CITY,
+    FLAG_VISITED_FORTREE_CITY,
+    FLAG_VISITED_LILYCOVE_CITY,
+    FLAG_VISITED_MOSSDEEP_CITY,
+    FLAG_VISITED_SOOTOPOLIS_CITY,
+    FLAG_VISITED_EVER_GRANDE_CITY,
+    FLAG_VISITED_OMAOMA_TOWN
+};
+
 static const u16 sTerraOrMarineCaveMapSecIds[ABNORMAL_WEATHER_LOCATIONS] =
 {
     [ABNORMAL_WEATHER_ROUTE_114_NORTH - 1] = MAPSEC_ROUTE_114,
@@ -1844,8 +1886,8 @@ static void LoadFlyDestIcons(void)
 
 static void CreateFlyDestIcons(void)
 {
-    u16 canFlyFlag;
-    u16 mapSecId;
+    u8 canFlyFlagIndex;
+    u8 mapSecIndex;
     u16 x;
     u16 y;
     u16 width;
@@ -1853,10 +1895,10 @@ static void CreateFlyDestIcons(void)
     u16 shape;
     u8 spriteId;
 
-    canFlyFlag = FLAG_VISITED_LITTLEROOT_TOWN;
-    for (mapSecId = MAPSEC_LITTLEROOT_TOWN; mapSecId <= MAPSEC_EVER_GRANDE_CITY; mapSecId++)
+    canFlyFlagIndex = 0;
+    for (mapSecIndex = 0; mapSecIndex < FLYABLE_MAPSEC_COUNT; mapSecIndex++)
     {
-        GetMapSecDimensions(mapSecId, &x, &y, &width, &height);
+        GetMapSecDimensions(sFlyableMapSecIds[mapSecIndex], &x, &y, &width, &height);
         x = (x + MAPCURSOR_X_MIN) * 8 + 4;
         y = (y + MAPCURSOR_Y_MIN) * 8 + 4;
 
@@ -1872,15 +1914,15 @@ static void CreateFlyDestIcons(void)
         {
             gSprites[spriteId].oam.shape = shape;
 
-            if (FlagGet(canFlyFlag))
+            if (FlagGet(sFlyableMapFlags[canFlyFlagIndex]))
                 gSprites[spriteId].callback = SpriteCB_FlyDestIcon;
             else
                 shape += 3;
-
+            
             StartSpriteAnim(&gSprites[spriteId], shape);
-            gSprites[spriteId].sIconMapSec = mapSecId;
+            gSprites[spriteId].sIconMapSec = sFlyableMapSecIds[mapSecIndex];
         }
-        canFlyFlag++;
+        canFlyFlagIndex++;
     }
 }
 
