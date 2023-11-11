@@ -1539,6 +1539,9 @@ static u8 GetEncounterLevelFromMapData(u16 species, u8 environment)
     u8 max = 0;
     u8 i;
     
+    // replaced all of the wildPokemon[i].minLevel/maxLevel entries here with 0
+    // to always use the min and max levels of the first mon entry in the map
+    // this could likely be greatly simplified
     switch (environment)
     {
     case ENCOUNTER_TYPE_LAND:    // grass
@@ -1549,8 +1552,8 @@ static u8 GetEncounterLevelFromMapData(u16 species, u8 environment)
         {
             if (landMonsInfo->wildPokemon[i].species == species)
             {
-                min = (min < landMonsInfo->wildPokemon[i].minLevel) ? min : landMonsInfo->wildPokemon[i].minLevel;
-                max = (max > landMonsInfo->wildPokemon[i].maxLevel) ? max : landMonsInfo->wildPokemon[i].maxLevel;
+                min = (min < landMonsInfo->wildPokemon[0].minLevel) ? min : landMonsInfo->wildPokemon[0].minLevel;
+                max = (max > landMonsInfo->wildPokemon[0].maxLevel) ? max : landMonsInfo->wildPokemon[0].maxLevel;
             }
         }
         break;
@@ -1562,8 +1565,8 @@ static u8 GetEncounterLevelFromMapData(u16 species, u8 environment)
         {
             if (waterMonsInfo->wildPokemon[i].species == species)
             {
-                min = (min < waterMonsInfo->wildPokemon[i].minLevel) ? min : waterMonsInfo->wildPokemon[i].minLevel;
-                max = (max > waterMonsInfo->wildPokemon[i].maxLevel) ? max : waterMonsInfo->wildPokemon[i].maxLevel;
+                min = (min < waterMonsInfo->wildPokemon[0].minLevel) ? min : waterMonsInfo->wildPokemon[0].minLevel;
+                max = (max > waterMonsInfo->wildPokemon[0].maxLevel) ? max : waterMonsInfo->wildPokemon[0].maxLevel;
             }
         }
         break;
@@ -1575,8 +1578,8 @@ static u8 GetEncounterLevelFromMapData(u16 species, u8 environment)
         {
             if (hiddenMonsInfo->wildPokemon[i].species == species)
             {
-                min = (min < hiddenMonsInfo->wildPokemon[i].minLevel) ? min : hiddenMonsInfo->wildPokemon[i].minLevel;
-                max = (max > hiddenMonsInfo->wildPokemon[i].maxLevel) ? max : hiddenMonsInfo->wildPokemon[i].maxLevel;
+                min = (min < hiddenMonsInfo->wildPokemon[0].minLevel) ? min : hiddenMonsInfo->wildPokemon[0].minLevel;
+                max = (max > hiddenMonsInfo->wildPokemon[0].maxLevel) ? max : hiddenMonsInfo->wildPokemon[0].maxLevel;
             }
         }
         

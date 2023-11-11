@@ -313,7 +313,11 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
     u8 max;
     u8 range;
     u8 rand;
-
+    
+    // this is hardcoded in so we only use the level range of the first mon entry
+    // for all pokemon - I'm lazy :)
+    wildMonIndex = 0;
+   
     if (LURE_STEP_COUNT == 0)
     {
         // Make sure minimum level is less than maximum level
