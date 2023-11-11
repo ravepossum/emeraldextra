@@ -381,12 +381,12 @@ DewfordTown_Gym_Text_CristianPostBattle:
 	.string "Go after that Badge!$"
 
 DewfordTown_Gym_Text_BrawlyIntro:
-	.string "I'm Brawly!\n"
-	.string "Dewford's Gym Leader!\p"
+	.string "Oh hey {PLAYER}!\n"
+	.string "Glad to see you're a Gym challenger!\p"
 	.string "I've been churned in the rough waves\n"
 	.string "of these parts, and I've grown tough\l"
 	.string "in the pitch-black cave!\p"
-	.string "So you wanted to challenge me?\n"
+	.string "You want to challenge me?\n"
 	.string "Let me see what you're made of!$"
 
 DewfordTown_Gym_Text_BrawlyDefeat:

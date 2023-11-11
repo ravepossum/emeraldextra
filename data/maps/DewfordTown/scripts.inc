@@ -1,6 +1,3 @@
-@ Sailing to and from Dewford uses local IDs from different maps
-@ e.g. Route 104's sail to Dewford script references local IDs from Dewford's map
-@ All of these local IDs are labeled here
 .equ LOCALID_BRINEY_DEWFORD, 2
 .equ LOCALID_BOAT_DEWFORD, 4
 
@@ -10,13 +7,11 @@
 .equ LOCALID_BOAT_R104, 7
 .equ LOCALID_BRINEY_R104, 8
 
+.set LOCALID_BLACKBELT, 6
+
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
 	.byte 0
-
-DewfordTown_OnTransition:
-	setflag FLAG_VISITED_DEWFORD_TOWN
-	end
 
 DewfordTown_EventScript_Briney::
 	lock
@@ -800,3 +795,34 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "Yeah, absolutely right!\p"
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
+
+DewfordTown_OnTransition::
+	setflag FLAG_VISITED_DEWFORD_TOWN
+	goto_if_unset FLAG_FOUND_BRAWLY_OMAOMA, DewfordTown_OnTransition_2
+DewfordTown_OnTransition_1:
+	end
+
+DewfordTown_OnTransition_2:
+	setobjectxyperm LOCALID_BLACKBELT, 8, 18
+	setobjectmovementtype LOCALID_BLACKBELT, MOVEMENT_TYPE_FACE_LEFT_AND_RIGHT
+	goto DewfordTown_OnTransition_1
+
+
+DewfordTown_EventScript_BlackBelt::
+	goto_if_unset FLAG_FOUND_BRAWLY_OMAOMA, DewfordTown_EventScript_BlackBelt_2
+	msgbox DewfordTown_EventScript_BlackBelt_Text_1, MSGBOX_NPC
+DewfordTown_EventScript_BlackBelt_1:
+	end
+
+DewfordTown_EventScript_BlackBelt_2:
+	msgbox DewfordTown_EventScript_BlackBelt_Text_0, MSGBOX_NPC
+	goto DewfordTown_EventScript_BlackBelt_1
+
+
+DewfordTown_EventScript_BlackBelt_Text_0:
+	.string "Have you seen Brawly? We can't open up\n"
+	.string "the Gym until he's back.$"
+
+DewfordTown_EventScript_BlackBelt_Text_1:
+	.string "Dewford is a great place to stay\n"
+	.string "focused for training.$"

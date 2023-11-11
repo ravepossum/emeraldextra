@@ -1,5 +1,7 @@
 raw 
 `
+.set LOCALID_BRAWLY, 10
+
 OmaomaTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OmaomaTown_OnTransition
 	.byte 0
@@ -13,4 +15,52 @@ script OmaomaTown_OnTransition {
 script OmaomaTown_EventScript_TownSign {
 	msgbox("Oma'oma Town\n“A town that is one with the tide.”", MSGBOX_SIGN)
 	end
+}
+
+script OmaomaTown_EventScript_Brawly {
+	lock
+	faceplayer
+
+	msgbox(format("Oh, hey there!\p{PLAYER}, is it?\pI'm Brawly! Dewford's Gym Leader!"))
+	msgbox(format("… … …"))
+	playse(SE_PIN)
+	applymovement(LOCALID_BRAWLY, Common_Movement_ExclamationMark)
+	waitmovement(LOCALID_BRAWLY)
+	msgbox(format("Huh? The other Trainers were looking for me?\pI was just hitting the waves before opening up the Gym.\pI'll head right over!"))
+	
+	if (var(VAR_FACING) == DIR_WEST) {
+		applymovement(LOCALID_BRAWLY, OmaomaTown_Movement_Brawly_Facing_Right)
+	} else {
+		applymovement(LOCALID_BRAWLY, OmaomaTown_Movement_Brawly_Facing_Up_Down_Left)
+	}
+	waitmovement(LOCALID_BRAWLY)
+
+	removeobject(LOCALID_BRAWLY)
+	setflag(FLAG_FOUND_BRAWLY_OMAOMA)
+	release
+	end
+}
+
+movement OmaomaTown_Movement_Brawly_Facing_Up_Down_Left {
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+}
+
+movement OmaomaTown_Movement_Brawly_Facing_Right {
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 }
