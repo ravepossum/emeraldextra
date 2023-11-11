@@ -1764,7 +1764,7 @@ static bool8 Fishing_GetRodOut(struct Task *task)
     const s16 minRounds2[] = {
         [OLD_ROD]   = 1,
         [GOOD_ROD]  = 3,
-        [SUPER_ROD] = 6
+        [SUPER_ROD] = 2
     };
 
     task->tRoundsPlayed = 0;
@@ -1883,6 +1883,7 @@ static bool8 Fishing_CheckForBite(struct Task *task)
 static bool8 Fishing_GotBite(struct Task *task)
 {
     AlignFishingAnimationFrames();
+    PlaySE(SE_PIN);
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_OhABite, 0, 17, 0, NULL);
     task->tStep++;
     task->tFrameCounter = 0;
@@ -1895,7 +1896,7 @@ static bool8 Fishing_WaitForA(struct Task *task)
     const s16 reelTimeouts[3] = {
         [OLD_ROD]   = 36,
         [GOOD_ROD]  = 33,
-        [SUPER_ROD] = 30
+        [SUPER_ROD] = 40
     };
 
     AlignFishingAnimationFrames();
