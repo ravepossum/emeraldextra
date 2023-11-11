@@ -1782,9 +1782,9 @@ static bool8 Fishing_WaitBeforeDots(struct Task *task)
 {
     AlignFishingAnimationFrames();
 
-    // Wait one second
+    // Wait 1/4 second
     task->tFrameCounter++;
-    if (task->tFrameCounter >= 60)
+    if (task->tFrameCounter >= 15)
         task->tStep++;
     return FALSE;
 }
@@ -1896,7 +1896,7 @@ static bool8 Fishing_WaitForA(struct Task *task)
     const s16 reelTimeouts[3] = {
         [OLD_ROD]   = 36,
         [GOOD_ROD]  = 33,
-        [SUPER_ROD] = 40
+        [SUPER_ROD] = 100
     };
 
     AlignFishingAnimationFrames();
