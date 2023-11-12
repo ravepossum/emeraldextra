@@ -4570,6 +4570,66 @@
       "secondary_tileset": "gTileset_Shop",
       "border_filepath": "data/layouts/OmaomaTown_Mart/border.bin",
       "blockdata_filepath": "data/layouts/OmaomaTown_Mart/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_HOUSE1",
+      "name": "OmaomaTown_House1_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OmaomaTown_House1/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_House1/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_HOUSE2",
+      "name": "OmaomaTown_House2_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OmaomaTown_House2/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_House2/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_HOUSE3",
+      "name": "OmaomaTown_House3_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OmaomaTown_House3/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_House3/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_HOUSE4",
+      "name": "OmaomaTown_House4_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OmaomaTown_House4/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_House4/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_HOUSE5",
+      "name": "OmaomaTown_House5_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OmaomaTown_House5/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_House5/map.bin"
+    },
+    {
+      "id": "LAYOUT_OMAOMA_TOWN_HOUSE6",
+      "name": "OmaomaTown_House6_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OmaomaTown_House6/border.bin",
+      "blockdata_filepath": "data/layouts/OmaomaTown_House6/map.bin"
     }
   ]
 }

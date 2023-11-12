@@ -608,6 +608,12 @@
 #define MAP_OMAOMA_TOWN_POKEMON_CENTER_1F (0 | (34 << 8))
 #define MAP_OMAOMA_TOWN_POKEMON_CENTER_2F (1 | (34 << 8))
 #define MAP_OMAOMA_TOWN_MART              (2 | (34 << 8))
+#define MAP_OMAOMA_TOWN_HOUSE1            (3 | (34 << 8))
+#define MAP_OMAOMA_TOWN_HOUSE2            (4 | (34 << 8))
+#define MAP_OMAOMA_TOWN_HOUSE3            (5 | (34 << 8))
+#define MAP_OMAOMA_TOWN_HOUSE4            (6 | (34 << 8))
+#define MAP_OMAOMA_TOWN_HOUSE5            (7 | (34 << 8))
+#define MAP_OMAOMA_TOWN_HOUSE6            (8 | (34 << 8))
 
 #define MAP_GROUPS_COUNT 35
 

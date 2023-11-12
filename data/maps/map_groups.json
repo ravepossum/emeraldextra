@@ -638,6 +638,12 @@
   "gMapGroup_IndoorOmaoma": [
     "OmaomaTown_PokemonCenter_1F",
     "OmaomaTown_PokemonCenter_2F",
-    "OmaomaTown_Mart"
+    "OmaomaTown_Mart",
+    "OmaomaTown_House1",
+    "OmaomaTown_House2",
+    "OmaomaTown_House3",
+    "OmaomaTown_House4",
+    "OmaomaTown_House5",
+    "OmaomaTown_House6"
   ]
 }

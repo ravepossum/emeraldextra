@@ -50,7 +50,7 @@
 #define FLAG_RECEIVED_EXPERT_BELT   0x25 // Player has received expert belt
 #define FLAG_RECEIVED_LAX_INCENSE   0x26 // Player has received lax incense
 #define FLAG_DEMO_MODE              0x27 // Flag used to indicate ROM is in demo mode
-#define FLAG_UNUSED_0x028           0x28 // Unused Flag
+#define FLAG_BOUGHT_SOUVENIR        0x28 // Player has bought strange souvenir at least once
 #define FLAG_UNUSED_0x029           0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A           0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B           0x2B // Unused Flag

@@ -1,0 +1,33 @@
+mapscripts OmaomaTown_House1_MapScripts {}
+
+script OmaomaTown_House1_EventScript_Maniac {
+    lock
+    faceplayer
+
+    if (flag(FLAG_BOUGHT_SOUVENIR)) {
+        msgbox(format("I got another great deal for you!\pI found another Alolan souvenir, and just for you, it's only ¥3,000!\pWhat do you say?"), MSGBOX_YESNO)
+    } else {
+        msgbox(format("Hey, kid, you wanna buy a rare souvenir?\pIt's from the land of Alola--far far away from here!\pAnd today only, I'll give it to you for the low, low, price of ¥3,000!\pWhat do you say?"), MSGBOX_YESNO)
+    }
+    
+    if (var(VAR_RESULT) == YES) {
+        checkmoney(3000)
+        if (var(VAR_RESULT) == FALSE) {
+            msgbox(format("You trying to mess with me or something, kid?\pCome back when you're a little richer."))
+        } else {
+            giveitem(ITEM_STRANGE_SOUVENIR)
+            if(var(VAR_RESULT) == FALSE) {
+                goto(Common_EventScript_ShowBagIsFull)
+            } else {
+                removemoney(3000)
+                setflag(FLAG_BOUGHT_SOUVENIR)
+                msgbox(format("Pleasure doing business with ya, kid."))
+            }
+        }
+    } else {
+        msgbox(format("That's a shame.\pCome back when you're ready to make a great investment."))
+    }
+
+    release
+    end
+}
