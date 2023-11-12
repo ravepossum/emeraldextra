@@ -1,0 +1,9 @@
+mapscripts RustboroCity_Flat3_2F_MapScripts {}
+
+script RustboroCity_Flat3_2F_EventScript_Man4 {
+    msgbox(format("Have you heard of Mega Evolution? I heard it makes certain Pokémon frighteningly strong."),MSGBOX_NPC)
+}
+
+script RustboroCity_Flat3_2F_EventScript_Man3 {
+    msgbox(format("If you want to Mega Evolve a Pokémon, you're going to need a Mega Ring."),MSGBOX_NPC)
+}
