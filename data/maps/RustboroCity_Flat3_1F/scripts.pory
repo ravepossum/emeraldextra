@@ -1,0 +1,82 @@
+const LOCALID_KATE = 1
+const LOCALID_PELIPPER = 2
+
+mapscripts RustboroCity_Flat3_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_TARA_LETTER_STATE) == 3) {
+            setflag(FLAG_HIDE_RUSTBORO_PELIPPER)
+        } else {
+            clearflag(FLAG_HIDE_RUSTBORO_PELIPPER)
+        }
+    }
+}
+
+script RustboroCity_Flat3_1F_EventScript_Pelipper {
+    playmoncry(SPECIES_PELIPPER, CRY_MODE_NORMAL)
+	msgbox(format("Pelipper: Pihyoh-pah!"), MSGBOX_NPC)
+}
+
+script RustboroCity_Flat3_1F_EventScript_Kate {
+    lock
+    faceplayer
+
+    switch (var(VAR_TARA_LETTER_STATE)) {
+        
+        case 1:
+            msgbox(format("Kate: Hi there!"))
+            msgbox(format("… … …"))
+            playse(SE_PIN)
+            applymovement(LOCALID_KATE, Common_Movement_ExclamationMark)
+            msgbox(format("Kate: You have a letter from Tara? Wow, can I see that?"))
+
+            bufferitemname(STR_VAR_1, ITEM_TARAS_LETTER)
+            msgbox(format("{PLAYER} handed over {STR_VAR_1}."))
+            removeitem(ITEM_TARAS_LETTER)
+
+            msgbox(format("Kate: Thanks for bringing that all the way here!\pPlease take this as a token of my gratitude."))
+            giveitem(ITEM_LUCKY_EGG)
+            if(var(VAR_RESULT) == FALSE) {
+                setvar(VAR_TARA_LETTER_STATE, 2)
+                goto(Common_EventScript_ShowBagIsFull)
+            } else {
+                applymovement(LOCALID_KATE, Common_Movement_FaceLeft)
+                msgbox(format("… … …\p… … …"))
+                msgbox(format("Kate: Pelipper, can you bring this back to Tara?"))
+                applymovement(LOCALID_PELIPPER, RustboroCity_Flat3_1F_Movement_PelipperApproach)
+                waitmovement(LOCALID_PELIPPER)
+                playmoncry(SPECIES_PELIPPER, CRY_MODE_NORMAL)
+                applymovement(LOCALID_PELIPPER, RustboroCity_Flat3_1F_Movement_PelipperExit)
+                waitmovement(LOCALID_PELIPPER)
+                removeobject(LOCALID_PELIPPER)
+                setvar(VAR_TARA_LETTER_STATE, 3)
+            }
+            break
+
+        case 2:
+            msgbox(format("Kate: Please take this as a token of my gratitude."))
+            giveitem(ITEM_LUCKY_EGG)
+            if(var(VAR_RESULT) == FALSE) {
+                goto(Common_EventScript_ShowBagIsFull)
+            } else {
+                setvar(VAR_TARA_LETTER_STATE, 3)
+            }
+            break
+        
+        default:
+            msgbox(format("Kate: I used to live in Oma'oma Town, but I moved here to work at Devon Corp."))
+            break
+    }
+
+    release
+    end
+}
+
+movement RustboroCity_Flat3_1F_Movement_PelipperApproach {
+	walk_down * 1
+	walk_right * 3
+}
+movement RustboroCity_Flat3_1F_Movement_PelipperExit {
+	walk_left * 3
+    walk_down * 6
+	walk_left * 5
+}

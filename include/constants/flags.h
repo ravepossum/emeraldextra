@@ -51,8 +51,8 @@
 #define FLAG_RECEIVED_LAX_INCENSE   0x26 // Player has received lax incense
 #define FLAG_DEMO_MODE              0x27 // Flag used to indicate ROM is in demo mode
 #define FLAG_BOUGHT_SOUVENIR        0x28 // Player has bought strange souvenir at least once
-#define FLAG_UNUSED_0x029           0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A           0x2A // Unused Flag
+#define FLAG_HIDE_OMAOMA_PELIPPER   0x29 // Hides Pelipper in Oma'oma town
+#define FLAG_HIDE_RUSTBORO_PELIPPER 0x2A // Hides Pelipper in Kate's flat in Rustboro
 #define FLAG_UNUSED_0x02B           0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C           0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D           0x2D // Unused Flag

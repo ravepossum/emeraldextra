@@ -3925,3 +3925,8 @@ static const u8 sPokevialDesc[] = _(
     "POKéMON to full\n"
     "health.");
 //End Pokevial Branch
+
+static const u8 sTarasLetterDesc[] = _(
+    "A letter written\n"
+    "for a friend in\n"
+    "Rustboro city.");

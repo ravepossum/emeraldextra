@@ -1257,8 +1257,8 @@ EventScript_CloseMossdeepGameCornerBarrier::
 	return
 
 CableClub_OnResume:
-	specialvar VAR_RESULT, IsWirelessAdapterConnected
-    goto_if_eq VAR_RESULT, FALSE, CableClub_OnResume_DisableUnionRoomNurseText
+	specialvar VAR_0x8001, IsWirelessAdapterConnected
+    goto_if_eq VAR_0x8001, FALSE, CableClub_OnResume_DisableUnionRoomNurseText
 	special InitUnionRoom
 	end
 

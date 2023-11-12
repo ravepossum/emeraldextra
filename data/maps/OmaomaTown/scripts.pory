@@ -1,6 +1,7 @@
 raw 
 `
 .set LOCALID_BRAWLY, 10
+.set LOCALID_PELIPPER, 11
 
 OmaomaTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OmaomaTown_OnTransition
@@ -9,12 +10,72 @@ OmaomaTown_MapScripts::
 
 script OmaomaTown_OnTransition {
     setflag(FLAG_VISITED_OMAOMA_TOWN)
+	if (var(VAR_TARA_LETTER_STATE) == 3) {
+		clearflag(FLAG_HIDE_OMAOMA_PELIPPER)
+	} else {
+		setflag(FLAG_HIDE_OMAOMA_PELIPPER)
+	}
     end
 }
 
 script OmaomaTown_EventScript_TownSign {
 	msgbox("Oma'oma Town\n“A town that is one with the tide.”", MSGBOX_SIGN)
 	end
+}
+
+script OmaomaTown_EventScript_Girl {
+	msgbox(format("Alola! Our ancestors all came from the Alola region.\pWe've carved out a space of our own here in Oma'oma."), MSGBOX_NPC)
+}
+
+script OmaomaTown_EventScript_BugCatcher {
+	msgbox(format("Pokémon helped us build elevated homes to handle the rising tide.\pOur bond is what allowed us to survive here."), MSGBOX_NPC)
+}
+
+script OmaomaTown_EventScript_Fisherman {
+	msgbox(format("As much as I love to fish, I make sure to only catch as much as we need.\pIt's important that we keep the ecosystem in balance."), MSGBOX_NPC)
+}
+
+script OmaomaTown_EventScript_Tara {
+	lock
+	faceplayer
+
+	switch(var(VAR_TARA_LETTER_STATE)) {
+		case 0:
+			msgbox(format("Tara: Do you make it out to Rustboro City much?\pDo you think you could bring this letter to my friend Kate there?"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == NO) {
+				msgbox(format("Tara: I understand. Rustboro feels so far away sometimes."))
+			} else {
+				msgbox(format("Tara: Yay! That's great!\pShe's going to be so happy to hear from me."))
+				giveitem(ITEM_TARAS_LETTER)
+				setvar(VAR_TARA_LETTER_STATE, 1)
+			}
+			break
+		case 1:
+			msgbox(format("Tara: I can't wait to hear back from Kate."))
+			break
+		case 2:
+			msgbox(format("Tara: I can't wait to hear back from Kate."))
+			break
+		case 3:
+			msgbox(format("Tara: Yipee! Kate's Pelipper brought back her response!\pShe's going to stop by Oma'oma soon.\pI can't thank you enough for putting us back in touch."))
+			msgbox(format("I bet a trainer like you could use this."))
+			//todo handle full bag
+			giveitem(ITEM_ULTRA_BALL)
+			msgbox(format("Tara: Come back and visit again sometime!"))
+			setvar(VAR_TARA_LETTER_STATE, 4)
+			break
+		default:
+			msgbox(format("Tara: It's nice to have friends all across Hoenn."))
+			break
+	}
+
+	release
+	end
+}
+
+script OmaomaTown_EventScript_Pelipper {
+	playmoncry(SPECIES_PELIPPER, CRY_MODE_NORMAL)
+	msgbox(format("Pelipper: Pihyoh-pah!"), MSGBOX_NPC)
 }
 
 script OmaomaTown_EventScript_Brawly {
@@ -42,25 +103,10 @@ script OmaomaTown_EventScript_Brawly {
 }
 
 movement OmaomaTown_Movement_Brawly_Facing_Up_Down_Left {
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
+	walk_right * 9
 }
 
 movement OmaomaTown_Movement_Brawly_Facing_Right {
 	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
+	walk_right * 9
 }

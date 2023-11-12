@@ -4630,6 +4630,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/OmaomaTown_House6/border.bin",
       "blockdata_filepath": "data/layouts/OmaomaTown_House6/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTBORO_CITY_FLAT3_1F",
+      "name": "RustboroCity_Flat3_1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/RustboroCity_Flat3_1F/border.bin",
+      "blockdata_filepath": "data/layouts/RustboroCity_Flat3_1F/map.bin"
     }
   ]
 }

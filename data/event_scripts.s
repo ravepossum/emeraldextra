@@ -1137,3 +1137,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/OmaomaTown_House5/scripts.inc"
 
 	.include "data/maps/OmaomaTown_House6/scripts.inc"
+
+	.include "data/maps/RustboroCity_Flat3_1F/scripts.inc"

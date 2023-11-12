@@ -9665,4 +9665,15 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_Pokevial,
     },
     //End Pokevial Branch
+
+    [ITEM_TARAS_LETTER] =
+    {
+        .name = _("Tara's Mail"),
+        .price = 0,
+        .description = sTarasLetterDesc,
+        .importance = 2,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
 };
