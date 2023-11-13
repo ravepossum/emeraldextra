@@ -1,1 +1,5 @@
 mapscripts OmaomaTown_House6_MapScripts {}
+
+script OmaomaTown_House6_EventScript_Artist {
+    msgbox(format("I just arrived from Lilycove.\pI'm hoping the change of scenery and pace can reinvigorate my creative passion."), MSGBOX_NPC)
+}

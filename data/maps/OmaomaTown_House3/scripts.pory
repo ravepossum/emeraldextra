@@ -1,1 +1,67 @@
+const LOCALID_MOM = 2
+
 mapscripts OmaomaTown_House3_MapScripts {}
+
+script OmaomaTown_House3_EventScript_PokefanM {
+    msgbox(format("Our son just left for the mainland to begin his Pokémon Trainer journey.\pI do hope he calls every now and then."), MSGBOX_NPC)
+}
+
+script OmaomaTown_House3_EventScript_PokefanF {
+    lock
+    faceplayer
+    dotimebasedevents
+
+    if (!flag(FLAG_RECEIVED_DAILY_WATER)) {
+        msgbox(format("Oh my--your youthful vigor!\pYou remind me of my son."))
+
+        if (var(VAR_FACING) == DIR_WEST) {
+            applymovement(LOCALID_MOM, OmaomaTown_House3_Movement_MomTowardFridge_FacingRight)
+            waitmovement(LOCALID_MOM)
+            delay(20)
+            applymovement(LOCALID_MOM, OmaomaTown_House3_Movement_MomTowardPlayer_FacingRight)
+            waitmovement(LOCALID_MOM)
+        } else {
+            applymovement(LOCALID_MOM, OmaomaTown_House3_Movement_MomTowardFridge_FacingUpDown)
+            waitmovement(LOCALID_MOM)
+            delay(20)
+            applymovement(LOCALID_MOM, OmaomaTown_House3_Movement_MomTowardPlayer_FacingUpDown)
+            waitmovement(LOCALID_MOM)
+        }
+        faceplayer
+
+        msgbox(format("Please, take this."))
+
+        giveitem(ITEM_FRESH_WATER)
+        if(var(VAR_RESULT) == FALSE) {goto(Common_EventScript_ShowBagIsFull)}
+        setflag(FLAG_RECEIVED_DAILY_WATER)
+    }
+
+    msgbox(format("Remember to stay hydrated out there.\pCome back any time you're parched."))
+
+    release
+    end
+}
+
+movement OmaomaTown_House3_Movement_MomTowardFridge_FacingRight {
+    walk_slow_up
+    walk_slow_right * 2
+    walk_slow_up
+}
+
+movement OmaomaTown_House3_Movement_MomTowardPlayer_FacingRight {
+    walk_in_place_slow_up
+    walk_slow_down
+    walk_slow_left * 2
+    walk_slow_down
+}
+
+movement OmaomaTown_House3_Movement_MomTowardFridge_FacingUpDown {
+    walk_slow_right * 2
+    walk_slow_up * 2
+}
+
+movement OmaomaTown_House3_Movement_MomTowardPlayer_FacingUpDown {
+    walk_in_place_slow_up
+    walk_slow_down * 2
+    walk_slow_left * 2
+}
