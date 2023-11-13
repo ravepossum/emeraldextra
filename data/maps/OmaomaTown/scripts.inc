@@ -28,6 +28,12 @@ OmaomaTown_EventScript_ExpertF::
 	return
 
 
+OmaomaTown_EventScript_Passimian::
+	playmoncry SPECIES_PASSIMIAN, CRY_MODE_NORMAL
+	msgbox OmaomaTown_EventScript_Passimian_Text_0, MSGBOX_NPC
+	return
+
+
 OmaomaTown_EventScript_Girl::
 	msgbox OmaomaTown_EventScript_Girl_Text_0, MSGBOX_NPC
 	return
@@ -150,6 +156,9 @@ OmaomaTown_EventScript_ExpertF_Text_0:
 	.string "region.\p"
 	.string "We've carved out a space of our own\n"
 	.string "here in Oma'oma.$"
+
+OmaomaTown_EventScript_Passimian_Text_0:
+	.string "Passimian: Simi-simi-simi!$"
 
 OmaomaTown_EventScript_Girl_Text_0:
 	.string "Alola! Welcome to Oma'oma!$"
