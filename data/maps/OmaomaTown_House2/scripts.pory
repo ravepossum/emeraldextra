@@ -1,1 +1,9 @@
 mapscripts OmaomaTown_House2_MapScripts {}
+
+script OmaomaTown_House2_EventScript_Woman4 {
+    msgbox(format("Oma'oma started off small, but now it's even bigger than Dewford Town."),MSGBOX_NPC)
+}
+
+script OmaomaTown_House2_EventScript_Woman3 {
+    msgbox(format("Alola! Catch any neat Pokémon lately?"),MSGBOX_NPC)
+}

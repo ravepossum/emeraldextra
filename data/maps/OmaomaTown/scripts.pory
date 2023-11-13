@@ -23,8 +23,12 @@ script OmaomaTown_EventScript_TownSign {
 	end
 }
 
+script OmaomaTown_EventScript_ExpertF {
+	msgbox(format("Our ancestors all came from the Alola region.\pWe've carved out a space of our own here in Oma'oma."), MSGBOX_NPC)
+}
+
 script OmaomaTown_EventScript_Girl {
-	msgbox(format("Alola! Our ancestors all came from the Alola region.\pWe've carved out a space of our own here in Oma'oma."), MSGBOX_NPC)
+	msgbox(format("Alola! Welcome to Oma'oma!"), MSGBOX_NPC)
 }
 
 script OmaomaTown_EventScript_BugCatcher {
@@ -43,7 +47,7 @@ script OmaomaTown_EventScript_Tara {
 		case 0:
 			msgbox(format("Tara: Do you make it out to Rustboro City much?\pDo you think you could bring this letter to my friend Kate there?"), MSGBOX_YESNO)
 			if (var(VAR_RESULT) == NO) {
-				msgbox(format("Tara: I understand. Rustboro feels so far away sometimes."))
+				msgbox(format("Tara: I get it…\pRustboro feels so far away sometimes."))
 			} else {
 				msgbox(format("Tara: Yay! That's great!\pShe's going to be so happy to hear from me."))
 				giveitem(ITEM_TARAS_LETTER)

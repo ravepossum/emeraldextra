@@ -42,54 +42,54 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_RECEIVED_BIG_ROOT      0x20 // Indicates player has received big root item
-#define FLAG_NO_ENCOUNTER           0x21 // No wild encounter flag for debugging
-#define FLAG_NO_TRAINER_SEE         0x22 // No trainer encounter flag for debugging
-#define FLAG_NO_COLLISION           0x23 // No collision flag for debugging
-#define FLAG_LEVEL_CAP              0x24 // Indicates level cap is turned on
-#define FLAG_RECEIVED_EXPERT_BELT   0x25 // Player has received expert belt
-#define FLAG_RECEIVED_LAX_INCENSE   0x26 // Player has received lax incense
-#define FLAG_DEMO_MODE              0x27 // Flag used to indicate ROM is in demo mode
-#define FLAG_BOUGHT_SOUVENIR        0x28 // Player has bought strange souvenir at least once
-#define FLAG_HIDE_OMAOMA_PELIPPER   0x29 // Hides Pelipper in Oma'oma town
-#define FLAG_HIDE_RUSTBORO_PELIPPER 0x2A // Hides Pelipper in Kate's flat in Rustboro
-#define FLAG_UNUSED_0x02B           0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C           0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D           0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E           0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F           0x2F // Unused Flag
-#define FLAG_UNUSED_0x030           0x30 // Unused Flag
-#define FLAG_UNUSED_0x031           0x31 // Unused Flag
-#define FLAG_UNUSED_0x032           0x32 // Unused Flag
-#define FLAG_UNUSED_0x033           0x33 // Unused Flag
-#define FLAG_UNUSED_0x034           0x34 // Unused Flag
-#define FLAG_UNUSED_0x035           0x35 // Unused Flag
-#define FLAG_UNUSED_0x036           0x36 // Unused Flag
-#define FLAG_UNUSED_0x037           0x37 // Unused Flag
-#define FLAG_UNUSED_0x038           0x38 // Unused Flag
-#define FLAG_UNUSED_0x039           0x39 // Unused Flag
-#define FLAG_UNUSED_0x03A           0x3A // Unused Flag
-#define FLAG_UNUSED_0x03B           0x3B // Unused Flag
-#define FLAG_UNUSED_0x03C           0x3C // Unused Flag
-#define FLAG_UNUSED_0x03D           0x3D // Unused Flag
-#define FLAG_UNUSED_0x03E           0x3E // Unused Flag
-#define FLAG_UNUSED_0x03F           0x3F // Unused Flag
-#define FLAG_UNUSED_0x040           0x40 // Unused Flag
-#define FLAG_UNUSED_0x041           0x41 // Unused Flag
-#define FLAG_UNUSED_0x042           0x42 // Unused Flag
-#define FLAG_UNUSED_0x043           0x43 // Unused Flag
-#define FLAG_UNUSED_0x044           0x44 // Unused Flag
-#define FLAG_UNUSED_0x045           0x45 // Unused Flag
-#define FLAG_UNUSED_0x046           0x46 // Unused Flag
-#define FLAG_UNUSED_0x047           0x47 // Unused Flag
-#define FLAG_UNUSED_0x048           0x48 // Unused Flag
-#define FLAG_UNUSED_0x049           0x49 // Unused Flag
-#define FLAG_UNUSED_0x04A           0x4A // Unused Flag
-#define FLAG_UNUSED_0x04B           0x4B // Unused Flag
-#define FLAG_UNUSED_0x04C           0x4C // Unused Flag
-#define FLAG_UNUSED_0x04D           0x4D // Unused Flag
-#define FLAG_UNUSED_0x04E           0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F           0x4F // Unused Flag
+#define FLAG_RECEIVED_BIG_ROOT          0x20 // Indicates player has received big root item
+#define FLAG_NO_ENCOUNTER               0x21 // No wild encounter flag for debugging
+#define FLAG_NO_TRAINER_SEE             0x22 // No trainer encounter flag for debugging
+#define FLAG_NO_COLLISION               0x23 // No collision flag for debugging
+#define FLAG_LEVEL_CAP                  0x24 // Indicates level cap is turned on
+#define FLAG_RECEIVED_EXPERT_BELT       0x25 // Player has received expert belt
+#define FLAG_RECEIVED_LAX_INCENSE       0x26 // Player has received lax incense
+#define FLAG_DEMO_MODE                  0x27 // Flag used to indicate ROM is in demo mode
+#define FLAG_BOUGHT_SOUVENIR            0x28 // Player has bought strange souvenir at least once
+#define FLAG_HIDE_OMAOMA_PELIPPER       0x29 // Hides Pelipper in Oma'oma town
+#define FLAG_HIDE_RUSTBORO_PELIPPER     0x2A // Hides Pelipper in Kate's flat in Rustboro
+#define FLAG_OMAOMA_NPC_TRADE_COMPLETED 0x2B // Oma'oma town trade completed
+#define FLAG_UNUSED_0x02D               0x2D // Unused Flag
+#define FLAG_UNUSED_0x02C               0x2C // Unused Flag
+#define FLAG_UNUSED_0x02E               0x2E // Unused Flag
+#define FLAG_UNUSED_0x02F               0x2F // Unused Flag
+#define FLAG_UNUSED_0x030               0x30 // Unused Flag
+#define FLAG_UNUSED_0x031               0x31 // Unused Flag
+#define FLAG_UNUSED_0x032               0x32 // Unused Flag
+#define FLAG_UNUSED_0x033               0x33 // Unused Flag
+#define FLAG_UNUSED_0x034               0x34 // Unused Flag
+#define FLAG_UNUSED_0x035               0x35 // Unused Flag
+#define FLAG_UNUSED_0x036               0x36 // Unused Flag
+#define FLAG_UNUSED_0x037               0x37 // Unused Flag
+#define FLAG_UNUSED_0x038               0x38 // Unused Flag
+#define FLAG_UNUSED_0x039               0x39 // Unused Flag
+#define FLAG_UNUSED_0x03A               0x3A // Unused Flag
+#define FLAG_UNUSED_0x03B               0x3B // Unused Flag
+#define FLAG_UNUSED_0x03C               0x3C // Unused Flag
+#define FLAG_UNUSED_0x03D               0x3D // Unused Flag
+#define FLAG_UNUSED_0x03E               0x3E // Unused Flag
+#define FLAG_UNUSED_0x03F               0x3F // Unused Flag
+#define FLAG_UNUSED_0x040               0x40 // Unused Flag
+#define FLAG_UNUSED_0x041               0x41 // Unused Flag
+#define FLAG_UNUSED_0x042               0x42 // Unused Flag
+#define FLAG_UNUSED_0x043               0x43 // Unused Flag
+#define FLAG_UNUSED_0x044               0x44 // Unused Flag
+#define FLAG_UNUSED_0x045               0x45 // Unused Flag
+#define FLAG_UNUSED_0x046               0x46 // Unused Flag
+#define FLAG_UNUSED_0x047               0x47 // Unused Flag
+#define FLAG_UNUSED_0x048               0x48 // Unused Flag
+#define FLAG_UNUSED_0x049               0x49 // Unused Flag
+#define FLAG_UNUSED_0x04A               0x4A // Unused Flag
+#define FLAG_UNUSED_0x04B               0x4B // Unused Flag
+#define FLAG_UNUSED_0x04C               0x4C // Unused Flag
+#define FLAG_UNUSED_0x04D               0x4D // Unused Flag
+#define FLAG_UNUSED_0x04E               0x4E // Unused Flag
+#define FLAG_UNUSED_0x04F               0x4F // Unused Flag
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50

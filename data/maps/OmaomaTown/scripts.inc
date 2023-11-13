@@ -23,6 +23,11 @@ OmaomaTown_EventScript_TownSign::
 	end
 
 
+OmaomaTown_EventScript_ExpertF::
+	msgbox OmaomaTown_EventScript_ExpertF_Text_0, MSGBOX_NPC
+	return
+
+
 OmaomaTown_EventScript_Girl::
 	msgbox OmaomaTown_EventScript_Girl_Text_0, MSGBOX_NPC
 	return
@@ -140,11 +145,14 @@ OmaomaTown_Movement_Brawly_Facing_Right:
 OmaomaTown_EventScript_TownSign_Text_0:
 	.string "Oma'oma Town\n“A town that is one with the tide.”$"
 
-OmaomaTown_EventScript_Girl_Text_0:
-	.string "Alola! Our ancestors all came from the\n"
-	.string "Alola region.\p"
+OmaomaTown_EventScript_ExpertF_Text_0:
+	.string "Our ancestors all came from the Alola\n"
+	.string "region.\p"
 	.string "We've carved out a space of our own\n"
 	.string "here in Oma'oma.$"
+
+OmaomaTown_EventScript_Girl_Text_0:
+	.string "Alola! Welcome to Oma'oma!$"
 
 OmaomaTown_EventScript_BugCatcher_Text_0:
 	.string "Pokémon helped us build elevated homes\n"
@@ -165,8 +173,8 @@ OmaomaTown_EventScript_Tara_Text_0:
 	.string "to my friend Kate there?$"
 
 OmaomaTown_EventScript_Tara_Text_1:
-	.string "Tara: I understand. Rustboro feels so\n"
-	.string "far away sometimes.$"
+	.string "Tara: I get it…\p"
+	.string "Rustboro feels so far away sometimes.$"
 
 OmaomaTown_EventScript_Tara_Text_2:
 	.string "Tara: Yay! That's great!\p"

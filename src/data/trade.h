@@ -1047,6 +1047,22 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = FEMALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
+    },
+    [INGAME_TRADE_MIMIKYU] =
+    {
+        .nickname = _("Pikachu"),
+        .species = SPECIES_MIMIKYU,
+        .ivs = {16, 16, 16, 16, 16, 16},
+        .abilityNum = 0,
+        .otId = 77452,
+        .conditions = {5, 5, 5, 30, 5},
+        .personality = 0xE1,
+        .heldItem = ITEM_SPELL_TAG,
+        .mailNum = -1,
+        .otName = _("Kai"),
+        .otGender = MALE, 
+        .sheen = 10,
+        .requestedSpecies = SPECIES_ARON
     }
 };
 
