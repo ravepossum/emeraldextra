@@ -23,6 +23,11 @@ script OmaomaTown_EventScript_TownSign {
 	end
 }
 
+script OmaomaTown_EventScript_LibrarySign {
+	msgbox(format("Oma'oma Town Pokémon Library\p“To spread awareness and love of Pokémon!”"), MSGBOX_SIGN)
+	end
+}
+
 script OmaomaTown_EventScript_ExpertF {
 	msgbox(format("Our ancestors all came from the Alola region.\pWe've carved out a space of our own here in Oma'oma."), MSGBOX_NPC)
 }

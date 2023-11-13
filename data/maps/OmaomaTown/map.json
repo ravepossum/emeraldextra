@@ -291,6 +291,14 @@
       "elevation": 0,
       "item": "ITEM_NONE",
       "flag": "FLAG_TEMP_SKIP_GABBY_INTERVIEW"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 37,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OmaomaTown_EventScript_LibrarySign"
     }
   ]
 }

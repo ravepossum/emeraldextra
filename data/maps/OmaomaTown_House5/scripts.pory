@@ -1,1 +1,16 @@
 mapscripts OmaomaTown_House5_MapScripts {}
+
+script OmaomaTown_House5_EventScript_Maniac {
+	lock
+    msgbox(format("… … …\p… … …\pThe man is consumed by the book he's reading."))
+    release
+    end
+}
+
+script OmaomaTown_House5_EventScript_Gentleman {
+	msgbox(format(""), MSGBOX_NPC)
+}
+
+script OmaomaTown_House5_EventScript_Scientist2 {
+	msgbox(format(""), MSGBOX_NPC)
+}
