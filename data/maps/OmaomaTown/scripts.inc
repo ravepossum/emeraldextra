@@ -157,7 +157,9 @@ OmaomaTown_EventScript_TownSign_Text_0:
 	.string "Oma'oma Town\n“A town that is one with the tide.”$"
 
 OmaomaTown_EventScript_LibrarySign_Text_0:
-	.string "Oma'oma Town Pokémon Library\p“To spread awareness and love of Pokémon!”$"
+	.string "Oma'oma Town Pokémon Library\p"
+	.string "“To spread awareness and love of\n"
+	.string "Pokémon!”$"
 
 OmaomaTown_EventScript_ExpertF_Text_0:
 	.string "Our ancestors all came from the Alola\n"

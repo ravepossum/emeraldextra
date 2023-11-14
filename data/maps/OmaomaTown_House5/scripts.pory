@@ -8,9 +8,55 @@ script OmaomaTown_House5_EventScript_Maniac {
 }
 
 script OmaomaTown_House5_EventScript_Gentleman {
-	msgbox(format(""), MSGBOX_NPC)
+    lock
+    faceplayer
+
+    if (!flag(FLAG_MET_OMAOMA_POKEDEX_GUY)) {
+        msgbox(format("Oh ho! I spy a Pokédex!\pI happen to be somewhat of a Pokémon connoisseur myself."))
+        setflag(FLAG_MET_OMAOMA_POKEDEX_GUY)
+    }
+
+    // consider adding more prizes for gradual progress
+    if (!flag(FLAG_RECEIVED_WISE_GLASSES)) {
+        setvar(VAR_0x8004, 1) // Get National dex info
+        specialvar(VAR_RESULT, ScriptGetPokedexInfo)
+        copyvar(VAR_0x8009, VAR_0x8006) // Num National caught
+
+        if (var(VAR_0x8009) >= 50) {
+            msgbox(format("My, that is a marvelous looking Pokédex!\pI appreciate you letting me see it.\pPlease accept this as thanks!"))
+            //todo: add handling for full bag
+            giveitem(ITEM_WISE_GLASSES)
+            setflag(FLAG_RECEIVED_WISE_GLASSES)
+        } else {
+            msgbox(format("If you come back and show me you've caught 50 unique species of Pokémon, I'll give you a prize."))
+        }
+    } else {
+        msgbox(format("I simply cannot get enough Pokémon!\pI've read every book in this establishment."))
+    }
+
+    release
+    end
 }
 
 script OmaomaTown_House5_EventScript_Scientist2 {
-	msgbox(format(""), MSGBOX_NPC)
+    lock
+    faceplayer
+
+	if (!flag(FLAG_RECEIVED_PLUME_FOSSIL)) {
+        msgbox(format("I found a fossil in the jungle out here…\pbut I'm too busy with my research to bring it to the Devon Corporation lab.\pDo you think you could bring it there for me?"), MSGBOX_YESNO)
+        if (var(VAR_RESULT) == NO) {
+            msgbox(format("Okay, maybe later then."))
+        } else {
+            msgbox(format("Splendid! Now please take this."))
+            //todo: add handling for full bag
+            giveitem(ITEM_PLUME_FOSSIL)
+            msgbox(format("My colleague at the Devon Corporation building in Rustboro should be able to take a closer look at that."))
+            setflag(FLAG_RECEIVED_PLUME_FOSSIL)
+        }
+    } else {
+        msgbox(format("I'm hoping to unearth new species of Pokémon never before seen in Hoenn."))
+    }
+
+    release
+    end
 }

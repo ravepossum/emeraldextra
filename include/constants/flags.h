@@ -54,9 +54,9 @@
 #define FLAG_HIDE_OMAOMA_PELIPPER       0x29 // Hides Pelipper in Oma'oma town
 #define FLAG_HIDE_RUSTBORO_PELIPPER     0x2A // Hides Pelipper in Kate's flat in Rustboro
 #define FLAG_OMAOMA_NPC_TRADE_COMPLETED 0x2B // Oma'oma town trade completed
-#define FLAG_UNUSED_0x02D               0x2D // Unused Flag
-#define FLAG_UNUSED_0x02C               0x2C // Unused Flag
-#define FLAG_UNUSED_0x02E               0x2E // Unused Flag
+#define FLAG_MET_OMAOMA_POKEDEX_GUY     0x2D
+#define FLAG_RECEIVED_WISE_GLASSES      0x2C
+#define FLAG_RECEIVED_PLUME_FOSSIL      0x2E
 #define FLAG_UNUSED_0x02F               0x2F // Unused Flag
 #define FLAG_UNUSED_0x030               0x30 // Unused Flag
 #define FLAG_UNUSED_0x031               0x31 // Unused Flag
