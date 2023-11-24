@@ -2948,10 +2948,10 @@ static u8 InitFieldMoveMonSprite(u32 species, u32 otId, u32 personality)
 
 static void SpriteCB_FieldMoveMonSlideOnscreen(struct Sprite *sprite)
 {
-    if ((sprite->x -= 20) <= DISPLAY_WIDTH / 2)
+    if ((sprite->x -= 40) <= DISPLAY_WIDTH / 2)
     {
         sprite->x = DISPLAY_WIDTH / 2;
-        sprite->sOnscreenTimer = 30;
+        sprite->sOnscreenTimer = 15;
         sprite->callback = SpriteCB_FieldMoveMonWaitAfterCry;
         if (sprite->data[6])
             PlayCry_NormalNoDucking(sprite->sSpecies, 0, CRY_VOLUME_RS, CRY_PRIORITY_NORMAL);
@@ -2971,7 +2971,7 @@ static void SpriteCB_FieldMoveMonSlideOffscreen(struct Sprite *sprite)
     if (sprite->x < -64)
         sprite->sSlidOffscreen = TRUE;
     else
-        sprite->x -= 20;
+        sprite->x -= 40;
 }
 
 #undef tState
