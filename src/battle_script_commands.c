@@ -2526,6 +2526,20 @@ static void Cmd_resultmessage(void)
             if (!gMultiHitCounter)
                 stringId = STRINGID_NOTVERYEFFECTIVE;
             break;
+        case MOVE_RESULT_EXTREMELY_EFFECTIVE:
+            if (!gMultiHitCounter)  // Don't print effectiveness on each hit in a multi hit attack
+            {
+                // Signal for the trainer slide-in system.
+                if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState != 2)
+                    gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState = 1;
+
+                stringId = STRINGID_EXTREMELYEFFECTIVE;
+            }
+            break;
+        case MOVE_RESULT_BARELY_EFFECTIVE:
+            if (!gMultiHitCounter)
+                stringId = STRINGID_BARELYEFFECTIVE;
+            break;
         case MOVE_RESULT_ONE_HIT_KO:
             stringId = STRINGID_ONEHITKO;
             break;

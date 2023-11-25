@@ -807,6 +807,8 @@ static const u8 sText_TeamGainedEXP[] = _("The rest of your team gained EXP.\nPo
 static const u8 sText_CurrentMoveCantSelect[] = _("{B_BUFF1} cannot be used!\p");
 static const u8 sText_TargetIsBeingSaltCured[] = _("{B_DEF_NAME_WITH_PREFIX} is being salt cured!");
 static const u8 sText_TargetIsHurtBySaltCure[] = _("{B_DEF_NAME_WITH_PREFIX} is hurt by {B_BUFF1}!");
+static const u8 sText_ExtremelyEffective[] = _("It's extremely effective!");
+static const u8 sText_BarelyEffective[] = _("It's barely effective…");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1469,6 +1471,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ULTRABURSTREACTING - BATTLESTRINGS_TABLE_START] = sText_UltraBurstReacting,
     [STRINGID_ULTRABURSTCOMPLETED - BATTLESTRINGS_TABLE_START] = sText_UltraBurstCompleted,
     [STRINGID_TEAMGAINEDEXP - BATTLESTRINGS_TABLE_START] = sText_TeamGainedEXP,
+    [STRINGID_EXTREMELYEFFECTIVE - BATTLESTRINGS_TABLE_START] = sText_ExtremelyEffective,
+    [STRINGID_BARELYEFFECTIVE - BATTLESTRINGS_TABLE_START] = sText_BarelyEffective,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
