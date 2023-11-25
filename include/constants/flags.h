@@ -58,7 +58,7 @@
 #define FLAG_RECEIVED_WISE_GLASSES      0x2C
 #define FLAG_RECEIVED_PLUME_FOSSIL      0x2E
 #define FLAG_INFINITE_REPEL             0x2F // Infinite repel is turned on
-#define FLAG_UNUSED_0x030               0x30 // Unused Flag
+#define FLAG_SYS_MOVE_INFO              0x30 // Show move info in battle
 #define FLAG_UNUSED_0x031               0x31 // Unused Flag
 #define FLAG_UNUSED_0x032               0x32 // Unused Flag
 #define FLAG_UNUSED_0x033               0x33 // Unused Flag
