@@ -1846,6 +1846,10 @@ const u8 gText_PokevialHasDoses[] =_("Use the {STR_VAR_1}?");
 const u8 gText_PokevialIsEmpty[] =_("The {STR_VAR_1} is empty!\nRefill it by healing at a {STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
 const u8 gText_YourPkmnWereRestored[] =_("Your POKéMON were restored to full health.{PAUSE_UNTIL_PRESS}");
 
+const u8 gText_InfiniteRepelOn[] = _("Turned on the Inf. Repel.\pWeak wild Pokémon will no \nlonger be encountered.{PAUSE_UNTIL_PRESS}");
+const u8 gText_InfiniteRepelOff[] = _("Turned off the Inf. Repel.\pWeak wild Pokémon will be\nencountered.{PAUSE_UNTIL_PRESS}");
+
+
 // frlg_tm_case_port
 const u8 gText_TMCase[] =               _("TM Case");
 const u8 gText_Close[] =                _("Close");

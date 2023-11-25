@@ -917,8 +917,9 @@
 #define ITEM_POKEVIAL 799 // Pokevial Branch
 
 #define ITEM_TARAS_LETTER 800
+#define ITEM_INFINITE_REPEL 801
 
-#define ITEMS_COUNT 801
+#define ITEMS_COUNT 802
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

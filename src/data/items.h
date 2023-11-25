@@ -9671,9 +9671,20 @@ const struct Item gItems[] =
         .name = _("Tara's Mail"),
         .price = 0,
         .description = sTarasLetterDesc,
-        .importance = 2,
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+    
+    [ITEM_INFINITE_REPEL] =
+    {
+        .name = _("Inf. Repel"),
+        .price = 0,
+        .description = sInfiniteRepelDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_InfiniteRepel,
     },
 };

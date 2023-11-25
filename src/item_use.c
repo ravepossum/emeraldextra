@@ -1490,4 +1490,27 @@ void ItemUseOutOfBattle_Pokevial(u8 taskId)
 }
 //End Pokevial Branch
 
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
+{
+    if (FlagGet(FLAG_INFINITE_REPEL))
+    {
+        PlaySE(SE_PC_OFF);
+        VarSet(VAR_REPEL_STEP_COUNT, 0);
+        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_InfiniteRepelOff, Task_CloseCantUseKeyItemMessage);
+        else
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_InfiniteRepelOff, CloseItemMessage);
+    }
+    else
+    {
+        PlaySE(SE_REPEL);
+        VarSet(VAR_REPEL_STEP_COUNT, 1);
+        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_InfiniteRepelOn, Task_CloseCantUseKeyItemMessage);
+        else
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_InfiniteRepelOn, CloseItemMessage);
+    }
+    FlagToggle(FLAG_INFINITE_REPEL);
+}
+
 #undef tUsingRegisteredKeyItem

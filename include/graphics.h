@@ -10689,4 +10689,6 @@ extern const u32 gUnknown_8E85068[];
 extern const u8 gUnknown_8E99118[];
 extern const u16 gTMCaseMainWindowPalette[];
 
+extern const u32 gItemIconPalette_InfiniteRepel[];
+
 #endif //GUARD_GRAPHICS_H

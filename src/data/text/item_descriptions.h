@@ -3922,7 +3922,7 @@ static const u8 sBerserkGene[] = _(
 //Start Pokevial Branch
 static const u8 sPokevialDesc[] = _(
     "Restores all\n"
-    "POKéMON to full\n"
+    "Pokémon to full\n"
     "health.");
 //End Pokevial Branch
 
@@ -3930,3 +3930,8 @@ static const u8 sTarasLetterDesc[] = _(
     "A letter written\n"
     "for a friend in\n"
     "Rustboro city.");
+
+static const u8 sInfiniteRepelDesc[] = _(
+    "Repels weak wild\n"
+    "Pokémon for any\n"
+    "number of steps.");

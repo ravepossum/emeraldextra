@@ -712,8 +712,8 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
             if (TryStartRoamerEncounter() == TRUE)
             {
                 roamer = &gSaveBlock1Ptr->roamer;
-                if (!IsWildLevelAllowedByRepel(roamer->level))
-                    return FALSE;
+                // if (!IsWildLevelAllowedByRepel(roamer->level))
+                //     return FALSE;
 
                 BattleSetup_StartRoamerBattle();
                 return TRUE;
@@ -986,6 +986,8 @@ bool8 UpdateRepelCounter(void)
     if (InBattlePike() || InBattlePyramid())
         return FALSE;
     if (InUnionRoom() == TRUE)
+        return FALSE;
+    if (FlagGet(FLAG_INFINITE_REPEL))
         return FALSE;
 
     if (steps != 0)
