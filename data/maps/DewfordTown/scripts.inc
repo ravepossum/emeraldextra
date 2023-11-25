@@ -826,5 +826,5 @@ DewfordTown_EventScript_BlackBelt_Text_0:
 	.string "the Gym until he's back.$"
 
 DewfordTown_EventScript_BlackBelt_Text_1:
-	.string "Dewford is a great place to stay\n"
-	.string "focused for training.$"
+	.string "Brawly is down at Oma'oma catching\n"
+	.string "waves all the time.$"

@@ -818,7 +818,7 @@ script DewfordTown_EventScript_BlackBelt {
     if (!flag(FLAG_FOUND_BRAWLY_OMAOMA)) {
         msgbox(format("Have you seen Brawly? We can't open up the Gym until he's back."), MSGBOX_NPC)
     } else {
-        msgbox(format("Dewford is a great place to stay focused for training."), MSGBOX_NPC)
+        msgbox(format("Brawly is down at Oma'oma catching waves all the time."), MSGBOX_NPC)
     }
     end
 }
