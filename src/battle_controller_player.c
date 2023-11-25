@@ -37,6 +37,11 @@
 #include "constants/trainers.h"
 #include "constants/rgb.h"
 
+#define COLOR_SUPER_EFFECTIVE 24
+#define COLOR_NOT_VERY_EFFECTIVE 25
+#define COLOR_IMMUNE 26
+#define COLOR_EFFECTIVE 10
+
 static void PlayerBufferExecCompleted(u32 battler);
 static void PlayerHandleLoadMonSprite(u32 battler);
 static void PlayerHandleSwitchInAnim(u32 battler);
@@ -1681,16 +1686,16 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
     modifier = CalcTypeEffectivenessMultiplier(move, moveType, battler, targetId, GetBattlerAbility(targetId), TRUE);
     
     if (modifier == UQ_4_12(0.0)) {
-			return 26; // 26 - no effect
+			return COLOR_IMMUNE; // 26 - no effect
     }
     else if (modifier <= UQ_4_12(0.5)) {
-            return 25; // 25 - not very effective
+            return COLOR_NOT_VERY_EFFECTIVE; // 25 - not very effective
     }
     else if (modifier >= UQ_4_12(2.0)) {
-            return 24; // 24 - super effective
+            return COLOR_SUPER_EFFECTIVE; // 24 - super effective
     }
     else
-        return 10; // 10 - normal effectiveness
+        return COLOR_EFFECTIVE; // 10 - normal effectiveness
 }
 
 static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId, u32 battler)
@@ -1715,13 +1720,27 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u8 *txtPtr;
     u8 typeColor = IsDoubleBattle() ? B_WIN_MOVE_TYPE : TypeEffectiveness(GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler))), battler);
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
+    
+    txtPtr = StringCopy(gDisplayedStringBattle, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
 
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-    *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
-    *(txtPtr)++ = EXT_CTRL_CODE_FONT;
-    *(txtPtr)++ = FONT_NORMAL;
+    if (typeColor != COLOR_EFFECTIVE) {
+        *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
+        *(txtPtr)++ = EXT_CTRL_CODE_FONT;
+        *(txtPtr)++ = FONT_NORMAL;
 
-    StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
+        switch (typeColor) {
+            case COLOR_IMMUNE:
+                StringCopy(txtPtr, gText_MoveInterfaceX);
+                break;
+            case COLOR_NOT_VERY_EFFECTIVE:
+                StringCopy(txtPtr, gText_MoveInterfaceMinus);
+                break;
+            case COLOR_SUPER_EFFECTIVE:
+                StringCopy(txtPtr, gText_MoveInterfacePlus);
+                break;
+        }
+    }
+
     BattlePutTextOnWindow(gDisplayedStringBattle, typeColor);
 }
 
