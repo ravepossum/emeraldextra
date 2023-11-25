@@ -1001,11 +1001,12 @@ struct SaveBlock1
     /*0x498*/ struct ItemSlot pcItems[PC_ITEMS_COUNT];
     /*0x560*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
     /*0x5D8*/ struct ItemSlot bagPocket_KeyItems[BAG_KEYITEMS_COUNT];
+    /*0x???*/ struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
     /*0x650*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
     /*0x690*/ struct ItemSlot bagPocket_TMHM[BAG_TMHM_COUNT];
     /*0x790*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
-    /*0x988*/ u8 filler1[0x29C]; // Previously Dex Flags, feel free to remove.
+    /*0x988*/ u8 filler1[0x14C]; // just filler
     /*0x9BC*/ u16 berryBlenderRecords[3];
     /*0x9C2*/ u8 unused_9C2[6];
     /*0x9C8*/ u16 trainerRematchStepCounter;
@@ -1078,7 +1079,7 @@ struct SaveBlock1
     /*0x3???*/ u8 dexNavSearchLevels[NUM_SPECIES];
     /*0x3???*/ u8 dexNavChain;
     // sizeof: 0x3???
-    // negative 1236 bytes
+    // free: 332
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;

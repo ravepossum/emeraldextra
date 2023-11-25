@@ -281,6 +281,7 @@ const u8 *const gPyramidBagMenu_ReturnToStrings[] =
 
 const u8 gText_ReturnToVar1[] = _("Return to\n{STR_VAR_1}.");
 const u8 gText_ItemsPocket[] = _("Items");
+const u8 gText_MedicinePocket[] = _("Medicine");
 const u8 gText_PokeBallsPocket[] = _("Poké Balls");
 const u8 gText_TMHMPocket[] = _("TMs & HMs");
 const u8 gText_BerriesPocket[] = _("Berries");
@@ -289,6 +290,7 @@ const u8 gText_KeyItemsPocket[] = _("Key Items");
 const u8 *const gPocketNamesStringsTable[] =
 {
     [ITEMS_POCKET] = gText_ItemsPocket,
+    [MEDICINE_POCKET] = gText_MedicinePocket,
     [BALLS_POCKET] = gText_PokeBallsPocket,
     [TMHM_POCKET]  = gText_TMHMPocket,
     [BERRIES_POCKET] = gText_BerriesPocket,
@@ -1849,6 +1851,7 @@ const u8 gText_YourPkmnWereRestored[] =_("Your POKéMON were restored to full he
 const u8 gText_InfiniteRepelOn[] = _("Turned on the Inf. Repel.\pWeak wild Pokémon will no \nlonger be encountered.{PAUSE_UNTIL_PRESS}");
 const u8 gText_InfiniteRepelOff[] = _("Turned off the Inf. Repel.\pWeak wild Pokémon will be\nencountered.{PAUSE_UNTIL_PRESS}");
 
+const u8 gText_Medicine[] = _("Medicine");
 
 // frlg_tm_case_port
 const u8 gText_TMCase[] =               _("TM Case");

@@ -138,6 +138,9 @@
 #define ITEM_YELLOW_FLUTE 110
 #define ITEM_RED_FLUTE 111
 
+#define FIRST_MEDICINE ITEM_POTION
+#define LAST_MEDICINE  ITEM_RED_FLUTE
+
 // Encounter-modifying Flutes
 #define ITEM_BLACK_FLUTE 112
 #define ITEM_WHITE_FLUTE 113

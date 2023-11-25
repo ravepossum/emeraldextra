@@ -294,6 +294,11 @@ static const u8 sContextMenuItems_KeyItemsPocket[] = {
     ACTION_DUMMY,       ACTION_CANCEL
 };
 
+static const u8 sContextMenuItems_MedicinePocket[] = {
+    ACTION_USE,         ACTION_GIVE,
+    ACTION_TOSS,        ACTION_CANCEL
+};
+
 static const u8 sContextMenuItems_BallsPocket[] = {
     ACTION_GIVE,        ACTION_DUMMY,
     ACTION_TOSS,        ACTION_CANCEL
@@ -1309,12 +1314,12 @@ static u8 GetSwitchBagPocketDirection(void)
 
 static void ChangeBagPocketId(u8 *bagPocketId, s8 deltaBagPocketId)
 {
-    if ((deltaBagPocketId == MENU_CURSOR_DELTA_RIGHT && *bagPocketId == BALLS_POCKET) || (deltaBagPocketId == MENU_CURSOR_DELTA_LEFT && *bagPocketId == BERRIES_POCKET))
+    /*if ((deltaBagPocketId == MENU_CURSOR_DELTA_RIGHT && *bagPocketId == KEYITEMS_POCKET) || (deltaBagPocketId == MENU_CURSOR_DELTA_LEFT && *bagPocketId == ITEMS_POCKET))
         *bagPocketId += deltaBagPocketId*2;
-    else if (deltaBagPocketId == MENU_CURSOR_DELTA_RIGHT && *bagPocketId == POCKETS_COUNT - 1)
+    else */if (deltaBagPocketId == MENU_CURSOR_DELTA_RIGHT && *bagPocketId == POCKETS_COUNT - 2)
         *bagPocketId = 0;
     else if (deltaBagPocketId == MENU_CURSOR_DELTA_LEFT && *bagPocketId == 0)
-        *bagPocketId = POCKETS_COUNT - 1;
+        *bagPocketId = POCKETS_COUNT - 2;
     else
         *bagPocketId += deltaBagPocketId;
 }
@@ -1632,6 +1637,10 @@ static void OpenContextMenu(u8 taskId)
                     if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
                         gBagMenu->contextMenuItemsBuffer[0] = ACTION_WALK;
                 }
+                break;
+            case MEDICINE_POCKET:
+                gBagMenu->contextMenuItemsPtr = sContextMenuItems_MedicinePocket;
+                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_MedicinePocket);
                 break;
             case BALLS_POCKET:
                 gBagMenu->contextMenuItemsPtr = sContextMenuItems_BallsPocket;
