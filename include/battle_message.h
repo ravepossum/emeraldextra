@@ -271,9 +271,6 @@ extern const u8 gText_MoveInterfacePP[];
 extern const u8 gText_MoveInterfaceType[];
 extern const u8 gText_MoveInterfacePpType[];
 extern const u8 gText_MoveInterfaceDynamicColors[];
-extern const u8 gText_MoveInterfacePlus[];
-extern const u8 gText_MoveInterfaceMinus[];
-extern const u8 gText_MoveInterfaceX[];
 extern const u8 gText_WhichMoveToForget4[];
 extern const u8 gText_BattleYesNoChoice[];
 extern const u8 gText_BattleSwitchWhich[];
@@ -327,5 +324,10 @@ extern const u8 gText_BattleTourney[];
 
 extern const u16 gMissStringIds[];
 extern const u16 gStatUpStringIds[];
+
+extern const u8 gText_MoveInterfaceSuperEffective[];
+extern const u8 gText_MoveInterfaceNotVeryEffective[];
+extern const u8 gText_MoveInterfaceImmune[];
+extern const u8 gText_MoveInterfaceSTAB[];
 
 #endif // GUARD_BATTLE_MESSAGE_H
