@@ -34,5 +34,5 @@ OmaomaTown_PokemonCenter_1F_EventScript_Boy_Text_0:
 	.string "Did you know?\p"
 	.string "You can quickly swap around Pokémon by\n"
 	.string "pressing the Select Button in the\l"
-	.string "Party Menu?\p"
+	.string "Party Menu.\p"
 	.string "It's real nifty!$"

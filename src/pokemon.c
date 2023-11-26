@@ -8720,3 +8720,8 @@ void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality)
     boxMon->checksum = CalculateBoxMonChecksum(boxMon);
     EncryptBoxMon(boxMon);
 }
+
+const u8 *GetAbilityName(u16 ability)
+{
+    return gAbilityNames[ability];
+}

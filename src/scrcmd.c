@@ -1487,6 +1487,15 @@ bool8 ScrCmd_settimeofday(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_bufferabilityname(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 ability = VarGet(ScriptReadHalfword(ctx));
+
+    StringCopy(sScriptStringVars[stringVarIndex], GetAbilityName(ability));
+    return FALSE;
+}
+
 bool8 ScrCmd_multichoice(struct ScriptContext *ctx)
 {
     u8 left = ScriptReadByte(ctx);

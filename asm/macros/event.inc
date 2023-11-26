@@ -1780,6 +1780,12 @@
 	.2byte \timeOfDay
 	.endm
 
+	@ Writes the name of the given ability to the specified buffer.
+	.macro bufferabilityname stringVarId:req, ability:req
+	.byte 0xe8
+	stringvar \stringVarId
+	.2byte \ability
+	.endm
 
 @ Supplementary
 
