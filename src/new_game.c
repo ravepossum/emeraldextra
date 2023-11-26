@@ -1,6 +1,7 @@
 #include "global.h"
 #include "new_game.h"
 #include "random.h"
+#include "clock.h"
 #include "pokemon.h"
 #include "roamer.h"
 #include "pokemon_size_record.h"
@@ -219,6 +220,8 @@ void NewGameInitData(void)
     ResetContestLinkResults();
     SetDemoMode();
     SetLevelCapFlag();
+    RtcInitLocalTimeOffset(12, 0);
+    InitTimeBasedEvents();
     memset(gSaveBlock1Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock1Ptr->dexNavSearchLevels));
     gSaveBlock1Ptr->dexNavChain = 0;
 }
