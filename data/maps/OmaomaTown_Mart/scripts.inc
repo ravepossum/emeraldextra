@@ -27,3 +27,12 @@ OmaomaTown_Mart_Pokemart_Basic:
 	.2byte ITEM_NONE
 	release
 	end
+
+OmaomaTown_Mart_EventScript_Tuber::
+	msgbox OmaomaTown_Mart_EventScript_Tuber_Text_0, MSGBOX_NPC
+	return
+
+
+OmaomaTown_Mart_EventScript_Tuber_Text_0:
+	.string "I wonder why Pokémon don't need to wear\n"
+	.string "sunscreen…$"

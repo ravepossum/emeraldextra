@@ -4650,6 +4650,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/RustboroCity_Flat3_2F/border.bin",
       "blockdata_filepath": "data/layouts/RustboroCity_Flat3_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLATEPORT_CITY_HOUSE2",
+      "name": "SlateportCity_House2_Layout",
+      "width": 17,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/SlateportCity_House2/border.bin",
+      "blockdata_filepath": "data/layouts/SlateportCity_House2/map.bin"
     }
   ]
 }

@@ -29,3 +29,7 @@ OmaomaTown_Mart_Pokemart_Basic:
 	release
 	end
 `
+
+script OmaomaTown_Mart_EventScript_Tuber {
+	msgbox(format("I wonder why Pokémon don't need to wear sunscreen…"),MSGBOX_NPC)
+}

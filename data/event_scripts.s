@@ -1140,3 +1140,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RustboroCity_Flat3_1F/scripts.inc"
 
 	.include "data/maps/RustboroCity_Flat3_2F/scripts.inc"
+
+	.include "data/maps/SlateportCity_House2/scripts.inc"

@@ -24,3 +24,15 @@ OmaomaTown_PokemonCenter_1F_EventScript_UnionNurse::
 	release
 	end
 
+
+OmaomaTown_PokemonCenter_1F_EventScript_Boy::
+	msgbox OmaomaTown_PokemonCenter_1F_EventScript_Boy_Text_0, MSGBOX_NPC
+	return
+
+
+OmaomaTown_PokemonCenter_1F_EventScript_Boy_Text_0:
+	.string "Did you know?\p"
+	.string "You can quickly swap around Pokémon by\n"
+	.string "pressing the Select Button in the\l"
+	.string "Party Menu?\p"
+	.string "It's real nifty!$"

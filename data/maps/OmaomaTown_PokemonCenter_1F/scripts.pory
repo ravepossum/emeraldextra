@@ -27,3 +27,7 @@ script OmaomaTown_PokemonCenter_1F_EventScript_UnionNurse {
 	release
 	end
 }
+
+script OmaomaTown_PokemonCenter_1F_EventScript_Boy {
+	msgbox(format("Did you know?\pYou can quickly swap around Pokémon by pressing the Select Button in the Party Menu.\pIt's real nifty!"),MSGBOX_NPC)
+}
