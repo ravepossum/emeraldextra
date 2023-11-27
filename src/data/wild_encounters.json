@@ -1241,12 +1241,12 @@
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_GULPIN"
+                "species": "SPECIES_PIKACHU"
               },
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_MINUN"
+                "species": "SPECIES_BLITZLE"
               },
               {
                 "min_level": 13,
@@ -1261,12 +1261,12 @@
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_GULPIN"
+                "species": "SPECIES_PIKACHU"
               },
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_MINUN"
+                "species": "SPECIES_BLITZLE"
               },
               {
                 "min_level": 13,
@@ -1281,7 +1281,7 @@
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_GULPIN"
+                "species": "SPECIES_PIKACHU"
               },
               {
                 "min_level": 12,
@@ -1291,7 +1291,7 @@
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_GULPIN"
+                "species": "SPECIES_PIKACHU"
               }
             ]
           },
@@ -1395,12 +1395,12 @@
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_PIKACHU"
+                "species": "SPECIES_GULPIN"
               },
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_BLITZLE"
+                "species": "SPECIES_MINUN"
               },
               {
                 "min_level": 13,
@@ -1415,12 +1415,12 @@
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_PIKACHU"
+                "species": "SPECIES_GULPIN"
               },
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_BLITZLE"
+                "species": "SPECIES_MINUN"
               },
               {
                 "min_level": 13,
@@ -1435,7 +1435,7 @@
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_PIKACHU"
+                "species": "SPECIES_GULPIN"
               },
               {
                 "min_level": 12,
@@ -1445,7 +1445,7 @@
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_PIKACHU"
+                "species": "SPECIES_GULPIN"
               }
             ]
           },
