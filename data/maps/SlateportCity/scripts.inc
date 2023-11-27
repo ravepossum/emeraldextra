@@ -1416,29 +1416,9 @@ SlateportCity_EventScript_Cook_2:
 SlateportCity_EventScript_IndividualGuru::
 	lock
 	faceplayer
-	message SlateportCity_EventScript_IndividualGuru_Text_0
-	waitmessage
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_EventScript_IndividualGuru_Text_1, SlateportCity_EventScript_IndividualGuru_Text_2, SlateportCity_EventScript_IndividualGuru_Text_3, SlateportCity_EventScript_IndividualGuru_Text_4
-	switch VAR_RESULT
-	case 0, SlateportCity_EventScript_IndividualGuru_3
-	case 1, SlateportCity_EventScript_IndividualGuru_4
-	case 2, SlateportCity_EventScript_IndividualGuru_5
-	goto SlateportCity_EventScript_IndividualGuru_AnotherTime
-SlateportCity_EventScript_IndividualGuru_1:
+	msgbox SlateportCity_EventScript_IndividualGuru_Text_0
 	release
 	end
-
-SlateportCity_EventScript_IndividualGuru_3:
-	call SlateportCity_EventScript_IndividualGuru_HyperTrain
-	goto SlateportCity_EventScript_IndividualGuru_1
-
-SlateportCity_EventScript_IndividualGuru_4:
-	call SlateportCity_EventScript_IndividualGuru_Reduce
-	goto SlateportCity_EventScript_IndividualGuru_1
-
-SlateportCity_EventScript_IndividualGuru_5:
-	msgbox SlateportCity_EventScript_IndividualGuru_Text_5
-	goto SlateportCity_EventScript_IndividualGuru_1
 
 
 SlateportCity_EventScript_IndividualGuru_HyperTrain::
@@ -1454,7 +1434,7 @@ SlateportCity_EventScript_IndividualGuru_HyperTrain_1:
 	special BufferMonNickname
 	message SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_2
 	waitmessage
-	dynmultichoice 0, 0, FALSE, 7, 0, DYN_MULTICHOICE_CB_NONE, gText_MaxHP, gText_Attack, gText_Defense, gText_SpAtk, gText_SpDef, gText_Speed, SlateportCity_EventScript_IndividualGuru_Text_4
+	dynmultichoice 0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, gText_MaxHP, gText_Attack, gText_Defense, gText_SpAtk, gText_SpDef, gText_Speed, SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_3
 	return
 
 SlateportCity_EventScript_IndividualGuru_HyperTrain_2:
@@ -1485,28 +1465,9 @@ SlateportCity_EventScript_Cook_Text_1:
 	.string "How may I serve you?$"
 
 SlateportCity_EventScript_IndividualGuru_Text_0:
-	.string "I'm the Individual Guru! I'll help your\n"
-	.string "Pokémon express their unique\l"
-	.string "personalities!\p"
-	.string "What would you like to do today?$"
-
-SlateportCity_EventScript_IndividualGuru_Text_1:
-	.string "Hyper Train a stat$"
-
-SlateportCity_EventScript_IndividualGuru_Text_2:
-	.string "Reduce a stat$"
-
-SlateportCity_EventScript_IndividualGuru_Text_3:
-	.string "Check stats$"
-
-SlateportCity_EventScript_IndividualGuru_Text_4:
-	.string "Cancel$"
-
-SlateportCity_EventScript_IndividualGuru_Text_5:
-	.string "You can check a Pokémon's Individual\n"
-	.string "Values at any time by pressing the R\l"
-	.string "Button on that Pokémon's stats\l"
-	.string "screen.$"
+	.string "I;m in Individual Guru!\p"
+	.string "I'm stil working on setting up my\n"
+	.string "training program.$"
 
 SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_0:
 	.string "Which Pokémon should Hyper Train?$"
@@ -1517,6 +1478,9 @@ SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_1:
 SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_2:
 	.string "Which of {STR_VAR_1}'s stats should\n"
 	.string "be Hyper Trained?$"
+
+SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_3:
+	.string "Cancel$"
 
 SlateportCity_EventScript_IndividualGuru_AnotherTime_Text_0:
 	.string "Maybe another time, then!$"

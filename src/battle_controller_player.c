@@ -396,6 +396,16 @@ static void HandleInputChooseAction(u32 battler)
             BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_CANCEL_PARTNER, 0);
             PlayerBufferExecCompleted(battler);
         }
+        else
+        {
+            if(!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)) //if wild, pressing B moves cursor to run
+            {
+                PlaySE(SE_SELECT);
+                ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+                gActionSelectionCursor[battler] = 3;
+                ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+            }
+        }
     }
     else if (JOY_NEW(START_BUTTON))
     {
@@ -1722,18 +1732,48 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
 static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId, u32 battler)
 {
 	u8 *txtPtr;
+    u8 typeColor = TypeEffectiveness(targetId, battler);
 	struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleResources->bufferA[battler][4]);
+    u8 moveType = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+    u8 movePower = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].power;
+    u8 battlerType1 = gBattleMons[battler].type1;
+    u8 battlerType2 = gBattleMons[battler].type2;
 
-	txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-	txtPtr[0] = EXT_CTRL_CODE_BEGIN;
-	txtPtr++;
-	txtPtr[0] = 6;
-	txtPtr++;
-	txtPtr[0] = 1;
-	txtPtr++;
+	txtPtr = StringCopy(gDisplayedStringBattle, gTypeNames[moveType]);
 
-	StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
-	BattlePutTextOnWindow(gDisplayedStringBattle, TypeEffectiveness(targetId, battler));
+    // not sure why this was here tbh, leaving it in just in case
+	// txtPtr[0] = EXT_CTRL_CODE_BEGIN;
+	// txtPtr++;
+	// txtPtr[0] = 6;
+	// txtPtr++;
+	// txtPtr[0] = 1;
+	// txtPtr++;
+
+    if (typeColor != COLOR_EFFECTIVE) {
+        *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
+        *(txtPtr)++ = EXT_CTRL_CODE_FONT;
+        *(txtPtr)++ = FONT_NORMAL;
+
+        switch (typeColor) {
+            case COLOR_IMMUNE:
+                StringCopy(txtPtr, gText_MoveInterfaceImmune);
+                break;
+            case COLOR_NOT_VERY_EFFECTIVE:
+                StringCopy(txtPtr, gText_MoveInterfaceNotVeryEffective);
+                break;
+            case COLOR_SUPER_EFFECTIVE:
+                StringCopy(txtPtr, gText_MoveInterfaceSuperEffective);
+                break;
+        }
+    }
+
+	BattlePutTextOnWindow(gDisplayedStringBattle, typeColor);
+
+    if (movePower > 0 && (moveType == battlerType1 || moveType == battlerType2))
+    {
+        StringCopy(gDisplayedStringBattle, gText_MoveInterfaceSTAB);
+        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_STAB_SYMBOL);
+    }
 }
 
 static void MoveSelectionDisplayMoveType(u32 battler)
@@ -1742,6 +1782,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u8 typeColor = IsDoubleBattle() ? B_WIN_MOVE_TYPE : TypeEffectiveness(GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler))), battler);
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
     u8 moveType = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+    u8 movePower = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].power;
     u8 battlerType1 = gBattleMons[battler].type1;
     u8 battlerType2 = gBattleMons[battler].type2;
 
@@ -1767,7 +1808,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
 
     BattlePutTextOnWindow(gDisplayedStringBattle, typeColor);
 
-    if (moveType == battlerType1 || moveType == battlerType2)
+    if (movePower > 0 && (moveType == battlerType1 || moveType == battlerType2))
     {
         StringCopy(gDisplayedStringBattle, gText_MoveInterfaceSTAB);
         BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_STAB_SYMBOL);
