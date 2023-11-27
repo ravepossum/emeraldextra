@@ -15,7 +15,7 @@
   "connections": [
     {
       "map": "MAP_OMAOMA_TOWN",
-      "offset": 4,
+      "offset": 0,
       "direction": "down"
     },
     {

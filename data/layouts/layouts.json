@@ -4524,8 +4524,8 @@
     {
       "id": "LAYOUT_OMAOMA_TOWN",
       "name": "OmaomaTown_Layout",
-      "width": 50,
-      "height": 60,
+      "width": 54,
+      "height": 64,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fortree",
       "border_filepath": "data/layouts/OmaomaTown/border.bin",

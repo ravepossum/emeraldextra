@@ -47,7 +47,7 @@ OmaomaTown_House1_EventScript_Maniac_12:
 OmaomaTown_House1_EventScript_Maniac_Text_0:
 	.string "I got another great deal for you!\p"
 	.string "I found another Alolan souvenir, and\n"
-	.string "just for you, it's only ¥3,000!\p"
+	.string "just for you, it's only ¥3000!\p"
 	.string "What do you say?$"
 
 OmaomaTown_House1_EventScript_Maniac_Text_1:
@@ -55,7 +55,7 @@ OmaomaTown_House1_EventScript_Maniac_Text_1:
 	.string "It's from the land of Alola--far far\n"
 	.string "away from here!\p"
 	.string "And today only, I'll give it to you for\n"
-	.string "the low, low, price of ¥3,000!\p"
+	.string "the low, low, price of ¥3000!\p"
 	.string "What do you say?$"
 
 OmaomaTown_House1_EventScript_Maniac_Text_2:
