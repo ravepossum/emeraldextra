@@ -5,6 +5,7 @@ OmaomaTown_House1_MapScripts::
 OmaomaTown_House1_EventScript_Maniac::
 	lock
 	faceplayer
+	showmoneybox 0, 0
 	goto_if_set FLAG_BOUGHT_SOUVENIR, OmaomaTown_House1_EventScript_Maniac_2
 	msgbox OmaomaTown_House1_EventScript_Maniac_Text_1, MSGBOX_YESNO
 OmaomaTown_House1_EventScript_Maniac_1:
@@ -12,6 +13,7 @@ OmaomaTown_House1_EventScript_Maniac_1:
 	goto_if_eq OmaomaTown_House1_EventScript_Maniac_6
 	msgbox OmaomaTown_House1_EventScript_Maniac_Text_4
 OmaomaTown_House1_EventScript_Maniac_5:
+	hidemoneybox
 	release
 	end
 
@@ -27,6 +29,7 @@ OmaomaTown_House1_EventScript_Maniac_6:
 	compare VAR_RESULT, FALSE
 	goto_if_eq OmaomaTown_House1_EventScript_Maniac_12
 	removemoney 3000
+	updatemoneybox
 	setflag FLAG_BOUGHT_SOUVENIR
 	msgbox OmaomaTown_House1_EventScript_Maniac_Text_3
 	goto OmaomaTown_House1_EventScript_Maniac_5
@@ -36,6 +39,7 @@ OmaomaTown_House1_EventScript_Maniac_9:
 	goto OmaomaTown_House1_EventScript_Maniac_5
 
 OmaomaTown_House1_EventScript_Maniac_12:
+	hidemoneybox
 	goto Common_EventScript_ShowBagIsFull
 	goto OmaomaTown_House1_EventScript_Maniac_5
 
