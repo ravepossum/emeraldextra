@@ -1,3 +1,6 @@
+// Note: LOCALID_SLATEPORT_ENERGY_GURU is a local id for this map used elsewhere. It's defined in event_objects.h
+raw
+`
 .set LOCALID_FAT_MAN, 1
 .set LOCALID_MAN_1, 2
 .set LOCALID_RICH_BOY, 3
@@ -1393,130 +1396,70 @@ SlateportCity_Pokemart_Cook:
 	.2byte ITEM_NONE
 	release
 	end
+`
 
-SlateportCity_EventScript_Cook::
+script SlateportCity_EventScript_Cook {
 	lock
 	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 1
-	goto_if_eq SlateportCity_EventScript_Cook_2
-SlateportCity_EventScript_Cook_1:
-	msgbox SlateportCity_EventScript_Cook_Text_0
-	message SlateportCity_EventScript_Cook_Text_1
+	if(var(VAR_SLATEPORT_CITY_STATE) == 1) {goto(SlateportCity_EventScript_CookSternInterview)}
+	msgbox(format("I sell a variety of delicacies from many regions!"))
+    message(format("How may I serve you?"))
 	waitmessage
-	pokemart SlateportCity_Pokemart_Cook
-	msgbox gText_PleaseComeAgain
+	pokemart(SlateportCity_Pokemart_Cook)
+	msgbox(gText_PleaseComeAgain)
 	release
 	end
+}
 
-SlateportCity_EventScript_Cook_2:
-	goto SlateportCity_EventScript_CookSternInterview
-	goto SlateportCity_EventScript_Cook_1
-
-
-SlateportCity_EventScript_IndividualGuru::
+script SlateportCity_EventScript_IndividualGuru {
 	lock
 	faceplayer
-	message SlateportCity_EventScript_IndividualGuru_Text_0
-	waitmessage
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_EventScript_IndividualGuru_Text_1, SlateportCity_EventScript_IndividualGuru_Text_2, SlateportCity_EventScript_IndividualGuru_Text_3, SlateportCity_EventScript_IndividualGuru_Text_4
-	switch VAR_RESULT
-	case 0, SlateportCity_EventScript_IndividualGuru_3
-	case 1, SlateportCity_EventScript_IndividualGuru_4
-	case 2, SlateportCity_EventScript_IndividualGuru_5
-	goto SlateportCity_EventScript_IndividualGuru_AnotherTime
-SlateportCity_EventScript_IndividualGuru_1:
-	release
+    msgbox(format("I;m in Individual Guru!\pI'm stil working on setting up my training program."))
+	// message(format("I'm the Individual Guru! I'll help your Pokémon express their unique personalities!\pWhat would you like to do today?"))
+    // waitmessage
+    // dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE,"Hyper Train a stat","Reduce a stat","Check stats","Cancel")
+	
+    // switch (var(VAR_RESULT)) {
+    //     case 0:
+    //         call(SlateportCity_EventScript_IndividualGuru_HyperTrain)
+    //     case 1:
+    //         call(SlateportCity_EventScript_IndividualGuru_Reduce)
+    //     case 2:
+    //         msgbox(format("You can check a Pokémon's Individual Values by pressing the R Button on that Pokémon's stats screen."))
+    //     default:
+    //         goto(SlateportCity_EventScript_IndividualGuru_AnotherTime)
+    // }
+	
+    release
 	end
+}
 
-SlateportCity_EventScript_IndividualGuru_3:
-	call SlateportCity_EventScript_IndividualGuru_HyperTrain
-	goto SlateportCity_EventScript_IndividualGuru_1
+script SlateportCity_EventScript_IndividualGuru_HyperTrain {
+    msgbox(format("Which Pokémon should Hyper Train?"))
+    special(ChoosePartyMon)
+    waitstate
 
-SlateportCity_EventScript_IndividualGuru_4:
-	call SlateportCity_EventScript_IndividualGuru_Reduce
-	goto SlateportCity_EventScript_IndividualGuru_1
+    if(var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {goto(SlateportCity_EventScript_IndividualGuru_AnotherTime)}
+    specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+    if(var(VAR_RESULT) == SPECIES_EGG) {
+        msgbox(format("Eggs are not eligible for training."))
+        release
+        end
+    }
 
-SlateportCity_EventScript_IndividualGuru_5:
-	msgbox SlateportCity_EventScript_IndividualGuru_Text_5
-	goto SlateportCity_EventScript_IndividualGuru_1
+    special(BufferMonNickname)
+    message(format("Which of {STR_VAR_1}'s stats should be Hyper Trained?"))
+    waitmessage
 
+    dynmultichoice(0,0,FALSE,6,0,DYN_MULTICHOICE_CB_NONE,gText_MaxHP,gText_Attack,gText_Defense,gText_SpAtk,gText_SpDef,gText_Speed,"Cancel")
+}
 
-SlateportCity_EventScript_IndividualGuru_HyperTrain::
-	msgbox SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_0
-	special ChoosePartyMon
-	waitstate
-	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
-	goto_if_eq SlateportCity_EventScript_IndividualGuru_HyperTrain_2
-SlateportCity_EventScript_IndividualGuru_HyperTrain_1:
-	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
-	compare VAR_RESULT, SPECIES_EGG
-	goto_if_eq SlateportCity_EventScript_IndividualGuru_HyperTrain_5
-	special BufferMonNickname
-	message SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_2
-	waitmessage
-	dynmultichoice 0, 0, FALSE, 7, 0, DYN_MULTICHOICE_CB_NONE, gText_MaxHP, gText_Attack, gText_Defense, gText_SpAtk, gText_SpDef, gText_Speed, SlateportCity_EventScript_IndividualGuru_Text_4
-	return
+script SlateportCity_EventScript_IndividualGuru_Reduce {
 
-SlateportCity_EventScript_IndividualGuru_HyperTrain_2:
-	goto SlateportCity_EventScript_IndividualGuru_AnotherTime
-	goto SlateportCity_EventScript_IndividualGuru_HyperTrain_1
+}
 
-SlateportCity_EventScript_IndividualGuru_HyperTrain_5:
-	msgbox SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_1
-	release
-	end
-
-
-SlateportCity_EventScript_IndividualGuru_Reduce::
-	return
-
-
-SlateportCity_EventScript_IndividualGuru_AnotherTime::
-	msgbox SlateportCity_EventScript_IndividualGuru_AnotherTime_Text_0
-	release
-	end
-
-
-SlateportCity_EventScript_Cook_Text_0:
-	.string "I sell a variety of delicacies from many\n"
-	.string "regions!$"
-
-SlateportCity_EventScript_Cook_Text_1:
-	.string "How may I serve you?$"
-
-SlateportCity_EventScript_IndividualGuru_Text_0:
-	.string "I'm the Individual Guru! I'll help your\n"
-	.string "Pokémon express their unique\l"
-	.string "personalities!\p"
-	.string "What would you like to do today?$"
-
-SlateportCity_EventScript_IndividualGuru_Text_1:
-	.string "Hyper Train a stat$"
-
-SlateportCity_EventScript_IndividualGuru_Text_2:
-	.string "Reduce a stat$"
-
-SlateportCity_EventScript_IndividualGuru_Text_3:
-	.string "Check stats$"
-
-SlateportCity_EventScript_IndividualGuru_Text_4:
-	.string "Cancel$"
-
-SlateportCity_EventScript_IndividualGuru_Text_5:
-	.string "You can check a Pokémon's Individual\n"
-	.string "Values at any time by pressing the R\l"
-	.string "Button on that Pokémon's stats\l"
-	.string "screen.$"
-
-SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_0:
-	.string "Which Pokémon should Hyper Train?$"
-
-SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_1:
-	.string "Eggs are not eligible for training.$"
-
-SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_2:
-	.string "Which of {STR_VAR_1}'s stats should\n"
-	.string "be Hyper Trained?$"
-
-SlateportCity_EventScript_IndividualGuru_AnotherTime_Text_0:
-	.string "Maybe another time, then!$"
+script SlateportCity_EventScript_IndividualGuru_AnotherTime {
+    msgbox(format("Maybe another time, then!"))
+    release
+    end
+}

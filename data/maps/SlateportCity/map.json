@@ -200,7 +200,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
       "x": 9,
       "y": 50,
       "elevation": 3,
@@ -209,7 +209,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_PokefanF",
+      "script": "SlateportCity_EventScript_MarketMan",
       "flag": "0"
     },
     {
@@ -332,7 +332,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
       "x": 11,
-      "y": 47,
+      "y": 51,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -484,6 +484,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_SCOTT"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+      "x": 11,
+      "y": 47,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SlateportCity_EventScript_IndividualGuru",
+      "flag": "0"
     }
   ],
   "warp_events": [
