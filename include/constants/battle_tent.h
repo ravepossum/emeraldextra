@@ -5,6 +5,8 @@
 #define TENT_MON_END    905
 #define TENT_ITEM_START 425
 #define TENT_ITEM_END   523
+#define TENT_SLATEPORT_PRIZE_MONEY 5000
+#define TENT_SLATEPORT_PRIZE_MONEY_DIGITS 4
 
 // The number of battles in each Battle Tent challenge.
 // Battle Tent equivalent of FRONTIER_STAGES_PER_CHALLENGE.

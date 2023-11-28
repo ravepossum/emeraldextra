@@ -51,7 +51,7 @@ SlateportCity_BattleTentLobby_EventScript_GivePrize::
 	switch VAR_RESULT
 	case FALSE, SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0
-	message BattleFrontier_BattleTowerLobby_Text_ReceivedPrize  @ Odd that it uses Tower's instead of Factory's or its own
+	message SlateportCity_BattleTentLobby_Text_ReceivedPrize
 	waitmessage
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare

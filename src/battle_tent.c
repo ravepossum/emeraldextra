@@ -8,6 +8,7 @@
 #include "battle_tower.h"
 #include "random.h"
 #include "item.h"
+#include "money.h"
 #include "battle_factory_screen.h"
 #include "frontier_util.h"
 #include "string_util.h"
@@ -257,16 +258,19 @@ static void SetRandomSlateportTentPrize(void)
 
 static void GiveSlateportTentPrize(void)
 {
-    if (AddBagItem(gSaveBlock2Ptr->frontier.slateportTentPrize, 1) == TRUE)
-    {
-        CopyItemName(gSaveBlock2Ptr->frontier.slateportTentPrize, gStringVar1);
-        gSaveBlock2Ptr->frontier.slateportTentPrize = ITEM_NONE;
-        gSpecialVar_Result = TRUE;
-    }
-    else
-    {
-        gSpecialVar_Result = FALSE;
-    }
+    // if (AddBagItem(gSaveBlock2Ptr->frontier.slateportTentPrize, 1) == TRUE)
+    // {
+    //     CopyItemName(gSaveBlock2Ptr->frontier.slateportTentPrize, gStringVar1);
+    //     gSaveBlock2Ptr->frontier.slateportTentPrize = ITEM_NONE;
+    //     gSpecialVar_Result = TRUE;
+    // }
+    // else
+    // {
+    //     gSpecialVar_Result = FALSE;
+    // }
+    AddMoney(&gSaveBlock1Ptr->money, TENT_SLATEPORT_PRIZE_MONEY);
+    gSpecialVar_Result = TRUE;
+    ConvertIntToDecimalStringN(gStringVar1, TENT_SLATEPORT_PRIZE_MONEY, STR_CONV_MODE_LEFT_ALIGN, TENT_SLATEPORT_PRIZE_MONEY_DIGITS);
 }
 
 static void SelectInitialRentalMons(void)

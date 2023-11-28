@@ -305,10 +305,9 @@ SlateportCity_BattleTentLobby_Text_DidntSaveBeforeQuitting:
 SlateportCity_BattleTentLobby_Text_ReturnPersonalMons:
 	.string "We'll return your personal Pokémon.$"
 
-@ Unused
 SlateportCity_BattleTentLobby_Text_ReceivedPrize:
 	.string "{PLAYER} received the prize\n"
-	.string "{STR_VAR_1}.$"
+	.string "of ¥{STR_VAR_1}.$"
 
 @ Unused
 SlateportCity_BattleTentLobby_Text_RulesAreListed:
