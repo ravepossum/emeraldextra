@@ -29,6 +29,7 @@
 #include "start_menu.h"
 #include "trainer_see.h"
 #include "trainer_hill.h"
+#include "tx_registered_items_menu.h"
 #include "wild_encounter.h"
 #include "constants/event_bg.h"
 #include "constants/event_objects.h"
@@ -203,8 +204,13 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     if (input->tookStep && TryFindHiddenPokemon())
         return TRUE;
     
-    if (input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
-        return TRUE;
+    if (input->pressedSelectButton)
+    {
+        if (gSaveBlock1Ptr->registeredItemListCount != 0) {
+            TxRegItemsMenu_OpenMenu();
+            return TRUE;
+        }
+    }
     
     if (input->pressedRButton && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE) && TryStartDexnavSearch())
         return TRUE;

@@ -13,6 +13,7 @@
 #include "item_use.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
+#include "tx_registered_items_menu.h"
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/item_effects.h"
@@ -583,15 +584,16 @@ void CompactPCItems(void)
 
 void SwapRegisteredBike(void)
 {
-    switch (gSaveBlock1Ptr->registeredItem)
-    {
-    case ITEM_MACH_BIKE:
-        gSaveBlock1Ptr->registeredItem = ITEM_ACRO_BIKE;
-        break;
-    case ITEM_ACRO_BIKE:
-        gSaveBlock1Ptr->registeredItem = ITEM_MACH_BIKE;
-        break;
-    }
+    // switch (gSaveBlock1Ptr->registeredItem)
+    // {
+    // case ITEM_MACH_BIKE:
+    //     gSaveBlock1Ptr->registeredItem = ITEM_ACRO_BIKE;
+    //     break;
+    // case ITEM_ACRO_BIKE:
+    //     gSaveBlock1Ptr->registeredItem = ITEM_MACH_BIKE;
+    //     break;
+    // }
+    return;
 }
 
 u16 BagGetItemIdByPocketPosition(u8 pocketId, u16 pocketPos)

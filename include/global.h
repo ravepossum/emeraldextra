@@ -23,6 +23,9 @@
 //#define FREE_ENIGMA_BERRY               //frees up enigma berry. 52 bytes
 //#define FREE_LINK_BATTLE_RECORDS        //frees link battle record data. 88 bytes
 
+//tx_registered_items_menu
+#define REGISTERED_ITEMS_MAX 10
+
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
 
@@ -581,6 +584,11 @@ struct ItemSlot
     u16 quantity;
 };
 
+struct RegisteredItemSlot
+{
+    u16 itemId;
+};
+
 struct Pokeblock
 {
     u8 color;
@@ -997,7 +1005,10 @@ struct SaveBlock1
     /*0x238*/ struct Pokemon playerParty[PARTY_SIZE];
     /*0x490*/ u32 money;
     /*0x494*/ u16 coins;
-    /*0x496*/ u16 registeredItem; // registered for use with SELECT button
+    //u16 registeredItem;  registered for use with SELECT button
+    /*0x???*/ u8 registeredItemLastSelected:4; //max 16 items
+    /*0x???*/ u8 registeredItemListCount:4;
+    /*0x???*/ struct RegisteredItemSlot registeredItems[REGISTERED_ITEMS_MAX];
     /*0x498*/ struct ItemSlot pcItems[PC_ITEMS_COUNT];
     /*0x560*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
     /*0x5D8*/ struct ItemSlot bagPocket_KeyItems[BAG_KEYITEMS_COUNT];
@@ -1006,7 +1017,7 @@ struct SaveBlock1
     /*0x690*/ struct ItemSlot bagPocket_TMHM[BAG_TMHM_COUNT];
     /*0x790*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
-    /*0x988*/ u8 filler1[0x14C]; // just filler
+    /*0x988*/ u8 filler1[0x124]; // just filler
     /*0x9BC*/ u16 berryBlenderRecords[3];
     /*0x9C2*/ u8 unused_9C2[6];
     /*0x9C8*/ u16 trainerRematchStepCounter;
@@ -1079,7 +1090,7 @@ struct SaveBlock1
     /*0x3???*/ u8 dexNavSearchLevels[NUM_SPECIES];
     /*0x3???*/ u8 dexNavChain;
     // sizeof: 0x3???
-    // free: 332
+    // free: 292
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;
