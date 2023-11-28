@@ -1895,33 +1895,28 @@ static void FillFactoryFrontierTrainerParty(u16 trainerId, u8 firstMonId)
 
 static void FillFactoryTentTrainerParty(u16 trainerId, u8 firstMonId)
 {
-    u8 i, j;
-    u8 friendship;
+    u8 i;
     u8 level = TENT_MIN_LEVEL;
     u8 fixedIV = 0;
+    u8 fixedEV = 0;
     u32 otID = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
+    u8 nature; 
+    u16 item;
 
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
         u16 monId = gFrontierTempParty[i];
+        nature = Random() % (NUM_NATURES - 1);
         CreateMonWithEVSpreadNatureOTID(&gEnemyParty[firstMonId + i],
-                                             gFacilityTrainerMons[monId].species,
-                                             level,
-                                             gFacilityTrainerMons[monId].nature,
-                                             fixedIV,
-                                             gFacilityTrainerMons[monId].evSpread,
-                                             otID);
+                                        monId,
+                                        level,
+                                        nature,
+                                        fixedIV,
+                                        fixedEV,
+                                        otID);
 
-        friendship = 0;
-        for (j = 0; j < MAX_MON_MOVES; j++)
-        {
-            SetMonMoveAvoidReturn(&gEnemyParty[firstMonId + i], gFacilityTrainerMons[monId].moves[j], j);
-            if (gFacilityTrainerMons[monId].moves[j] == MOVE_FRUSTRATION)
-                friendship = 0;
-        }
-
-        SetMonData(&gEnemyParty[firstMonId + i], MON_DATA_FRIENDSHIP, &friendship);
-        SetMonData(&gEnemyParty[firstMonId + i], MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monId].itemTableId]);
+        item = (Random() % (TENT_ITEM_END - TENT_ITEM_START)) + TENT_ITEM_START;
+        SetMonData(&gEnemyParty[firstMonId + i], MON_DATA_HELD_ITEM, &item);
     }
 }
 

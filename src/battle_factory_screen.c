@@ -1779,31 +1779,31 @@ static void CreateFrontierFactorySelectableMons(u8 firstMonId)
 
 static void CreateSlateportTentSelectableMons(u8 firstMonId)
 {
-    u8 i, j;
+    u8 i;
     u8 ivs = 0;
+    u8 evs = 0;
     u8 level = TENT_MIN_LEVEL;
-    u8 friendship = 0;
     u32 otId = 0;
+    u8 nature; 
+    u16 item;
 
-    gFacilityTrainerMons = gSlateportBattleTentMons;
     otId = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
 
     for (i = 0; i < SELECTABLE_MONS_COUNT; i++)
     {
         u16 monId = gSaveBlock2Ptr->frontier.rentalMons[i].monId;
         sFactorySelectScreen->mons[i + firstMonId].monId = monId;
+        nature = Random() % (NUM_NATURES - 1);
         CreateMonWithEVSpreadNatureOTID(&sFactorySelectScreen->mons[i + firstMonId].monData,
-                                             gFacilityTrainerMons[monId].species,
-                                             level,
-                                             gFacilityTrainerMons[monId].nature,
-                                             ivs,
-                                             gFacilityTrainerMons[monId].evSpread,
-                                             otId);
-        friendship = 0;
-        for (j = 0; j < MAX_MON_MOVES; j++)
-            SetMonMoveAvoidReturn(&sFactorySelectScreen->mons[i + firstMonId].monData, gFacilityTrainerMons[monId].moves[j], j);
-        SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_FRIENDSHIP, &friendship);
-        SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monId].itemTableId]);
+                                        monId,
+                                        level,
+                                        nature,
+                                        ivs,
+                                        evs,
+                                        otId);
+
+        item = (Random() % (TENT_ITEM_END - TENT_ITEM_START)) + TENT_ITEM_START;
+        SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &item);
     }
 }
 
@@ -2254,23 +2254,23 @@ static void Select_SetWinRegs(s16 mWin0H, s16 nWin0H, s16 mWin0V, s16 nWin0V)
 
 static bool32 Select_AreSpeciesValid(u16 monId)
 {
-    u8 i, j;
-    u32 species = gFacilityTrainerMons[monId].species;
-    u8 selectState = sFactorySelectScreen->selectingMonsState;
+    // u8 i, j;
+    // u32 species = gFacilityTrainerMons[monId].species;
+    // u8 selectState = sFactorySelectScreen->selectingMonsState;
 
-    for (i = 1; i < selectState; i++)
-    {
-        for (j = 0; j < SELECTABLE_MONS_COUNT; j++)
-        {
-            if (sFactorySelectScreen->mons[j].selectedId == i)
-            {
-                if (gFacilityTrainerMons[sFactorySelectScreen->mons[j].monId].species == species)
-                    return FALSE;
+    // for (i = 1; i < selectState; i++)
+    // {
+    //     for (j = 0; j < SELECTABLE_MONS_COUNT; j++)
+    //     {
+    //         if (sFactorySelectScreen->mons[j].selectedId == i)
+    //         {
+    //             if (gFacilityTrainerMons[sFactorySelectScreen->mons[j].monId].species == species)
+    //                 return FALSE;
 
-                break;
-            }
-        }
-    }
+    //             break;
+    //         }
+    //     }
+    // }
     return TRUE;
 }
 

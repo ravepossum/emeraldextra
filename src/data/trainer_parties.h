@@ -624,7 +624,7 @@ static const struct TrainerMon sParty_Lola1[] = {
     {
     .lvl = 17,
     .species = SPECIES_FRILLISH,
-    .gender = MON_FEMALE,
+    .gender = TRAINER_MON_FEMALE,
     },
     {
     .lvl = 17,
@@ -9015,7 +9015,7 @@ static const struct TrainerMon sParty_Chandler[] = {
     {
     .lvl = 17,
     .species = SPECIES_FRILLISH,
-    .gender = MON_MALE,
+    .gender = TRAINER_MON_MALE,
     },
     {
     .lvl = 17,
