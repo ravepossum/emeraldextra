@@ -304,6 +304,6 @@ SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons:
 	.string "if you don't have any tough Pokémon.$"
 
 SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection:
-	.string "Wouldn't it be nice if they had more of\n"
-	.string "a selection?$"
+	.string "Isn't it crazy how wide of a selection\n"
+	.string "of Pokémon they have?$"
 

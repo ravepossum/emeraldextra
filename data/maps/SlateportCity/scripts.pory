@@ -1123,10 +1123,10 @@ SlateportCity_Text_GetNameRaterToHelpYou:
 	.string "Master to help you.$"
 
 SlateportCity_Text_CantChangeTradeMonName:
-	.string "Any Pokémon you get in a trade,\n"
-	.string "you can't change its nickname.\p"
+	.string "You can change the nickname of any\n"
+	.string "Pokémon, even ones you get in a trade.\p"
 	.string "The original Trainer's love for that\n"
-	.string "Pokémon is in the nickname.$"
+	.string "Pokémon is in their hearts.$"
 
 SlateportCity_Text_BattleTentBuiltRecently:
 	.string "Recently, a Battle Tent was built\n"

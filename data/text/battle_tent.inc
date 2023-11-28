@@ -353,7 +353,7 @@ SlateportCity_BattleTentLobby_Text_ExplainMonRules:
 	.string "The Pokémon of the Slateport\n"
 	.string "Battle Tent are all rentals.\p"
 	.string "All rental Pokémon are kept at\n"
-	.string "Level 30.$"
+	.string "Level 100.$"
 
 @ Unused
 VerdanturfTown_BattleTentLobby_Text_RulesAreListed2:
