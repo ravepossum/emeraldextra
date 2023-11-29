@@ -23,9 +23,6 @@
 //#define FREE_ENIGMA_BERRY               //frees up enigma berry. 52 bytes
 //#define FREE_LINK_BATTLE_RECORDS        //frees link battle record data. 88 bytes
 
-//tx_registered_items_menu
-#define REGISTERED_ITEMS_MAX 10
-
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
 

@@ -39,8 +39,8 @@
 #define SWAP_LINE_LENGTH 5
 struct TxRegItemsMenu_Struct
 {
-    struct ListMenuItem listItems[PC_ITEMS_COUNT + 1];
-    u8 itemNames[PC_ITEMS_COUNT + 1][ITEM_NAME_LENGTH + 10];
+    struct ListMenuItem listItems[REGISTERED_ITEMS_MAX + 1];
+    u8 itemNames[REGISTERED_ITEMS_MAX + 1][ITEM_NAME_LENGTH + 10];
     u8 windowIds[1];
     u8 toSwapPos;
     u8 spriteId;
@@ -561,7 +561,7 @@ u8 TxRegItemsMenu_CountUsedRegisteredItemSlots(void)
     u8 usedSlots = 0;
     u8 i;
 
-    for (i = 0; i < PC_ITEMS_COUNT; i++)
+    for (i = 0; i < REGISTERED_ITEMS_MAX; i++)
     {
         if (gSaveBlock1Ptr->registeredItems[i].itemId != ITEM_NONE)
             usedSlots++;

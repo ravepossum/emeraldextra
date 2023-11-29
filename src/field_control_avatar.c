@@ -206,7 +206,14 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     
     if (input->pressedSelectButton)
     {
-        if (gSaveBlock1Ptr->registeredItemListCount != 0) {
+        if (gSaveBlock1Ptr->registeredItemListCount == 1) 
+        {
+            UseRegisteredKeyItemOnField(1);
+            return TRUE;
+        }
+        else if (gSaveBlock1Ptr->registeredItemListCount > 0)
+        {
+
             TxRegItemsMenu_OpenMenu();
             return TRUE;
         }
