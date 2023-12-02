@@ -4,6 +4,7 @@
 #include "battle_tower.h"
 #include "cable_club.h"
 #include "data.h"
+#include "day_night.h"
 #include "decoration.h"
 #include "diploma.h"
 #include "event_data.h"
@@ -4227,4 +4228,10 @@ void TeachMonAbility(void) {
     struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
     u16 abilityNum = gSpecialVar_0x8009;
     SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
+}
+
+void GetTimeOfDay(void)
+{
+	RtcCalcLocalTime();
+	gSpecialVar_Result = GetCurrentTimeOfDay();
 }

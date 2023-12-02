@@ -490,6 +490,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_HOOH] =                     &gObjectEventGraphicsInfo_HoOh,
     [OBJ_EVENT_GFX_PELIPPER] =                 &gObjectEventGraphicsInfo_Pelipper,
     [OBJ_EVENT_GFX_PASSIMIAN] =                &gObjectEventGraphicsInfo_Passimian,
+    [OBJ_EVENT_GFX_DUSTOX] =                   &gObjectEventGraphicsInfo_Dustox,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

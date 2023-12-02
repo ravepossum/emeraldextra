@@ -10,14 +10,6 @@ RustboroCity_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_OnFrame
 	.byte 0
 
-RustboroCity_OnTransition:
-	setflag FLAG_VISITED_RUSTBORO_CITY
-	call Common_EventScript_SetupRivalGfxId
-	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup
-	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	goto_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
-	end
-
 RustboroCity_EventScript_PositionScientistForExit::
 	goto_if_eq VAR_TEMP_0, 11, RustboroCity_EventScript_PositionScientistLeftExit
 	setobjectxyperm LOCALID_SCIENTIST, 12, 15
@@ -1307,6 +1299,32 @@ RustboroCity_EventScript_Beauty::
 	return
 
 
+RustboroCity_EventScript_Dustox::
+	playmoncry SPECIES_DUSTOX, CRY_MODE_NORMAL
+	lock
+	msgbox RustboroCity_EventScript_Dustox_Text_0
+	release
+	end
+
+
+RustboroCity_OnTransition::
+	setflag FLAG_VISITED_RUSTBORO_CITY
+	call Common_EventScript_SetupRivalGfxId
+	special GetTimeOfDay
+	switch VAR_RESULT
+	case TIME_NIGHT, RustboroCity_OnTransition_3
+	setflag FLAG_HIDE_RUSTBORO_DUSTOX
+RustboroCity_OnTransition_1:
+	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	goto_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
+	end
+
+RustboroCity_OnTransition_3:
+	clearflag FLAG_HIDE_RUSTBORO_DUSTOX
+	goto RustboroCity_OnTransition_1
+
+
 RustboroCity_EventScript_Hiker_Text_0:
 	.string "I heard some miners uncovered an icy\n"
 	.string "cavern underneath Rusturf Tunnel.\p"
@@ -1318,3 +1336,7 @@ RustboroCity_EventScript_Beauty_Text_0:
 	.string "DexNav search level will be.\p"
 	.string "A higher search level and chain will\n"
 	.string "result in finding more rare Pokémon!$"
+
+RustboroCity_EventScript_Dustox_Text_0:
+	.string "The Dustox is too enthralled by the\n"
+	.string "light to notice you.$"

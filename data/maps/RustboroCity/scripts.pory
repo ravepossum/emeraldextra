@@ -12,14 +12,6 @@ RustboroCity_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_OnFrame
 	.byte 0
 
-RustboroCity_OnTransition:
-	setflag FLAG_VISITED_RUSTBORO_CITY
-	call Common_EventScript_SetupRivalGfxId
-	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup
-	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	goto_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
-	end
-
 RustboroCity_EventScript_PositionScientistForExit::
 	goto_if_eq VAR_TEMP_0, 11, RustboroCity_EventScript_PositionScientistLeftExit
 	setobjectxyperm LOCALID_SCIENTIST, 12, 15
@@ -1308,4 +1300,30 @@ script RustboroCity_EventScript_Hiker {
 
 script RustboroCity_EventScript_Beauty {
 	msgbox(format("The more you encounter a particular species of Pokémon, the higher your DexNav search level will be.\pA higher search level and chain will result in finding more rare Pokémon!"), MSGBOX_NPC)
+}
+
+script RustboroCity_EventScript_Dustox {
+	playmoncry(SPECIES_DUSTOX, CRY_MODE_NORMAL)
+	lock
+	msgbox(format("The Dustox is too enthralled by the light to pay attention to you."))
+	release
+	end
+}
+
+script RustboroCity_OnTransition {
+	setflag(FLAG_VISITED_RUSTBORO_CITY)
+	call(Common_EventScript_SetupRivalGfxId)
+
+	special(GetTimeOfDay)
+	switch (var(VAR_RESULT)) {
+		case TIME_NIGHT:
+			clearflag(FLAG_HIDE_RUSTBORO_DUSTOX)
+		default:
+			setflag(FLAG_HIDE_RUSTBORO_DUSTOX)
+	}
+
+	call_if_eq(VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup)
+	getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+	goto_if_eq(VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit)
+	end
 }

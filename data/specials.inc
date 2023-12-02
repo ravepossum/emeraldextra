@@ -544,3 +544,4 @@ gSpecials::
     //End Pokevial Branch
 	def_special BufferMonAbilities
 	def_special TeachMonAbility
+	def_special GetTimeOfDay
