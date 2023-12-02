@@ -1339,4 +1339,4 @@ RustboroCity_EventScript_Beauty_Text_0:
 
 RustboroCity_EventScript_Dustox_Text_0:
 	.string "The Dustox is too enthralled by the\n"
-	.string "light to notice you.$"
+	.string "light to pay attention to you.$"

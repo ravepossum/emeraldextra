@@ -115,7 +115,7 @@
       "id": "LAYOUT_DEWFORD_TOWN",
       "name": "DewfordTown_Layout",
       "width": 20,
-      "height": 20,
+      "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/DewfordTown/border.bin",
@@ -4660,6 +4660,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/SlateportCity_House2/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity_House2/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_TOWN_HOUSE3",
+      "name": "DewfordTown_House3_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/DewfordTown_House3/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordTown_House3/map.bin"
     }
   ]
 }

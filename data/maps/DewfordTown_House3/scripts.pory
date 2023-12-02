@@ -1,0 +1,44 @@
+mapscripts DewfordTown_House3_MapScripts {}
+
+const LOCALID_BLACKBELT = 1
+const LOCALID_MAKUHITA = 2
+
+script DewfordTown_House3_EventScript_BlackBelt {
+    lock
+    faceplayer
+    if (!flag(FLAG_RECEIVED_BLACK_BELT)) {
+        msgbox(format("Makuhita and I are training to join the Dewford Gym.\pYou look like you have the fighting spirit in you too. Take this!"))
+        giveitem(ITEM_BLACK_BELT)
+        if(var(VAR_RESULT) == FALSE) {
+            goto(Common_EventScript_ShowBagIsFull)
+        } else {
+            msgbox(format("Give that to your favorite Fighting-type Pokémon to give their moves some extra kick!"))
+            setflag(FLAG_RECEIVED_BLACK_BELT)
+        }
+    } else {
+        msgbox(format("Just like Makuhita, I'll never give up!"))
+    }
+    applymovement(LOCALID_BLACKBELT, DewfordTown_House3_Movement_FaceRight)
+    waitmovement(LOCALID_BLACKBELT)
+    release
+    end
+}
+
+script DewfordTown_House3_EventScript_Makuhita {
+    lock
+    faceplayer
+	playmoncry(SPECIES_MAKUHITA, CRY_MODE_NORMAL)
+	msgbox(format("Makuhita: Hi-ta!"))
+    applymovement(LOCALID_MAKUHITA, DewfordTown_House3_Movement_FaceLeft)
+    waitmovement(LOCALID_MAKUHITA)
+    release
+    end
+}
+
+movement DewfordTown_House3_Movement_FaceRight {
+    face_right
+}
+
+movement DewfordTown_House3_Movement_FaceLeft {
+    face_left
+}

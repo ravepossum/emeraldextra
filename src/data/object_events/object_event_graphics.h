@@ -385,3 +385,5 @@ const u32 gObjectEventPic_Passimian[] = INCBIN_U32("graphics/object_events/pics/
 const u16 gObjectEventPal_Passimian[] = INCBIN_U16("graphics/object_events/palettes/passimian.gbapal");
 const u32 gObjectEventPic_Dustox[] = INCBIN_U32("graphics/object_events/pics/pokemon/dustox.4bpp");
 const u16 gObjectEventPal_Dustox[] = INCBIN_U16("graphics/object_events/palettes/dustox.gbapal");
+const u32 gObjectEventPic_Makuhita[] = INCBIN_U32("graphics/object_events/pics/pokemon/makuhita.4bpp");
+const u16 gObjectEventPal_Makuhita[] = INCBIN_U16("graphics/object_events/palettes/makuhita.gbapal");
