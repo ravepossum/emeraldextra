@@ -128,7 +128,9 @@ FortreeCity_Text_BugPokemonComeThroughWindow:
 
 FortreeCity_Text_PokemonThatEvolveWhenTraded:
 	.string "There are Pokémon that evolve when\n"
-	.string "you trade them! That's what I heard.$"
+	.string "you trade them! That's what I heard.\p"
+	.string "I also heard you can use a Linking\n"
+	.string "Cord instead to make them evolve.$"
 
 FortreeCity_Text_SomethingUnseeable:
 	.string "Something unseeable is in the way.$"

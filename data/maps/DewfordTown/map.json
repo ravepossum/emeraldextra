@@ -27,7 +27,7 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-      "x": 9,
+      "x": 10,
       "y": 22,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
@@ -142,14 +142,14 @@
     },
     {
       "x": 17,
-      "y": 22,
+      "y": 21,
       "elevation": 0,
-      "dest_map": "MAP_DEWFORD_TOWN",
+      "dest_map": "MAP_DEWFORD_TOWN_HOUSE4",
       "dest_warp_id": "0"
     },
     {
       "x": 2,
-      "y": 25,
+      "y": 24,
       "elevation": 0,
       "dest_map": "MAP_DEWFORD_TOWN_HOUSE3",
       "dest_warp_id": "0"

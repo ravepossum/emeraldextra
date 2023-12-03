@@ -1145,3 +1145,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/SlateportCity_House2/scripts.inc"
 
 	.include "data/maps/DewfordTown_House3/scripts.inc"
+
+	.include "data/maps/DewfordTown_House4/scripts.inc"

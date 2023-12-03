@@ -1,0 +1,9 @@
+mapscripts DewfordTown_House4_MapScripts {}
+
+script DewfordTown_House4_EventScript_Man {
+    msgbox(format("Being isolated from the rest of Hoenn may seem tough, but it brings us closer together.\pWe all look out for each other here."),MSGBOX_NPC)
+}
+
+script DewfordTown_House4_EventScript_Hiker {
+    msgbox(format("I heard there's a resort where people do nothing but battle with Pokémon all day long.\pThat sounds amazing!"),MSGBOX_NPC)
+}

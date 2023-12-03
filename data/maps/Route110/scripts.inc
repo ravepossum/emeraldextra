@@ -949,7 +949,7 @@ Route110_Text_TrainerTipsPrlzSleep:
 Route110_Text_TrainerTipsRegisterItems:
 	.string "Trainer Tips\p"
 	.string "The items in the Bag can be reorganized\n"
-	.string "by pressing Select.$"
+	.string "by pressing Select or Start.$"
 
 Route110_Text_TrickHouseSign:
 	.string "“Three steps {RIGHT_ARROW} and two steps {UP_ARROW}\n"

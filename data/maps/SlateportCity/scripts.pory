@@ -1414,7 +1414,7 @@ script SlateportCity_EventScript_Cook {
 script SlateportCity_EventScript_IndividualGuru {
 	lock
 	faceplayer
-    msgbox(format("I;m in Individual Guru!\pI'm stil working on setting up my training program."))
+    msgbox(format("I'm the Individual Guru!\pI'm stil working on setting up my training program."))
 	// message(format("I'm the Individual Guru! I'll help your Pokémon express their unique personalities!\pWhat would you like to do today?"))
     // waitmessage
     // dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE,"Hyper Train a stat","Reduce a stat","Check stats","Cancel")
