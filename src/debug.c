@@ -180,7 +180,7 @@ enum { // Give Fill
     DEBUG_FILL_MENU_ITEM_POCKET_ITEMS,
     DEBUG_FILL_MENU_ITEM_POCKET_MEDICINE,
     DEBUG_FILL_MENU_ITEM_POCKET_BALLS,
-    DEBUG_FILL_MENU_ITEM_POCKET_TMHM,
+    //DEBUG_FILL_MENU_ITEM_POCKET_TMHM,
     DEBUG_FILL_MENU_ITEM_POCKET_BERRIES,
     DEBUG_FILL_MENU_ITEM_POCKET_KEY_ITEMS,
 };
@@ -705,7 +705,7 @@ static const struct ListMenuItem sDebugMenu_Items_Fill[] =
     [DEBUG_FILL_MENU_ITEM_POCKET_ITEMS]     = {sDebugText_Fill_PocketItems,     DEBUG_FILL_MENU_ITEM_POCKET_ITEMS},
     [DEBUG_FILL_MENU_ITEM_POCKET_MEDICINE]  = {sDebugText_Fill_PocketMedicine,  DEBUG_FILL_MENU_ITEM_POCKET_MEDICINE},
     [DEBUG_FILL_MENU_ITEM_POCKET_BALLS]     = {sDebugText_Fill_PocketPokeBalls, DEBUG_FILL_MENU_ITEM_POCKET_BALLS},
-    [DEBUG_FILL_MENU_ITEM_POCKET_TMHM]      = {sDebugText_Fill_PocketTMHM,      DEBUG_FILL_MENU_ITEM_POCKET_TMHM},
+    //[DEBUG_FILL_MENU_ITEM_POCKET_TMHM]      = {sDebugText_Fill_PocketTMHM,      DEBUG_FILL_MENU_ITEM_POCKET_TMHM},
     [DEBUG_FILL_MENU_ITEM_POCKET_BERRIES]   = {sDebugText_Fill_PocketBerries,   DEBUG_FILL_MENU_ITEM_POCKET_BERRIES},
     [DEBUG_FILL_MENU_ITEM_POCKET_KEY_ITEMS] = {sDebugText_Fill_PocketKeyItems,  DEBUG_FILL_MENU_ITEM_POCKET_KEY_ITEMS},
 };
@@ -796,7 +796,7 @@ static void (*const sDebugMenu_Actions_Fill[])(u8) =
     [DEBUG_FILL_MENU_ITEM_POCKET_ITEMS]     = DebugAction_Fill_PocketItems,
     [DEBUG_FILL_MENU_ITEM_POCKET_MEDICINE]  = DebugAction_Fill_PocketMedicine,
     [DEBUG_FILL_MENU_ITEM_POCKET_BALLS]     = DebugAction_Fill_PocketPokeBalls,
-    [DEBUG_FILL_MENU_ITEM_POCKET_TMHM]      = DebugAction_Fill_PocketTMHM,
+    //[DEBUG_FILL_MENU_ITEM_POCKET_TMHM]      = DebugAction_Fill_PocketTMHM,
     [DEBUG_FILL_MENU_ITEM_POCKET_BERRIES]   = DebugAction_Fill_PocketBerries,
     [DEBUG_FILL_MENU_ITEM_POCKET_KEY_ITEMS] = DebugAction_Fill_PocketKeyItems,
 };

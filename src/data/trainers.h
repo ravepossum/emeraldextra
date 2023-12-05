@@ -10318,5 +10318,18 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_STANDARD_FLAGS,
         .party = TRAINER_PARTY(sParty_Eduardo),
+    },
+    [TRAINER_PHOEBE_ROUTE_136] =
+    {
+        .trainerClass = TRAINER_CLASS_CREEPY_GIRL,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_PHOEBE,
+        .trainerName = _("???"),
+        .items = {ITEM_SUPER_POTION},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_ELITE_FLAGS,
+        .party = TRAINER_PARTY(sParty_PhoebeRoute136),
+        .hasCustomTransition = TRUE,
+        .transition = B_TRANSITION_SWIRL,
     }
 };

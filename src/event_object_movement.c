@@ -439,6 +439,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_PASSIMIAN               0x1125
 #define OBJ_EVENT_PAL_TAG_DUSTOX                  0x1126
 #define OBJ_EVENT_PAL_TAG_MAKUHITA                0x1127
+#define OBJ_EVENT_PAL_TAG_ELECTRIKE               0x1128
 #define OBJ_EVENT_PAL_TAG_NONE                    0x11FF
 
 #include "data/field_effects/field_effect_object_template_pointers.h"
@@ -489,6 +490,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Passimian,             OBJ_EVENT_PAL_TAG_PASSIMIAN},
     {gObjectEventPal_Dustox,                OBJ_EVENT_PAL_TAG_DUSTOX},
     {gObjectEventPal_Makuhita,              OBJ_EVENT_PAL_TAG_MAKUHITA},
+    {gObjectEventPal_Electrike,              OBJ_EVENT_PAL_TAG_ELECTRIKE},
 #ifdef BUGFIX
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
 #else

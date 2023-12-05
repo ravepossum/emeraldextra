@@ -1,4 +1,18 @@
-mapscripts Route136_MapScripts {}
+const LOCALID_PHOEBE = 4
+
+mapscripts Route136_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+		if (!flag(FLAG_DEFEATED_PHOEBE_ROUTE_136)){
+			special(GetTimeOfDay)
+			switch (var(VAR_RESULT)) {
+				case TIME_NIGHT:
+					clearflag(FLAG_HIDE_PHOEBE_ROUTE_136)
+				default:
+					setflag(FLAG_HIDE_PHOEBE_ROUTE_136)
+			}
+		}
+	}
+}
 
 script Route136_EventScript_RouteSignGraniteCave {
 	msgbox("Granite Cave\n{UP_ARROW} Dewford Town\p{LEFT_ARROW} Oma'oma Town$", MSGBOX_SIGN)
@@ -20,6 +34,35 @@ script Route136_EventScript_Eduardo {
 	trainerbattle_single(TRAINER_EDUARDO, Route136_Text_EduardoIntro, Route136_Text_EduardoDefeat)
 	msgbox(Route136_Text_EduardoPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
+
+script Route136_EventScript_Phoebe {
+	lock
+	faceplayer
+	playbgm(MUS_ENCOUNTER_SUSPICIOUS, FALSE)
+	msgbox(format("Hehehehehe…\p… … …\pYou found me.\p… … …\pYou seem different.\pLet me see how strong you are."))
+	trainerbattle_no_intro(TRAINER_PHOEBE_ROUTE_136, Route136_Text_PhoebeDefeat)
+	msgbox(format("{PLAYER}, is it?\pMy name is Phoebe. I'm a member of Hoenn's Elite Four.\pYou battled fiercely. I'll be keeping an eye on this one…"))
+	applymovement(LOCALID_PHOEBE, Route136_Movement_Phoebe_Float)
+	playse(SE_M_NIGHTMARE)
+	waitmovement(LOCALID_PHOEBE)
+	applymovement(LOCALID_PHOEBE, Route136_Movement_Phoebe_Fly)
+	playse(SE_LAVARIDGE_FALL_WARP)
+	waitse
+	removeobject(LOCALID_PHOEBE)
+	setflag(FLAG_DEFEATED_PHOEBE_ROUTE_136)
+	setflag(FLAG_HIDE_PHOEBE_ROUTE_136)
+	release
+	end
+}
+
+movement Route136_Movement_Phoebe_Float {
+	levitate
+	delay_16 * 8
+}
+
+movement Route136_Movement_Phoebe_Fly {
+	fly_up
 }
 
 text Route136_Text_ConnorIntro {
@@ -56,4 +99,8 @@ text Route136_Text_EduardoDefeat {
 
 text Route136_Text_EduardoPostBattle {
 	format("I'm hot on the trail of a secret cave here. I just need to keep exploring.")
+}
+
+text Route136_Text_PhoebeDefeat {
+	format("… … … magnificent!")
 }

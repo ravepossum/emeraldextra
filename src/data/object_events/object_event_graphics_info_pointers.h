@@ -246,6 +246,9 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvi
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan2;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pelipper;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Passimian;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dustox;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Makuhita;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Electrike;
 
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
@@ -492,6 +495,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_PASSIMIAN] =                &gObjectEventGraphicsInfo_Passimian,
     [OBJ_EVENT_GFX_DUSTOX] =                   &gObjectEventGraphicsInfo_Dustox,
     [OBJ_EVENT_GFX_MAKUHITA] =                 &gObjectEventGraphicsInfo_Makuhita,
+    [OBJ_EVENT_GFX_ELECTRIKE] =                &gObjectEventGraphicsInfo_Electrike,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

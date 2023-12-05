@@ -61,8 +61,8 @@
 #define FLAG_SYS_MOVE_INFO              0x30 // Show move info in battle
 #define FLAG_HIDE_RUSTBORO_DUSTOX       0x31
 #define FLAG_RECEIVED_BLACK_BELT        0x32
-#define FLAG_UNUSED_0x033               0x33 // Unused Flag
-#define FLAG_UNUSED_0x034               0x34 // Unused Flag
+#define FLAG_HIDE_PHOEBE_ROUTE_136      0x33 // Hides Phoebe during the day on route 136
+#define FLAG_DEFEATED_PHOEBE_ROUTE_136  0x34
 #define FLAG_UNUSED_0x035               0x35 // Unused Flag
 #define FLAG_UNUSED_0x036               0x36 // Unused Flag
 #define FLAG_UNUSED_0x037               0x37 // Unused Flag

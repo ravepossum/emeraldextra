@@ -1447,14 +1447,16 @@ SlateportCity_EventScript_IndividualGuru_HyperTrain_5:
 	end
 
 
-SlateportCity_EventScript_IndividualGuru_Reduce::
-	return
-
-
 SlateportCity_EventScript_IndividualGuru_AnotherTime::
 	msgbox SlateportCity_EventScript_IndividualGuru_AnotherTime_Text_0
 	release
 	end
+
+
+SlateportCity_EventScript_Electrike::
+	playmoncry SPECIES_ELECTRIKE, CRY_MODE_NORMAL
+	msgbox SlateportCity_EventScript_Electrike_Text_0, MSGBOX_NPC
+	return
 
 
 SlateportCity_EventScript_Cook_Text_0:
@@ -1484,3 +1486,6 @@ SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_3:
 
 SlateportCity_EventScript_IndividualGuru_AnotherTime_Text_0:
 	.string "Maybe another time, then!$"
+
+SlateportCity_EventScript_Electrike_Text_0:
+	.string "Electrike: Arruff!$"

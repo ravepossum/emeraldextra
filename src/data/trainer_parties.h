@@ -11887,3 +11887,25 @@ static const struct TrainerMon sParty_Eduardo[] = {
     }
 };
 
+static const struct TrainerMon sParty_PhoebeRoute136[] = {
+    {
+    .iv = TRAINER_PARTY_IVS(15, 15, 15, 15, 15, 15),
+    .lvl = 18,
+    .species = SPECIES_SABLEYE,
+    .ability = ABILITY_PRANKSTER,
+    .moves = {MOVE_KNOCK_OFF, MOVE_WILL_O_WISP, MOVE_ASTONISH, MOVE_THUNDER_WAVE}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(15, 15, 15, 15, 15, 15),
+    .lvl = 18,
+    .species = SPECIES_SHUPPET,
+    .moves = {MOVE_SCREECH, MOVE_SHADOW_SNEAK, MOVE_CURSE, MOVE_THIEF}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(15, 15, 15, 15, 15, 15),
+    .lvl = 18,
+    .species = SPECIES_DUSKULL,
+    .moves = {MOVE_SHADOW_SNEAK, MOVE_CONFUSE_RAY, MOVE_DISABLE, MOVE_PAYBACK},
+    }
+};
+

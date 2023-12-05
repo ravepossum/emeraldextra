@@ -387,3 +387,5 @@ const u32 gObjectEventPic_Dustox[] = INCBIN_U32("graphics/object_events/pics/pok
 const u16 gObjectEventPal_Dustox[] = INCBIN_U16("graphics/object_events/palettes/dustox.gbapal");
 const u32 gObjectEventPic_Makuhita[] = INCBIN_U32("graphics/object_events/pics/pokemon/makuhita.4bpp");
 const u16 gObjectEventPal_Makuhita[] = INCBIN_U16("graphics/object_events/palettes/makuhita.gbapal");
+const u32 gObjectEventPic_Electrike[] = INCBIN_U32("graphics/object_events/pics/pokemon/electrike.4bpp");
+const u16 gObjectEventPal_Electrike[] = INCBIN_U16("graphics/object_events/palettes/electrike.gbapal");

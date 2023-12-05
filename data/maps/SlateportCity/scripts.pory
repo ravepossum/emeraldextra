@@ -1454,12 +1454,17 @@ script SlateportCity_EventScript_IndividualGuru_HyperTrain {
     dynmultichoice(0,0,FALSE,6,0,DYN_MULTICHOICE_CB_NONE,gText_MaxHP,gText_Attack,gText_Defense,gText_SpAtk,gText_SpDef,gText_Speed,"Cancel")
 }
 
-script SlateportCity_EventScript_IndividualGuru_Reduce {
+// script SlateportCity_EventScript_IndividualGuru_Reduce {
 
-}
+// }
 
 script SlateportCity_EventScript_IndividualGuru_AnotherTime {
     msgbox(format("Maybe another time, then!"))
     release
     end
+}
+
+script SlateportCity_EventScript_Electrike {
+	playmoncry(SPECIES_ELECTRIKE, CRY_MODE_NORMAL)
+	msgbox(format("Electrike: Arruff!"),MSGBOX_NPC)
 }
