@@ -1465,7 +1465,7 @@ SlateportCity_EventScript_Cook_Text_1:
 	.string "How may I serve you?$"
 
 SlateportCity_EventScript_IndividualGuru_Text_0:
-	.string "I;m in Individual Guru!\p"
+	.string "I'm the Individual Guru!\p"
 	.string "I'm stil working on setting up my\n"
 	.string "training program.$"
 
