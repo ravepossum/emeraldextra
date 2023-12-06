@@ -654,8 +654,28 @@ MauvilleCity_EventScript_Minun::
 	return
 
 
+MauvilleCity_EventScript_Triathlete_F::
+	msgbox MauvilleCity_EventScript_Triathlete_F_Text_0, MSGBOX_NPC
+	return
+
+
+MauvilleCity_EventScript_Artist::
+	msgbox MauvilleCity_EventScript_Artist_Text_0, MSGBOX_NPC
+	return
+
+
 MauvilleCity_EventScript_Plusle_Text_0:
 	.string "Plusle: LuUus!$"
 
 MauvilleCity_EventScript_Minun_Text_0:
 	.string "Minun: NuUun!$"
+
+MauvilleCity_EventScript_Triathlete_F_Text_0:
+	.string "Mauville is the best place to cycle!\p"
+	.string "The air is simply electrifying!$"
+
+MauvilleCity_EventScript_Artist_Text_0:
+	.string "So many people and Pokémon pass\n"
+	.string "through Mauville…\p"
+	.string "I like to observe and take inspiration\n"
+	.string "from everyone.$"

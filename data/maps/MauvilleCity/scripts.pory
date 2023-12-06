@@ -654,3 +654,11 @@ script MauvilleCity_EventScript_Minun {
 	playmoncry(SPECIES_MINUN, CRY_MODE_NORMAL)
 	msgbox(format("Minun: NuUun!"),MSGBOX_NPC)
 }
+
+script MauvilleCity_EventScript_Triathlete_F {
+	msgbox(format("Mauville is the best place to cycle!\pThe air is simply electrifying!"),MSGBOX_NPC)
+}
+
+script MauvilleCity_EventScript_Artist {
+	msgbox(format("So many people and Pokémon pass through Mauville…\pI like to observe and take inspiration from everyone."),MSGBOX_NPC)
+}
