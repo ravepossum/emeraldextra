@@ -66,6 +66,7 @@ const struct Tileset gTileset_Mauville =
     .metatiles = gMetatiles_Mauville,
     .metatileAttributes = gMetatileAttributes_Mauville,
     .callback = InitTilesetAnim_Mauville,
+    .paletteOverrides = gTilesetPalOverrides_Mauville,
 };
 
 const struct Tileset gTileset_Lavaridge =
