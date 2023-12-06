@@ -496,6 +496,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DUSTOX] =                   &gObjectEventGraphicsInfo_Dustox,
     [OBJ_EVENT_GFX_MAKUHITA] =                 &gObjectEventGraphicsInfo_Makuhita,
     [OBJ_EVENT_GFX_ELECTRIKE] =                &gObjectEventGraphicsInfo_Electrike,
+    [OBJ_EVENT_GFX_PLUSLE] =                   &gObjectEventGraphicsInfo_Plusle,
+    [OBJ_EVENT_GFX_MINUN] =                    &gObjectEventGraphicsInfo_Minun,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

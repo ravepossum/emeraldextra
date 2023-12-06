@@ -644,3 +644,13 @@ MauvilleCity_Text_ExplainTV:
 MauvilleCity_Text_BeenCheckingOutTV:
 	.string "Hi, have you been checking out TVs?$"
 `
+
+script MauvilleCity_EventScript_Plusle {
+	playmoncry(SPECIES_PLUSLE, CRY_MODE_NORMAL)
+	msgbox(format("Plusle: LuUus!"),MSGBOX_NPC)
+}
+
+script MauvilleCity_EventScript_Minun {
+	playmoncry(SPECIES_MINUN, CRY_MODE_NORMAL)
+	msgbox(format("Minun: NuUun!"),MSGBOX_NPC)
+}
