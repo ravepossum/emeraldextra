@@ -544,4 +544,10 @@ gSpecials::
     //End Pokevial Branch
 	def_special BufferMonAbilities
 	def_special TeachMonAbility
-	def_special GetTimeOfDay
+	def_special GetTimeOfDaySpecial
+	def_special GetNumberSprayStrength
+	def_special GetSprayId
+	def_special GetLastUsedSprayType
+	def_special TrySkyBattle
+	def_special VsSeekerResetObjectMovementAfterChargeComplete
+	def_special VsSeekerFreezeObjectsAfterChargeComplete

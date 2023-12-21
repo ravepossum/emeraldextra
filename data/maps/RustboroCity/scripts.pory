@@ -1314,7 +1314,7 @@ script RustboroCity_OnTransition {
 	setflag(FLAG_VISITED_RUSTBORO_CITY)
 	call(Common_EventScript_SetupRivalGfxId)
 
-	special(GetTimeOfDay)
+	special(GetTimeOfDaySpecial)
 	switch (var(VAR_RESULT)) {
 		case TIME_NIGHT:
 			clearflag(FLAG_HIDE_RUSTBORO_DUSTOX)

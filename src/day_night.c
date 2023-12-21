@@ -9,6 +9,7 @@
 #include "rtc.h"
 #include "constants/day_night.h"
 #include "constants/rgb.h"
+#include "constants/rtc.h"
 #include "strings.h"
 #include "string_util.h"
 #include "fieldmap.h"
@@ -56,13 +57,14 @@ static const u16 sTimeOfDayTints[][3] = {
     [23] =  {TINT_NIGHT},
 };
 
-u8 GetCurrentTimeOfDay(void)
+// ignores evening since there's no tint period for evening
+u8 GetCurrentTimeOfDayTint(void)
 {
-    if (gLocalTime.hours < HOUR_MORNING)
+    if (gLocalTime.hours < MORNING_HOUR_BEGIN)
         return TIME_NIGHT;
-    else if (gLocalTime.hours < HOUR_DAY)
+    else if (gLocalTime.hours < DAY_HOUR_BEGIN)
         return TIME_MORNING;
-    else if (gLocalTime.hours < HOUR_NIGHT)
+    else if (gLocalTime.hours < NIGHT_HOUR_BEGIN)
         return TIME_DAY;
 
     return TIME_NIGHT;
@@ -246,7 +248,7 @@ void ProcessImmediateTimeEvents(void)
     }
 
     #define currentTimeOfDay period
-    currentTimeOfDay = GetCurrentTimeOfDay();
+    currentTimeOfDay = GetCurrentTimeOfDayTint();
     if (sDNSystemControl.timeOfDay != currentTimeOfDay)
     {
         sDNSystemControl.timeOfDay = currentTimeOfDay;

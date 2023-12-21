@@ -496,7 +496,7 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
     }
     else
     {
-        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringCopy(gStringVar1, gSpeciesInfo[species].speciesName);
         AddTextPrinterParameterized3(sDexNavSearchDataPtr->windowId, 0, WINDOW_COL_0, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar1);
     }
     
@@ -712,7 +712,6 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
 
 static bool8 TryStartHiddenMonFieldEffect(u8 environment, u8 xSize, u8 ySize, bool8 smallScan)
 {
-    u32 i;
     u8 currMapType = GetCurrentMapType();
     u8 fldEffId = 0;
     
@@ -801,11 +800,8 @@ static void LoadSearchIconData(void)
 #define tEnvironment        data[3]
 #define tRevealed           data[4]
 static void Task_SetUpDexNavSearch(u8 taskId)
-{
-    struct Task *task = &gTasks[taskId];
-    
+{   
     u16 species = sDexNavSearchDataPtr->species;
-    u8 environment = sDexNavSearchDataPtr->environment;
     u8 searchLevel = gSaveBlock1Ptr->dexNavSearchLevels[SpeciesToNationalPokedexNum(species)];
     
     // init sprites
@@ -847,7 +843,6 @@ static void Task_SetUpDexNavSearch(u8 taskId)
 static void Task_InitDexNavSearch(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
-    u8 searchLevel;
     u16 species = task->tSpecies;
     u8 environment = task->tEnvironment;
     
@@ -944,7 +939,6 @@ static void DexNavUpdateDirectionArrow(void)
 
 static void DexNavDrawIcons(void)
 {
-    u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
     u16 species = sDexNavSearchDataPtr->species;
     
     // init sprite ids
@@ -1053,8 +1047,6 @@ static void Task_RevealHiddenMon(u8 taskId)
 
 static void Task_DexNavSearch(u8 taskId)
 {
-    u16 species;
-    s16 x, y;
     struct Task *task = &gTasks[taskId];
     
     if (sDexNavSearchDataPtr->proximity > MAX_PROXIMITY)
@@ -1129,9 +1121,7 @@ static void Task_DexNavSearch(u8 taskId)
     if ((sDexNavSearchDataPtr->environment == ENCOUNTER_TYPE_WATER || GetCurrentMapType() == MAP_TYPE_UNDERGROUND)
         && sDexNavSearchDataPtr->proximity < GetMovementProximityBySearchLevel() && sDexNavSearchDataPtr->movementCount < 2
         && task->tRevealed)
-    {
-        bool8 ret;
-        
+    {   
         FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
         while (1) {
             if (TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 10, 10, TRUE))
@@ -2122,9 +2112,7 @@ static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 
 static void PrintCurrentSpeciesInfo(void)
 {
-    u8 searchLevelBonus = 0;
     u16 species = DexNavGetSpecies();
-    u32 i;
     u16 dexNum = SpeciesToNationalPokedexNum(species);
     u8 type1, type2;
     
@@ -2138,7 +2126,7 @@ static void PrintCurrentSpeciesInfo(void)
     if (species == SPECIES_NONE)
         AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, SPECIES_INFO_Y, sFontColor_Black, 0, sText_DexNav_NoInfo);
     else
-        AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, SPECIES_INFO_Y, sFontColor_Black, 0, gSpeciesNames[species]);
+        AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, SPECIES_INFO_Y, sFontColor_Black, 0, gSpeciesInfo[species].speciesName);
     
     //type icon(s)
     type1 = gSpeciesInfo[species].types[0];
@@ -2216,7 +2204,7 @@ static void PrintSearchableSpecies(u16 species)
     }
     else
     {
-        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringCopy(gStringVar1, gSpeciesInfo[species].speciesName);
         StringExpandPlaceholders(gStringVar4, sText_DexNav_SearchForRegisteredSpecies);
         AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, gStringVar4);
     }
@@ -2542,7 +2530,6 @@ bool8 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(VAR_DEXNAV_STEP_COUNTER);
     u32 attempts = 0;
-    u16 currSteps;
 
     if (!FlagGet(FLAG_SYS_DETECTOR_MODE) || FlagGet(FLAG_SYS_DEXNAV_SEARCH) || GetFlashLevel() > 0)
     {
@@ -2560,7 +2547,6 @@ bool8 TryFindHiddenPokemon(void)
         u16 species;
         u8 environment;
         u8 taskId;
-        u8 total;
         const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
         bool8 isHiddenMon = FALSE;
         
@@ -2691,7 +2677,6 @@ static void DrawHiddenSearchWindow(u8 width)
 
 static void DexNavDrawHiddenIcons(void)
 {
-    u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
     u16 species = sDexNavSearchDataPtr->species;
     
     DrawHiddenSearchWindow(12);

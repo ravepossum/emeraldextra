@@ -1,10 +1,11 @@
 #include "global.h"
 #include "rtc.h"
+#include "constants/rtc.h"
 #include "string_util.h"
 #include "text.h"
 
 // iwram bss
-static u16 sErrorStatus;
+//static u16 sErrorStatus;
 static struct SiiRtcInfo sRtc;
 static u16 sSavedIme;
 
@@ -100,6 +101,26 @@ void RtcCalcLocalTime(void)
 {
     RtcGetInfo(&sRtc);
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+}
+
+bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
+{
+    if (end < begin)
+        return hours >= begin || hours < end;
+    else
+        return hours >= begin && hours < end;
+}
+
+u8 GetTimeOfDay(void)
+{
+    RtcCalcLocalTime();
+    if (IsBetweenHours(gLocalTime.hours, MORNING_HOUR_BEGIN, MORNING_HOUR_END))
+        return TIME_MORNING;
+    else if (IsBetweenHours(gLocalTime.hours, EVENING_HOUR_BEGIN, EVENING_HOUR_END))
+        return TIME_EVENING;
+    else if (IsBetweenHours(gLocalTime.hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END))
+        return TIME_NIGHT;
+    return TIME_DAY;
 }
 
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)

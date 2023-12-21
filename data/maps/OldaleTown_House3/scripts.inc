@@ -14,12 +14,13 @@ OldaleTown_House3_EventScript_Scientist2::
 
 OldaleTown_House3_EventScript_Scientist_Text_0:
 	.string "Thanks to new technology, you can now\n"
-	.string "see your Pokémon's Effort Values (EVs)\l"
-	.string "by pressing the L Button while viewing\l"
-	.string "their stats.\p"
-	.string "You can also view their Individual\n"
-	.string "Values (IVs) by pressing the R Button\l"
-	.string "while viewing their stats.$"
+	.string "see your Pokémon's Individual Values\l"
+	.string "(IVs) by pressing the A Button while\l"
+	.string "viewing their stats.\p"
+	.string "You can also view their Effort Values\n"
+	.string "(EVs) by pressing the A Button again.\p"
+	.string "If you press the button one more time,\n"
+	.string "you will see their stats again.$"
 
 OldaleTown_House3_EventScript_Scientist2_Text_0:
 	.string "When you search for Pokémon using the\n"

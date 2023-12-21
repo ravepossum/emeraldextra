@@ -22,20 +22,20 @@ const struct PaletteOverride gTilesetPalOverrides_General[] =
 {
     {
         .slot = 1,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_General01_05,
     },
     {
         .slot = 5,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_General01_05,
     },
     {
         .slot = 12,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_General12,
     },
     OVERRIDES_END
@@ -45,20 +45,20 @@ const struct PaletteOverride gTilesetPalOverrides_Petalburg[] =
 {
     {
         .slot = 6,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Petalburg06_08_09,
     },
     {
         .slot = 8,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Petalburg06_08_09,
     },
     {
         .slot = 9,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Petalburg06_08_09,
     },
     OVERRIDES_END
@@ -68,26 +68,26 @@ const struct PaletteOverride gTilesetPalOverrides_Rustboro[] =
 {
     {
         .slot = 4,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Rustboro04,
     },
     {
         .slot = 8,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Rustboro08_10_11,
     },
     {
         .slot = 10,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Rustboro08_10_11,
     },
     {
         .slot = 11,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Rustboro08_10_11,
     },
     OVERRIDES_END
@@ -97,32 +97,32 @@ const struct PaletteOverride gTilesetPalOverrides_Slateport[] =
 {
     // {
     //     .slot = 4,
-    //     .startHour = HOUR_NIGHT,
-    //     .endHour = HOUR_MORNING,
+    //     .startHour = NIGHT_HOUR_BEGIN,
+    //     .endHour = NIGHT_HOUR_END,
     //     .palette = sTilesetPalOverride_Slateport04,
     // },
     {
         .slot = 6,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Slateport06_08,
     },
     {
         .slot = 8,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Slateport06_08,
     },
     {
         .slot = 10,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Slateport10,
     },
     {
         .slot = 12,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Slateport12,
     },
     OVERRIDES_END
@@ -132,14 +132,14 @@ const struct PaletteOverride gTilesetPalOverrides_Mauville[] =
 {
     {
         .slot = 7,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Mauville7,
     },
     {
         .slot = 10,
-        .startHour = HOUR_NIGHT,
-        .endHour = HOUR_MORNING,
+        .startHour = NIGHT_HOUR_BEGIN,
+        .endHour = NIGHT_HOUR_END,
         .palette = sTilesetPalOverride_Mauville10,
     },
     OVERRIDES_END

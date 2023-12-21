@@ -3,7 +3,7 @@ const LOCALID_PHOEBE = 4
 mapscripts Route136_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {
 		if (!flag(FLAG_DEFEATED_PHOEBE_ROUTE_136)){
-			special(GetTimeOfDay)
+			special(GetTimeOfDaySpecial)
 			switch (var(VAR_RESULT)) {
 				case TIME_NIGHT:
 					clearflag(FLAG_HIDE_PHOEBE_ROUTE_136)

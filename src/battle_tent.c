@@ -295,7 +295,6 @@ static void GenerateInitialRentalMons(void)
     s32 i, j;
     u8 firstMonId;
     u16 monSetId;
-    u16 currSpecies;
     u16 monIds[PARTY_SIZE];
 
     firstMonId = 0;
@@ -305,7 +304,6 @@ static void GenerateInitialRentalMons(void)
         monIds[i] = 0;
     }
 
-    currSpecies = SPECIES_NONE;
     i = 0;
     while (i != PARTY_SIZE)
     {
@@ -313,7 +311,6 @@ static void GenerateInitialRentalMons(void)
         monSetId = (Random() % (TENT_MON_END - 1)) + 1;
         for (j = firstMonId; j < firstMonId + i; j++)
         {
-            u16 monId = monIds[j];
             if (monIds[j] == monSetId)
                 break;
         }
@@ -331,7 +328,6 @@ static void GenerateOpponentMons(void)
     u16 trainerId;
     s32 i, j, k;
     u16 species[FRONTIER_PARTY_SIZE];
-    s32 numMons = 0;
 
     gFacilityTrainers = gSlateportBattleTentTrainers;
 

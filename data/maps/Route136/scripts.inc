@@ -7,7 +7,7 @@ Route136_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 	return
 
 Route136_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
-	special GetTimeOfDay
+	special GetTimeOfDaySpecial
 	switch VAR_RESULT
 	case TIME_NIGHT, Route136_MapScripts_MAP_SCRIPT_ON_TRANSITION_4
 	setflag FLAG_HIDE_PHOEBE_ROUTE_136

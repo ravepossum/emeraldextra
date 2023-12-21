@@ -1310,7 +1310,7 @@ RustboroCity_EventScript_Dustox::
 RustboroCity_OnTransition::
 	setflag FLAG_VISITED_RUSTBORO_CITY
 	call Common_EventScript_SetupRivalGfxId
-	special GetTimeOfDay
+	special GetTimeOfDaySpecial
 	switch VAR_RESULT
 	case TIME_NIGHT, RustboroCity_OnTransition_3
 	setflag FLAG_HIDE_RUSTBORO_DUSTOX
