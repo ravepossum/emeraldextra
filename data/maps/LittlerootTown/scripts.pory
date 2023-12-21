@@ -918,6 +918,10 @@ LittlerootTown_EventScript_GiveExpShare::
 	giveitem ITEM_EXP_SHARE
 	setflag FLAG_RECEIVED_EXP_SHARE
 	msgbox LittlerootTown_Text_ExplainExpShare, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_IllTurnItOn, MSGBOX_DEFAULT
+	setflag I_EXP_SHARE_FLAG
+	playse SE_EXP_MAX
+	waitse
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -955,6 +959,9 @@ LittlerootTown_Text_ExplainExpShare:
 	.string "“Turn the Exp. Share on from your bag,\n"
 	.string "and all Pokémon in the party will gain\p"
 	.string "experience from battle!”$"
+
+LittlerootTown_Text_IllTurnItOn:
+	.string "I'll go ahead and turn it on for you!$"
 
 
 LittlerootTown_Text_ComeHomeIfAnythingHappens:
