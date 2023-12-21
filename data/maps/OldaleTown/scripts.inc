@@ -14,7 +14,6 @@ OldaleTown_OnTransition:
 	call_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_SetOldaleState
 	end
 
-@ This script seems pointless because nothing uses VAR_OLDALE_TOWN_STATE
 OldaleTown_EventScript_SetOldaleState::
 	setvar VAR_OLDALE_TOWN_STATE, 1
 	return
@@ -79,6 +78,7 @@ OldaleTown_EventScript_ExplainPokemonMart::
 	goto_if_eq VAR_RESULT, FALSE, OldaleTown_EventScript_BagIsFull
 	msgbox OldaleTown_Text_PotionExplanation, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_POKEVIAL_OLDALE
+	setvar VAR_POKEVIAL_STATE, 1
 	fadedefaultbgm
 	release
 	end
@@ -406,6 +406,112 @@ OldaleTown_EventScript_Boy::
 
 OldaleTown_EventScript_Boy_1:
 	msgbox OldaleTown_EventScript_Boy_Text_0, MSGBOX_NPC
+	return
+
+
+OldaleTown_EventScript_EmployeeTrigger1::
+	lock
+	faceplayer
+	applymovement LOCALID_MART_EMPLOYEE, Common_Movement_ExclamationMark
+	playse SE_PIN
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement LOCALID_MART_EMPLOYEE, OldaleTown_Movement_EmployeeApproach1
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playbgm MUS_FOLLOW_ME, FALSE
+	msgbox OldaleTown_Text_IWorkAtPokemonMart, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MART_EMPLOYEE, OldaleTown_Movement_EmployeeReturn1
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_EmployeeReturn1
+	waitmovement 0
+	goto OldaleTown_EventScript_GoToMartEast
+	return
+
+
+OldaleTown_Movement_EmployeeApproach1:
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+OldaleTown_Movement_EmployeeReturn1:
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+OldaleTown_EventScript_EmployeeTrigger2::
+	lock
+	faceplayer
+	applymovement LOCALID_MART_EMPLOYEE, Common_Movement_ExclamationMark
+	playse SE_PIN
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement LOCALID_MART_EMPLOYEE, OldaleTown_Movement_EmployeeApproach2
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playbgm MUS_FOLLOW_ME, FALSE
+	msgbox OldaleTown_Text_IWorkAtPokemonMart, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MART_EMPLOYEE, OldaleTown_Movement_EmployeeReturn2
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_EmployeeReturn2
+	waitmovement 0
+	goto OldaleTown_EventScript_GoToMartEast
+	return
+
+
+OldaleTown_Movement_EmployeeApproach2:
+	walk_left
+	walk_left
+	step_end
+
+OldaleTown_Movement_EmployeeReturn2:
+	walk_right
+	walk_right
+	step_end
+
+OldaleTown_EventScript_EmployeeTrigger3::
+	lock
+	faceplayer
+	applymovement LOCALID_MART_EMPLOYEE, Common_Movement_ExclamationMark
+	playse SE_PIN
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement LOCALID_MART_EMPLOYEE, OldaleTown_Movement_EmployeeApproach3
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playbgm MUS_FOLLOW_ME, FALSE
+	msgbox OldaleTown_Text_IWorkAtPokemonMart, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MART_EMPLOYEE, OldaleTown_Movement_EmployeeReturn3
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_EmployeeReturn3
+	waitmovement 0
+	goto OldaleTown_EventScript_GoToMartEast
+	return
+
+
+OldaleTown_Movement_EmployeeApproach3:
+	walk_left
+	step_end
+
+OldaleTown_Movement_EmployeeReturn3:
+	walk_right
+	step_end
+
+OldaleTown_EventScript_EmployeeTrigger4::
+	lock
+	applymovement LOCALID_MART_EMPLOYEE, Common_Movement_ExclamationMark
+	playse SE_PIN
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement LOCALID_MART_EMPLOYEE, Common_Movement_FaceLeft
+	waitmovement LOCALID_MART_EMPLOYEE
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playbgm MUS_FOLLOW_ME, FALSE
+	msgbox OldaleTown_Text_IWorkAtPokemonMart, MSGBOX_DEFAULT
+	closemessage
+	goto OldaleTown_EventScript_GoToMartEast
 	return
 
 

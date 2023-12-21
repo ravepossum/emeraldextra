@@ -189,6 +189,42 @@
       "var": "VAR_OLDALE_RIVAL_STATE",
       "var_value": "1",
       "script": "OldaleTown_EventScript_RivalTrigger3"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 14,
+      "elevation": 3,
+      "var": "VAR_POKEVIAL_STATE",
+      "var_value": "0",
+      "script": "OldaleTown_EventScript_EmployeeTrigger4"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 14,
+      "elevation": 3,
+      "var": "VAR_POKEVIAL_STATE",
+      "var_value": "0",
+      "script": "OldaleTown_EventScript_EmployeeTrigger3"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 14,
+      "elevation": 3,
+      "var": "VAR_POKEVIAL_STATE",
+      "var_value": "0",
+      "script": "OldaleTown_EventScript_EmployeeTrigger2"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 14,
+      "elevation": 3,
+      "var": "VAR_POKEVIAL_STATE",
+      "var_value": "0",
+      "script": "OldaleTown_EventScript_EmployeeTrigger1"
     }
   ],
   "bg_events": [
