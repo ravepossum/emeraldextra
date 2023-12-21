@@ -419,7 +419,7 @@ script RivalsHouse_1F_EventScript_RegionChoice {
     msgbox(RivalsHouse_1F_Text_WhichRegion, MSGBOX_DEFAULT)
 
     dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
-                  "Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar")
+                  "Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Paldea")
     if (var(VAR_RESULT) == REGION_HOENN) {
         msgbox(format("Ah yes that's right - they're from our very own Hoenn region!"), MSGBOX_DEFAULT)
     } else {

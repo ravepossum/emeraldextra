@@ -70,6 +70,7 @@ const u8 gRegionNames[REGION_COUNT][REGION_MAX_NAME_LENGTH + 1] = {
     [REGION_KALOS]  = _("Kalos"),
     [REGION_ALOLA]  = _("Alola"),
     [REGION_GALAR]  = _("Galar"),
+    [REGION_PALDEA]  = _("Paldea"),
 };
 
 const u8 *GetRegionName(u16 region)
@@ -182,7 +183,13 @@ static const u16 sStarterMon[REGION_COUNT][STARTER_MON_COUNT] = {
         SPECIES_GROOKEY,
         SPECIES_SCORBUNNY,
         SPECIES_SOBBLE
-    }
+    },
+    [REGION_PALDEA] = 
+    {
+        SPECIES_SPRIGATITO,
+        SPECIES_FUECOCO,
+        SPECIES_QUAXLY
+    },
 };
 
 static const struct BgTemplate sBgTemplates[3] =

@@ -402,17 +402,17 @@ RivalsHouse_1F_Text_DoYouHavePokemon:
 
 RivalsHouse_1F_EventScript_RegionChoice::
 	msgbox RivalsHouse_1F_Text_WhichRegion, MSGBOX_DEFAULT
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, RivalsHouse_1F_EventScript_RegionChoice_Text_0, RivalsHouse_1F_EventScript_RegionChoice_Text_1, RivalsHouse_1F_EventScript_RegionChoice_Text_2, RivalsHouse_1F_EventScript_RegionChoice_Text_3, RivalsHouse_1F_EventScript_RegionChoice_Text_4, RivalsHouse_1F_EventScript_RegionChoice_Text_5, RivalsHouse_1F_EventScript_RegionChoice_Text_6, RivalsHouse_1F_EventScript_RegionChoice_Text_7
+	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, RivalsHouse_1F_EventScript_RegionChoice_Text_0, RivalsHouse_1F_EventScript_RegionChoice_Text_1, RivalsHouse_1F_EventScript_RegionChoice_Text_2, RivalsHouse_1F_EventScript_RegionChoice_Text_3, RivalsHouse_1F_EventScript_RegionChoice_Text_4, RivalsHouse_1F_EventScript_RegionChoice_Text_5, RivalsHouse_1F_EventScript_RegionChoice_Text_6, RivalsHouse_1F_EventScript_RegionChoice_Text_7, RivalsHouse_1F_EventScript_RegionChoice_Text_8
 	compare VAR_RESULT, REGION_HOENN
 	goto_if_eq RivalsHouse_1F_EventScript_RegionChoice_2
 	bufferregionname STR_VAR_1, VAR_RESULT
-	msgbox RivalsHouse_1F_EventScript_RegionChoice_Text_9, MSGBOX_DEFAULT
+	msgbox RivalsHouse_1F_EventScript_RegionChoice_Text_10, MSGBOX_DEFAULT
 RivalsHouse_1F_EventScript_RegionChoice_1:
 	copyvar VAR_REGION_CHOICE, VAR_RESULT
 	return
 
 RivalsHouse_1F_EventScript_RegionChoice_2:
-	msgbox RivalsHouse_1F_EventScript_RegionChoice_Text_8, MSGBOX_DEFAULT
+	msgbox RivalsHouse_1F_EventScript_RegionChoice_Text_9, MSGBOX_DEFAULT
 	goto RivalsHouse_1F_EventScript_RegionChoice_1
 
 
@@ -441,10 +441,13 @@ RivalsHouse_1F_EventScript_RegionChoice_Text_7:
 	.string "Galar$"
 
 RivalsHouse_1F_EventScript_RegionChoice_Text_8:
+	.string "Paldea$"
+
+RivalsHouse_1F_EventScript_RegionChoice_Text_9:
 	.string "Ah yes that's right - they're from our\n"
 	.string "very own Hoenn region!$"
 
-RivalsHouse_1F_EventScript_RegionChoice_Text_9:
+RivalsHouse_1F_EventScript_RegionChoice_Text_10:
 	.string "Ah yes that's right - they're from the\n"
 	.string "{STR_VAR_1} region!$"
 
