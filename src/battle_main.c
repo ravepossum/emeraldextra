@@ -4619,10 +4619,13 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
         speed = (speed * 110) / 100;
     }
 
-    // item effects
-    if (holdEffect == HOLD_EFFECT_MACHO_BRACE || holdEffect == HOLD_EFFECT_POWER_ITEM)
+    // removed brace downside
+    /*if (holdEffect == HOLD_EFFECT_MACHO_BRACE || holdEffect == HOLD_EFFECT_POWER_ITEM)
         speed /= 2;
-    else if (holdEffect == HOLD_EFFECT_IRON_BALL)
+    else*/ 
+    
+    // item effects
+    if (holdEffect == HOLD_EFFECT_IRON_BALL)
         speed /= 2;
     else if (holdEffect == HOLD_EFFECT_CHOICE_SCARF && !IsDynamaxed(battler))
         speed = (speed * 150) / 100;
