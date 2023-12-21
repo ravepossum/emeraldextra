@@ -1870,3 +1870,7 @@ const u8 gText_TMCaseWillBePutAway[] =  _("The TM Case will be\nput away.");
 const u8 gText_FontSmall[] =            _("{FONT_SMALL}");
 const u8 gText_FontShort[] =            _("{FONT_SHORT}");
 const u8 gText_TMCase_Blue[] =          _("{COLOR_HIGHLIGHT_SHADOW BLUE TRANSPARENT LIGHT_BLUE}{STR_VAR_2}");
+
+// dexnav day/night
+const u8 gText_DexNavDay[] =            _("/Day");
+const u8 gText_DexNavNight[] =            _("/Night");

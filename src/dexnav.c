@@ -36,6 +36,7 @@
 #include "pokenav.h"
 #include "random.h"
 #include "region_map.h"
+#include "rtc.h"
 #include "scanline_effect.h"
 #include "script.h"
 #include "script_pokemon_util.h"
@@ -57,6 +58,7 @@
 #include "constants/songs.h"
 #include "constants/abilities.h"
 #include "constants/rgb.h"
+#include "constants/rtc.h"
 #include "constants/region_map_sections.h"
 #include "gba/m4a_internal.h"
 
@@ -160,6 +162,7 @@ static void DrawHiddenSearchWindow(u8 width);
 static const u32 sDexNavGuiTiles[] = INCBIN_U32("graphics/dexnav/gui_tiles.4bpp.lz");
 static const u32 sDexNavGuiTilemap[] = INCBIN_U32("graphics/dexnav/gui_tilemap.bin.lz");
 static const u32 sDexNavGuiPal[] = INCBIN_U32("graphics/dexnav/gui.gbapal");
+static const u32 sDexNavGuiNightPal[] = INCBIN_U32("graphics/dexnav/gui_night.gbapal");
 
 static const u32 sSelectionCursorGfx[] = INCBIN_U32("graphics/dexnav/cursor.4bpp.lz");
 static const u16 sSelectionCursorPal[] = INCBIN_U16("graphics/dexnav/cursor.gbapal");
@@ -1662,7 +1665,11 @@ static bool8 DexNav_LoadGraphics(void)
         }
         break;
     case 2:
-        LoadPalette(sDexNavGuiPal, 0, 32);
+        if (GetTimeOfDay() == TIME_NIGHT) {
+            LoadPalette(sDexNavGuiNightPal, 0, 32);
+        } else {
+            LoadPalette(sDexNavGuiPal, 0, 32);
+        }
         sDexNavUiDataPtr->state++;
         break;
     default:
@@ -2188,9 +2195,23 @@ static void PrintCurrentSpeciesInfo(void)
 
 static void PrintMapName(void)
 {
+    u16 mapStringLength = MAP_NAME_LENGTH;
+    int left;
+
     GetMapName(gStringVar3, GetCurrentRegionMapSectionId(), 0);
-    AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, 108 +
-      GetStringRightAlignXOffset(1, gStringVar3, MAP_NAME_LENGTH * GetFontAttribute(1, FONTATTR_MAX_LETTER_WIDTH)), 0, sFontColor_White, 0, gStringVar3);
+
+    if (GetTimeOfDay() == TIME_NIGHT) {
+        StringAppend(gStringVar3, gText_DexNavNight);
+        mapStringLength += StringLength(gText_DexNavNight);
+        left = 75;
+    } else {
+        StringAppend(gStringVar3, gText_DexNavDay);
+        mapStringLength += StringLength(gText_DexNavDay);
+        left = 85;
+    }
+    // originally 108 + getstringrightalignxoffset...
+    AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, left +
+      GetStringRightAlignXOffset(1, gStringVar3, mapStringLength * GetFontAttribute(1, FONTATTR_MAX_LETTER_WIDTH)), 0, sFontColor_White, 0, gStringVar3);
     CopyWindowToVram(WINDOW_REGISTERED, 3);
 }
 

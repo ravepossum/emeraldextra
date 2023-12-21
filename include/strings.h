@@ -3076,4 +3076,8 @@ extern const u8 gText_FontShort[];
 extern const u8 gText_TMCase_Blue[];
 extern const u8 gText_BasePointsResetToZero[];
 
+// dexnav day/night
+extern const u8 gText_DexNavDay[];
+extern const u8 gText_DexNavNight[];
+
 #endif // GUARD_STRINGS_H
