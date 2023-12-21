@@ -53,9 +53,9 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor, MSGBOX_DEFAULT
 	giveitem ITEM_LETTER
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis, MSGBOX_DEFAULT
-    call RustboroCity_DevonCorp_3F_EventScript_GiveMon
+    call RustboroCity_DevonCorp_3F_EventScript_GiveEscapeRope
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainMonRestUp, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainRopeRestUp, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
@@ -304,48 +304,44 @@ RustboroCity_DevonCorp_3F_Text_RareRocksDisplay:
 	.string "It's a collection of rare rocks and\n"
 	.string "stones assembled by the President.$"
 `
+script RustboroCity_DevonCorp_3F_EventScript_GiveEscapeRope {
+	giveitem(ITEM_ESCAPE_ROPE)
+	return
+}
 
-script RustboroCity_DevonCorp_3F_EventScript_GiveMon {
+// script RustboroCity_DevonCorp_3F_EventScript_GiveMon {
 
-    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_EEVEE)
-    showmonpic(VAR_TEMP_TRANSFERRED_SPECIES, 10, 3)
-    playfanfare(MUS_OBTAIN_ITEM)
-	message(RustboroCity_DevonCorp_3F_Text_ReceivedMon)
-	waitfanfare
-    hidemonpic
-	bufferspeciesname(STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES)
+//     setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_EEVEE)
+//     showmonpic(VAR_TEMP_TRANSFERRED_SPECIES, 10, 3)
+//     playfanfare(MUS_OBTAIN_ITEM)
+// 	message(RustboroCity_DevonCorp_3F_Text_ReceivedMon)
+// 	waitfanfare
+//     hidemonpic
+// 	bufferspeciesname(STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES)
 
-    givemon(VAR_TEMP_TRANSFERRED_SPECIES, 15, ITEM_NONE)
-    if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
-        msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
-        if (var(VAR_RESULT) == YES) {
-            call(Common_EventScript_GetGiftMonPartySlot)
-	        call(Common_EventScript_NameReceivedPartyMon)
-        }
-    }
-    if (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
-        msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
-        if (var(VAR_RESULT) == YES) {
-            call(Common_EventScript_NameReceivedBoxMon)
-        }
-        call(Common_EventScript_TransferredToPC)
-    }
+//     givemon(VAR_TEMP_TRANSFERRED_SPECIES, 15, ITEM_NONE)
+//     if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+//         msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+//         if (var(VAR_RESULT) == YES) {
+//             call(Common_EventScript_GetGiftMonPartySlot)
+// 	        call(Common_EventScript_NameReceivedPartyMon)
+//         }
+//     }
+//     if (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+//         msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+//         if (var(VAR_RESULT) == YES) {
+//             call(Common_EventScript_NameReceivedBoxMon)
+//         }
+//         call(Common_EventScript_TransferredToPC)
+//     }
     
-    return
-}
+//     return
+// }
 
-text RustboroCity_DevonCorp_3F_Text_ReceivedMon {
-	format("{PLAYER} received Eevee!$")
-}
+// text RustboroCity_DevonCorp_3F_Text_ReceivedMon {
+// 	format("{PLAYER} received Eevee!$")
+// }
 
-text RustboroCity_DevonCorp_3F_Text_MrStoneExplainMonRestUp {
-	format("Mr. Stone: That Pokémon…\p
-            Eevee is an exotic Pokémon from the Kanto
-            region that can take on many different forms.\p
-            Please take good care of it.\p
-            By the way, I've heard that sinister\n
-            criminals--Magma and Aqua, I believe--\l
-            have been making trouble far and wide.\p
-            I think it would be best if you rested\n
-            up before you go on your way.")
+text RustboroCity_DevonCorp_3F_Text_MrStoneExplainRopeRestUp {
+	format("Mr. Stone: That item…\pThe Escape Rope is a new Devon creation that will allow you to quickly escape from any cave or dungeon.\pYou can use it as many times as you'd like.\pI hope it will aid you in your upcoming journey to Dewford.\pBy the way, I've heard that sinister\ncriminals--Magma and Aqua, I believe--\lhave been making trouble far and wide.\pI think it would be best if you rested\nup before you go on your way.")
 }

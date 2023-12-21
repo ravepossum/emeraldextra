@@ -51,9 +51,9 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor, MSGBOX_DEFAULT
 	giveitem ITEM_LETTER
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis, MSGBOX_DEFAULT
-    call RustboroCity_DevonCorp_3F_EventScript_GiveMon
+    call RustboroCity_DevonCorp_3F_EventScript_GiveEscapeRope
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainMonRestUp, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainRopeRestUp, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
@@ -302,56 +302,20 @@ RustboroCity_DevonCorp_3F_Text_RareRocksDisplay:
 	.string "It's a collection of rare rocks and\n"
 	.string "stones assembled by the President.$"
 
-RustboroCity_DevonCorp_3F_EventScript_GiveMon::
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_EEVEE
-	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
-	playfanfare MUS_OBTAIN_ITEM
-	message RustboroCity_DevonCorp_3F_Text_ReceivedMon
-	waitfanfare
-	hidemonpic
-	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
-	givemon VAR_TEMP_TRANSFERRED_SPECIES, 15, ITEM_NONE
-	compare VAR_RESULT, MON_GIVEN_TO_PARTY
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_2
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_1:
-	compare VAR_RESULT, MON_GIVEN_TO_PC
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_5
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_4:
+RustboroCity_DevonCorp_3F_EventScript_GiveEscapeRope::
+	giveitem ITEM_ESCAPE_ROPE
 	return
 
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_2:
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_7
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_1
 
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_5:
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_GiveMon_10
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_9:
-	call Common_EventScript_TransferredToPC
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_4
-
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_7:
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_1
-
-RustboroCity_DevonCorp_3F_EventScript_GiveMon_10:
-	call Common_EventScript_NameReceivedBoxMon
-	goto RustboroCity_DevonCorp_3F_EventScript_GiveMon_9
-
-
-RustboroCity_DevonCorp_3F_Text_ReceivedMon::
-	.string "{PLAYER} received Eevee!$"
-
-RustboroCity_DevonCorp_3F_Text_MrStoneExplainMonRestUp::
-	.string "Mr. Stone: That Pokémon…\p"
-	.string "Eevee is an exotic Pokémon from the\n"
-	.string "Kanto region that can take on many\l"
-	.string "different forms.\p"
-	.string "Please take good care of it.\p"
+RustboroCity_DevonCorp_3F_Text_MrStoneExplainRopeRestUp::
+	.string "Mr. Stone: That item…\p"
+	.string "The Escape Rope is a new Devon creation\n"
+	.string "that will allow you to quickly escape\l"
+	.string "from any cave or dungeon.\p"
+	.string "You can use it as many times as you'd\n"
+	.string "like.\p"
+	.string "I hope it will aid you in your upcoming\n"
+	.string "journey to Dewford.\p"
 	.string "By the way, I've heard that sinister\n"
 	.string "criminals--Magma and Aqua, I believe--\l"
 	.string "have been making trouble far and wide.\p"

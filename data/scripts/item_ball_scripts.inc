@@ -355,8 +355,8 @@ RusturfTunnel_EventScript_ItemMaxEther::
 	finditem ITEM_MAX_ETHER
 	end
 
-GraniteCave_1F_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+GraniteCave_1F_EventScript_ItemPPUp::
+	finditem ITEM_PP_UP
 	end
 
 GraniteCave_B1F_EventScript_ItemPokeBall::
@@ -407,8 +407,8 @@ NewMauville_Inside_EventScript_ItemUltraBall::
 	finditem ITEM_ULTRA_BALL
 	end
 
-NewMauville_Inside_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+NewMauville_Inside_EventScript_ItemPPUp::
+	finditem ITEM_PP_UP
 	end
 
 NewMauville_Inside_EventScript_ItemThunderStone::
@@ -427,8 +427,8 @@ AbandonedShip_Rooms_1F_EventScript_ItemHarborMail::
 	finditem ITEM_HARBOR_MAIL
 	end
 
-AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+AbandonedShip_Rooms_B1F_EventScript_ItemPPUp::
+	finditem ITEM_PP_UP
 	end
 
 AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall::
@@ -659,6 +659,6 @@ MagmaHideout_4F_EventScript_ItemMaxRevive::
 	finditem ITEM_MAX_REVIVE
 	end
 
-MagmaHideout_3F_3R_EventScript_ItemEscapeRope::
-	finditem ITEM_ESCAPE_ROPE
+MagmaHideout_3F_3R_EventScript_ItemPPMax::
+	finditem ITEM_PP_MAX
 	end
