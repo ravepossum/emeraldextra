@@ -1667,14 +1667,17 @@ static void DrawStatsButtonPrompt (s16 *taskData)
     {
         case 0:
             // print IVs prompt
+            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_STATS);
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IVS);
             break;
         case 1:
             // print EVs prompt
+            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IVS);
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVS);
             break;
         case 2:
             // print Stats prompt
+            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVS);
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_STATS);
             break;
     }
