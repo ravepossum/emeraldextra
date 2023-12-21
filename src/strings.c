@@ -1873,4 +1873,9 @@ const u8 gText_TMCase_Blue[] =          _("{COLOR_HIGHLIGHT_SHADOW BLUE TRANSPAR
 
 // dexnav day/night
 const u8 gText_DexNavDay[] =            _("/Day");
-const u8 gText_DexNavNight[] =            _("/Night");
+const u8 gText_DexNavNight[] =          _("/Night");
+
+// view IVs and EVs on summary screen
+const u8 gText_ViewIVs[] =            _("IVs");
+const u8 gText_ViewEVs[] =            _("EVs");
+const u8 gText_ViewStats[] =          _("Stats");

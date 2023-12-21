@@ -3081,4 +3081,9 @@ extern const u8 gText_BasePointsResetToZero[];
 extern const u8 gText_DexNavDay[];
 extern const u8 gText_DexNavNight[];
 
+// view IVs and EVs on summary screen
+extern const u8 gText_ViewIVs[];
+extern const u8 gText_ViewEVs[];
+extern const u8 gText_ViewStats[];
+
 #endif // GUARD_STRINGS_H
