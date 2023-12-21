@@ -377,7 +377,7 @@
               {
                 "min_level": 3,
                 "max_level": 4,
-                "species": "SPECIES_PUMPKABOO"
+                "species": "SPECIES_PUMPKABOO_AVERAGE"
               },
               {
                 "min_level": 3,
@@ -685,7 +685,7 @@
               {
                 "min_level": 3,
                 "max_level": 4,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_LECHONK"
               },
               {
                 "min_level": 3,
@@ -705,7 +705,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_LECHONK"
               },
               {
                 "min_level": 3,
@@ -725,7 +725,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_LECHONK"
               },
               {
                 "min_level": 3,
@@ -735,7 +735,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_LECHONK"
               },
               {
                 "min_level": 4,
@@ -13232,7 +13232,7 @@
               {
                 "min_level": 3,
                 "max_level": 4,
-                "species": "SPECIES_TEDDIURSA"
+                "species": "SPECIES_WOOPER_PALDEAN"
               },
               {
                 "min_level": 3,
@@ -13242,7 +13242,7 @@
               {
                 "min_level": 4,
                 "max_level": 4,
-                "species": "SPECIES_DRIFLOON"
+                "species": "SPECIES_TEDDIURSA"
               },
               {
                 "min_level": 4,
@@ -13252,7 +13252,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_TEDDIURSA"
+                "species": "SPECIES_WOOPER_PALDEAN"
               },
               {
                 "min_level": 4,
@@ -13262,7 +13262,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_DRIFLOON"
+                "species": "SPECIES_TEDDIURSA"
               },
               {
                 "min_level": 4,
@@ -13272,7 +13272,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_TEDDIURSA"
+                "species": "SPECIES_WOOPER_PALDEAN"
               },
               {
                 "min_level": 3,
@@ -13282,7 +13282,7 @@
               {
                 "min_level": 4,
                 "max_level": 4,
-                "species": "SPECIES_TEDDIURSA"
+                "species": "SPECIES_WOOPER_PALDEAN"
               },
               {
                 "min_level": 4,
@@ -13311,7 +13311,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_EXEGGCUTE"
+                "species": "SPECIES_FLAMIGO"
               },
               {
                 "min_level": 5,
@@ -13331,7 +13331,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_EXEGGCUTE"
+                "species": "SPECIES_FLAMIGO"
               },
               {
                 "min_level": 5,
@@ -13370,7 +13370,7 @@
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_ORICORIO"
+                "species": "SPECIES_ORICORIO_BAILE"
               },
               {
                 "min_level": 5,
@@ -13385,12 +13385,12 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_DHELMISE"
+                "species": "SPECIES_EXEGGCUTE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_ORICORIO"
+                "species": "SPECIES_ORICORIO_PAU"
               },
               {
                 "min_level": 5,
@@ -13405,12 +13405,12 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_DHELMISE"
+                "species": "SPECIES_EXEGGCUTE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_ORICORIO"
+                "species": "SPECIES_ORICORIO_POM_POM"
               },
               {
                 "min_level": 5,
@@ -13420,7 +13420,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_ORICORIO"
+                "species": "SPECIES_ORICORIO_SENSU"
               },
               {
                 "min_level": 5,
