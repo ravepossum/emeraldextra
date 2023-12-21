@@ -1459,8 +1459,7 @@ SlateportCity_EventScript_Electrike::
 
 
 SlateportCity_EventScript_Cook_Text_0:
-	.string "I sell my own sweets, baked fresh daily!\n"
-	.string "I've heard Alcremie loves them.$"
+	.string "I sell my own sweets, baked fresh daily!$"
 
 SlateportCity_EventScript_Cook_Text_1:
 	.string "How may I serve you?$"

@@ -99,6 +99,7 @@ script EventScript_PkmnCenterUnionNurse_ChangeTime {
 
         dynmultipush("Morning", TIME_MORNING)
         dynmultipush("Day", TIME_DAY)
+        dynmultipush("Evening", TIME_EVENING)
         dynmultipush("Night", TIME_NIGHT)
         dynmultipush("Cancel", 127)
         dynmultistack(0, 0, FALSE, 4, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE)

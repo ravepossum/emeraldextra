@@ -108,7 +108,8 @@ EventScript_PkmnCenterUnionNurse_ChangeTime::
 	waitmessage
 	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_1, TIME_MORNING
 	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_2, TIME_DAY
-	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_3, TIME_NIGHT
+	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_3, TIME_EVENING
+	dynmultipush EventScript_PkmnCenterUnionNurse_ChangeTime_Text_4, TIME_NIGHT
 	dynmultipush EventScript_PkmnCenterUnionNurse_Multichoice_Text_3, 127
 	dynmultistack 0, 0, FALSE, 4, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE
 	compare VAR_RESULT, 127
@@ -116,7 +117,7 @@ EventScript_PkmnCenterUnionNurse_ChangeTime::
 	closemessage
 	settimeofday VAR_RESULT
 	call Common_EventScript_UnionNurseRest
-	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_4, MSGBOX_DEFAULT
+	msgbox EventScript_PkmnCenterUnionNurse_ChangeTime_Text_5, MSGBOX_DEFAULT
 	release
 	end
 
@@ -174,9 +175,12 @@ EventScript_PkmnCenterUnionNurse_ChangeTime_Text_2:
 	.string "Day$"
 
 EventScript_PkmnCenterUnionNurse_ChangeTime_Text_3:
-	.string "Night$"
+	.string "Evening$"
 
 EventScript_PkmnCenterUnionNurse_ChangeTime_Text_4:
+	.string "Night$"
+
+EventScript_PkmnCenterUnionNurse_ChangeTime_Text_5:
 	.string "You and your Pokémon are well rested.$"
 
 PkmnCenterUnionNurse_AnythingElse::
