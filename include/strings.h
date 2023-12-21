@@ -3063,6 +3063,7 @@ extern const u8 gText_InfiniteRepelOff[];
 extern const u8 gText_Medicine[];
 
 //Pokevial Branch
+extern const u8 gText_PokevialHasDose[];
 extern const u8 gText_PokevialHasDoses[];
 extern const u8 gText_PokevialIsEmpty[];
 extern const u8 gText_YourPkmnWereRestored[];

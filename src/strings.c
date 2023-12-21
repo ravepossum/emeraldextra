@@ -1853,10 +1853,10 @@ const u8 gText_ExpShareOn[] = _("Turned on the Exp. Share.\pParty will now gain 
 const u8 gText_ExpShareOff[] = _("Turned off the Exp. Share.\pParty will no longer gain a portion\nof any Experience Points.{PAUSE_UNTIL_PRESS}");
 
 // Start Pokevial Branch
-const u8 gText_PokevialHasDoses[] =_("Use the {STR_VAR_1}?");
-//const u8 gText_PokevialHasDoses[] =_("The {STR_VAR_1} has {STR_VAR_2} doses remaining.\nUse the {STR_VAR_1}?");
+const u8 gText_PokevialHasDose[] =_("The {STR_VAR_1} has {STR_VAR_2} dose remaining.\nUse the {STR_VAR_1}?");
+const u8 gText_PokevialHasDoses[] =_("The {STR_VAR_1} has {STR_VAR_2} doses remaining.\nUse the {STR_VAR_1}?");
 const u8 gText_PokevialIsEmpty[] =_("The {STR_VAR_1} is empty!\nRefill it by healing at a {STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
-const u8 gText_YourPkmnWereRestored[] =_("Your POKéMON were restored to full health.{PAUSE_UNTIL_PRESS}");
+const u8 gText_YourPkmnWereRestored[] =_("Your Pokémon were restored to full health.{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_InfiniteRepelOn[] = _("Turned on the Inf. Repel.\pWeak wild Pokémon will no \nlonger be encountered.{PAUSE_UNTIL_PRESS}");
 const u8 gText_InfiniteRepelOff[] = _("Turned off the Inf. Repel.\pWeak wild Pokémon will be\nencountered.{PAUSE_UNTIL_PRESS}");

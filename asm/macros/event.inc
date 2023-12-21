@@ -1767,6 +1767,16 @@
 	_dynmultichoice \left, \top, \ignoreBPress, \maxBeforeScroll, \shouldSort, \initialSelected, \callbacks, NULL
 	.endm
 
+	@ Checks or manipulates the size or dose of the Pokevial.
+    @ When parameter is empty, it assumes VIAL_SIZE.
+    @ When amount is empty, it assumes 1.
+	.macro pokevial mode:req, parameter=VIAL_SIZE, amount=1
+	.byte 0xe5
+    .byte \mode
+    .byte \parameter
+    .byte \amount
+	.endm
+	
 	@ Writes the name of the given region to the specified buffer.
 	.macro bufferregionname stringVarId:req, region:req
 	.byte 0xe6
@@ -1786,6 +1796,7 @@
 	stringvar \stringVarId
 	.2byte \ability
 	.endm
+
 
 @ Supplementary
 
@@ -2078,16 +2089,6 @@
 	.endm
 	
     @ Start Pokevial Branch
-
-	@ Checks or manipulates the size or dose of the Pokevial.
-    @ When parameter is empty, it assumes VIAL_SIZE.
-    @ When amount is empty, it assumes 1.
-	.macro pokevial mode:req, parameter=VIAL_SIZE, amount=1
-	.byte 0xe3
-    .byte \mode
-    .byte \parameter
-    .byte \amount
-	.endm
 
     @ Gets the current number of doses in the Pokevial and stores it to VAR_0x8006
     .macro pokevialgetdose

@@ -1490,7 +1490,12 @@ void PokevialPrintDosesAndConfirmMessage(u32 currentDoses, bool32 isPlayerUsingR
     u32 numDigits = CountDigits(currentDoses);
 
     ConvertIntToDecimalStringN(gStringVar2, currentDoses, STR_CONV_MODE_LEFT_ALIGN, numDigits);
-    StringExpandPlaceholders(gStringVar4, gText_PokevialHasDoses);
+
+    if (currentDoses > 1) {
+        StringExpandPlaceholders(gStringVar4, gText_PokevialHasDoses);
+    } else {
+        StringExpandPlaceholders(gStringVar4, gText_PokevialHasDose);
+    }
 
     if (isPlayerUsingRegisteredKeyItem)
         DisplayItemMessageOnField(taskId, gStringVar4, UsePokevialFieldYesNo);

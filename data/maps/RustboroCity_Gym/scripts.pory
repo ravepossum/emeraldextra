@@ -1,3 +1,5 @@
+raw
+`
 RustboroCity_Gym_MapScripts::
 	.byte 0
 
@@ -281,30 +283,15 @@ RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons:
 	.string "You only have one Pokémon with you?\p"
 	.string "Please return with at least one more\n"
 	.string "Pokémon.$"
-
-RustboroCity_Gym_EventScript_UpgradePokeVial::
-	msgbox RustboroCity_Gym_EventScript_UpgradePokeVial_Text_0
-	pokevialincreasesize
-	playse SE_USE_ITEM
-	waitse
-	setvar VAR_POKEVIAL_STATE, 2
-	msgbox RustboroCity_Gym_EventScript_UpgradePokeVial_Text_1
-	msgbox RustboroCity_Gym_EventScript_UpgradePokeVial_Text_2
-	release
-	end
-
-
-RustboroCity_Gym_EventScript_UpgradePokeVial_Text_0:
-	.string "Oh! One last thing--I see you have a\n"
-	.string "Pokévial!\p"
-	.string "Let me upgrade that for you.$"
-
-RustboroCity_Gym_EventScript_UpgradePokeVial_Text_1:
-	.string "Roxanne increased the size of your\n"
-	.string "Pokévial!$"
-
-RustboroCity_Gym_EventScript_UpgradePokeVial_Text_2:
-	.string "Roxanne: Now it can hold one additional\n"
-	.string "dose of medicine for your Pokémon.\p"
-	.string "I know a strong trainer like you will put\n"
-	.string "it to good use.$"
+`
+script RustboroCity_Gym_EventScript_UpgradePokeVial {
+    msgbox(format("Oh! One last thing--I see you have a Pokévial!\pLet me upgrade that for you."))
+    pokevialincreasesize
+    playse(SE_USE_ITEM)
+    waitse
+    setvar(VAR_POKEVIAL_STATE, 2)
+    msgbox(format("Roxanne increased the size of your Pokévial!"))
+    msgbox(format("Roxanne: Now it can hold one additional dose of medicine for your Pokémon.\pI know a strong trainer like you will put it to good use."))
+    release
+    end
+}
