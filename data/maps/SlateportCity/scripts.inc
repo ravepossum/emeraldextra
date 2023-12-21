@@ -1382,14 +1382,13 @@ SlateportCity_Text_TakingBattleTentChallenge:
 
     .align 2
 SlateportCity_Pokemart_Cook:
-	.2byte ITEM_PEWTER_CRUNCHIES 
-	.2byte ITEM_RAGE_CANDY_BAR
-	.2byte ITEM_LAVA_COOKIE
-	.2byte ITEM_OLD_GATEAU
-	.2byte ITEM_CASTELIACONE
-	.2byte ITEM_LUMIOSE_GALETTE
-	.2byte ITEM_SHALOUR_SABLE
-	.2byte ITEM_BIG_MALASADA
+	.2byte ITEM_STRAWBERRY_SWEET 
+	.2byte ITEM_LOVE_SWEET
+	.2byte ITEM_BERRY_SWEET
+	.2byte ITEM_CLOVER_SWEET
+	.2byte ITEM_FLOWER_SWEET
+	.2byte ITEM_STAR_SWEET
+	.2byte ITEM_RIBBON_SWEET
 	.2byte ITEM_NONE
 	release
 	end
@@ -1460,8 +1459,8 @@ SlateportCity_EventScript_Electrike::
 
 
 SlateportCity_EventScript_Cook_Text_0:
-	.string "I sell a variety of delicacies from many\n"
-	.string "regions!$"
+	.string "I sell my own sweets, baked fresh daily!\n"
+	.string "I've heard Alcremie loves them.$"
 
 SlateportCity_EventScript_Cook_Text_1:
 	.string "How may I serve you?$"
