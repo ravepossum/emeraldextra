@@ -14,11 +14,14 @@
 #include "roamer.h"
 #include "sound.h"
 #include "string_util.h"
+#include "strings.h"
+#include "text_window.h"
 #include "trig.h"
 #include "pokedex_area_region_map.h"
 #include "wild_encounter.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
+#include "constants/rtc.h"
 #include "constants/songs.h"
 
 // There are two types of indicators for the area screen to show where a Pokémon can occur:
@@ -100,6 +103,7 @@ static u16 GetRegionMapSectionId(u8, u8);
 static bool8 MapHasSpecies(const struct WildPokemonHeader *, u16);
 static bool8 MonListHasSpecies(const struct WildPokemonInfo *, u16, u16);
 static void DoAreaGlow(void);
+static void ClearPokedexArea(void);
 static void Task_ShowPokedexAreaScreen(u8);
 static void CreateAreaMarkerSprites(void);
 static void LoadAreaUnknownGraphics(void);
@@ -203,6 +207,20 @@ static const struct SpriteTemplate sAreaUnknownSpriteTemplate =
     .callback = SpriteCallbackDummy
 };
 
+static u8 windid;
+static const u8 sFontColor_Black[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, 5};
+
+static const struct WindowTemplate sTimeOfDayWindowTemplate =
+{
+    .bg = 1,
+    .tilemapLeft = 24,
+    .tilemapTop = 3,
+    .width = 7,
+    .height = 2,
+    .paletteNum = 0,
+    .baseBlock = 0x16C
+};
+
 static void ResetDrawAreaGlowState(void)
 {
     sPokedexAreaScreen->drawAreaGlowState = 0;
@@ -288,6 +306,20 @@ static void FindMapsWithMon(u16 species)
         // Add regular species to the area map
         for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED); i++)
         {
+            // skip day encounters during night state
+            if ((gWildMonHeaders[i+1].mapGroup != MAP_GROUP(UNDEFINED)) && (gWildMonHeaders[i].mapGroup == gWildMonHeaders[i+1].mapGroup) && (gWildMonHeaders[i].mapNum == gWildMonHeaders[i+1].mapNum))
+            {
+                if (sPokedexAreaScreen->state != TIME_DAY)
+                    continue;
+            }
+
+            // skip night encounters during day state
+            if (i > 0 && (gWildMonHeaders[i].mapGroup == gWildMonHeaders[i-1].mapGroup) && (gWildMonHeaders[i].mapNum == gWildMonHeaders[i-1].mapNum))
+            {
+                if (sPokedexAreaScreen->state != TIME_NIGHT)
+                    continue;
+            }
+
             if (MapHasSpecies(&gWildMonHeaders[i], species))
             {
                 switch (gWildMonHeaders[i].mapGroup)
@@ -579,6 +611,32 @@ static void DoAreaGlow(void)
     }
 }
 
+static void ClearPokedexArea(void)
+{
+    int i;
+
+    sPokedexAreaScreen->numOverworldAreas = 0;
+    sPokedexAreaScreen->glowTimer = 0;
+    sPokedexAreaScreen->showingMarkers = 0;
+    sPokedexAreaScreen->markerFlashCounter = 0;
+    sPokedexAreaScreen->numAreaMarkerSprites = 0;
+    sPokedexAreaScreen->alteringCaveCounter = 0;
+    sPokedexAreaScreen->alteringCaveId = 0;
+
+    for (i = 0; i < ARRAY_COUNT(sPokedexAreaScreen->specialAreaRegionMapSectionIds); i++)
+    {
+        sPokedexAreaScreen->specialAreaRegionMapSectionIds[i] = 0;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sPokedexAreaScreen->overworldAreasWithMons); i++)
+    {
+        sPokedexAreaScreen->overworldAreasWithMons[i].mapGroup = 0;
+        sPokedexAreaScreen->overworldAreasWithMons[i].mapNum = 0;
+        sPokedexAreaScreen->overworldAreasWithMons[i].regionMapSectionId = 0;
+    }
+
+}
+
 #define tState data[0]
 
 void ShowPokedexAreaScreen(u16 species, u8 *screenSwitchState)
@@ -616,6 +674,7 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         break;
     case 3:
         ResetDrawAreaGlowState();
+        sPokedexAreaScreen->state = TIME_DAY;
         break;
     case 4:
         if (DrawAreaGlow())
@@ -644,6 +703,12 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         ShowBg(2);
         ShowBg(3); // TryShowPokedexAreaMap will have done this already
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
+        windid = AddWindow(&sTimeOfDayWindowTemplate);
+        DrawTextBorderInner(windid, 0x242, 12);
+        FillWindowPixelBuffer(windid, PIXEL_FILL(7));
+        PutWindowTilemap(windid);
+        AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_AButtonDay);
+        CopyWindowToVram(windid, COPYWIN_FULL);
         break;
     case 11:
         gTasks[taskId].func = Task_HandlePokedexAreaScreenInput;
@@ -687,6 +752,33 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             gTasks[taskId].data[1] = 2;
             PlaySE(SE_DEX_PAGE);
         }
+        else if (JOY_NEW(A_BUTTON))
+        {
+            FillWindowPixelBuffer(windid, PIXEL_FILL(7));
+            if (sPokedexAreaScreen->state == TIME_DAY)
+            {
+                sPokedexAreaScreen->state = TIME_NIGHT;
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_AButtonNight);
+            }
+            else
+            {
+                sPokedexAreaScreen->state = TIME_DAY;
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_AButtonDay);
+            }
+
+            PlaySE(SE_DEX_PAGE);
+            DestroyAreaScreenSprites();
+            ResetDrawAreaGlowState();
+            ClearPokedexArea();
+            while (DrawAreaGlow() == TRUE)
+                DrawAreaGlow();
+            CreateAreaMarkerSprites();
+            LoadAreaUnknownGraphics();
+            CreateAreaUnknownSprites();
+            StartAreaGlow();
+            CopyWindowToVram(windid, COPYWIN_FULL);
+            return;
+        }
         else
             return;
         break;
@@ -697,6 +789,7 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         if (gPaletteFade.active)
             return;
         DestroyAreaScreenSprites();
+        ClearWindowTilemap(windid);
         sPokedexAreaScreen->screenSwitchState[0] = gTasks[taskId].data[1];
         ResetPokedexAreaMapBg();
         DestroyTask(taskId);

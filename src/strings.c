@@ -1879,3 +1879,7 @@ const u8 gText_DexNavNight[] =          _("/Night");
 const u8 gText_ViewIVs[] =            _("IVs");
 const u8 gText_ViewEVs[] =            _("EVs");
 const u8 gText_ViewStats[] =          _("Stats");
+
+// show day/night in pokedex area screen
+const u8 gText_AButtonDay[] = _("{A_BUTTON} Day");
+const u8 gText_AButtonNight[] = _("{A_BUTTON} Night");

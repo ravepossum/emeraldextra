@@ -3086,4 +3086,8 @@ extern const u8 gText_ViewIVs[];
 extern const u8 gText_ViewEVs[];
 extern const u8 gText_ViewStats[];
 
+// show day/night in pokedex area screen
+extern const u8 gText_AButtonDay[];
+extern const u8 gText_AButtonNight[];
+
 #endif // GUARD_STRINGS_H
