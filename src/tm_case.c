@@ -317,62 +317,11 @@ static const struct WindowTemplate sWindowTemplates_ContextMenu[] = {
     },
 };
 
-// static const struct OamData sTMSpriteOamData = {
-//     .size = 2,
-//     .priority = 2
-// };
-
-// static const union AnimCmd sAnim_TM[] = {
-//     ANIMCMD_FRAME(0, 0),
-//     ANIMCMD_END
-// };
-
-// static const union AnimCmd sAnim_HM[] = {
-//     ANIMCMD_FRAME(16, 0),
-//     ANIMCMD_END
-// };
-
-// static const union AnimCmd *const sAnims_Disc[] = {
-//     sAnim_TM,
-//     sAnim_HM
-// };
-
 static const struct CompressedSpriteSheet sTMSpriteSheet = {
     .data = (const void *)gTMCaseDisc_Gfx,
     .size = 0x400,
     .tag = TM_CASE_DISC_TAG
 };
-
-// static const struct SpriteTemplate sTMSpriteTemplate = {
-//     .tileTag = TM_CASE_DISC_TAG,
-//     .paletteTag = TM_CASE_DISC_TAG,
-//     .oam = &sTMSpriteOamData,
-//     .anims = sAnims_Disc,
-//     .images = NULL,
-//     .affineAnims = gDummySpriteAffineAnimTable,
-//     .callback = SpriteCallbackDummy
-// };
-
-// static const u16 sTMSpritePaletteOffsetByType[] = {
-//     [TYPE_NORMAL]   = 0x000,
-//     [TYPE_FIRE]     = 0x010,
-//     [TYPE_WATER]    = 0x020,
-//     [TYPE_GRASS]    = 0x030,
-//     [TYPE_ELECTRIC] = 0x040,
-//     [TYPE_ROCK]     = 0x050,
-//     [TYPE_GROUND]   = 0x060,
-//     [TYPE_ICE]      = 0x070,
-//     [TYPE_FLYING]   = 0x080,
-//     [TYPE_FIGHTING] = 0x090,
-//     [TYPE_GHOST]    = 0x0a0,
-//     [TYPE_BUG]      = 0x0b0,
-//     [TYPE_POISON]   = 0x0c0,
-//     [TYPE_PSYCHIC]  = 0x0d0,
-//     [TYPE_STEEL]    = 0x0e0,
-//     [TYPE_DARK]     = 0x0f0,
-//     [TYPE_DRAGON]   = 0x100,
-//     [TYPE_FAIRY]    =
-// };
 
 void InitTMCase(u8 type, void (* exitCallback)(void), u8 allowSelectClose)
 {
@@ -1302,7 +1251,7 @@ static void TintPartyMonIcons(u16 tm)
         }
         else
         {
-            gSprites[spriteIdData[i]].oam.objMode = ST_OAM_OBJ_NORMAL;//gMonIconPaletteIndices[species];
+            gSprites[spriteIdData[i]].oam.objMode = ST_OAM_OBJ_NORMAL;
         }
     }
     
