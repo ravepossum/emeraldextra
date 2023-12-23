@@ -2037,14 +2037,14 @@ const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
 
 // frlg_tm_case_port
-const u32 gUnknown_8E845D8[] = INCBIN_U32("graphics/tm_case/unk_8E845D8.4bpp.lz");
-const u32 gUnknown_8E84A24[] = INCBIN_U32("graphics/tm_case/unk_8E84A24.bin.lz");
-const u32 gUnknown_8E84B70[] = INCBIN_U32("graphics/tm_case/unk_8E84B70.bin.lz");
-const u32 gUnknown_8E84CB0[] = INCBIN_U32("graphics/tm_case/unk_8E84CB0.gbapal.lz");
-const u32 gUnknown_8E84D20[] = INCBIN_U32("graphics/tm_case/unk_8E84D20.gbapal.lz");
-const u32 gTMCase_TMSpriteGfx[] = INCBIN_U32("graphics/tm_case/unk_8E84D90.4bpp.lz");
-const u32 gUnknown_8E84F20[] = INCBIN_U32("graphics/tm_case/unk_8E84F20.gbapal.lz");
-const u32 gUnknown_8E85068[] = INCBIN_U32("graphics/tm_case/unk_8E85068.gbapal.lz");
-const u8 gUnknown_8E99118[] = INCBIN_U8("graphics/tm_case/unk_8E99118.4bpp");
-const u16 gTMCaseMainWindowPalette[] = INCBIN_U16("graphics/tm_case/unk_841F408.gbapal");
+const u32 gTMCase_Gfx[] = INCBIN_U32("graphics/tm_case/tm_case.4bpp.lz");
+const u32 gTMCaseMenu_Tilemap[] = INCBIN_U32("graphics/tm_case/menu.bin.lz");
+const u32 gTMCase_Tilemap[] = INCBIN_U32("graphics/tm_case/tm_case.bin.lz");
+const u32 gTMCaseMenu_Male_Pal[] = INCBIN_U32("graphics/tm_case/menu_male.gbapal.lz");
+const u32 gTMCaseMenu_Female_Pal[] = INCBIN_U32("graphics/tm_case/menu_female.gbapal.lz");
+const u32 gTMCaseDisc_Gfx[] = INCBIN_U32("graphics/tm_case/disc.4bpp.lz");
+const u32 gTMCaseDiscTypes1_Pal[] = INCBIN_U32("graphics/tm_case/disc_types_1.gbapal.lz");
+const u32 gTMCaseDiscTypes2_Pal[] = INCBIN_U32("graphics/tm_case/disc_types_2.gbapal.lz");
+const u8  gTMCaseHM_Gfx[] = INCBIN_U8("graphics/tm_case/hm.4bpp");
+const u16 gTMCaseMainWindowPalette[] = INCBIN_U16("graphics/tm_case/tm_menu.gbapal");
 

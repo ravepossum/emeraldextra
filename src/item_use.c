@@ -892,7 +892,6 @@ static void Task_InitTMCaseFromField(u8 taskId)
     if (!gPaletteFade.active)
     {
         CleanupOverworldWindowsAndTilemaps();
-        // sub_80A1184();
         InitTMCase(0, CB2_ReturnToField, 1);
         DestroyTask(taskId);
     }
