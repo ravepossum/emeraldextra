@@ -54,6 +54,7 @@ enum {
     COLOR_DARK,
     COLOR_CURSOR_SELECTED,
     COLOR_MOVE_INFO,
+    COLOR_TITLE,
     COLOR_CURSOR_ERASE = 0xFF
 };
 
@@ -194,10 +195,11 @@ const u8 gItemDescription_ITEM_TM_CASE[] = _("A case that holds TMs and HMs.\nIt
 static ALIGNED(4) const u16 sPal3Override[] = {RGB(8, 8, 8), RGB(30, 16, 6)};
 
 static const u8 sTMCaseTextColors[][3] = {
-    [COLOR_LIGHT] = {0, 1, 2},
-    [COLOR_DARK] = {0, 2, 3},
-    [COLOR_CURSOR_SELECTED] = {0, 3, 6},
-    [COLOR_MOVE_INFO] = {0, 14, 10},
+    [COLOR_LIGHT]           = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY},
+    [COLOR_DARK]            = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY},
+    [COLOR_CURSOR_SELECTED] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_GRAY, TEXT_COLOR_GREEN},
+    [COLOR_MOVE_INFO]       = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_5, TEXT_DYNAMIC_COLOR_1},
+    [COLOR_TITLE]           = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_5, TEXT_COLOR_LIGHT_GRAY},
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY},
 };
 
@@ -634,7 +636,7 @@ static void TMCase_MoveCursor_UpdatePrintedDescription(s32 itemIndex)
         str = gText_TMCaseWillBePutAway;
     }
     FillWindowPixelBuffer(1, 0);
-    AddTextPrinterParameterized_ColorByIndex(1, 2, str, 2, 3, 1, 0, 0, 0);
+    AddTextPrinterParameterized_ColorByIndex(WIN_DESCRIPTION, FONT_SHORT, str, 2, 3, 1, 0, 0, COLOR_TITLE);
 
     // update icons
     TintPartyMonIcons(itemId);
@@ -871,7 +873,7 @@ static void Task_SelectTMAction_FromFieldBag(u8 taskId)
     strbuf = Alloc(256);
     GetTMNumberAndMoveString(strbuf, gSpecialVar_ItemId);
     StringAppend(strbuf, gText_Var1IsSelected + 2); // +2 skips over the stringvar
-    AddTextPrinterParameterized_ColorByIndex(WIN_SELECTED_MSG, FONT_SHORT, strbuf, 0, 2, 1, 0, 0, 4);
+    AddTextPrinterParameterized_ColorByIndex(WIN_SELECTED_MSG, FONT_SHORT, strbuf, 0, 2, 1, 0, 0, COLOR_DARK);
     Free(strbuf);
 
     //show HM icon
@@ -1039,12 +1041,12 @@ static void UNUSED TMCase_SetWindowBorder1(u8 windowId)
 
 static void TMCase_SetWindowBorder2(u8 windowId)
 {
-    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x78, 0x0D);
+    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x78, 0x0E);
 }
 
 static void TMCase_SetWindowBorder3(u8 windowId)
 {
-    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x78, 0x0D);
+    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x78, 0x0E);
 }
 
 static void TMCase_PrintMessageWithFollowupTask(u8 taskId, u8 fontId, const u8 * str, TaskFunc func)
@@ -1056,7 +1058,7 @@ static void TMCase_PrintMessageWithFollowupTask(u8 taskId, u8 fontId, const u8 *
 static void PrintTMCaseTitle(void)
 {
     u32 distance = 72 - GetStringWidth(FONT_NORMAL, gText_TMCase, 0);
-    AddTextPrinterParameterized3(WIN_TITLE, FONT_NORMAL, distance / 2, 1, sTMCaseTextColors[COLOR_LIGHT], 0, gText_TMCase);
+    AddTextPrinterParameterized3(WIN_TITLE, FONT_NORMAL, distance / 2, 1, sTMCaseTextColors[COLOR_TITLE], 0, gText_TMCase);
 }
 
 static void DrawMoveInfoUIMarkers(void)
