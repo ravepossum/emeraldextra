@@ -60,6 +60,7 @@ static u32 LoopedTask_ReturnToMainMenu(s32);
 static u32 LoopedTask_OpenConditionSearchMenu(s32);
 static u32 LoopedTask_ReturnToConditionMenu(s32);
 static u32 LoopedTask_SelectRibbonsNoWinners(s32);
+static u32 LoopedTask_SelectDexNavNoPokemon(s32);
 static u32 LoopedTask_ReShowDescription(s32);
 static u32 LoopedTask_OpenPokenavFeature(s32);
 static u32 LoopedTask_OpenPokenavDexNav(s32);
@@ -85,6 +86,7 @@ static void DestroyRematchBlueLightSprite(void);
 static void AddOptionDescriptionWindow(void);
 static void PrintCurrentOptionDescription(void);
 static void PrintNoRibbonWinners(void);
+static void PrintNoWildPokemon(void);
 static bool32 IsDma3ManagerBusyWithBgCopy_(void);
 static void CreateMovingBgDotsTask(void);
 static void DestroyMovingDotsBgTask(void);
@@ -147,6 +149,7 @@ static const LoopedTask sMenuHandlerLoopTaskFuncs[] =
     [POKENAV_MENU_FUNC_OPEN_CONDITION_SEARCH] = LoopedTask_OpenConditionSearchMenu,
     [POKENAV_MENU_FUNC_RETURN_TO_CONDITION]   = LoopedTask_ReturnToConditionMenu,
     [POKENAV_MENU_FUNC_NO_RIBBON_WINNERS]     = LoopedTask_SelectRibbonsNoWinners,
+    [POKENAV_MENU_FUNC_NO_WILD_POKEMON]       = LoopedTask_SelectDexNavNoPokemon,
     [POKENAV_MENU_FUNC_RESHOW_DESCRIPTION]    = LoopedTask_ReShowDescription,
     [POKENAV_MENU_FUNC_OPEN_FEATURE]          = LoopedTask_OpenPokenavFeature,
     [POKENAV_MENU_FUNC_OPEN_DEXNAV]           = LoopedTask_OpenPokenavDexNav
@@ -738,6 +741,22 @@ static u32 LoopedTask_SelectRibbonsNoWinners(s32 state)
     return LT_FINISH;
 }
 
+static u32 LoopedTask_SelectDexNavNoPokemon(s32 state)
+{
+    switch (state)
+    {
+    case 0:
+        PlaySE(SE_FAILURE);
+        PrintNoWildPokemon();
+        return LT_INC_AND_PAUSE;
+    case 1:
+        if (IsDma3ManagerBusyWithBgCopy())
+            return LT_PAUSE;
+        break;
+    }
+    return LT_FINISH;
+}
+
 // For redisplaying the Ribbons description to replace the No Ribbon Winners message
 static u32 LoopedTask_ReShowDescription(s32 state)
 {
@@ -1286,6 +1305,15 @@ static void PrintNoRibbonWinners(void)
 {
     struct Pokenav_MenuGfx * gfx = GetSubstructPtr(POKENAV_SUBSTRUCT_MENU_GFX);
     const u8 *s = gText_NoRibbonWinners;
+    u32 width = GetStringWidth(FONT_NORMAL, s, -1);
+    FillWindowPixelBuffer(gfx->optionDescWindowId, PIXEL_FILL(6));
+    AddTextPrinterParameterized3(gfx->optionDescWindowId, FONT_NORMAL, (192 - width) / 2, 1, sOptionDescTextColors2, 0, s);
+}
+
+static void PrintNoWildPokemon(void)
+{
+    struct Pokenav_MenuGfx * gfx = GetSubstructPtr(POKENAV_SUBSTRUCT_MENU_GFX);
+    const u8 *s = gText_DexNavNoEncounters;
     u32 width = GetStringWidth(FONT_NORMAL, s, -1);
     FillWindowPixelBuffer(gfx->optionDescWindowId, PIXEL_FILL(6));
     AddTextPrinterParameterized3(gfx->optionDescWindowId, FONT_NORMAL, (192 - width) / 2, 1, sOptionDescTextColors2, 0, s);

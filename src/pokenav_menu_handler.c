@@ -3,6 +3,7 @@
 #include "event_data.h"
 #include "main.h"
 #include "sound.h"
+#include "wild_encounter.h"
 #include "constants/songs.h"
 
 struct Pokenav_Menu
@@ -242,8 +243,13 @@ static u32 HandleMainMenuInput(struct Pokenav_Menu *menu)
             SetMenuIdAndCB(menu, POKENAV_REGION_MAP);
             return POKENAV_MENU_FUNC_OPEN_FEATURE;
         case POKENAV_MENUITEM_DEXNAV:
-            SetMenuIdAndCB(menu, POKENAV_DEXNAV);
-            return POKENAV_MENU_FUNC_OPEN_DEXNAV;
+            if (MapHasNoEncounterData()) {
+                menu->callback = HandleCantOpenRibbonsInput;
+                return POKENAV_MENU_FUNC_NO_WILD_POKEMON;
+            } else {
+                SetMenuIdAndCB(menu, POKENAV_DEXNAV);
+                return POKENAV_MENU_FUNC_OPEN_DEXNAV;
+            }
         case POKENAV_MENUITEM_CONDITION:
             menu->menuType = POKENAV_MENU_TYPE_CONDITION;
             menu->cursorPos = 0;
@@ -340,7 +346,8 @@ static u32 HandleMainMenuInputEndTutorial(struct Pokenav_Menu *menu)
 }
 
 // Handles input after selecting Ribbons when there are no ribbon winners left
-// Selecting it again just reprints the Ribbon description to replace the "No Ribbon winners" message
+// or when selecting DexNav and the map has no wild encounters
+// Selecting it again just reprints the relevant description to replace the "No Ribbon winners"/"No wild pokemon" message
 static u32 HandleCantOpenRibbonsInput(struct Pokenav_Menu *menu)
 {
     if (UpdateMenuCursorPos(menu))
