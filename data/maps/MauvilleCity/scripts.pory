@@ -662,3 +662,20 @@ script MauvilleCity_EventScript_Triathlete_F {
 script MauvilleCity_EventScript_Artist {
 	msgbox(format("So many people and Pokémon pass through Mauville…\pI like to observe and take inspiration from everyone."),MSGBOX_NPC)
 }
+
+script MauvilleCity_EventScript_Sailor {
+	msgbox(format("I don't travel much anymore, but that sea breeze always takes me back…"),MSGBOX_NPC)
+}
+
+script MauvilleCity_EventScript_Gentleman {
+	msgbox(format("Take it from me, kid. Don't waste your life away at the Game Corner."),MSGBOX_NPC)
+}
+
+script MauvilleCity_EventScript_Poochyena {
+	lock
+	faceplayer
+	playmoncry(SPECIES_POOCHYENA, CRY_MODE_NORMAL)
+	msgbox(format("Poochyena: Bufoh!"),MSGBOX_DEFAULT)
+	release
+	end
+}

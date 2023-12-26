@@ -664,6 +664,25 @@ MauvilleCity_EventScript_Artist::
 	return
 
 
+MauvilleCity_EventScript_Sailor::
+	msgbox MauvilleCity_EventScript_Sailor_Text_0, MSGBOX_NPC
+	return
+
+
+MauvilleCity_EventScript_Gentleman::
+	msgbox MauvilleCity_EventScript_Gentleman_Text_0, MSGBOX_NPC
+	return
+
+
+MauvilleCity_EventScript_Poochyena::
+	lock
+	faceplayer
+	playmoncry SPECIES_POOCHYENA, CRY_MODE_NORMAL
+	msgbox MauvilleCity_EventScript_Poochyena_Text_0, MSGBOX_DEFAULT
+	release
+	end
+
+
 MauvilleCity_EventScript_Plusle_Text_0:
 	.string "Plusle: LuUus!$"
 
@@ -679,3 +698,14 @@ MauvilleCity_EventScript_Artist_Text_0:
 	.string "through Mauville…\p"
 	.string "I like to observe and take inspiration\n"
 	.string "from everyone.$"
+
+MauvilleCity_EventScript_Sailor_Text_0:
+	.string "I don't travel much anymore, but that\n"
+	.string "sea breeze always takes me back…$"
+
+MauvilleCity_EventScript_Gentleman_Text_0:
+	.string "Take it from me, kid. Don't waste your\n"
+	.string "life away at the Game Corner.$"
+
+MauvilleCity_EventScript_Poochyena_Text_0:
+	.string "Bufoh!$"
