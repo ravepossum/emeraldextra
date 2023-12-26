@@ -858,7 +858,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         ICON(Pawmo, 3),
         //.footprint = gMonFootprint_Pawmo,
         LEARNSETS(Pawmo),
-        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_PAWMOT}),
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PAWMOT}),
     },
 
     [SPECIES_PAWMOT] =

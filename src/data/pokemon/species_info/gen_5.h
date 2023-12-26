@@ -5364,7 +5364,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         ICON(Karrablast, 0),
         .footprint = gMonFootprint_Karrablast,
         LEARNSETS(Karrablast),
-        .evolutions = EVOLUTION({EVO_TRADE_SPECIFIC_MON, SPECIES_SHELMET, SPECIES_ESCAVALIER}),
+        .evolutions = EVOLUTION({EVO_TRADE_SPECIFIC_MON, SPECIES_SHELMET, SPECIES_ESCAVALIER},
+                                {EVO_SPECIFIC_MON_IN_PARTY, SPECIES_SHELMET, SPECIES_ESCAVALIER},
+                                {EVO_SPECIFIC_MON_IN_PARTY, SPECIES_ACCELGOR, SPECIES_ESCAVALIER}),
     },
 
     [SPECIES_ESCAVALIER] =
@@ -6768,7 +6770,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         ICON(Shelmet, 1),
         .footprint = gMonFootprint_Shelmet,
         LEARNSETS(Shelmet),
-        .evolutions = EVOLUTION({EVO_TRADE_SPECIFIC_MON, SPECIES_KARRABLAST, SPECIES_ACCELGOR}),
+        .evolutions = EVOLUTION({EVO_TRADE_SPECIFIC_MON, SPECIES_KARRABLAST, SPECIES_ACCELGOR},
+                                {EVO_SPECIFIC_MON_IN_PARTY, SPECIES_KARRABLAST, SPECIES_ACCELGOR},
+                                {EVO_SPECIFIC_MON_IN_PARTY, SPECIES_ESCAVALIER, SPECIES_ACCELGOR}),
     },
 
     [SPECIES_ACCELGOR] =

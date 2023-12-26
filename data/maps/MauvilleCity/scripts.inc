@@ -708,4 +708,4 @@ MauvilleCity_EventScript_Gentleman_Text_0:
 	.string "life away at the Game Corner.$"
 
 MauvilleCity_EventScript_Poochyena_Text_0:
-	.string "Bufoh!$"
+	.string "Poochyena: Bufoh!$"
