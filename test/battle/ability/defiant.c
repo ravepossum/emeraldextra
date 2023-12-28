@@ -21,14 +21,14 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate")
         //1st mon Intimidate
         ABILITY_POPUP(opponentLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Foe Gyarados's Intimidate cuts Mankey's attack!");
+        MESSAGE("Foe Gyarados's Intimidate cuts Mankey's Attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
             MESSAGE("Mankey's Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Foe Gyarados's Intimidate cuts Primeape's attack!");
+        MESSAGE("Foe Gyarados's Intimidate cuts Primeape's Attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
@@ -38,14 +38,14 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate")
         //2nd mon Intimidate
         ABILITY_POPUP(opponentRight, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Foe Arbok's Intimidate cuts Mankey's attack!");
+        MESSAGE("Foe Arbok's Intimidate cuts Mankey's Attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
             MESSAGE("Mankey's Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Foe Arbok's Intimidate cuts Primeape's attack!");
+        MESSAGE("Foe Arbok's Intimidate cuts Primeape's Attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
@@ -79,14 +79,14 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
         //1st mon Intimidate
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Gyarados's Intimidate cuts Foe Mankey's attack!");
+        MESSAGE("Gyarados's Intimidate cuts Foe Mankey's Attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("Foe Mankey's Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Gyarados's Intimidate cuts Foe Primeape's attack!");
+        MESSAGE("Gyarados's Intimidate cuts Foe Primeape's Attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
@@ -96,14 +96,14 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
         //2nd mon Intimidate
         ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Arbok's Intimidate cuts Foe Mankey's attack!");
+        MESSAGE("Arbok's Intimidate cuts Foe Mankey's Attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("Foe Mankey's Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Arbok's Intimidate cuts Foe Primeape's attack!");
+        MESSAGE("Arbok's Intimidate cuts Foe Primeape's Attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);

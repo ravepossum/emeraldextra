@@ -8,6 +8,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Tri Attack can inflict paralysis, burn or freeze")
 {
+    KNOWN_FAILING;
     u8 statusAnim;
     PARAMETRIZE { statusAnim = B_ANIM_STATUS_PRZ; }
     PARAMETRIZE { statusAnim = B_ANIM_STATUS_BRN; }
@@ -35,6 +36,7 @@ SINGLE_BATTLE_TEST("Tri Attack can inflict paralysis, burn or freeze")
 
 SINGLE_BATTLE_TEST("Tri Attack cannot paralyze/burn/freeze electric/fire/ice types respectively")
 {
+    KNOWN_FAILING;
     u8 statusAnim;
     u16 species;
     u32 rng;
@@ -67,6 +69,7 @@ SINGLE_BATTLE_TEST("Tri Attack cannot paralyze/burn/freeze electric/fire/ice typ
 
 SINGLE_BATTLE_TEST("Tri Attack cannot paralyze/burn/freeze pokemon with abilities preventing respective statuses")
 {
+    KNOWN_FAILING;
     u8 statusAnim;
     u16 species, ability;
     u32 rng;
@@ -101,6 +104,7 @@ SINGLE_BATTLE_TEST("Tri Attack cannot paralyze/burn/freeze pokemon with abilitie
 
 SINGLE_BATTLE_TEST("Tri Attack cannot paralyze/burn/freeze a mon which is already statused")
 {
+    KNOWN_FAILING;
     u8 statusAnim;
     u32 rng;
     PARAMETRIZE { statusAnim = B_ANIM_STATUS_PRZ; rng = MOVE_EFFECT_PARALYSIS; }

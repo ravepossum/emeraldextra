@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Strength Sap works exactly the same when attacker is behind 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Wobbuffet's Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
-        NOT MESSAGE("The SUBSTITUTE took damage for Foe Wobbuffet!");
+        NOT MESSAGE("The Substitute took damage for Foe Wobbuffet!");
         MESSAGE("Foe Wobbuffet had its energy drained!");
     } THEN {
         EXPECT_EQ(results[i].hp * -1, atkStat);

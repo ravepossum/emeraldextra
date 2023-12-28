@@ -128,7 +128,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon are affected by Grudge")
     } SCENE {
         MESSAGE("Foe Wobbuffet used Grudge!");
         MESSAGE("Wobbuffet used Max Strike!");
-        MESSAGE("Wobbuffet's Tackle lost all its PP due to the GRUDGE!");
+        MESSAGE("Wobbuffet's Tackle lost all its PP due to the Grudge!");
         MESSAGE("Foe Wobbuffet fainted!");
     }
 }
@@ -354,7 +354,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon lose their substitutes")
         TURN { MOVE(player, MOVE_TACKLE, dynamax: TRUE); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         MESSAGE("Wobbuffet used Substitute!");
-        MESSAGE("Wobbuffet made a SUBSTITUTE!");
+        MESSAGE("Wobbuffet made a Substitute!");
         MESSAGE("Wobbuffet used Max Strike!");
         MESSAGE("Foe Wobbuffet used Tackle!");
         HP_BAR(player);
@@ -1175,8 +1175,8 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Meltdown torments both opponents for 3 turns
     } SCENE {
         // turn 1
         MESSAGE("Melmetal used G-Max Meltdown!");
-        MESSAGE("Foe Wobbuffet was subjected to torment!");
-        MESSAGE("Foe Wynaut was subjected to torment!");
+        MESSAGE("Foe Wobbuffet was subjected to Torment!");
+        MESSAGE("Foe Wynaut was subjected to Torment!");
         MESSAGE("Foe Wobbuffet used Splash!");
         MESSAGE("Foe Wynaut used Splash!");
         // turn 2

@@ -114,7 +114,7 @@ SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute")
         TURN { MOVE(player, MOVE_SUBSTITUTE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
-        MESSAGE("Mudbray made a SUBSTITUTE!");
+        MESSAGE("Mudbray made a Substitute!");
         NONE_OF {
             ABILITY_POPUP(player, ABILITY_STAMINA);
             MESSAGE("Mudbray's Defense rose!");

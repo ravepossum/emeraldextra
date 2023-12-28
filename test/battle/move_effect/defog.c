@@ -105,7 +105,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIST, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SAFEGUARD, opponentRight);
         if (move == MOVE_DEFOG) {
-            MESSAGE("Foe Wobbuffet is protected by MIST!");
+            MESSAGE("Foe Wobbuffet is protected by Mist!");
             ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
             MESSAGE("Foe's Mist wore off!");
             MESSAGE("Foe's Safeguard wore off!");
@@ -116,7 +116,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         else {
-            MESSAGE("Foe Wobbuffet is protected by MIST!");
+            MESSAGE("Foe Wobbuffet is protected by Mist!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         MESSAGE("Wobbuffet used Toxic!");
@@ -347,7 +347,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes everything it can"
         TURN { MOVE(playerLeft, MOVE_MIST); MOVE(playerRight, MOVE_SAFEGUARD); MOVE(opponentLeft, MOVE_MIST); MOVE(opponentRight, MOVE_DEFOG, target: playerLeft); }
     } SCENE {
         MESSAGE("Foe Glalie used Defog!");
-        MESSAGE("Glalie is protected by MIST!");
+        MESSAGE("Glalie is protected by Mist!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, opponentRight);
         // Player side
         MESSAGE("Ally's Reflect wore off!");

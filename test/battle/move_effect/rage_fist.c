@@ -141,8 +141,8 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased if a substitute was hi
         HP_BAR(opponent, captureDamage: &timesGotHit[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CRUNCH, opponent);
-        MESSAGE("The SUBSTITUTE took damage for Wobbuffet!");
-        MESSAGE("Wobbuffet's SUBSTITUTE faded!");
+        MESSAGE("The Substitute took damage for Wobbuffet!");
+        MESSAGE("Wobbuffet's Substitute faded!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
         HP_BAR(opponent, captureDamage: &timesGotHit[1]);
     } THEN {
