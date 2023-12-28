@@ -24,6 +24,7 @@
 #include "fieldmap.h"
 #include "item.h"
 #include "lilycove_lady.h"
+#include "m4a.h"
 #include "main.h"
 #include "menu.h"
 #include "money.h"
@@ -2529,3 +2530,7 @@ bool8 ScrCmd_pokevial(struct ScriptContext *ctx)
 }
 //End Pokevial Branch
 
+void ScrCmd_stopse(struct ScriptContext *ctx)
+{
+    m4aSongNumStop(ScriptReadHalfword(ctx));
+}

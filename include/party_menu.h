@@ -109,5 +109,6 @@ void GetNumMovesSelectedMonHas(void);
 void MoveDeleterChooseMoveToForget(void);
 void ItemUseCB_UsePokevial(u8 taskId, TaskFunc task); //Pokevial Branch
 void InitPartyMenuForPokevialFromField(u8 taskId); //Pokevial Branch
+void ChooseMonForBlender(void);
 
 #endif // GUARD_PARTY_MENU_H

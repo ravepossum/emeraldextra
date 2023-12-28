@@ -1,3 +1,5 @@
+// Note: local IDs shared with scripts.inc for LilycoveCity_ContestLobby
+raw `
 .set LOCALID_MAN, 3
 .set LOCALID_BOY, 9
 .set LOCALID_TWIN, 10
@@ -707,129 +709,72 @@ BerryBlender_EventScript_TryJoinLinkGroup:
 BerryBlender_EventScript_LinkLeaderDecided:
 	goto BerryBlender_EventScript_SpawnLinkPartners
 	end
+`
 
-BerryBlender_EventScript_BerryBlenderMilcery::
+script BerryBlender_EventScript_BerryBlenderMilcery {
 	lockall
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_0
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BerryBlender_EventScript_BerryBlenderMilcery_2
-	special ChooseMonForBlender
-	waitstate
-	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
-	goto_if_eq BerryBlender_EventScript_BerryBlenderMilcery_5
-	special BufferMonNickname
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_3
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_4
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, BerryBlender_EventScript_BerryBlenderMilcery_Text_5, BerryBlender_EventScript_BerryBlenderMilcery_Text_6, BerryBlender_EventScript_BerryBlenderMilcery_Text_7
-	compare VAR_RESULT, 2
-	goto_if_eq BerryBlender_EventScript_BerryBlenderMilcery_8
-	copyvar VAR_0x8006, VAR_RESULT
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_8
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, BerryBlender_EventScript_BerryBlenderMilcery_Text_9, BerryBlender_EventScript_BerryBlenderMilcery_Text_10, BerryBlender_EventScript_BerryBlenderMilcery_Text_11, BerryBlender_EventScript_BerryBlenderMilcery_Text_7
-	compare VAR_RESULT, 3
-	goto_if_eq BerryBlender_EventScript_BerryBlenderMilcery_11
-	copyvar VAR_0x8007, VAR_RESULT
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_12
-	fadescreen FADE_TO_BLACK
-	closemessage
-	playse SE_BERRY_BLENDER
-	switch VAR_0x8007
-	case 0, BerryBlender_EventScript_BerryBlenderMilcery_15
-	case 1, BerryBlender_EventScript_BerryBlenderMilcery_16
-	case 2, BerryBlender_EventScript_BerryBlenderMilcery_17
-	delay 300
-BerryBlender_EventScript_BerryBlenderMilcery_13:
-	stopse SE_BERRY_BLENDER
-	playse SE_PIN
-	waitse
-	fadescreen FADE_FROM_BLACK
-	special TryEvolveMilcery
-	compare VAR_RESULT, FALSE
-	goto_if_eq BerryBlender_EventScript_BerryBlenderMilcery_20
-BerryBlender_EventScript_BerryBlenderMilcery_19:
-	release
+    msgbox(format("You could probably fit a Pokémon in here…"))
+    msgbox(format("Choose a Pokémon to stuff in the blender?"),MSGBOX_YESNO)
+
+    if (var(VAR_RESULT) == NO) {
+        msgbox(format("On second thought…maybe not."))
+        release
+        end
+    }
+
+	special(ChooseMonForBlender)
+    waitstate
+
+    if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+        return
+    }
+
+    special(BufferMonNickname)
+    msgbox(format("{STR_VAR_1} will be stuffed into the Berry Blender."))
+    
+    msgbox(format("Which direction will you spin the blender?"))
+    dynmultichoice(0,0,FALSE,3,0,DYN_MULTICHOICE_CB_NONE,"Clockwise","Counterclockwise","Cancel")
+    if (var(VAR_RESULT) == 2) {
+        msgbox(format("On second thought…maybe not."))
+        release
+        end
+    }
+    copyvar(VAR_0x8006, VAR_RESULT)
+
+    msgbox(format("How long will you spin the blender for?"))
+    dynmultichoice(0,0,FALSE,3,0,DYN_MULTICHOICE_CB_NONE,"1 Second","5 Seconds","10 Seconds","Cancel")
+    if (var(VAR_RESULT) == 3) {
+        msgbox(format("On second thought…maybe not."))
+        release
+        end
+    }
+    copyvar(VAR_0x8007, VAR_RESULT)
+
+    msgbox(format("{PLAYER} tossed {STR_VAR_1} into the blender.\pTime to spin!"))
+    fadescreen(FADE_TO_BLACK)
+    closemessage
+    playse(SE_BERRY_BLENDER)
+
+    switch(var(VAR_0x8007)) {
+        case 0:
+	        delay(60)
+        case 1:
+	        delay(300)
+        case 2:
+	        delay(600)
+        default:
+            delay(300)
+    }
+
+    stopse(SE_BERRY_BLENDER)
+    playse(SE_PIN)
+    waitse
+	fadescreen(FADE_FROM_BLACK)
+    special(TryEvolveMilcery)
+
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox(format("Huh? Nothing happened…"))
+    }
+    release
 	end
-
-BerryBlender_EventScript_BerryBlenderMilcery_2:
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_2
-	release
-	end
-
-BerryBlender_EventScript_BerryBlenderMilcery_5:
-	return
-
-BerryBlender_EventScript_BerryBlenderMilcery_8:
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_2
-	release
-	end
-
-BerryBlender_EventScript_BerryBlenderMilcery_11:
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_2
-	release
-	end
-
-BerryBlender_EventScript_BerryBlenderMilcery_15:
-	delay 60
-	goto BerryBlender_EventScript_BerryBlenderMilcery_13
-
-BerryBlender_EventScript_BerryBlenderMilcery_16:
-	delay 300
-	goto BerryBlender_EventScript_BerryBlenderMilcery_13
-
-BerryBlender_EventScript_BerryBlenderMilcery_17:
-	delay 600
-	goto BerryBlender_EventScript_BerryBlenderMilcery_13
-
-BerryBlender_EventScript_BerryBlenderMilcery_20:
-	msgbox BerryBlender_EventScript_BerryBlenderMilcery_Text_13
-	goto BerryBlender_EventScript_BerryBlenderMilcery_19
-
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_0:
-	.string "You could probably fit a Pokémon in\n"
-	.string "here…$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_1:
-	.string "Choose a Pokémon to stuff in the\n"
-	.string "blender?$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_2:
-	.string "On second thought…maybe not.$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_3:
-	.string "{STR_VAR_1} will be stuffed into the\n"
-	.string "Berry Blender.$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_4:
-	.string "Which direction will you spin the\n"
-	.string "blender?$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_5:
-	.string "Clockwise$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_6:
-	.string "Counterclockwise$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_7:
-	.string "Cancel$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_8:
-	.string "How long will you spin the blender for?$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_9:
-	.string "1 Second$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_10:
-	.string "5 Seconds$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_11:
-	.string "10 Seconds$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_12:
-	.string "{PLAYER} tossed {STR_VAR_1} into\n"
-	.string "the blender.\p"
-	.string "Time to spin!$"
-
-BerryBlender_EventScript_BerryBlenderMilcery_Text_13:
-	.string "Huh? Nothing happened…$"
+}

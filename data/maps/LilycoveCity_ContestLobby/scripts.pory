@@ -1,3 +1,6 @@
+// Note: data/scripts/berry_blender.inc is for the same map, so shares local IDs
+// Some scripts for this room are split into data/scripts/contest_hall and data/scripts/berry_blender
+raw `
 .set LOCALID_RECEPTIONIST, 1
 .set LOCALID_LINK_RECEPTIONIST, 2
 .set LOCALID_ARTIST, 4
@@ -1081,3 +1084,5 @@ LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily:
 	.string "Big Sister. They turned out great!\p"
 	.string "I bet you can make smoother, better\n"
 	.string "{POKEBLOCK}s if you have more people.$"
+
+`

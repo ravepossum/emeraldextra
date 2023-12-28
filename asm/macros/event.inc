@@ -1796,6 +1796,13 @@
 	stringvar \stringVarId
 	.2byte \ability
 	.endm
+	
+	@ Stops the given sound effect from playing
+	.macro stopse song:req
+	.byte 0xe9
+	.2byte \song
+	.endm
+
 
 
 @ Supplementary

@@ -5,6 +5,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "evolution_scene.h"
 #include "evolution_graphics.h"
 #include "gpu_regs.h"
@@ -19,6 +20,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_summary_screen.h"
+#include "rtc.h"
 #include "scanline_effect.h"
 #include "sound.h"
 #include "sprite.h"
@@ -31,8 +33,11 @@
 #include "trade.h"
 #include "util.h"
 #include "constants/battle_string_ids.h"
+#include "constants/evolution_scene.h"
+#include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "constants/rtc.h"
 #include "constants/items.h"
 
 struct EvoInfo
@@ -144,6 +149,72 @@ static const u8 sBgAnim_PalIndexes[][16] = {
     {  0,  2,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
     {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
     {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 }
+};
+
+static const u16 sMilceryEvoTable[MILCERY_EVO_ITEM_COUNT][MILCERY_EVO_DURATION_COUNT][MILCERY_EVO_DIRECTION_COUNT][4] = {
+    [ITEM_STRAWBERRY_SWEET - MILCERY_EVO_ITEM_OFFSET]   = {{{SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM, SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM,
+                                                             SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM, SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM},
+                                                            {SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM,    SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM,
+                                                             SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM,    SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM}},
+                                                           {{SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL, SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL,
+                                                             SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL, SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM},
+                                                            {SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL,    SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL,
+                                                             SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL,    SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM}},
+                                                           {{0,0,0,0},{0,0,SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL,0}}},
+    [ITEM_LOVE_SWEET - MILCERY_EVO_ITEM_OFFSET]         = {{{SPECIES_ALCREMIE_LOVE_VANILLA_CREAM, SPECIES_ALCREMIE_LOVE_VANILLA_CREAM,
+                                                             SPECIES_ALCREMIE_LOVE_VANILLA_CREAM, SPECIES_ALCREMIE_LOVE_MATCHA_CREAM},
+                                                            {SPECIES_ALCREMIE_LOVE_RUBY_CREAM,    SPECIES_ALCREMIE_LOVE_RUBY_CREAM,
+                                                             SPECIES_ALCREMIE_LOVE_RUBY_CREAM,    SPECIES_ALCREMIE_LOVE_SALTED_CREAM}},
+                                                           {{SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL, SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL,
+                                                             SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL, SPECIES_ALCREMIE_LOVE_LEMON_CREAM},
+                                                            {SPECIES_ALCREMIE_LOVE_RUBY_SWIRL,    SPECIES_ALCREMIE_LOVE_RUBY_SWIRL,
+                                                             SPECIES_ALCREMIE_LOVE_RUBY_SWIRL,    SPECIES_ALCREMIE_LOVE_MINT_CREAM}},
+                                                           {{0,0,0,0},{0,0,SPECIES_ALCREMIE_LOVE_RAINBOW_SWIRL,0}}},
+    [ITEM_BERRY_SWEET - MILCERY_EVO_ITEM_OFFSET]        = {{{SPECIES_ALCREMIE_BERRY_VANILLA_CREAM, SPECIES_ALCREMIE_BERRY_VANILLA_CREAM,
+                                                             SPECIES_ALCREMIE_BERRY_VANILLA_CREAM, SPECIES_ALCREMIE_BERRY_MATCHA_CREAM},
+                                                            {SPECIES_ALCREMIE_BERRY_RUBY_CREAM,    SPECIES_ALCREMIE_BERRY_RUBY_CREAM,
+                                                             SPECIES_ALCREMIE_BERRY_RUBY_CREAM,    SPECIES_ALCREMIE_BERRY_SALTED_CREAM}},
+                                                           {{SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL, SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL,
+                                                             SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL, SPECIES_ALCREMIE_BERRY_LEMON_CREAM},
+                                                            {SPECIES_ALCREMIE_BERRY_RUBY_SWIRL,    SPECIES_ALCREMIE_BERRY_RUBY_SWIRL,
+                                                             SPECIES_ALCREMIE_BERRY_RUBY_SWIRL,    SPECIES_ALCREMIE_BERRY_MINT_CREAM}},
+                                                           {{0,0,0,0},{0,0,SPECIES_ALCREMIE_BERRY_RAINBOW_SWIRL,0}}},
+    [ITEM_CLOVER_SWEET - MILCERY_EVO_ITEM_OFFSET]       = {{{SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM, SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM,
+                                                             SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM, SPECIES_ALCREMIE_CLOVER_MATCHA_CREAM},
+                                                            {SPECIES_ALCREMIE_CLOVER_RUBY_CREAM,    SPECIES_ALCREMIE_CLOVER_RUBY_CREAM,
+                                                             SPECIES_ALCREMIE_CLOVER_RUBY_CREAM,    SPECIES_ALCREMIE_CLOVER_SALTED_CREAM}},
+                                                           {{SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL, SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL,
+                                                             SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL, SPECIES_ALCREMIE_CLOVER_LEMON_CREAM},
+                                                            {SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL,    SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL,
+                                                             SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL,    SPECIES_ALCREMIE_CLOVER_MINT_CREAM}},
+                                                           {{0,0,0,0},{0,0,SPECIES_ALCREMIE_CLOVER_RAINBOW_SWIRL,0}}},
+    [ITEM_FLOWER_SWEET - MILCERY_EVO_ITEM_OFFSET]       = {{{SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM, SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM,
+                                                             SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM, SPECIES_ALCREMIE_FLOWER_MATCHA_CREAM},
+                                                            {SPECIES_ALCREMIE_FLOWER_RUBY_CREAM,    SPECIES_ALCREMIE_FLOWER_RUBY_CREAM,
+                                                             SPECIES_ALCREMIE_FLOWER_RUBY_CREAM,    SPECIES_ALCREMIE_FLOWER_SALTED_CREAM}},
+                                                           {{SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL, SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL,
+                                                             SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL, SPECIES_ALCREMIE_FLOWER_LEMON_CREAM},
+                                                            {SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL,    SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL,
+                                                             SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL,    SPECIES_ALCREMIE_FLOWER_MINT_CREAM}},
+                                                           {{0,0,0,0},{0,0,SPECIES_ALCREMIE_FLOWER_RAINBOW_SWIRL,0}}},
+    [ITEM_STAR_SWEET - MILCERY_EVO_ITEM_OFFSET]         = {{{SPECIES_ALCREMIE_STAR_VANILLA_CREAM, SPECIES_ALCREMIE_STAR_VANILLA_CREAM,
+                                                             SPECIES_ALCREMIE_STAR_VANILLA_CREAM, SPECIES_ALCREMIE_STAR_MATCHA_CREAM},
+                                                            {SPECIES_ALCREMIE_STAR_RUBY_CREAM,    SPECIES_ALCREMIE_STAR_RUBY_CREAM,
+                                                             SPECIES_ALCREMIE_STAR_RUBY_CREAM,    SPECIES_ALCREMIE_STAR_SALTED_CREAM}},
+                                                           {{SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL, SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL,
+                                                             SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL, SPECIES_ALCREMIE_STAR_LEMON_CREAM},
+                                                            {SPECIES_ALCREMIE_STAR_RUBY_SWIRL,    SPECIES_ALCREMIE_STAR_RUBY_SWIRL,
+                                                             SPECIES_ALCREMIE_STAR_RUBY_SWIRL,    SPECIES_ALCREMIE_STAR_MINT_CREAM}},
+                                                           {{0,0,0,0},{0,0,SPECIES_ALCREMIE_STAR_RAINBOW_SWIRL,0}}},
+    [ITEM_RIBBON_SWEET - MILCERY_EVO_ITEM_OFFSET]       = {{{SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM, SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM,
+                                                             SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM, SPECIES_ALCREMIE_RIBBON_MATCHA_CREAM},
+                                                            {SPECIES_ALCREMIE_RIBBON_RUBY_CREAM,    SPECIES_ALCREMIE_RIBBON_RUBY_CREAM,
+                                                             SPECIES_ALCREMIE_RIBBON_RUBY_CREAM,    SPECIES_ALCREMIE_RIBBON_SALTED_CREAM}},
+                                                           {{SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL, SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL,
+                                                             SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL, SPECIES_ALCREMIE_RIBBON_LEMON_CREAM},
+                                                            {SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL,    SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL,
+                                                             SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL,    SPECIES_ALCREMIE_RIBBON_MINT_CREAM}},
+                                                           {{0,0,0,0},{0,0,SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL,0}}},
 };
 
 static void CB2_BeginEvolutionScene(void)
@@ -1677,4 +1748,29 @@ static bool32 EvoScene_IsMonAnimFinished(u8 monSpriteId)
         return TRUE;
 
     return FALSE;
+}
+
+void TryEvolveMilcery(void)
+{
+    u16 slotId = gSpecialVar_0x8004;
+    struct Pokemon *mon = &gPlayerParty[slotId];
+
+    DebugPrintfLevel(MGBA_LOG_WARN,"Slot ID: %d",gSpecialVar_0x8004);
+    DebugPrintfLevel(MGBA_LOG_WARN,"Item ID: %d",gSpecialVar_0x8005);
+    DebugPrintfLevel(MGBA_LOG_WARN,"Duration: %d",gSpecialVar_0x8007);
+    DebugPrintfLevel(MGBA_LOG_WARN,"Direction: %d",gSpecialVar_0x8006);
+    DebugPrintfLevel(MGBA_LOG_WARN,"Time of Day: %d",GetTimeOfDay());
+
+    u16 targetSpecies = sMilceryEvoTable[gSpecialVar_0x8005 - MILCERY_EVO_ITEM_OFFSET][gSpecialVar_0x8007][gSpecialVar_0x8006][GetTimeOfDay()];
+
+    DebugPrintfLevel(MGBA_LOG_WARN,"Target species: %d",targetSpecies);
+
+    if (targetSpecies == SPECIES_NONE || targetSpecies >= NUM_SPECIES) {
+            gSpecialVar_Result = FALSE;
+            return;
+    }
+
+    gCB2_AfterEvolution = CB2_ReturnToField;
+    BeginEvolutionScene(mon, targetSpecies, TRUE, slotId);
+    gSpecialVar_Result = TRUE;
 }

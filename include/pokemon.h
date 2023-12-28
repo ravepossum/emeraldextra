@@ -711,5 +711,6 @@ bool32 IsSpeciesEnabled(u16 species);
 const u8 *GetAbilityName(u16 ability);
 u16 GetCryIdBySpecies(u16 species);
 u16 GetSpeciesPreEvolution(u16 species);
+bool32 IsMilceryAndCanEvolve(struct Pokemon *mon);
 
 #endif // GUARD_POKEMON_H

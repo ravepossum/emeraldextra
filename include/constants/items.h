@@ -316,6 +316,7 @@
 #define ITEM_WHIPPED_DREAM 235
 #define ITEM_SACHET 236
 #define ITEM_OVAL_STONE 237
+// if these change, make sure to update MILCERY_EVO_ITEM_OFFSET in evolution_scene.h
 #define ITEM_STRAWBERRY_SWEET 238
 #define ITEM_LOVE_SWEET 239
 #define ITEM_BERRY_SWEET 240
