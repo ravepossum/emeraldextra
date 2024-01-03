@@ -270,6 +270,7 @@ static void GiveSlateportTentPrize(void)
     // }
     AddMoney(&gSaveBlock1Ptr->money, TENT_SLATEPORT_PRIZE_MONEY);
     gSpecialVar_Result = TRUE;
+    gSaveBlock2Ptr->frontier.slateportTentPrize = ITEM_NONE;
     ConvertIntToDecimalStringN(gStringVar1, TENT_SLATEPORT_PRIZE_MONEY, STR_CONV_MODE_LEFT_ALIGN, TENT_SLATEPORT_PRIZE_MONEY_DIGITS);
 }
 
@@ -308,7 +309,7 @@ static void GenerateInitialRentalMons(void)
     while (i != PARTY_SIZE)
     {
         // Cannot have two pokemon of the same species.
-        monSetId = (Random() % (TENT_MON_END - 1)) + 1;
+        monSetId = GetRandomRentalSpecies();
         for (j = firstMonId; j < firstMonId + i; j++)
         {
             if (monIds[j] == monSetId)
@@ -350,7 +351,7 @@ static void GenerateOpponentMons(void)
     i = 0;
     while (i != FRONTIER_PARTY_SIZE)
     {
-        sRandMonId = (Random() % (TENT_MON_END - 1)) + 1;
+        sRandMonId = GetRandomRentalSpecies();
         
         // Ensure none of the opponent's pokemon are the same as the potential rental pokemon for the player
         for (j = 0; j < (int)ARRAY_COUNT(gSaveBlock2Ptr->frontier.rentalMons); j++)

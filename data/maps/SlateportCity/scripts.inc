@@ -1007,12 +1007,6 @@ SlateportCity_Text_BuyBricksSoDecorWontGetDirty:
 	.string "Dolls and Cushions won't get dirty\l"
 	.string "when I leave them out.$"
 
-SlateportCity_Text_GoingToCompeteInBattleTent:
-	.string "Wroooar! I'm going to compete in\n"
-	.string "the Battle Tent, too!\p"
-	.string "But before that, I need to catch\n"
-	.string "some Pokémon!$"
-
 SlateportCity_Text_BushedHikingFromMauville:
 	.string "Whew… I'm just bushed…\p"
 	.string "I hiked over from Mauville City.\n"
@@ -1487,3 +1481,9 @@ SlateportCity_EventScript_IndividualGuru_AnotherTime_Text_0:
 
 SlateportCity_EventScript_Electrike_Text_0:
 	.string "Electrike: Arruff!$"
+
+SlateportCity_Text_GoingToCompeteInBattleTent::
+	.string "The battles at the Battle Tent here use\n"
+	.string "virtual rental Pokémon.\p"
+	.string "You may even encounter Pokémon that\n"
+	.string "are the stuff of legend!$"

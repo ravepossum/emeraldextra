@@ -6139,7 +6139,8 @@ u16 GetSpeciesPreEvolution(u16 species)
     return SPECIES_NONE;
 }
 
-bool32 IsMilceryAndCanEvolve(struct Pokemon *mon) {
+bool32 IsMilceryAndCanEvolve(struct Pokemon *mon) 
+{
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     bool32 holdingSweet = FALSE;
@@ -6160,4 +6161,30 @@ bool32 IsMilceryAndCanEvolve(struct Pokemon *mon) {
     }
 
     return (species == SPECIES_MILCERY && holdingSweet);
+}
+
+u16 GetRandomRentalSpecies(void) 
+{
+    u16 species = SPECIES_NONE;
+    bool32 isLegalMon = FALSE;
+    do
+    {
+        species = (Random() % (NUM_SPECIES - 1)) + 1;
+        isLegalMon = TRUE;
+
+        // exclude megas
+        if (species > FORMS_START && species < (FORMS_START + 51))
+            isLegalMon = FALSE;
+
+        // exclude a bunch of random forms
+        if (species >= SPECIES_PIKACHU_COSPLAY && species <= GEN9_START)
+            isLegalMon = FALSE;
+
+        // exclude a bunch of other random forms
+        if (species > SPECIES_OGERPON_TEAL_MASK)
+            isLegalMon = FALSE;
+
+    } while (!isLegalMon);
+
+    return species;
 }
