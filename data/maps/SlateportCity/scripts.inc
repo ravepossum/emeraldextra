@@ -40,13 +40,13 @@ SlateportCity_EventScript_EnterSlateport::
 	return
 
 SlateportCity_EventScript_MovePeopleForSternInterview::
-	setobjectxyperm LOCALID_CAPT_STERN, 28, 13
-	setobjectxyperm LOCALID_OLD_WOMAN, 25, 13
-	setobjectxyperm LOCALID_RICH_BOY, 25, 14
-	setobjectxyperm LOCALID_COOK, 27, 16
-	setobjectxyperm LOCALID_GIRL, 28, 16
-	setobjectxyperm LOCALID_FAT_MAN, 29, 16
-	setobjectxyperm LOCALID_MAN_1, 31, 14
+	setobjectxyperm LOCALID_CAPT_STERN, 38, 13
+	setobjectxyperm LOCALID_OLD_WOMAN, 35, 13
+	setobjectxyperm LOCALID_RICH_BOY, 35, 14
+	setobjectxyperm LOCALID_COOK, 37, 16
+	setobjectxyperm LOCALID_GIRL, 38, 16
+	setobjectxyperm LOCALID_FAT_MAN, 39, 16
+	setobjectxyperm LOCALID_MAN_1, 41, 14
 	setobjectmovementtype LOCALID_CAPT_STERN, MOVEMENT_TYPE_FACE_DOWN
 	setobjectmovementtype LOCALID_OLD_WOMAN, MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT
 	setobjectmovementtype LOCALID_RICH_BOY, MOVEMENT_TYPE_FACE_UP_AND_RIGHT
@@ -59,13 +59,13 @@ SlateportCity_EventScript_MovePeopleForSternInterview::
 SlateportCity_EventScript_SetReadyForScottScene::
 	setflag FLAG_HIDE_MAP_NAME_POPUP
 	getplayerxy VAR_0x8004, VAR_0x8005
-	goto_if_eq VAR_0x8004, 30, SlateportCity_EventScript_MoveScottLeft
-	setobjectxyperm LOCALID_SCOTT, 23, 27
+	goto_if_eq VAR_0x8004, 40, SlateportCity_EventScript_MoveScottLeft
+	setobjectxyperm LOCALID_SCOTT, 33, 27
 	setobjectmovementtype LOCALID_SCOTT, MOVEMENT_TYPE_FACE_RIGHT
 	return
 
 SlateportCity_EventScript_MoveScottLeft::
-	setobjectxyperm LOCALID_SCOTT, 22, 27
+	setobjectxyperm LOCALID_SCOTT, 32, 27
 	setobjectmovementtype LOCALID_SCOTT, MOVEMENT_TYPE_FACE_RIGHT
 	return
 
@@ -101,7 +101,7 @@ SlateportCity_EventScript_ScottScene::
 	applymovement LOCALID_SCOTT, SlateportCity_Movement_ScottExit
 	waitmovement 0
 	removeobject LOCALID_SCOTT
-	setobjectxyperm LOCALID_SCOTT, 10, 12
+	setobjectxyperm LOCALID_SCOTT, 20, 12
 	setobjectmovementtype LOCALID_SCOTT, MOVEMENT_TYPE_FACE_DOWN
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2
