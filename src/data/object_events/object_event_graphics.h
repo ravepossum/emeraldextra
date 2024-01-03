@@ -393,3 +393,5 @@ const u32 gObjectEventPic_Plusle[] = INCBIN_U32("graphics/object_events/pics/pok
 const u16 gObjectEventPal_Plusle[] = INCBIN_U16("graphics/object_events/palettes/plusle.gbapal");
 const u32 gObjectEventPic_Minun[] = INCBIN_U32("graphics/object_events/pics/pokemon/minun.4bpp");
 const u16 gObjectEventPal_Minun[] = INCBIN_U16("graphics/object_events/palettes/minun.gbapal");
+const u32 gObjectEventPic_SharpedoSwim[] = INCBIN_U32("graphics/object_events/pics/pokemon/sharpedo.4bpp");
+const u16 gObjectEventPal_SharpedoSwim[] = INCBIN_U16("graphics/object_events/palettes/sharpedo.gbapal");

@@ -1155,3 +1155,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/DewfordTown_House3/scripts.inc"
 
 	.include "data/maps/DewfordTown_House4/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestHall/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
+
+	.include "data/maps/SlateportCity_House3/scripts.inc"

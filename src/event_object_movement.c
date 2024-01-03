@@ -442,6 +442,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_ELECTRIKE               0x1128
 #define OBJ_EVENT_PAL_TAG_PLUSLE                  0x1129
 #define OBJ_EVENT_PAL_TAG_MINUN                   0x112A
+#define OBJ_EVENT_PAL_TAG_SHARPEDO_SWIM           0x112B
 #define OBJ_EVENT_PAL_TAG_NONE                    0x11FF
 
 #include "data/field_effects/field_effect_object_template_pointers.h"
@@ -495,6 +496,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Electrike,             OBJ_EVENT_PAL_TAG_ELECTRIKE},
     {gObjectEventPal_Plusle,                OBJ_EVENT_PAL_TAG_PLUSLE},
     {gObjectEventPal_Minun,                 OBJ_EVENT_PAL_TAG_MINUN},
+    {gObjectEventPal_SharpedoSwim,          OBJ_EVENT_PAL_TAG_SHARPEDO_SWIM},
 #ifdef BUGFIX
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
 #else

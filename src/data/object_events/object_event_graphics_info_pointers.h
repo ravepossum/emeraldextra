@@ -498,6 +498,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_ELECTRIKE] =                &gObjectEventGraphicsInfo_Electrike,
     [OBJ_EVENT_GFX_PLUSLE] =                   &gObjectEventGraphicsInfo_Plusle,
     [OBJ_EVENT_GFX_MINUN] =                    &gObjectEventGraphicsInfo_Minun,
+    [OBJ_EVENT_GFX_SHARPEDO_SWIM] =            &gObjectEventGraphicsInfo_SharpedoSwim,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
