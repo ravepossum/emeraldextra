@@ -181,7 +181,7 @@ script SlateportCity_NameRatersHouse_EventScript_AbilityMaster {
 
     msgbox(format("Excellent. We shall begin at once!"))
 
-    special(TeachMonAbility)
+    special(ChangeMonAbility)
     fadescreen(FADE_TO_BLACK)
     delay(10)
     playfanfare(MUS_OBTAIN_ITEM)

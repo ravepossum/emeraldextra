@@ -1124,8 +1124,7 @@ SlateportCity_Text_BattleTentBuiltRecently:
 	.string "in Slateport.\p"
 	.string "Gyms are fun, but the Battle Tent's\n"
 	.string "awesome in its own way.\p"
-	.string "You should go find tough Pokémon\n"
-	.string "for the Battle Tent!$"
+	.string "You should go try it out!$"
 
 SlateportCity_Text_CaptSternBeingInterviewed:
 	.string "I was hoping that it was a famous star\n"
@@ -1452,6 +1451,11 @@ SlateportCity_EventScript_Electrike::
 	return
 
 
+SlateportCity_EventScript_Gentleman::
+	msgbox SlateportCity_EventScript_Gentleman_Text_0, MSGBOX_NPC
+	return
+
+
 SlateportCity_EventScript_Cook_Text_0:
 	.string "I sell my own sweets, baked fresh daily!$"
 
@@ -1481,6 +1485,13 @@ SlateportCity_EventScript_IndividualGuru_AnotherTime_Text_0:
 
 SlateportCity_EventScript_Electrike_Text_0:
 	.string "Electrike: Arruff!$"
+
+SlateportCity_EventScript_Gentleman_Text_0:
+	.string "The Ability Master and the Nature\n"
+	.string "Master are the true Pokémon experts.\p"
+	.string "They can help your Pokémon reach\n"
+	.string "heights of power previously\l"
+	.string "unimaginable.$"
 
 SlateportCity_Text_GoingToCompeteInBattleTent::
 	.string "The battles at the Battle Tent here use\n"

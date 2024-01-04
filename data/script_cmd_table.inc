@@ -234,6 +234,7 @@ gScriptCmdTable::
     .4byte ScrCmd_settimeofday 	                    @ 0xe7
     .4byte ScrCmd_bufferabilityname                 @ 0xe8
     .4byte ScrCmd_stopse                			@ 0xe9
+    .4byte ScrCmd_buffernaturename                  @ 0xea
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

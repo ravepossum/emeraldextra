@@ -4228,7 +4228,8 @@ void BufferMonAbilities(void) {
     }
 }
 
-void TeachMonAbility(void) {
+void ChangeMonAbility(void) 
+{
     struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
     u16 abilityNum = gSpecialVar_0x8009;
     SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
@@ -4282,3 +4283,28 @@ void PreparePartyForSkyBattle(void)
     VarSet(B_VAR_SKY_BATTLE,participatingPokemonSlot);
     CompactPartySlots();
 }
+
+// void ChangeMonNature(void) 
+// {
+//     struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+//     u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+//     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+//     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+//     u8 gender = GetMonGender(mon);
+//     bool8 isShiny = IsMonShiny(mon);
+//     //todo maybe worry about spinda spots, unown letter, wurmple evo
+
+//     u8 newNature = gSpecialVar_0x8005;
+//     u32 newPersonality;
+//     do
+//     {
+//         newPersonality = Random32();
+        
+//     }
+//     while ((GetNatureFromPersonality(newPersonality) != newNature) ||
+//            (GetGenderFromSpeciesAndPersonality(species, newPersonality) != gender) ||
+//            (IsShinyOtIdPersonality(otId, newPersonality) != isShiny));
+
+//     UpdateMonPersonality(&mon->box, newPersonality);
+//     CalculateMonStats(mon);
+// }

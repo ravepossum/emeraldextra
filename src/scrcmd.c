@@ -32,6 +32,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokemon_storage_system.h"
+#include "pokemon_summary_screen.h"
 #include "random.h"
 #include "overworld.h"
 #include "rotating_tile_puzzle.h"
@@ -1498,6 +1499,15 @@ bool8 ScrCmd_bufferabilityname(struct ScriptContext *ctx)
     u16 ability = VarGet(ScriptReadHalfword(ctx));
 
     StringCopy(sScriptStringVars[stringVarIndex], GetAbilityName(ability));
+    return FALSE;
+}
+
+bool8 ScrCmd_buffernaturename(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 nature = VarGet(ScriptReadHalfword(ctx));
+
+    StringCopy(sScriptStringVars[stringVarIndex], gNatureNamePointers[nature]);
     return FALSE;
 }
 

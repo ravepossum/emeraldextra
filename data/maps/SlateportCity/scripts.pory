@@ -1127,8 +1127,7 @@ SlateportCity_Text_BattleTentBuiltRecently:
 	.string "in Slateport.\p"
 	.string "Gyms are fun, but the Battle Tent's\n"
 	.string "awesome in its own way.\p"
-	.string "You should go find tough Pokémon\n"
-	.string "for the Battle Tent!$"
+	.string "You should go try it out!$"
 
 SlateportCity_Text_CaptSternBeingInterviewed:
 	.string "I was hoping that it was a famous star\n"
@@ -1464,4 +1463,8 @@ script SlateportCity_EventScript_Electrike {
 
 text SlateportCity_Text_GoingToCompeteInBattleTent {
 	format("The battles at the Battle Tent here use virtual rental Pokémon.\pYou may even encounter Pokémon that are the stuff of legend!")
+}
+
+script SlateportCity_EventScript_Gentleman {
+	msgbox(format("The Ability Master and the Nature Master are the true Pokémon experts.\pThey can help your Pokémon reach heights of power previously unimaginable."),MSGBOX_NPC)
 }

@@ -1803,6 +1803,12 @@
 	.2byte \song
 	.endm
 
+	@ Writes the name of the given ability to the specified buffer.
+	.macro buffernaturename stringVarId:req, nature:req
+	.byte 0xea
+	stringvar \stringVarId
+	.2byte \nature
+	.endm
 
 
 @ Supplementary

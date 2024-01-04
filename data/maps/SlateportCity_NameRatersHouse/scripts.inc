@@ -155,7 +155,7 @@ SlateportCity_NameRatersHouse_EventScript_AbilityMaster_25:
 	goto_if_eq SlateportCity_NameRatersHouse_EventScript_AbilityMaster_31
 SlateportCity_NameRatersHouse_EventScript_AbilityMaster_30:
 	msgbox SlateportCity_NameRatersHouse_EventScript_AbilityMaster_Text_8
-	special TeachMonAbility
+	special ChangeMonAbility
 	fadescreen FADE_TO_BLACK
 	delay 10
 	playfanfare MUS_OBTAIN_ITEM

@@ -543,7 +543,7 @@ gSpecials::
     def_special PokevialRefill
     //End Pokevial Branch
 	def_special BufferMonAbilities
-	def_special TeachMonAbility
+	def_special ChangeMonAbility
 	def_special GetTimeOfDaySpecial
 	def_special GetNumberSprayStrength
 	def_special GetSprayId

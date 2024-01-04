@@ -1,1 +1,85 @@
 mapscripts SlateportCity_House3_MapScripts {}
+
+script SlateportCity_House3_EventScript_NatureMaster {
+    msgbox(format("To be implemented"),MSGBOX_NPC)
+    // lock
+    // faceplayer
+    // msgbox(format("Hello, child. I am known as the Nature Master.\pI can train with one of your Pokémon to grant them an entirely new Nature.\pWould you like one of your Pokémon to change their Nature?"),MSGBOX_YESNO)
+    
+    // if(var(VAR_RESULT) == NO) {goto(SlateportCity_House3_EventScript_NatureMasterNo)}
+
+    // msgbox(format("Which Pokémon should I train?"))
+    // special(ChoosePartyMon)
+    // waitstate
+
+    // if(var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {goto(SlateportCity_House3_EventScript_NatureMasterNo)}
+
+    // specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+
+    // if(var(VAR_RESULT) == SPECIES_EGG) {
+    //     msgbox(format("How foolish! An Egg cannot train!"))
+    //     release
+    //     end
+    // }
+
+    // special(BufferMonNickname)
+
+    // msgbox(format("Which new Nature suits {STR_VAR_1} best?"))
+    // dynmultipush("Hardy", NATURE_HARDY)
+    // dynmultipush("Lonely", NATURE_LONELY)
+    // dynmultipush("Brave", NATURE_BRAVE)
+    // dynmultipush("Adamant", NATURE_ADAMANT)
+    // dynmultipush("Naughty", NATURE_NAUGHTY)
+    // dynmultipush("Bold", NATURE_BOLD)
+    // dynmultipush("Docile", NATURE_DOCILE)
+    // dynmultipush("Relaxed", NATURE_RELAXED)
+    // dynmultipush("Impish", NATURE_IMPISH)
+    // dynmultipush("Lax", NATURE_LAX)
+    // dynmultipush("Timid", NATURE_TIMID)
+    // dynmultipush("Hasty", NATURE_HASTY)
+    // dynmultipush("Serious", NATURE_SERIOUS)
+    // dynmultipush("Jolly", NATURE_JOLLY)
+    // dynmultipush("Naive", NATURE_NAIVE)
+    // dynmultipush("Modest", NATURE_MODEST)
+    // dynmultipush("Mild", NATURE_MILD)
+    // dynmultipush("Quiet", NATURE_QUIET)
+    // dynmultipush("Bashful", NATURE_BASHFUL)
+    // dynmultipush("Rash", NATURE_RASH)
+    // dynmultipush("Calm", NATURE_CALM)
+    // dynmultipush("Gentle", NATURE_GENTLE)
+    // dynmultipush("Sassy", NATURE_SASSY)
+    // dynmultipush("Careful", NATURE_CAREFUL)
+    // dynmultipush("Quirky", NATURE_QUIRKY)
+    // dynmultipush("Cancel", MULTI_B_PRESSED)
+
+    // // setting initial selected to a non-existant ID will always have it point to the first option
+	// dynmultistack(0, 0, TRUE, 6, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+
+    // if (var(VAR_RESULT) == MULTI_B_PRESSED) {goto(SlateportCity_House3_EventScript_NatureMasterNo)}
+
+    // copyvar(VAR_0x8005, VAR_RESULT)
+    // buffernaturename(STR_VAR_2, VAR_RESULT)
+
+    // msgbox(format("So {STR_VAR_1} should acquire the {STR_VAR_2} Nature?"), MSGBOX_YESNO)
+
+    // if(var(VAR_RESULT) == NO) {goto(SlateportCity_House3_EventScript_NatureMasterNo)}
+
+    // msgbox(format("Excellent. We shall begin at once!"))
+
+    // fadescreen(FADE_TO_BLACK)
+    // special(ChangeMonNature)
+    // playfanfare(MUS_OBTAIN_ITEM)
+	// waitfanfare
+    // closemessage
+    // fadescreen(FADE_FROM_BLACK)
+
+    // msgbox(format("{STR_VAR_1}'s training is complete.\pCome back if you need to train another Pokémon."))
+    // release
+    // end
+}
+
+// script SlateportCity_House3_EventScript_NatureMasterNo {
+//     msgbox(format("I see. Come back when one of your Pokémon needs to acquire a new Nature."))
+//     release
+//     end
+// }
