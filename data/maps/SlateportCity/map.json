@@ -98,7 +98,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_COOK",
       "x": 15,
-      "y": 43,
+      "y": 39,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -124,7 +124,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
       "x": 18,
-      "y": 42,
+      "y": 39,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -280,7 +280,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
       "x": 16,
-      "y": 38,
+      "y": 35,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -461,8 +461,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
-      "x": 21,
-      "y": 37,
+      "x": 22,
+      "y": 36,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -486,7 +486,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_SCOTT"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 21,
       "y": 47,
       "elevation": 0,
@@ -748,19 +748,11 @@
     },
     {
       "type": "sign",
-      "x": 20,
-      "y": 36,
+      "x": 22,
+      "y": 34,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "SlateportCity_EventScript_BerryCrushRankingsSign"
-    },
-    {
-      "type": "sign",
-      "x": 9,
-      "y": 19,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
     },
     {
       "type": "sign",
