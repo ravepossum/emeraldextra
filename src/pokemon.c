@@ -55,7 +55,6 @@
 #include "constants/trainers.h"
 #include "constants/union_room.h"
 #include "constants/weather.h"
-#include "day_night.h"
 #include "constants/rtc.h"
 
 #if P_FRIENDSHIP_EVO_THRESHOLD >= GEN_9

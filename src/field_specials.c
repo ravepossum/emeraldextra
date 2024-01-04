@@ -5,7 +5,6 @@
 #include "battle_tower.h"
 #include "cable_club.h"
 #include "data.h"
-#include "day_night.h"
 #include "decoration.h"
 #include "diploma.h"
 #include "event_data.h"

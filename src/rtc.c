@@ -218,12 +218,3 @@ void RtcAdvanceTimeTo(u32 hour, u32 minute, u32 second)
     CalcTimeDifference(&diff, &gLocalTime, &target);
     RtcAdvanceTime(diff.hours, diff.minutes, diff.seconds);
 }
-
-void RtcCalcLocalTimeFast(void)
-{
-    RtcGetStatus(&sRtc);
-    RtcDisableInterrupts();
-    RtcGetInfo(&sRtc);
-    RtcRestoreInterrupts();
-    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
-}

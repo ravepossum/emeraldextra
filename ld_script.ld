@@ -343,7 +343,6 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/pokemon_debug.o(.text);
         src/expansion_intro.o(.text);
-        src/day_night.o(.text);
 		src/dexnav.o(.text);
         src/tm_case.o(.text);
         src/tx_registered_items_menu.o(.text);
@@ -714,7 +713,6 @@ SECTIONS {
         data/sound_data.o(.rodata);
         src/pokemon_debug.o(.rodata);
         src/expansion_intro.o(.rodata);
-        src/day_night.o(.rodata);
 		src/dexnav.o(.rodata);
         src/tm_case.o(.rodata);
         src/tx_registered_items_menu.o(.rodata);

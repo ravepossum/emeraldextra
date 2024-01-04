@@ -62,7 +62,6 @@
 #include "battle_util.h"
 #include "constants/pokemon.h"
 #include "config/battle.h"
-#include "day_night.h"
 #include "constants/rtc.h"
 
 // Helper for accessing command arguments and advancing gBattlescriptCurrInstr.
