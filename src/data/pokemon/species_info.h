@@ -224,6 +224,23 @@ const u8 gOgerponCornerstoneMaskPokedexText[] = _(
 #define FLIP    0
 #define NO_FLIP 1
 
+const u16 gRandomFormSpecies[] =
+{
+    SPECIES_FLABEBE,
+    SPECIES_FLOETTE,
+    SPECIES_FLORGES,
+    SPECIES_MINIOR,
+    SPECIES_SQUAWKABILLY,
+    SPECIES_UNOWN,
+    SPECIES_MEOWSTIC,
+    SPECIES_PUMPKABOO,
+    SPECIES_GOURGEIST,
+    SPECIES_ORICORIO,
+    SPECIES_OINKOLOGNE,
+    SPECIES_TATSUGIRI,
+    SPECIES_NONE
+};
+
 const struct SpeciesInfo gSpeciesInfo[] =
 {
     [SPECIES_NONE] =
