@@ -1487,6 +1487,15 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     //[SPECIES_OGERPON_HEARTHFLAME_MASK_TERA] = gMonIcon_OgerponHearthflameMask, TODO
     //[SPECIES_OGERPON_CORNERSTONE_MASK_TERA] = gMonIcon_OgerponCornerstoneMask, TODO
     [SPECIES_EGG] = gMonIcon_Egg,
+    [SPECIES_FLABEBE_RANDOM] = gMonIcon_FlabebeRedFlower,
+    [SPECIES_FLOETTE_RANDOM] = gMonIcon_FloetteRedFlower,
+    [SPECIES_FLORGES_RANDOM] = gMonIcon_FlorgesRedFlower,
+    [SPECIES_MINIOR_RANDOM] = gMonIcon_MiniorMeteor,
+    [SPECIES_SQUAWKABILLY_RANDOM] = gMonIcon_SquawkabillyGreenPlumage,
+    [SPECIES_PUMPKABOO_RANDOM] = gMonIcon_Pumpkaboo,
+    [SPECIES_GOURGEIST_RANDOM] = gMonIcon_Gourgeist,
+    [SPECIES_ORICORIO_RANDOM] = gMonIcon_OricorioBaile,
+    [SPECIES_TATSUGIRI_RANDOM] = gMonIcon_TatsugiriCurly,
 };
 */
 
@@ -1617,7 +1626,7 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
     };
     species = SanitizeSpeciesId(species);
 
-    if (species > NUM_SPECIES)
+    if (species > RANDOM_FORM_END)
         iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG;
     else if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
         iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG + gSpeciesInfo[species].iconPalIndexFemale;
@@ -1752,7 +1761,7 @@ const u8 *GetMonIconTiles(u16 species, u32 personality)
 {
     const u8 *iconSprite;
 
-    if (species > NUM_SPECIES)
+    if (species > RANDOM_FORM_END)
         species = SPECIES_NONE;
 
     if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))

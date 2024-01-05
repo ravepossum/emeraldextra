@@ -1998,7 +1998,7 @@ static void DexNavLoadEncounterData(void)
 
 static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
-    if (species == SPECIES_NONE || species > NUM_SPECIES)
+    if (species == SPECIES_NONE || species > RANDOM_FORM_END)
         CreateNoDataIcon(x, y);   //'X' in slot
     else if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
         CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
@@ -2036,7 +2036,7 @@ static void DrawSpeciesIcons(void)
         y = ROW_HIDDEN_ICON_Y;
         if (FlagGet(FLAG_SYS_DETECTOR_MODE))
             TryDrawIconInSlot(species, x, y);
-       else if (species == SPECIES_NONE || species > NUM_SPECIES)
+       else if (species == SPECIES_NONE || species > RANDOM_FORM_END)
             CreateNoDataIcon(x, y);
         else
             CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark if detector mode inactive

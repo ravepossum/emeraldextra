@@ -5998,7 +5998,7 @@ bool32 TryFormChange(u32 monId, u32 side, u16 method)
 
 u16 SanitizeSpeciesId(u16 species)
 {
-    if (species > NUM_SPECIES || !IsSpeciesEnabled(species))
+    if (species > RANDOM_FORM_END || !IsSpeciesEnabled(species))
         return SPECIES_NONE;
     else
         return species;

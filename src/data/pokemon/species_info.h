@@ -224,21 +224,19 @@ const u8 gOgerponCornerstoneMaskPokedexText[] = _(
 #define FLIP    0
 #define NO_FLIP 1
 
-const u16 gRandomFormSpecies[] =
+// the first element is the corresponding base species, the second is the last element in the form
+// table that should be considered for random form generation
+const u16 gRandomFormSpeciesInfo[][2] =
 {
-    SPECIES_FLABEBE,
-    SPECIES_FLOETTE,
-    SPECIES_FLORGES,
-    SPECIES_MINIOR,
-    SPECIES_SQUAWKABILLY,
-    SPECIES_UNOWN,
-    SPECIES_MEOWSTIC,
-    SPECIES_PUMPKABOO,
-    SPECIES_GOURGEIST,
-    SPECIES_ORICORIO,
-    SPECIES_OINKOLOGNE,
-    SPECIES_TATSUGIRI,
-    SPECIES_NONE
+    [SPECIES_FLABEBE_RANDOM]        = {SPECIES_FLABEBE,         FORM_SPECIES_END},
+    [SPECIES_FLOETTE_RANDOM]        = {SPECIES_FLOETTE,         FORM_SPECIES_END},
+    [SPECIES_FLORGES_RANDOM]        = {SPECIES_FLORGES,         FORM_SPECIES_END},
+    [SPECIES_MINIOR_RANDOM]         = {SPECIES_MINIOR,          SPECIES_MINIOR_CORE_RED},
+    [SPECIES_SQUAWKABILLY_RANDOM]   = {SPECIES_SQUAWKABILLY,    FORM_SPECIES_END},
+    [SPECIES_PUMPKABOO_RANDOM]      = {SPECIES_PUMPKABOO,       FORM_SPECIES_END},
+    [SPECIES_GOURGEIST_RANDOM]      = {SPECIES_GOURGEIST,       FORM_SPECIES_END},
+    [SPECIES_ORICORIO_RANDOM]       = {SPECIES_ORICORIO,        FORM_SPECIES_END},
+    [SPECIES_TATSUGIRI_RANDOM]      = {SPECIES_TATSUGIRI,       FORM_SPECIES_END},
 };
 
 const struct SpeciesInfo gSpeciesInfo[] =
@@ -292,6 +290,173 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .palette = gMonPalette_Egg,
         .shinyPalette = gMonPalette_Egg,
         ICON(Egg, 1),
+    },
+
+    [SPECIES_FLABEBE_RANDOM]        =     
+    {
+        FLABEBE_MISC_INFO(Red, RED, 1),
+        .description = COMPOUND_STRING(
+            "This Flabébé rides a red flower.\n"
+            "Immediately after birth, this Pokémon\n"
+            "begins flying around in search of a\n"
+            "flower it likes."),
+    },
+    
+    [SPECIES_FLOETTE_RANDOM]        =     
+    {
+        FLOETTE_NORMAL_INFO(Red, RED, 1),
+        .description = COMPOUND_STRING(
+            "This Pokémon uses red wavelengths\n"
+            "of light to pour its own energy\n"
+            "into flowers and draw forth their\n"
+            "latent potential."),
+    },
+    
+    [SPECIES_FLORGES_RANDOM]        =     
+    {
+        FLORGES_MISC_INFO(Red, 0),
+        .description = COMPOUND_STRING(
+            "This Pokémon creates an\n"
+            "impressive flower garden in its territory. It\n"
+            "draws forth the power of the red\n"
+            "flowers around its neck."),
+    },
+    
+    [SPECIES_MINIOR_RANDOM]         =     
+    {
+        // todo not sure why this one in particular doesn't work
+        //MINIOR_METEOR_SPECIES_INFO(Red),
+                .speciesName = _("??????????"),
+        .cryId = CRY_NONE,
+        .natDexNum = NATIONAL_DEX_NONE,
+        .categoryName = _("Unknown"),
+        .height = 0,
+        .weight = 0,
+        .description = COMPOUND_STRING(
+            "This is a newly discovered Pokémon.\n"
+            "It is currently under investigation.\n"
+            "No detailed information is available\n"
+            "at this time."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(CircledQuestionMark, 40, 40),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_None,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(CircledQuestionMark, 40, 40),
+        .backPicYOffset = 12,
+        .backAnimId = BACK_ANIM_NONE,
+        PALETTES(CircledQuestionMark),
+        ICON(QuestionMark, 0),
+        LEARNSETS(None),
+    },
+    
+    [SPECIES_SQUAWKABILLY_RANDOM]   =     
+    {
+        SQUAWKABILLY_MISC_INFO,
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
+        .bodyColor = BODY_COLOR_GREEN,
+        .description = COMPOUND_STRING(
+            "Green-feathered flocks hold the\n"
+            "most sway. When they're out\n"
+            "searching for food in the mornings and\n"
+            "evenings, it gets very noisy."),
+        PALETTES(SquawkabillyGreenPlumage),
+        ICON(SquawkabillyGreenPlumage, 1),
+    },
+    
+    [SPECIES_PUMPKABOO_RANDOM]      =     
+    {
+        PUMPKABOO_MISC_INFO,
+        .baseHP        = 49,
+        .baseAttack    = 66,
+        .baseDefense   = 70,
+        .baseSpeed     = 51,
+        .baseSpAttack  = 44,
+        .baseSpDefense = 55,
+        .cryId = CRY_PUMPKABOO,
+        .height = 4,
+        .weight = 50,
+        .description = COMPOUND_STRING(
+            "The light that streams out from\n"
+            "the holes in the pumpkin can\n"
+            "hypnotize and control the people and\n"
+            "Pokémon that see it."),
+        .pokemonScale = 491,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(PumpkabooAverage, 40, 40),
+        .frontPicYOffset = 13,
+        BACK_PIC(PumpkabooAverage, 56, 48),
+        .backPicYOffset = 13,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOURGEIST_AVERAGE},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOURGEIST_AVERAGE}),
+    },
+    
+    [SPECIES_GOURGEIST_RANDOM]      =     
+    {
+        GOURGEIST_MISC_INFO,
+        .baseHP        = 65,
+        .baseAttack    = 90,
+        .baseDefense   = 122,
+        .baseSpeed     = 84,
+        .baseSpAttack  = 58,
+        .baseSpDefense = 75,
+        .cryId = CRY_GOURGEIST,
+        .height = 9,
+        .weight = 125,
+        .description = COMPOUND_STRING(
+            "Eerie cries emanate from its body\n"
+            "in the dead of night. The sounds are\n"
+            "said to be the wails of spirits who\n"
+            "are suffering in the afterlife."),
+        .pokemonScale = 338,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(GourgeistAverage, 64, 64),
+        .frontPicYOffset = 4,
+        BACK_PIC(GourgeistAverage, 48, 64),
+        .backPicYOffset = 3,
+    },
+    
+    [SPECIES_ORICORIO_RANDOM]       =     
+    {
+        ORICORIO_MISC_INFO,
+        .types = { TYPE_FIRE, TYPE_FLYING },
+        .bodyColor = BODY_COLOR_RED,
+        .cryId = CRY_ORICORIO_BAILE,
+        .description = COMPOUND_STRING(
+            "It wins the hearts of its enemies\n"
+            "with its passionate dancing and then\n"
+            "uses the opening it creates to\n"
+            "burn them up with blazing flames."),
+        FRONT_PIC(OricorioBaile, 56, 64),
+        .frontPicYOffset = 2,
+        .frontAnimId = ANIM_CONCAVE_ARC_SMALL,
+        BACK_PIC(OricorioBaile, 64, 64),
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(OricorioBaile),
+        ICON(OricorioBaile, 0),
+    },
+    
+    [SPECIES_TATSUGIRI_RANDOM]      =     
+    {
+        TATSUGIRI_MISC_INFO,
+        .bodyColor = BODY_COLOR_PINK,
+        .cryId = CRY_TATSUGIRI_CURLY,
+        .description = COMPOUND_STRING(
+            "This is a small dragon Pokémon. It\n"
+            "lives inside the mouth of Dondozo to\n"
+            "protect itself from enemies on the\n"
+            "outside."),
+        FRONT_PIC(TatsugiriCurly, 64, 64),
+        BACK_PIC(TatsugiriCurly, 64, 64),
+        PALETTES(TatsugiriCurly),
+        ICON(TatsugiriCurly, 0),
     },
 
     /* You may add any custom species below this point based on the following structure: */
