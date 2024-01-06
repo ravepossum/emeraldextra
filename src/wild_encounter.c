@@ -1186,16 +1186,23 @@ bool32 MapHasNoEncounterData(void)
 u16 GetRandomMonForm(u16 species)
 {
     int i, formCount = 0;
+    bool32 shouldRandomize = FALSE;
 
-    if (species <= RANDOM_FORM_START)
+    for(i = 0; (gRandomFormSpecies[i] != SPECIES_NONE && !shouldRandomize); i++)
+    {
+        shouldRandomize = (gRandomFormSpecies[i] == species);
+    }
+
+    if (!shouldRandomize)
         return species;
 
-    const u16 *formTable = GetSpeciesFormTable(gRandomFormSpeciesInfo[species][0]);
-    u16 formTerminator = gRandomFormSpeciesInfo[species][1];
+    const u16 *formTable = GetSpeciesFormTable(species);
 
     if (formTable == NULL)
         return species;
     
+    u16 formTerminator = (species == SPECIES_MINIOR) ? SPECIES_MINIOR_CORE_RED : FORM_SPECIES_END;
+
     for (i = 0; formTable[i] != formTerminator; i++)
     {
         formCount++;

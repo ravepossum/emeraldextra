@@ -1774,18 +1774,4 @@
 
 #define NUM_SPECIES SPECIES_EGG
 
-#define RANDOM_FORM_START NUM_SPECIES
-
-#define SPECIES_FLABEBE_RANDOM                           NUM_SPECIES + 1
-#define SPECIES_FLOETTE_RANDOM                           NUM_SPECIES + 2
-#define SPECIES_FLORGES_RANDOM                           NUM_SPECIES + 3
-#define SPECIES_MINIOR_RANDOM                            NUM_SPECIES + 4
-#define SPECIES_SQUAWKABILLY_RANDOM                      NUM_SPECIES + 5
-#define SPECIES_PUMPKABOO_RANDOM                         NUM_SPECIES + 6
-#define SPECIES_GOURGEIST_RANDOM                         NUM_SPECIES + 7
-#define SPECIES_ORICORIO_RANDOM                          NUM_SPECIES + 8
-#define SPECIES_TATSUGIRI_RANDOM                         NUM_SPECIES + 9
-
-#define RANDOM_FORM_END                                  SPECIES_TATSUGIRI_RANDOM + 1
-
 #endif  // GUARD_CONSTANTS_SPECIES_H
