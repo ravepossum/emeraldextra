@@ -13678,7 +13678,7 @@
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_ORICORIO_BAILE"
+                "species": "SPECIES_ORICORIO"
               },
               {
                 "min_level": 5,
@@ -13698,7 +13698,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_ORICORIO_PAU"
+                "species": "SPECIES_ORICORIO"
               },
               {
                 "min_level": 5,
@@ -13718,7 +13718,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_ORICORIO_POM_POM"
+                "species": "SPECIES_ORICORIO"
               },
               {
                 "min_level": 5,
@@ -13728,7 +13728,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_ORICORIO_SENSU"
+                "species": "SPECIES_ORICORIO"
               },
               {
                 "min_level": 5,

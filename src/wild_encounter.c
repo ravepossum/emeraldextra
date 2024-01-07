@@ -456,6 +456,9 @@ void CreateWildMon(u16 species, u8 level)
 {
     bool32 checkCuteCharm;
 
+    // create random forms for mons with several wild forms
+    species = GetRandomMonForm(species);
+
     ZeroEnemyPartyMons();
     checkCuteCharm = OW_CUTE_CHARM < GEN_9;
 
@@ -1179,3 +1182,31 @@ bool32 MapHasNoEncounterData(void)
     return (GetCurrentMapWildMonHeaderId() == HEADER_NONE);
 }
 
+u16 GetRandomMonForm(u16 species)
+{
+    int i, formCount = 0;
+    bool32 shouldRandomize = FALSE;
+
+    for(i = 0; (gRandomFormSpecies[i] != SPECIES_NONE && !shouldRandomize); i++)
+    {
+        shouldRandomize = (gRandomFormSpecies[i] == species);
+    }
+
+    if (!shouldRandomize)
+        return species;
+
+    const u16 *formTable = GetSpeciesFormTable(species);
+
+    if (formTable == NULL)
+        return species;
+    
+    u16 formTerminator = (species == SPECIES_MINIOR) ? SPECIES_MINIOR_CORE_RED : FORM_SPECIES_END;
+
+    for (i = 0; formTable[i] != formTerminator; i++)
+    {
+        formCount++;
+    }
+
+    int speciesFormIndex = Random() % formCount;
+    return formTable[speciesFormIndex];
+}

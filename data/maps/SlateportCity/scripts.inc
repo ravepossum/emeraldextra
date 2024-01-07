@@ -1386,6 +1386,42 @@ SlateportCity_Pokemart_Cook:
 	release
 	end
 
+    .align 2
+SlateportCity_Pokemart_NatureGuru:
+	.2byte ITEM_LONELY_MINT
+	.2byte ITEM_ADAMANT_MINT
+	.2byte ITEM_NAUGHTY_MINT
+	.2byte ITEM_BRAVE_MINT
+	.2byte ITEM_BOLD_MINT
+	.2byte ITEM_IMPISH_MINT
+	.2byte ITEM_LAX_MINT
+	.2byte ITEM_RELAXED_MINT
+	.2byte ITEM_MODEST_MINT
+	.2byte ITEM_MILD_MINT
+	.2byte ITEM_RASH_MINT
+	.2byte ITEM_QUIET_MINT
+	.2byte ITEM_CALM_MINT
+	.2byte ITEM_GENTLE_MINT
+	.2byte ITEM_CAREFUL_MINT
+	.2byte ITEM_SASSY_MINT
+	.2byte ITEM_TIMID_MINT
+	.2byte ITEM_HASTY_MINT
+	.2byte ITEM_JOLLY_MINT
+	.2byte ITEM_NAIVE_MINT 
+	.2byte ITEM_SERIOUS_MINT 
+	.2byte ITEM_NONE
+	release
+	end
+
+    .align 2
+SlateportCity_Pokemart_AbilityGuru:
+	.2byte ITEM_ABILITY_CAPSULE
+	.2byte ITEM_ABILITY_PATCH
+	.2byte ITEM_ABILITY_SHIELD
+	.2byte ITEM_NONE
+	release
+	end
+
 SlateportCity_EventScript_Cook::
 	lock
 	faceplayer
@@ -1456,6 +1492,28 @@ SlateportCity_EventScript_Gentleman::
 	return
 
 
+SlateportCity_EventScript_NatureGuru::
+	lock
+	faceplayer
+	message SlateportCity_EventScript_NatureGuru_Text_0
+	waitmessage
+	pokemart SlateportCity_Pokemart_NatureGuru
+	msgbox gText_PleaseComeAgain
+	release
+	end
+
+
+SlateportCity_EventScript_AbilityGuru::
+	lock
+	faceplayer
+	message SlateportCity_EventScript_AbilityGuru_Text_0
+	waitmessage
+	pokemart SlateportCity_Pokemart_AbilityGuru
+	msgbox gText_PleaseComeAgain
+	release
+	end
+
+
 SlateportCity_EventScript_Cook_Text_0:
 	.string "I sell my own sweets, baked fresh daily!$"
 
@@ -1487,11 +1545,21 @@ SlateportCity_EventScript_Electrike_Text_0:
 	.string "Electrike: Arruff!$"
 
 SlateportCity_EventScript_Gentleman_Text_0:
-	.string "The Ability Master and the Nature\n"
-	.string "Master are the true Pokémon experts.\p"
-	.string "They can help your Pokémon reach\n"
-	.string "heights of power previously\l"
-	.string "unimaginable.$"
+	.string "Stop by the Pokémon Gurus at the\n"
+	.string "Market if you're a serious trainer.\p"
+	.string "They can help you change Individual\n"
+	.string "Values, Effort Values, Abilities, and\l"
+	.string "Natures!$"
+
+SlateportCity_EventScript_NatureGuru_Text_0:
+	.string "I'm the Nature Guru!\p"
+	.string "It's in my nature to supply your\n"
+	.string "Nature-changing needs!$"
+
+SlateportCity_EventScript_AbilityGuru_Text_0:
+	.string "I'm the Ability Guru!\p"
+	.string "I've got the ability to equip your\n"
+	.string "Pokémon with new Abilities!$"
 
 SlateportCity_Text_GoingToCompeteInBattleTent::
 	.string "The battles at the Battle Tent here use\n"
