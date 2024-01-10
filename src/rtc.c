@@ -2,6 +2,7 @@
 #include "rtc.h"
 #include "constants/rtc.h"
 #include "string_util.h"
+#include "strings.h"
 #include "text.h"
 
 // iwram bss
@@ -226,4 +227,36 @@ void RtcCalcLocalTimeFast(void)
     RtcGetInfo(&sRtc);
     RtcRestoreInterrupts();
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+}
+
+void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool8 is24Hour)
+{
+    switch (is24Hour)
+    {
+    case TRUE:
+        txtPtr = ConvertIntToDecimalStringN(txtPtr, hour, STR_CONV_MODE_LEADING_ZEROS, 2);
+        *txtPtr++ = CHAR_COLON;
+        txtPtr = ConvertIntToDecimalStringN(txtPtr, minute, STR_CONV_MODE_LEADING_ZEROS, 2);
+        break;
+    case FALSE:
+        if (hour == 0)
+            hour = 12;
+            
+        if (hour < 13)
+            txtPtr = ConvertIntToDecimalStringN(txtPtr, hour, STR_CONV_MODE_LEADING_ZEROS, 2);
+        else
+            txtPtr = ConvertIntToDecimalStringN(txtPtr, hour - 12, STR_CONV_MODE_LEADING_ZEROS, 2);
+
+        *txtPtr++ = CHAR_COLON;
+        txtPtr = ConvertIntToDecimalStringN(txtPtr, minute, STR_CONV_MODE_LEADING_ZEROS, 2);
+        txtPtr = StringAppend(txtPtr, gText_Space);
+        if (hour < 13)
+            txtPtr = StringAppend(txtPtr, gText_AM);
+        else
+            txtPtr = StringAppend(txtPtr, gText_PM);
+        break;
+    }
+
+    *txtPtr++ = EOS;
+    *txtPtr = EOS;
 }
