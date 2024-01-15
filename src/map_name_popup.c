@@ -27,6 +27,9 @@ static void ShowMapNamePopUpWindow(void);
 static void LoadMapNamePopUpWindowBgs(void);
 
 static const u16 sMapPopUp_Palette[16] = INCBIN_U16("graphics/interface/map_popup_palette.gbapal");
+static const u8 sPopUpWindow_Tiles_Primary[] = INCBIN_U8("graphics/interface/map_popup_primary.4bpp");
+static const u8 sPopUpWindow_Tiles_Secondary[] = INCBIN_U8("graphics/interface/map_popup_secondary.4bpp");
+static const u8 sPopUpWindow_Tiles_Secondary_Night[] = INCBIN_U8("graphics/interface/map_popup_secondary_night.4bpp");
 
 static const u8 sText_PyramidFloor1[] = _("Pyramid Floor 1");
 static const u8 sText_PyramidFloor2[] = _("Pyramid Floor 2");
@@ -202,7 +205,7 @@ static void ShowMapNamePopUpWindow(void)
     weatherPopUpWindowId = AddWeatherPopUpWindow();
 
     LoadMapNamePopUpWindowBgs();
-    LoadPalette(gPopUpWindowBorder_Palette, 0xE0, 32);
+    LoadPalette(sMapPopUp_Palette, BG_PLTT_ID(14), 32);
 
     if (InBattlePyramid())
     {
@@ -231,7 +234,7 @@ static void ShowMapNamePopUpWindow(void)
     AddTextPrinterParameterized(mapNamePopUpWindowId, FONT_SHORT, mapDisplayHeader, mapNameX, mapNameY, TEXT_SKIP_DRAW, NULL);
 
     FormatDecimalTimeWithoutSeconds(withoutPrefixPtr, gLocalTime.hours, gLocalTime.minutes, FALSE);
-    
+
     AddTextPrinterParameterized(weatherPopUpWindowId, FONT_SMALL, mapDisplayHeader, GetStringRightAlignXOffset(FONT_SMALL, mapDisplayHeader, DISPLAY_WIDTH) - timeX, timeY, TEXT_SKIP_DRAW, NULL);
 
     CopyWindowToVram(mapNamePopUpWindowId, COPYWIN_FULL);
@@ -251,18 +254,19 @@ static void LoadMapNamePopUpWindowBgs(void)
         else
             regionMapSectionId = 0; // Discard kanto region sections;
     }
- 
-    PutWindowTilemap(mapNamePopUpWindowId);
-    PutWindowTilemap(weatherPopUpWindowId);
 
+
+    CopyToWindowPixelBuffer(mapNamePopUpWindowId, sPopUpWindow_Tiles_Primary, sizeof(sPopUpWindow_Tiles_Primary), 0);
+    
     if (GetTimeOfDay() == TIME_NIGHT)
     {
-        BlitBitmapRectToWindow(mapNamePopUpWindowId, gPopUpWindowBorder_Tiles_Night, 0, 0, DISPLAY_WIDTH, 24, 0, 0, DISPLAY_WIDTH, 24);
-        BlitBitmapRectToWindow(weatherPopUpWindowId, gPopUpWindowBorder_Tiles_Night, 0, 24, DISPLAY_WIDTH, 24, 0, 0, DISPLAY_WIDTH, 24);
+        CopyToWindowPixelBuffer(weatherPopUpWindowId, sPopUpWindow_Tiles_Secondary_Night, sizeof(sPopUpWindow_Tiles_Secondary_Night), 0);
     }
     else
     {
-        BlitBitmapRectToWindow(mapNamePopUpWindowId, gPopUpWindowBorder_Tiles, 0, 0, DISPLAY_WIDTH, 24, 0, 0, DISPLAY_WIDTH, 24);
-        BlitBitmapRectToWindow(weatherPopUpWindowId, gPopUpWindowBorder_Tiles, 0, 24, DISPLAY_WIDTH, 24, 0, 0, DISPLAY_WIDTH, 24);
+        CopyToWindowPixelBuffer(weatherPopUpWindowId, sPopUpWindow_Tiles_Secondary, sizeof(sPopUpWindow_Tiles_Secondary), 0);
     }
+
+    PutWindowTilemap(mapNamePopUpWindowId);
+    PutWindowTilemap(weatherPopUpWindowId);
 }

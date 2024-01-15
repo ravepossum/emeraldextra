@@ -2048,7 +2048,3 @@ const u32 gTMCaseDiscTypes2_Pal[] = INCBIN_U32("graphics/tm_case/disc_types_2.gb
 const u8  gTMCaseHM_Gfx[] = INCBIN_U8("graphics/tm_case/hm.4bpp");
 const u16 gTMCaseMainWindowPalette[] = INCBIN_U16("graphics/tm_case/tm_menu.gbapal");
 
-// map name pop-ups
-const u8 gPopUpWindowBorder_Tiles[] = INCBIN_U8("graphics/interface/window_popup_tiles.4bpp");
-const u8 gPopUpWindowBorder_Tiles_Night[] = INCBIN_U8("graphics/interface/window_popup_tiles_night.4bpp");
-const u16 gPopUpWindowBorder_Palette[] = INCBIN_U16("graphics/interface/map_popup_palette.gbapal");

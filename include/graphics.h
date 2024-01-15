@@ -3558,9 +3558,4 @@ extern const u16 gTMCaseMainWindowPalette[];
 
 extern const u32 gItemIconPalette_InfiniteRepel[];
 
-// map pop-ups
-extern const u8 gPopUpWindowBorder_Tiles[];
-extern const u8 gPopUpWindowBorder_Tiles_Night[];
-extern const u16 gPopUpWindowBorder_Palette[];
-
 #endif //GUARD_GRAPHICS_H
