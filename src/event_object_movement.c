@@ -443,6 +443,8 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_PLUSLE                  0x1129
 #define OBJ_EVENT_PAL_TAG_MINUN                   0x112A
 #define OBJ_EVENT_PAL_TAG_SHARPEDO_SWIM           0x112B
+#define OBJ_EVENT_PAL_TAG_RS_BRENDAN_REFLECTION   0x112C
+#define OBJ_EVENT_PAL_TAG_RS_MAY_REFLECTION       0x112D
 #define OBJ_EVENT_PAL_TAG_NONE                    0x11FF
 
 #include "data/field_effects/field_effect_object_template_pointers.h"
@@ -454,49 +456,51 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #include "data/object_events/object_event_graphics_info_pointers.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
-    {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_NPC_1},
-    {gObjectEventPal_Npc2,                  OBJ_EVENT_PAL_TAG_NPC_2},
-    {gObjectEventPal_Npc3,                  OBJ_EVENT_PAL_TAG_NPC_3},
-    {gObjectEventPal_Npc4,                  OBJ_EVENT_PAL_TAG_NPC_4},
-    {gObjectEventPal_Npc1Reflection,        OBJ_EVENT_PAL_TAG_NPC_1_REFLECTION},
-    {gObjectEventPal_Npc2Reflection,        OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION},
-    {gObjectEventPal_Npc3Reflection,        OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
-    {gObjectEventPal_Npc4Reflection,        OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION},
-    {gObjectEventPal_Brendan,               OBJ_EVENT_PAL_TAG_BRENDAN},
-    {gObjectEventPal_BrendanReflection,     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION},
-    {gObjectEventPal_BridgeReflection,      OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION},
-    {gObjectEventPal_PlayerUnderwater,      OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER},
-    {gObjectEventPal_QuintyPlump,           OBJ_EVENT_PAL_TAG_QUINTY_PLUMP},
-    {gObjectEventPal_QuintyPlumpReflection, OBJ_EVENT_PAL_TAG_QUINTY_PLUMP_REFLECTION},
-    {gObjectEventPal_Truck,                 OBJ_EVENT_PAL_TAG_TRUCK},
-    {gObjectEventPal_Vigoroth,              OBJ_EVENT_PAL_TAG_VIGOROTH},
-    {gObjectEventPal_EnemyZigzagoon,        OBJ_EVENT_PAL_TAG_ZIGZAGOON},
-    {gObjectEventPal_May,                   OBJ_EVENT_PAL_TAG_MAY},
-    {gObjectEventPal_MayReflection,         OBJ_EVENT_PAL_TAG_MAY_REFLECTION},
-    {gObjectEventPal_MovingBox,             OBJ_EVENT_PAL_TAG_MOVING_BOX},
-    {gObjectEventPal_CableCar,              OBJ_EVENT_PAL_TAG_CABLE_CAR},
-    {gObjectEventPal_SSTidal,               OBJ_EVENT_PAL_TAG_SSTIDAL},
-    {gObjectEventPal_Kyogre,                OBJ_EVENT_PAL_TAG_KYOGRE},
-    {gObjectEventPal_KyogreReflection,      OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION},
-    {gObjectEventPal_Groudon,               OBJ_EVENT_PAL_TAG_GROUDON},
-    {gObjectEventPal_GroudonReflection,     OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION},
-    {gObjectEventPal_SubmarineShadow,       OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW},
-    {gObjectEventPal_Poochyena,             OBJ_EVENT_PAL_TAG_POOCHYENA},
-    {gObjectEventPal_RedLeaf,               OBJ_EVENT_PAL_TAG_RED_LEAF},
-    {gObjectEventPal_Deoxys,                OBJ_EVENT_PAL_TAG_DEOXYS},
-    {gObjectEventPal_BirthIslandStone,      OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE},
-    {gObjectEventPal_HoOh,                  OBJ_EVENT_PAL_TAG_HO_OH},
-    {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
-    {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
-    {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
-    {gObjectEventPal_Pelipper,              OBJ_EVENT_PAL_TAG_PELIPPER},
-    {gObjectEventPal_Passimian,             OBJ_EVENT_PAL_TAG_PASSIMIAN},
-    {gObjectEventPal_Dustox,                OBJ_EVENT_PAL_TAG_DUSTOX},
-    {gObjectEventPal_Makuhita,              OBJ_EVENT_PAL_TAG_MAKUHITA},
-    {gObjectEventPal_Electrike,             OBJ_EVENT_PAL_TAG_ELECTRIKE},
-    {gObjectEventPal_Plusle,                OBJ_EVENT_PAL_TAG_PLUSLE},
-    {gObjectEventPal_Minun,                 OBJ_EVENT_PAL_TAG_MINUN},
-    {gObjectEventPal_SharpedoSwim,          OBJ_EVENT_PAL_TAG_SHARPEDO_SWIM},
+    {gObjectEventPal_Npc1,                              OBJ_EVENT_PAL_TAG_NPC_1},
+    {gObjectEventPal_Npc2,                              OBJ_EVENT_PAL_TAG_NPC_2},
+    {gObjectEventPal_Npc3,                              OBJ_EVENT_PAL_TAG_NPC_3},
+    {gObjectEventPal_Npc4,                              OBJ_EVENT_PAL_TAG_NPC_4},
+    {gObjectEventPal_Npc1Reflection,                    OBJ_EVENT_PAL_TAG_NPC_1_REFLECTION},
+    {gObjectEventPal_Npc2Reflection,                    OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION},
+    {gObjectEventPal_Npc3Reflection,                    OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
+    {gObjectEventPal_Npc4Reflection,                    OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION},
+    {gObjectEventPal_Brendan,                           OBJ_EVENT_PAL_TAG_BRENDAN},
+    {gObjectEventPal_BrendanReflection,                 OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION},
+    {gObjectEventPal_BridgeReflection,                  OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION},
+    {gObjectEventPal_PlayerUnderwater,                  OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER},
+    {gObjectEventPal_QuintyPlump,                       OBJ_EVENT_PAL_TAG_QUINTY_PLUMP},
+    {gObjectEventPal_QuintyPlumpReflection,             OBJ_EVENT_PAL_TAG_QUINTY_PLUMP_REFLECTION},
+    {gObjectEventPal_Truck,                             OBJ_EVENT_PAL_TAG_TRUCK},
+    {gObjectEventPal_Vigoroth,                          OBJ_EVENT_PAL_TAG_VIGOROTH},
+    {gObjectEventPal_EnemyZigzagoon,                    OBJ_EVENT_PAL_TAG_ZIGZAGOON},
+    {gObjectEventPal_May,                               OBJ_EVENT_PAL_TAG_MAY},
+    {gObjectEventPal_MayReflection,                     OBJ_EVENT_PAL_TAG_MAY_REFLECTION},
+    {gObjectEventPal_MovingBox,                         OBJ_EVENT_PAL_TAG_MOVING_BOX},
+    {gObjectEventPal_CableCar,                          OBJ_EVENT_PAL_TAG_CABLE_CAR},
+    {gObjectEventPal_SSTidal,                           OBJ_EVENT_PAL_TAG_SSTIDAL},
+    {gObjectEventPal_Kyogre,                            OBJ_EVENT_PAL_TAG_KYOGRE},
+    {gObjectEventPal_KyogreReflection,                  OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION},
+    {gObjectEventPal_Groudon,                           OBJ_EVENT_PAL_TAG_GROUDON},
+    {gObjectEventPal_GroudonReflection,                 OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION},
+    {gObjectEventPal_SubmarineShadow,                   OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW},
+    {gObjectEventPal_Poochyena,                         OBJ_EVENT_PAL_TAG_POOCHYENA},
+    {gObjectEventPal_RedLeaf,                           OBJ_EVENT_PAL_TAG_RED_LEAF},
+    {gObjectEventPal_Deoxys,                            OBJ_EVENT_PAL_TAG_DEOXYS},
+    {gObjectEventPal_BirthIslandStone,                  OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE},
+    {gObjectEventPal_HoOh,                              OBJ_EVENT_PAL_TAG_HO_OH},
+    {gObjectEventPal_Lugia,                             OBJ_EVENT_PAL_TAG_LUGIA},
+    {gObjectEventPal_RubySapphireBrendan,               OBJ_EVENT_PAL_TAG_RS_BRENDAN},
+    {gObjectEventPal_RubySapphireMay,                   OBJ_EVENT_PAL_TAG_RS_MAY},
+    {gObjectEventPal_Pelipper,                          OBJ_EVENT_PAL_TAG_PELIPPER},
+    {gObjectEventPal_Passimian,                         OBJ_EVENT_PAL_TAG_PASSIMIAN},
+    {gObjectEventPal_Dustox,                            OBJ_EVENT_PAL_TAG_DUSTOX},
+    {gObjectEventPal_Makuhita,                          OBJ_EVENT_PAL_TAG_MAKUHITA},
+    {gObjectEventPal_Electrike,                         OBJ_EVENT_PAL_TAG_ELECTRIKE},
+    {gObjectEventPal_Plusle,                            OBJ_EVENT_PAL_TAG_PLUSLE},
+    {gObjectEventPal_Minun,                             OBJ_EVENT_PAL_TAG_MINUN},
+    {gObjectEventPal_SharpedoSwim,                      OBJ_EVENT_PAL_TAG_SHARPEDO_SWIM},
+    {gObjectEventPal_RubySapphireBrendanReflection,     OBJ_EVENT_PAL_TAG_RS_BRENDAN_REFLECTION},
+    {gObjectEventPal_RubySapphireMayReflection,         OBJ_EVENT_PAL_TAG_RS_MAY_REFLECTION},
 #ifdef BUGFIX
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
 #else
@@ -1591,7 +1595,6 @@ static void SetPlayerAvatarObjectEventIdAndObjectId(u8 objectEventId, u8 spriteI
 {
     gPlayerAvatar.objectEventId = objectEventId;
     gPlayerAvatar.spriteId = spriteId;
-    gPlayerAvatar.gender = GetPlayerAvatarGenderByGraphicsId(gObjectEvents[objectEventId].graphicsId);
     SetPlayerAvatarExtraStateTransition(gObjectEvents[objectEventId].graphicsId, PLAYER_AVATAR_FLAG_CONTROLLABLE);
 }
 

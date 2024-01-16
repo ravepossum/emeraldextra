@@ -9852,4 +9852,14 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_InfiniteRepel,
     },
+    [ITEM_OUTFIT_BOX] =
+    {
+        .name = _("Outfit Box"),
+        .price = 0,
+        .importance = 1,
+        .description = sOutfitBoxDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_OutfitBox,
+    },
 };

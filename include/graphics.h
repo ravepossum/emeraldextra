@@ -3558,4 +3558,7 @@ extern const u16 gTMCaseMainWindowPalette[];
 
 extern const u32 gItemIconPalette_InfiniteRepel[];
 
+extern const u32 gItemIcon_OutfitBox[];
+extern const u32 gItemIconPalette_OutfitBox[];
+
 #endif //GUARD_GRAPHICS_H

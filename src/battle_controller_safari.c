@@ -10,6 +10,7 @@
 #include "link.h"
 #include "main.h"
 #include "m4a.h"
+#include "outfit_menu.h"
 #include "palette.h"
 #include "pokeball.h"
 #include "pokeblock.h"
@@ -246,7 +247,7 @@ static void SafariBufferExecCompleted(u32 battler)
 
 static void SafariHandleDrawTrainerPic(u32 battler)
 {
-    u32 trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
+    u32 trainerPicId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 1);
 
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, FALSE,
                                        80, 80 + 4 * (8 - gTrainerBackPicCoords[trainerPicId].size),

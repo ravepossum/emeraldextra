@@ -12,6 +12,7 @@
 #include "gpu_regs.h"
 #include "main.h"
 #include "malloc.h"
+#include "outfit_menu.h"
 #include "overworld.h"
 #include "palette.h"
 #include "random.h"
@@ -918,8 +919,6 @@ static const u16 sMugshotPal_Phoebe[] = INCBIN_U16("graphics/battle_transitions/
 static const u16 sMugshotPal_Glacia[] = INCBIN_U16("graphics/battle_transitions/glacia_bg.gbapal");
 static const u16 sMugshotPal_Drake[] = INCBIN_U16("graphics/battle_transitions/drake_bg.gbapal");
 static const u16 sMugshotPal_Champion[] = INCBIN_U16("graphics/battle_transitions/wallace_bg.gbapal");
-static const u16 sMugshotPal_Brendan[] = INCBIN_U16("graphics/battle_transitions/brendan_bg.gbapal");
-static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
 
 static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
 {
@@ -928,7 +927,7 @@ static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
     [MUGSHOT_GLACIA]         = sMugshotPal_Glacia,
     [MUGSHOT_DRAKE]          = sMugshotPal_Drake,
     [MUGSHOT_CHAMPION]       = sMugshotPal_Champion,
-    // todo actually have a real pallette for new trainers
+    // todo actually have a real palette for new trainers
     [MUGSHOT_ROXANNE]        = sMugshotPal_Champion,
     [MUGSHOT_BRAWLY]         = sMugshotPal_Champion,
     [MUGSHOT_WATTSON]        = sMugshotPal_Champion,
@@ -937,12 +936,6 @@ static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
     [MUGSHOT_WINONA]         = sMugshotPal_Champion,
     [MUGSHOT_TATE_AND_LIZA]  = sMugshotPal_Champion,
     [MUGSHOT_JUAN]           = sMugshotPal_Champion
-};
-
-static const u16 *const sPlayerMugshotsPals[GENDER_COUNT] =
-{
-    [MALE] = sMugshotPal_Brendan,
-    [FEMALE] = sMugshotPal_May
 };
 
 static const u16 sUnusedTrainerPalette[] = INCBIN_U16("graphics/battle_transitions/unused_trainer.gbapal");
@@ -2370,7 +2363,7 @@ static bool8 Mugshot_SetGfx(struct Task *task)
     GetBg0TilesDst(&tilemap, &tileset);
     CpuSet(sEliteFour_Tileset, tileset, 0xF0);
     LoadPalette(sOpponentMugshotsPals[task->tMugshotId], BG_PLTT_ID(15), PLTT_SIZE_4BPP);
-    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerGender], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
+    LoadPalette(GetPlayerBattleTransitionMugshotPalette(), BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
 
     for (i = 0; i < 20; i++)
     {
@@ -2621,14 +2614,13 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
     struct Sprite *opponentSprite, *playerSprite;
 
     s16 mugshotId = task->tMugshotId;
+    u16 picId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, gSaveBlock2Ptr->playerGender, 0);
+
     task->tOpponentSpriteId = CreateTrainerSprite(sMugshotsTrainerPicIDsTable[mugshotId],
                                                   sMugshotsOpponentCoords[mugshotId][0] - 32,
                                                   sMugshotsOpponentCoords[mugshotId][1] + 42,
                                                   0, gDecompressionBuffer);
-    task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender),
-                                                DISPLAY_WIDTH + 36,
-                                                106,
-                                                0, gDecompressionBuffer);
+    task->tPlayerSpriteId = CreateTrainerSprite(picId, DISPLAY_WIDTH + 32, 106, 0, gDecompressionBuffer);
 
     opponentSprite = &gSprites[task->tOpponentSpriteId];
     playerSprite = &gSprites[task->tPlayerSpriteId];

@@ -161,6 +161,16 @@ void SetLevelCapFlag(void)
     FlagSet(FLAG_LEVEL_CAP);
 }
 
+static void ResetOutfitData(void)
+{
+    u16 i;
+
+    for (i = 0; i < OUTFIT_END; i++)
+        gSaveBlock2Ptr->outfits[i] = FALSE;
+
+    gSaveBlock2Ptr->outfits[DEFAULT_OUTFIT] = TRUE;
+}
+
 void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
@@ -225,6 +235,8 @@ void NewGameInitData(void)
     InitTimeBasedEvents();
     memset(gSaveBlock1Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock1Ptr->dexNavSearchLevels));
     gSaveBlock1Ptr->dexNavChain = 0;
+    ResetOutfitData();
+    gSaveBlock2Ptr->currOutfitId = DEFAULT_OUTFIT;
 }
 
 static void ResetMiniGamesRecords(void)

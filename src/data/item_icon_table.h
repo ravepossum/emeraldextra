@@ -862,6 +862,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_POKEVIAL] = {gItemIcon_Pokevial, gItemIconPalette_Pokevial}, // Pokevial Branch
     [ITEM_TARAS_LETTER] = {gItemIcon_HarborMail, gItemIconPalette_HarborMail},
     [ITEM_INFINITE_REPEL] = {gItemIcon_Repel, gItemIconPalette_InfiniteRepel},
+    [ITEM_OUTFIT_BOX] = {gItemIcon_OutfitBox, gItemIconPalette_OutfitBox},
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

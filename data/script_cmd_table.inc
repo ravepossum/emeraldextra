@@ -235,6 +235,9 @@ gScriptCmdTable::
     .4byte ScrCmd_bufferabilityname                 @ 0xe8
     .4byte ScrCmd_stopse                			@ 0xe9
     .4byte ScrCmd_buffernaturename                  @ 0xea
+	.4byte ScrCmd_unlockoutfit                      @ 0xeb
+	.4byte ScrCmd_getoutfitstatus                   @ 0xec
+	.4byte ScrCmd_bufferoutfitstr                   @ 0xed
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

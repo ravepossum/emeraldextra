@@ -248,6 +248,24 @@
 #define OBJ_EVENT_GFX_PLUSLE                     244
 #define OBJ_EVENT_GFX_MINUN                      245
 #define OBJ_EVENT_GFX_SHARPEDO_SWIM              246
+#define OBJ_EVENT_GFX_RS_BRENDAN_NORMAL          247
+#define OBJ_EVENT_GFX_RS_BRENDAN_MACH_BIKE       248
+#define OBJ_EVENT_GFX_RS_BRENDAN_ACRO_BIKE       249
+#define OBJ_EVENT_GFX_RS_BRENDAN_SURFING         250
+#define OBJ_EVENT_GFX_RS_BRENDAN_FIELD_MOVE      251
+#define OBJ_EVENT_GFX_RS_BRENDAN_UNDERWATER      252
+#define OBJ_EVENT_GFX_RS_BRENDAN_FISHING         253
+#define OBJ_EVENT_GFX_RS_BRENDAN_WATERING        254
+#define OBJ_EVENT_GFX_RS_BRENDAN_DECORATING      255
+#define OBJ_EVENT_GFX_RS_MAY_NORMAL              256
+#define OBJ_EVENT_GFX_RS_MAY_MACH_BIKE           257
+#define OBJ_EVENT_GFX_RS_MAY_ACRO_BIKE           258
+#define OBJ_EVENT_GFX_RS_MAY_SURFING             259
+#define OBJ_EVENT_GFX_RS_MAY_FIELD_MOVE          260
+#define OBJ_EVENT_GFX_RS_MAY_UNDERWATER          261
+#define OBJ_EVENT_GFX_RS_MAY_FISHING             262
+#define OBJ_EVENT_GFX_RS_MAY_WATERING            263
+#define OBJ_EVENT_GFX_RS_MAY_DECORATING          264
 
 // NOTE: By default, the max value for NUM_OBJ_EVENT_GFX is 239.
 //
@@ -258,7 +276,7 @@
 // object graphics that can be removed. If more graphics are needed, anything that
 // stores graphics ids will need to be increased in size. See wiki entry below:
 // https://github.com/pret/pokeemerald/wiki/Feature-Branches#overworld-expansion
-#define NUM_OBJ_EVENT_GFX                        247
+#define NUM_OBJ_EVENT_GFX                        265
 
 
 // These are dynamic object gfx ids.

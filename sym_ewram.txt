@@ -156,3 +156,4 @@
 	.include "src/tm_case.o"
 	.include "src/tx_registered_items_menu.o"
 	.include "src/pokedex_plus_hgss.o"
+	.include "src/outfit_menu.o"

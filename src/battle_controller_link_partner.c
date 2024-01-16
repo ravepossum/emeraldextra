@@ -13,6 +13,7 @@
 #include "link.h"
 #include "main.h"
 #include "m4a.h"
+#include "outfit_menu.h"
 #include "palette.h"
 #include "pokeball.h"
 #include "pokemon.h"

@@ -347,6 +347,7 @@ SECTIONS {
 		src/dexnav.o(.text);
         src/tm_case.o(.text);
         src/tx_registered_items_menu.o(.text);
+        src/outfit_menu.o(.text);
     } > ROM =0
 
     script_data :
@@ -718,7 +719,7 @@ SECTIONS {
 		src/dexnav.o(.rodata);
         src/tm_case.o(.rodata);
         src/tx_registered_items_menu.o(.rodata);
-
+        src/outfit_menu.o(.rodata);
     } > ROM =0
 
     song_data :

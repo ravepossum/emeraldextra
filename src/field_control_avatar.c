@@ -6,6 +6,7 @@
 #include "debug.h"
 #include "dexnav.h"
 #include "faraway_island.h"
+#include "field_weather.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
@@ -222,23 +223,19 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         }
     }
     
-    if (input->pressedRButton && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE) && TryStartDexnavSearch())
+    if (input->pressedRButton && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE) && TryStartDexnavSearch())
         return TRUE;
 
-    if (input->pressedRButton && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+    if (input->pressedRButton && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
     {
-        if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
+        if (gSaveBlock2Ptr->playerBike == MACH_BIKE)
         {
-            gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_MACH_BIKE;
-            gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_ACRO_BIKE;
-            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE);
+            gSaveBlock2Ptr->playerBike = ACRO_BIKE;
             PlaySE(SE_SWITCH);
         }
         else
         {
-            gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_ACRO_BIKE;
-            gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_MACH_BIKE;
-            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+            gSaveBlock2Ptr->playerBike = MACH_BIKE;
             PlaySE(SE_SWITCH);
         }
     }

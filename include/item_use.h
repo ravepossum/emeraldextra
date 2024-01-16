@@ -36,6 +36,7 @@ void ItemUseOutOfBattle_Honey(u8);
 void ItemUseOutOfBattle_TmCase(u8);
 void ItemUseOutOfBattle_CannotUse(u8);
 void ItemUseOutOfBattle_ExpShare(u8);
+void ItemUseOutOfBattle_OutfitBox(u8);
 void ItemUseInBattle_BagMenu(u8 taskId);
 void ItemUseInBattle_PartyMenu(u8 taskId);
 void ItemUseInBattle_PartyMenuChooseMove(u8 taskId);
@@ -56,6 +57,5 @@ enum {
 };
 
 bool32 CanThrowBall(void);
-void ItemUseOutOfBattle_ExpShare(u8);
 
 #endif // GUARD_ITEM_USE_H
