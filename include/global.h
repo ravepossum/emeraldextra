@@ -1090,8 +1090,8 @@ struct SaveBlock1
     /*0x3???*/ struct Pokevial pokevial; //Pokevial Branch
     /*0x3???*/ u8 dexNavSearchLevels[NUM_SPECIES];
     /*0x3???*/ u8 dexNavChain;
-    /*0x3???*/ u8 filler[0xC0];
-    // free: 192
+    /*0x3???*/ u8 filler[0xA20];
+    // free: 2592
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;
