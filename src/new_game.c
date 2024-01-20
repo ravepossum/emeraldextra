@@ -164,9 +164,13 @@ void SetLevelCapFlag(void)
 static void ResetOutfitData(void)
 {
     u16 i;
+    int byteOffset;
 
     for (i = 0; i < OUTFIT_END; i++)
-        gSaveBlock2Ptr->outfits[i] = FALSE;
+    {
+        byteOffset = i / 8;
+        gSaveBlock2Ptr->outfits[byteOffset] = FALSE;
+    }
 
     gSaveBlock2Ptr->outfits[DEFAULT_OUTFIT] = TRUE;
 }

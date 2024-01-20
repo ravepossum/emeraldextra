@@ -10,7 +10,12 @@ static const u8 sText_OutfitDesc_UsualGreen[] = _(
 static const u8 sText_OutfitName_UnusualRed[] = _("Vintage");
 static const u8 sText_OutfitDesc_UnusualRed[] = _(
     "Rather unusual, but still basic Outfit.");
+
+static const u8 sText_OutfitName_Modern[] = _("Modern");
+static const u8 sText_OutfitDesc_Modern[] = _(
+    "A bold new twist on the basic Outfit.");
 #endif
+
 
 static const u16 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.gbapal");
@@ -18,11 +23,17 @@ static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokena
 static const u16 sRegionMapPlayerIcon_RSBrendanGfx[] = INCBIN_U16("graphics/pokenav/region_map/rs_brendan_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_RSBrendanPal[] = INCBIN_U16("graphics/pokenav/region_map/rs_brendan_icon.gbapal");
 
+static const u16 sRegionMapPlayerIcon_ORASBrendanGfx[] = INCBIN_U16("graphics/pokenav/region_map/oras_brendan_icon.4bpp");
+static const u16 sRegionMapPlayerIcon_ORASBrendanPal[] = INCBIN_U16("graphics/pokenav/region_map/oras_brendan_icon.gbapal");
+
 static const u16 sRegionMapPlayerIcon_MayGfx[] = INCBIN_U16("graphics/pokenav/region_map/may_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_MayPal[] = INCBIN_U16("graphics/pokenav/region_map/may_icon.gbapal");
 
 static const u16 sRegionMapPlayerIcon_RSMayGfx[] = INCBIN_U16("graphics/pokenav/region_map/rs_may_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_RSMayPal[] = INCBIN_U16("graphics/pokenav/region_map/rs_may_icon.gbapal");
+
+static const u16 sRegionMapPlayerIcon_ORASMayGfx[] = INCBIN_U16("graphics/pokenav/region_map/oras_may_icon.4bpp");
+static const u16 sRegionMapPlayerIcon_ORASMayPal[] = INCBIN_U16("graphics/pokenav/region_map/oras_may_icon.gbapal");
 
 //! TODO: Should the gfx here be seperated?
 
@@ -33,6 +44,10 @@ static const u16 sFrontierPassPlayerIcons_May_Pal[] = INCBIN_U16("graphics/front
 static const u8 sFrontierPassPlayerIcons_RSBrendanMay_Gfx[] = INCBIN_U8("graphics/frontier_pass/rs_map_heads.4bpp");
 static const u16 sFrontierPassPlayerIcons_RSBrendan_Pal[] = INCBIN_U16("graphics/frontier_pass/rs_map_heads.gbapal");
 static const u16 sFrontierPassPlayerIcons_RSMay_Pal[] = INCBIN_U16("graphics/frontier_pass/rs_map_heads_female.gbapal");
+
+static const u8 sFrontierPassPlayerIcons_ORASBrendanMay_Gfx[] = INCBIN_U8("graphics/frontier_pass/oras_map_heads.4bpp");
+static const u16 sFrontierPassPlayerIcons_ORASBrendan_Pal[] = INCBIN_U16("graphics/frontier_pass/oras_map_heads.gbapal");
+static const u16 sFrontierPassPlayerIcons_ORASMay_Pal[] = INCBIN_U16("graphics/frontier_pass/oras_map_heads_female.gbapal");
 
 static const u16 sMugshotPal_Brendan[] = INCBIN_U16("graphics/battle_transitions/brendan_bg.gbapal");
 static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
@@ -152,4 +167,23 @@ const struct Outfit gOutfits[OUTFIT_COUNT] =
         .iconsRM = { REGION_MAP_GFX(RSBrendan, RSMay) },
         .iconsFP = { FRONTIER_PASS_GFX(RSBrendanMay, RSBrendan, RSMay) },
     },
+    [OUTFIT_MODERN] = {
+        .isHidden = FALSE,
+        .prices = { 200, 500 },
+        #if MODERN == 1
+        .name = COMPOUND_STRING("Modern"),
+        .desc = COMPOUND_STRING("A bold new twist on the basic Outfit."),
+        #else
+        .name = sText_OutfitName_Modern,
+        .desc = sText_OutfitDesc_Modern,
+        #endif
+        //todo
+        .mugshotPals = { sMugshotPal_Brendan, sMugshotPal_May },
+        .trainerPics = TRAINER_ID(ORAS_BRENDAN, ORAS_MAY),
+        .avatarGfxIds = AVATAR_GFX_ID(ORAS_BRENDAN, ORAS_MAY),
+        .animGfxIds = ANIM_GFX_ID(ORAS_BRENDAN, ORAS_MAY),
+        //todo
+        .iconsRM = { REGION_MAP_GFX(ORASBrendan, ORASMay) },
+        .iconsFP = { FRONTIER_PASS_GFX(ORASBrendanMay, ORASBrendan, ORASMay) },
+    }
 };
