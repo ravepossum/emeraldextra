@@ -63,6 +63,7 @@ enum Sprites {
     GFX_OW = 0,
     GFX_TS,
     GFX_LOCK,
+    GFX_SELECT,
     GFX_COUNT,
 };
 
@@ -70,6 +71,8 @@ enum SpriteTags {
     TAG_SCROLL_ARROWS = 0x1000,
     GFXTAG_LOCK = 0x1100,
     PALTAG_LOCK = 0x1200,
+    GFXTAG_SELECT = 0x1300,
+    PALTAG_SELECT = 0x1400,
 };
 
 enum ColorId {
@@ -109,13 +112,13 @@ static void Task_CloseOutfitMenu(u8 taskId);
 
 static const u8 sText_Controls[] =
 _(
-    "{DPAD_LEFTRIGHT}PICK {A_BUTTON}CONFIRM {START_BUTTON}{B_BUTTON}CLOSE"
+    "{DPAD_LEFTRIGHT}Pick {A_BUTTON}Confirm {B_BUTTON}Close"
 );
 
 static const u8 sText_OutfitLocked[] = _("???");
 static const u8 sText_OutfitLockedMsg[] =
 _(
-    "You don't have this OUTFIT yet.\n"
+    "You don't have this Outfit yet.\n"
     "Unlock it to be able to use it."
 );
 
@@ -150,6 +153,9 @@ static const u16 sPalette[] = INCBIN_U16("graphics/outfit_menu/tiles.gbapal");
 
 static const u16 sLockSprite_Gfx[] = INCBIN_U16("graphics/outfit_menu/lock.4bpp");
 static const u16 sLockSprite_Pal[] = INCBIN_U16("graphics/outfit_menu/lock.gbapal");
+
+static const u16 sSelectSprite_Gfx[] = INCBIN_U16("graphics/outfit_menu/select_button.4bpp");
+static const u16 sSelectSprite_Pal[] = INCBIN_U16("graphics/outfit_menu/select_button.gbapal");
 
 static EWRAM_DATA OutfitMenuResources *sOutfitMenu = NULL;
 
@@ -263,13 +269,49 @@ static const struct OamData sLockSpriteOamData = {
 };
 
 static const struct SpriteTemplate sLockSpriteTemplate = {
-    .tileTag = GFXTAG_LOCK,
-    .paletteTag = PALTAG_LOCK,
+    .tileTag = GFXTAG_SELECT,
+    .paletteTag = PALTAG_SELECT,
     .callback = SpriteCallbackDummy,
     .anims = gDummySpriteAnimTable,
     .affineAnims = gDummySpriteAffineAnimTable,
     .images = NULL,
     .oam = &sLockSpriteOamData,
+};
+
+static const struct SpriteSheet sSelectSpriteSheet = {
+    .data = sSelectSprite_Gfx,
+    .size = sizeof(sSelectSprite_Gfx),
+    .tag = GFXTAG_SELECT,
+};
+
+static const struct SpritePalette sSelectSpritePalette = {
+    .data = sSelectSprite_Pal,
+    .tag = PALTAG_SELECT,
+};
+
+static const struct OamData sSelectSpriteOamData = {
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = FALSE,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(8x8),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(8x8),
+    .tileNum = 0,
+    .priority = 0,
+    .affineParam = 0,
+};
+
+static const struct SpriteTemplate sSelectSpriteTemplate = {
+    .tileTag = GFXTAG_SELECT,
+    .paletteTag = PALTAG_SELECT,
+    .callback = SpriteCallbackDummy,
+    .anims = gDummySpriteAnimTable,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .images = NULL,
+    .oam = &sSelectSpriteOamData,
 };
 
 void Task_OpenOutfitMenu(u8 taskId)
@@ -498,11 +540,19 @@ static inline void SetupOutfitMenu_Sprites_DrawLockSprite(void)
     gSprites[sOutfitMenu->spriteIds[GFX_LOCK]].invisible = TRUE;
 }
 
+static inline void SetupOutfitMenu_Sprites_DrawSelectSprite(void)
+{
+    LoadSpriteSheet(&sSelectSpriteSheet);
+    LoadSpritePalette(&sSelectSpritePalette);
+    sOutfitMenu->spriteIds[GFX_SELECT] = CreateSprite(&sSelectSpriteTemplate, 85, 119, 0);
+}
+
 static void SetupOutfitMenu_Sprites(void)
 {
     SetupOutfitMenu_Sprites_DrawOverworldSprite(FALSE, gSaveBlock2Ptr->outfits[sOutfitMenu->idx]);
     SetupOutfitMenu_Sprites_DrawTrainerSprite(FALSE, gSaveBlock2Ptr->outfits[sOutfitMenu->idx]);
     SetupOutfitMenu_Sprites_DrawLockSprite();
+    SetupOutfitMenu_Sprites_DrawSelectSprite();
     CreateOutfitSwitchArrowPair();
 }
 
@@ -524,6 +574,15 @@ static inline void UpdateOutfitInfo(void)
         PrintTexts(WIN_NAME, FONT_NORMAL, 0, 0, 0, 0, COLORID_NORMAL, gOutfits[sOutfitMenu->idx].name);
         PrintTexts(WIN_DESC, FONT_NORMAL, 0, 0, 0, 0, COLORID_NORMAL, gOutfits[sOutfitMenu->idx].desc);
         gSprites[sOutfitMenu->spriteIds[GFX_LOCK]].invisible = TRUE;
+    }
+
+    if (gSaveBlock2Ptr->currOutfitId == sOutfitMenu->idx)
+    {
+        gSprites[sOutfitMenu->spriteIds[GFX_SELECT]].invisible = FALSE;
+    }
+    else
+    {
+        gSprites[sOutfitMenu->spriteIds[GFX_SELECT]].invisible = TRUE;
     }
 
     SetupOutfitMenu_Sprites_DrawOverworldSprite(TRUE, gSaveBlock2Ptr->outfits[sOutfitMenu->idx]);
@@ -609,6 +668,7 @@ static void Task_OutfitMenuHandleInput(u8 taskId)
             if (gSaveBlock2Ptr->outfits[sOutfitMenu->idx])
             {
                 PlaySE(SE_SUCCESS);
+                gSprites[sOutfitMenu->spriteIds[GFX_SELECT]].invisible = FALSE;
                 gSaveBlock2Ptr->currOutfitId = sOutfitMenu->idx;
             }
             else
