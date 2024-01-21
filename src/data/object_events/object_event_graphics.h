@@ -369,10 +369,13 @@ const u32 gObjectEventPic_Lugia[] = INCBIN_U32("graphics/object_events/pics/poke
 const u16 gObjectEventPal_Lugia[] = INCBIN_U16("graphics/object_events/palettes/lugia.gbapal");
 const u32 gObjectEventPic_HoOh[] = INCBIN_U32("graphics/object_events/pics/pokemon/ho_oh.4bpp");
 const u16 gObjectEventPal_HoOh[] = INCBIN_U16("graphics/object_events/palettes/ho_oh.gbapal");
+const u32 gObjectEventPic_Creator[] = INCBIN_U32("graphics/object_events/pics/people/creator.4bpp");
+const u16 gObjectEventPal_Creator[] = INCBIN_U16("graphics/object_events/palettes/creator.gbapal");
 
 const u32 gFieldEffectObjectPic_CaveDust[] = INCBIN_U32("graphics/field_effects/pics/cave_dust.4bpp");
 const u16 gFieldEffectObjectPalette_CaveDust[] = INCBIN_U16("graphics/field_effects/palettes/cave_dust.gbapal");
 
+// new mon overworlds
 const u32 gObjectEventPic_Pelipper[] = INCBIN_U32("graphics/object_events/pics/pokemon/pelipper.4bpp");
 const u16 gObjectEventPal_Pelipper[] = INCBIN_U16("graphics/object_events/palettes/pelipper.gbapal");
 const u32 gObjectEventPic_Passimian[] = INCBIN_U32("graphics/object_events/pics/pokemon/passimian.4bpp");
@@ -390,6 +393,7 @@ const u16 gObjectEventPal_Minun[] = INCBIN_U16("graphics/object_events/palettes/
 const u32 gObjectEventPic_SharpedoSwim[] = INCBIN_U32("graphics/object_events/pics/pokemon/sharpedo.4bpp");
 const u16 gObjectEventPal_SharpedoSwim[] = INCBIN_U16("graphics/object_events/palettes/sharpedo.gbapal");
 
+// new outfit overworlds
 const u32 gObjectEventPic_RubySapphireBrendanNormal[] = INCBIN_U32("graphics/object_events/pics/people/ruby_sapphire_brendan/walking.4bpp");
 const u32 gObjectEventPic_RubySapphireBrendanRunning[] = INCBIN_U32("graphics/object_events/pics/people/ruby_sapphire_brendan/running.4bpp");
 const u32 gObjectEventPic_RubySapphireBrendanMachBike[] = INCBIN_U32("graphics/object_events/pics/people/ruby_sapphire_brendan/mach_bike.4bpp");

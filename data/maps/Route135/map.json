@@ -17,11 +17,6 @@
       "map": "MAP_ROUTE103",
       "offset": 0,
       "direction": "down"
-    },
-    {
-      "map": "MAP_VERDANTURF_TOWN",
-      "offset": 0,
-      "direction": "up"
     }
   ],
   "object_events": [
@@ -66,7 +61,34 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 8,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE135",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE135",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE135",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 11,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE135",
+      "dest_warp_id": "0"
+    }
   ],
   "coord_events": [
 
@@ -79,6 +101,14 @@
       "elevation": 0,
       "item": "ITEM_RARE_BONE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_135_RARE_BONE"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
     }
   ]
 }

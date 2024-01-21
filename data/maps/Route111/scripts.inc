@@ -725,3 +725,12 @@ Route111_Text_TrainerHillSign:
 	.string "“Scale the heights, you hot-blooded\n"
 	.string "Trainers!”$"
 
+Route111_EventScript_Creator::
+	msgbox Route111_EventScript_Creator_Text_0, MSGBOX_NPC
+	return
+
+
+Route111_EventScript_Creator_Text_0:
+	.string "Mysterious Creator: This is the end of\n"
+	.string "the demo.\p"
+	.string "Thank you so much for playing!$"
