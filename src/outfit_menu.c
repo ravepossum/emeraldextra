@@ -70,9 +70,9 @@ enum Sprites {
 enum SpriteTags {
     TAG_SCROLL_ARROWS = 0x1000,
     GFXTAG_LOCK = 0x1100,
+    GFXTAG_SELECT = 0x110,
     PALTAG_LOCK = 0x1200,
-    GFXTAG_SELECT = 0x1300,
-    PALTAG_SELECT = 0x1400,
+    PALTAG_SELECT = 0x1210,
 };
 
 enum ColorId {
@@ -290,18 +290,12 @@ static const struct SpritePalette sSelectSpritePalette = {
 };
 
 static const struct OamData sSelectSpriteOamData = {
-    .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(8x8),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(8x8),
-    .tileNum = 0,
-    .priority = 0,
-    .affineParam = 0,
+    .shape = SPRITE_SHAPE(16x16),
+    .size = SPRITE_SIZE(16x16),
 };
 
 static const struct SpriteTemplate sSelectSpriteTemplate = {
@@ -544,7 +538,8 @@ static inline void SetupOutfitMenu_Sprites_DrawSelectSprite(void)
 {
     LoadSpriteSheet(&sSelectSpriteSheet);
     LoadSpritePalette(&sSelectSpritePalette);
-    sOutfitMenu->spriteIds[GFX_SELECT] = CreateSprite(&sSelectSpriteTemplate, 85, 119, 0);
+    sOutfitMenu->spriteIds[GFX_SELECT] = CreateSprite(&sSelectSpriteTemplate,104, 120, 0);
+    gSprites[sOutfitMenu->spriteIds[GFX_SELECT]].invisible = FALSE;
 }
 
 static void SetupOutfitMenu_Sprites(void)
