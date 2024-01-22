@@ -2,8 +2,8 @@ Route111_Text_MakingRoomUseTMToMakeYourOwn:
 	.string "What's that?\n"
 	.string "What am I doing?\p"
 	.string "I'm thinking about making my own room\n"
-	.string "here using a Pokémon move.\p"
-	.string "I know! I'll give you this TM.\n"
+	.string "here using my Pokémon's power.\p"
+	.string "I know! I'll share my power with you.\n"
 	.string "Will you use it to make your own room?$"
 
 Route111_Text_ExplainSecretPower:
@@ -24,8 +24,11 @@ Route111_Text_ExplainSecretPower:
 	.string "I'm going to look for other places, too.\n"
 	.string "Okay, bye!$"
 
+Route111_Text_GainedSecretPower:
+	.string "{PLAYER} gained the Secret Power!$"
+
 Route111_Text_DontWantThis:
-	.string "Oh, you don't want this?\n"
+	.string "Oh, you don't want it?\n"
 	.string "If you change your mind, tell me, okay?$"
 
 Route111_Text_DontHaveAnyRoom:
@@ -43,8 +46,11 @@ Route111_EventScript_SecretPowerMan::
 	end
 
 Route111_EventScript_GiveSecretPower::
-	giveitem ITEM_TM_SECRET_POWER
-	goto_if_eq VAR_RESULT, FALSE, Route111_EventScript_NoRoomForSecretPower
+@ todo: replace better?
+@	giveitem ITEM_TM_SECRET_POWER
+@	goto_if_eq VAR_RESULT, FALSE, Route111_EventScript_NoRoomForSecretPower
+	playse SE_EXP_MAX
+	msgbox Route111_Text_GainedSecretPower, MSGBOX_DEFAULT
 	msgbox Route111_Text_ExplainSecretPower, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_RECEIVED_SECRET_POWER

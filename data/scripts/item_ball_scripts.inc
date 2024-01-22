@@ -111,8 +111,8 @@ Route115_EventScript_ItemSuperPotion::
 	finditem ITEM_SUPER_POTION
 	end
 
-Route115_EventScript_ItemTMFocusPunch::
-	finditem ITEM_TM_FOCUS_PUNCH
+Route115_EventScript_ItemTMLowKick::
+	finditem ITEM_TM_LOW_KICK
 	end
 
 Route115_EventScript_ItemIron::
