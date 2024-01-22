@@ -169,7 +169,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     if (TryRunOnFrameMapScript() == TRUE)
         return TRUE;
 
-    if (input->pressedBButton && TrySetupDiveEmergeScript() == TRUE)
+    if (input->pressedRButton && (VarGet(VAR_DEXNAV_SPECIES) == SPECIES_NONE) && (TrySetupDiveEmergeScript() == TRUE))
         return TRUE;
     if (input->tookStep)
     {
