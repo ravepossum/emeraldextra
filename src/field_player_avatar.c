@@ -625,7 +625,11 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 
     if ((heldKeys & B_BUTTON) && IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior) == 0)
     {
-        PlayerWalkNormal(direction);
+        if (VarGet(VAR_AUTO_RUN))
+            PlayerWalkNormal(direction);
+        else
+            PlayerRun(direction);
+
         return;
     }
     else if (FlagGet(FLAG_SYS_DEXNAV_SEARCH) && (heldKeys & A_BUTTON))
@@ -635,7 +639,11 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
     }
     else
     {
-        PlayerRun(direction);
+        if (VarGet(VAR_AUTO_RUN))
+            PlayerRun(direction);
+        else
+            PlayerWalkNormal(direction);
+
         gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
     }
 }
