@@ -7,6 +7,7 @@
 #include "field_weather.h"
 #include "graphics.h"
 #include "main.h"
+#include "map_name_popup.h"
 #include "menu.h"
 #include "menu_helpers.h"
 #include "palette.h"
@@ -21,6 +22,7 @@
 #include "text_window.h"
 #include "window.h"
 #include "constants/songs.h"
+#include "constants/weather.h"
 
 #define DLG_WINDOW_PALETTE_NUM 15
 #define DLG_WINDOW_BASE_TILE_NUM 0x200
@@ -2181,7 +2183,10 @@ void HBlankCB_DoublePopupWindow(void)
     if (scanline < 80 || scanline > 160)
     {
         REG_BG0VOFS = offset;
-        REG_BLDALPHA = BLDALPHA_BLEND(15, 5);
+        if (MAPPOPUP_ALPHA_BLEND && 
+            gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL && 
+            gWeatherPtr->currWeather != WEATHER_UNDERWATER_BUBBLES)
+            REG_BLDALPHA = BLDALPHA_BLEND(15, 5);
     }
     else
     {

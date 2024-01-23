@@ -2,6 +2,7 @@
 #include "battle_pyramid.h"
 #include "bg.h"
 #include "event_data.h"
+#include "field_weather.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "international_string_util.h"
@@ -86,7 +87,12 @@ void ShowMapNamePopup(void)
         if (!FuncIsActiveTask(Task_MapNamePopUpWindow))
         {
             gPopupTaskId = CreateTask(Task_MapNamePopUpWindow, 100);
-            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
+
+            if (MAPPOPUP_ALPHA_BLEND && 
+                gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL && 
+                gWeatherPtr->currWeather != WEATHER_UNDERWATER_BUBBLES)
+                SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
+
             gTasks[gPopupTaskId].tState = STATE_PRINT;
             gTasks[gPopupTaskId].tYOffset = POPUP_OFFSCREEN_Y;
         }
@@ -180,9 +186,16 @@ void HideMapNamePopUpWindow(void)
         DisableInterrupts(INTR_FLAG_HBLANK);
         SetHBlankCallback(NULL);
         SetGpuReg_ForcedBlank(REG_OFFSET_BG0VOFS, 0);
-        SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ);
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND);
-        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(8, 10));
+
+        if (MAPPOPUP_ALPHA_BLEND && 
+            gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL && 
+            gWeatherPtr->currWeather != WEATHER_UNDERWATER_BUBBLES)
+        {
+            SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ);
+            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND);
+            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(8, 10));
+        }
+
         DestroyTask(gPopupTaskId);
     }
 }
@@ -199,7 +212,10 @@ static void ShowMapNamePopUpWindow(void)
     timeX = 5;
     timeY = 8;
 
-    SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR);
+    if (MAPPOPUP_ALPHA_BLEND && 
+        gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL && 
+        gWeatherPtr->currWeather != WEATHER_UNDERWATER_BUBBLES)
+        SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR);
 
     mapNamePopUpWindowId = AddMapNamePopUpWindow();
     weatherPopUpWindowId = AddWeatherPopUpWindow();
