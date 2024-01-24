@@ -64,7 +64,7 @@
 #define FLAG_HIDE_PHOEBE_ROUTE_136      0x33 // Hides Phoebe during the day on route 136
 #define FLAG_DEFEATED_PHOEBE_ROUTE_136  0x34
 #define FLAG_RECEIVED_CLEAR_AMULET      0x35 // Received Clear Amulet from Mr. Stone
-#define FLAG_UNUSED_0x036               0x36 // Unused Flag
+#define FLAG_DEX_ALL_SEEN               0x36 // Treat all pokemon in the pokedex as if they have been seen
 #define FLAG_UNUSED_0x037               0x37 // Unused Flag
 #define FLAG_UNUSED_0x038               0x38 // Unused Flag
 #define FLAG_UNUSED_0x039               0x39 // Unused Flag

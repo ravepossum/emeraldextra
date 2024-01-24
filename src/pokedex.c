@@ -4295,7 +4295,7 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
     switch (caseID)
     {
     case FLAG_GET_SEEN:
-        retVal = ((gSaveBlock1Ptr->dexSeen[index] & mask) != 0);
+        retVal = ((gSaveBlock1Ptr->dexSeen[index] & mask) != 0) || FlagGet(FLAG_DEX_ALL_SEEN);
         break;
     case FLAG_GET_CAUGHT:
          retVal = ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0);

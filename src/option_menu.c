@@ -26,6 +26,8 @@
 #define tButtonMode data[5]
 #define tWindowFrameType data[6]
 #define tAutoRun data[7]
+#define tMarkAllSeen data[8]
+#define tLevelCap data[9]
 
 // menu page 1
 enum
@@ -44,6 +46,8 @@ enum
 enum
 {
     MENUITEM_AUTORUN,
+    MENUITEM_MARKALLSEEN,
+    MENUITEM_LEVELCAP,
     MENUITEM_CANCEL_PG2,
     MENUITEM_COUNT_PG2,
 };
@@ -64,6 +68,8 @@ enum
 
 // page 2
 #define YPOS_AUTORUN      (MENUITEM_AUTORUN * 16)
+#define YPOS_MARKALLSEEN  (MENUITEM_MARKALLSEEN * 16)
+#define YPOS_LEVELCAP     (MENUITEM_LEVELCAP * 16)
 
 #define PAGE_COUNT 2
 
@@ -88,6 +94,10 @@ static u8 ButtonMode_ProcessInput(u8 selection);
 static void ButtonMode_DrawChoices(u8 selection);
 static u8   AutoRun_ProcessInput(u8 selection);
 static void AutoRun_DrawChoices(u8 selection);
+static u8   MarkAllSeen_ProcessInput(u8 selection);
+static void MarkAllSeen_DrawChoices(u8 selection);
+static u8   LevelCap_ProcessInput(u8 selection);
+static void LevelCap_DrawChoices(u8 selection);
 static void DrawHeaderText(void);
 static void DrawOptionMenuTexts(void);
 static void DrawBgWindowFrames(void);
@@ -113,6 +123,8 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
 {
     [MENUITEM_AUTORUN]      = gText_AutoRun,
+    [MENUITEM_MARKALLSEEN]  = gText_MarkAllSeen,
+    [MENUITEM_LEVELCAP]     = gText_LevelCap,
     [MENUITEM_CANCEL_PG2]   = gText_OptionMenuCancel,
 };
 
@@ -174,6 +186,8 @@ static void ReadAllCurrentSettings(u8 taskId)
     gTasks[taskId].tButtonMode      = gSaveBlock2Ptr->optionsButtonMode;
     gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
     gTasks[taskId].tAutoRun         = VarGet(VAR_AUTO_RUN);
+    gTasks[taskId].tMarkAllSeen     = FlagGet(FLAG_DEX_ALL_SEEN);
+    gTasks[taskId].tLevelCap        = FlagGet(FLAG_LEVEL_CAP);
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -193,6 +207,8 @@ static void DrawOptionsPg2(u8 taskId)
 {
     ReadAllCurrentSettings(taskId);
     AutoRun_DrawChoices(gTasks[taskId].tAutoRun);
+    MarkAllSeen_DrawChoices(gTasks[taskId].tMarkAllSeen);
+    LevelCap_DrawChoices(gTasks[taskId].tLevelCap);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -503,6 +519,20 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
             if (previousOption != gTasks[taskId].tAutoRun)
                 AutoRun_DrawChoices(gTasks[taskId].tAutoRun);
             break;
+        case MENUITEM_MARKALLSEEN:
+            previousOption = gTasks[taskId].tMarkAllSeen;
+            gTasks[taskId].tMarkAllSeen = MarkAllSeen_ProcessInput(gTasks[taskId].tMarkAllSeen);
+
+            if (previousOption != gTasks[taskId].tMarkAllSeen)
+                MarkAllSeen_DrawChoices(gTasks[taskId].tMarkAllSeen);
+            break;
+        case MENUITEM_LEVELCAP:
+            previousOption = gTasks[taskId].tLevelCap;
+            gTasks[taskId].tLevelCap = LevelCap_ProcessInput(gTasks[taskId].tLevelCap);
+
+            if (previousOption != gTasks[taskId].tLevelCap)
+                LevelCap_DrawChoices(gTasks[taskId].tLevelCap);
+            break;
         default:
             return;
         }
@@ -524,6 +554,8 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
     VarSet(VAR_AUTO_RUN, gTasks[taskId].tAutoRun);
+    gTasks[taskId].tMarkAllSeen == 0 ? FlagClear(FLAG_DEX_ALL_SEEN) : FlagSet(FLAG_DEX_ALL_SEEN);
+    gTasks[taskId].tLevelCap == 0 ? FlagClear(FLAG_LEVEL_CAP) : FlagSet(FLAG_LEVEL_CAP);
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -800,8 +832,50 @@ static void AutoRun_DrawChoices(u8 selection)
     styles[0] = 0;
     styles[1] = 0;
     styles[selection] = 1;
-    DrawOptionMenuChoice(gText_AutoRunOff, 104, YPOS_AUTORUN, styles[0]);
-    DrawOptionMenuChoice(gText_AutoRunOn, GetStringRightAlignXOffset(FONT_NORMAL, gText_AutoRunOn, 198), YPOS_AUTORUN, styles[1]);
+    DrawOptionMenuChoice(gText_OptionsOn, 104, YPOS_AUTORUN, styles[1]);
+    DrawOptionMenuChoice(gText_OptionsOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_OptionsOff, 198), YPOS_AUTORUN, styles[0]);
+}
+
+static u8 MarkAllSeen_ProcessInput(u8 selection)
+{
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void MarkAllSeen_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+    DrawOptionMenuChoice(gText_OptionsOn, 104, YPOS_MARKALLSEEN, styles[1]);
+    DrawOptionMenuChoice(gText_OptionsOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_OptionsOff, 198), YPOS_MARKALLSEEN, styles[0]);
+}
+
+static u8 LevelCap_ProcessInput(u8 selection)
+{
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void LevelCap_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+    DrawOptionMenuChoice(gText_OptionsOn, 104, YPOS_LEVELCAP, styles[1]);
+    DrawOptionMenuChoice(gText_OptionsOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_OptionsOff, 198), YPOS_LEVELCAP, styles[0]);
 }
 
 static void DrawHeaderText(void)
