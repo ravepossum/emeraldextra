@@ -3097,4 +3097,7 @@ extern const u8 gText_ViewStats[];
 extern const u8 gText_AButtonDay[];
 extern const u8 gText_AButtonNight[];
 
+// friendship on summary screen
+extern const u8 gText_Max[];
+
 #endif // GUARD_STRINGS_H

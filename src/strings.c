@@ -1890,3 +1890,6 @@ const u8 gText_ViewStats[] =          _("Stats");
 // show day/night in pokedex area screen
 const u8 gText_AButtonDay[] = _("{A_BUTTON} Day");
 const u8 gText_AButtonNight[] = _("{A_BUTTON} Night");
+
+// friendship on summary screen
+const u8 gText_Max[] = _("Max");
