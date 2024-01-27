@@ -44,6 +44,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "player_pc.h"
+#include "pokedex_plus_hgss.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_jump.h"
@@ -105,7 +106,8 @@ enum {
     MENU_CATALOG_MOWER,
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
-    MENU_FIELD_MOVES
+    MENU_POKEDEX,
+    MENU_FIELD_MOVES,
 };
 
 // IDs for the action lists that appear when a party mon is selected
@@ -517,6 +519,7 @@ static bool32 CannotUsePartyBattleItem(u16 itemId, struct Pokemon* mon);
 void UsePokevial(u8); //Start Pokevial Branch
 static void Task_PokevialLoop(u8);
 static void PokevialStartVariablesAndRun(u8 taskId, TaskFunc task); //End Pokevial Branch
+static void CursorCb_Pokedex(u8 taskId);
 
 // static const data
 #include "data/party_menu.h"
@@ -2972,6 +2975,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         else
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_ITEM);
     }
+
+    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_POKEDEX);
+
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 
@@ -8101,3 +8107,12 @@ static void Task_PokevialLoop(u8 taskId)
 #undef tUsedOnSlot
 #undef tHadEffect
 #undef tLastSlotUsed
+
+static void CursorCb_Pokedex(u8 taskId)
+{
+    gSpeciesToLoad = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES);
+
+    PlaySE(SE_SELECT);
+    sPartyMenuInternal->exitCallback = CB2_OpenPokedexPlusHGSS;
+    Task_ClosePartyMenu(taskId);
+}
