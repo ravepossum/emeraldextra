@@ -1764,8 +1764,8 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
     u32 moveType;
     uq4_12_t modifier;
     move = gBattleMons[battler].moves[gMoveSelectionCursor[battler]];
-    
-    GET_MOVE_TYPE(move, moveType);
+    // todo account for hidden power and maybe other dynamic move types?
+    moveType = gBattleMoves[move].type;
 
     modifier = CalcTypeEffectivenessMultiplier(move, moveType, battler, targetId, GetBattlerAbility(targetId), TRUE);
     
