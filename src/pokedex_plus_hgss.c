@@ -2415,13 +2415,7 @@ static void Task_ClosePokedex(u8 taskId)
         ClearMonSprites();
         FreeWindowAndBgBuffers();
         DestroyTask(taskId);
-
-        if (gSpeciesToLoad != SPECIES_NONE)
-            SetMainCallback2(CB2_ReturnToPartyMenuFromFlyMap);
-        else
-            SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
-
-        gSpeciesToLoad = SPECIES_NONE;
+        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
         Free(sPokedexView);
     }
