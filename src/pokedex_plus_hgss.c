@@ -2604,22 +2604,35 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         }
         else
         {
-            s16 r5, r10;
-            for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
+            // only show seen mons
+            for (i = 0; i < temp_dexCount; i++)
             {
                 temp_dexNum = i + 1;
+
                 if (GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
-                    r10 = 1;
-                if (r10)
                 {
-                    sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[r5].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
-                    sPokedexView->pokedexList[r5].owned = GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT);
-                    if (sPokedexView->pokedexList[r5].seen)
-                        sPokedexView->pokemonListCount = r5 + 1;
-                    r5++;
+                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
+                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT);
+                    sPokedexView->pokemonListCount++;
                 }
             }
+            // s16 r5, r10;
+            // for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
+            // {
+            //     temp_dexNum = i + 1;
+            //     if (GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
+            //         r10 = 1;
+            //     if (r10)
+            //     {
+            //         sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
+            //         sPokedexView->pokedexList[r5].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
+            //         sPokedexView->pokedexList[r5].owned = GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT);
+            //         if (sPokedexView->pokedexList[r5].seen)
+            //             sPokedexView->pokemonListCount = r5 + 1;
+            //         r5++;
+            //     }
+            // }
         }
         break;
     case ORDER_ALPHABETICAL:
