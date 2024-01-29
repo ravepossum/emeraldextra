@@ -3358,7 +3358,7 @@ static void SpriteCB_FlyBirdLeaveBall(struct Sprite *sprite)
             sprite->affineAnims = sAffineAnims_FlyBird;
             InitSpriteAffineAnim(sprite);
             StartSpriteAffineAnim(sprite, 0);
-            sprite->x = 0x76;
+            sprite->x = 0x80;
             sprite->y = -0x30;
             sprite->data[0]++;
             sprite->data[1] = 0x40;
@@ -3421,7 +3421,7 @@ static void SpriteCB_FlyBirdReturnToBall(struct Sprite *sprite)
         sprite->data[1] += sprite->data[2] >> 8;
         sprite->data[3] += sprite->data[2] >> 8;
         sprite->data[1] &= 0xff;
-        sprite->x2 = Cos(sprite->data[1], 0x20);
+        sprite->x2 = Cos(sprite->data[1], 0x40);
         sprite->y2 = Sin(sprite->data[1], 0x78);
         if (sprite->data[2] > 0x100)
         {
@@ -3967,7 +3967,7 @@ static void UseVsSeeker_DoPlayerAnimation(struct Task *task)
 
     if (gMapHeader.mapType != MAP_TYPE_UNDERWATER)
     {
-        SetPlayerAvatarFieldMove();
+        SetPlayerAvatarVsSeeker();
         ObjectEventSetHeldMovement(playerObj, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
     }
     task->data[0]++;

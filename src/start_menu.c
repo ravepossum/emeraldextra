@@ -572,52 +572,13 @@ const u8 *const gDayNameStringsTable[7] = {
 
 static void ShowTimeWindow(void)
 {
-    const u8 *suffix;
-    //const u8 *timeofday;
-    //u8 alignedSuffix[16];
-    //u8 str[0x20];
-    u8* ptr;
-    u8 convertedHours;
-
-    // print window
     sStartClockWindowId = AddWindow(&sWindowTemplate_StartClock);
     PutWindowTilemap(sStartClockWindowId);
     DrawStdWindowFrame(sStartClockWindowId, FALSE);
 
     RtcCalcLocalTime();
-    
-    if (gLocalTime.hours < 12)
-    {
-        if (gLocalTime.hours == 0)
-            convertedHours = 12;
-        else
-            convertedHours = gLocalTime.hours;
-        suffix = gText_AM;
-    }
-    else if (gLocalTime.hours == 12)
-    {
-        convertedHours = 12;
-        if (suffix == gText_AM);
-            suffix = gText_PM;
-    }
-    else
-    {
-        convertedHours = gLocalTime.hours - 12;
-        suffix = gText_PM;
-    }
-
-    //StringExpandPlaceholders(gStringVar4, gDayNameStringsTable[(gLocalTime.days % 7)]);
-    //StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime); // prints "time" word, from version before weekday was added and leaving it here in case anyone would prefer to use it
-    //AddTextPrinterParameterized(sStartClockWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL); 
-
-    ptr = ConvertIntToDecimalStringN(gStringVar4, convertedHours, STR_CONV_MODE_LEFT_ALIGN, 3);
-    *ptr = 0xF0;
-
-    ConvertIntToDecimalStringN(ptr + 1, gLocalTime.minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-    AddTextPrinterParameterized(sStartClockWindowId, 1, gStringVar4, GetStringRightAlignXOffset(1, suffix, CLOCK_WINDOW_WIDTH) - (CLOCK_WINDOW_WIDTH - GetStringRightAlignXOffset(1, gStringVar4, CLOCK_WINDOW_WIDTH) + 3), 1, 0xFF, NULL); // print time
-
-    AddTextPrinterParameterized(sStartClockWindowId, 1, suffix, GetStringRightAlignXOffset(1, suffix, CLOCK_WINDOW_WIDTH), 1, 0xFF, NULL); // print am/pm
-
+    FormatDecimalTimeWithoutSeconds(gStringVar4, gLocalTime.hours, gLocalTime.minutes, FALSE);
+    AddTextPrinterParameterized(sStartClockWindowId, FONT_NORMAL, gStringVar4, GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, CLOCK_WINDOW_WIDTH), 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(sStartClockWindowId, COPYWIN_GFX);
 }
 

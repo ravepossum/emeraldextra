@@ -208,9 +208,11 @@ static const union AnimCmd *const sAnimTable_SurfBlob[] =
     sSurfBlobAnim_FaceEast,
 };
 
+const struct SpritePalette gSpritePalette_SurfBlob = {gObjectEventPal_Brendan, OBJ_EVENT_PAL_TAG_BRENDAN};
+
 const struct SpriteTemplate gFieldEffectObjectTemplate_SurfBlob = {
     .tileTag = TAG_NONE,
-    .paletteTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN,
     .oam = &gObjectEventBaseOam_32x32,
     .anims = sAnimTable_SurfBlob,
     .images = sPicTable_SurfBlob,

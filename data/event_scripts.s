@@ -61,6 +61,7 @@
 #include "constants/weather.h"
 #include "constants/pokevial.h" //Pokevial Branch
 #include "constants/rtc.h"
+#include "constants/outfits.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.include "constants/constants.inc"
@@ -920,10 +921,10 @@ gText_RegisteredTrainerinPokeNav::
 	.string "in the PokéNav.$"
 
 gText_ComeBackWithSecretPower::
-	.string "Do you know the TM Secret Power?\p"
-	.string "Our group, we love the TM Secret\n"
+	.string "Do you know the Secret Power?\p"
+	.string "Our group, we love the Secret\n"
 	.string "Power.\p"
-	.string "One of our members will give it to you.\n"
+	.string "One of our members will teach it to you.\n"
 	.string "Come back and show me if you get it.\p"
 	.string "We'll accept you as a member and sell\n"
 	.string "you good stuff in secrecy.$"
@@ -1161,3 +1162,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
 
 	.include "data/maps/SlateportCity_House3/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_House2/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_House3/scripts.inc"

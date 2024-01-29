@@ -55,8 +55,8 @@ ALIGNED(4) const u8 gText_NextBack[] = _("{A_BUTTON}Next {B_BUTTON}Back"); // Un
 ALIGNED(4) const u8 gText_PickNextCancel[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Next {B_BUTTON}Cancel");
 ALIGNED(4) const u8 gText_PickCancel[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}{B_BUTTON}Cancel");
 ALIGNED(4) const u8 gText_AButtonExit[] = _("{A_BUTTON}Exit");
-const u8 gText_BirchBoy[] = _("Boy");
-const u8 gText_BirchGirl[] = _("Girl");
+const u8 gText_BirchBoy[] = _("Brendan");
+const u8 gText_BirchGirl[] = _("May");
 const u8 gText_DefaultNameStu[] = _("Stu");
 const u8 gText_DefaultNameMilton[] = _("Milton");
 const u8 gText_DefaultNameTom[] = _("Tom");
@@ -1492,6 +1492,9 @@ const u8 gText_MoveCloserToLinkPartner[] = _("Move closer to your link partner(s
 const u8 gText_ABtnRegistrationCounter[] = _("A Button: Registration Counter");
 const u8 gText_ABtnTitleScreen[] = _("A Button: Title Screen");
 const u8 gText_Option[] = _("Option");
+const u8 gText_SmallDot[] = _("·");
+const u8 gText_LargeDot[] = _("{EMOJI_CIRCLE}");
+const u8 gText_PageNav[] = _("{L_BUTTON}{R_BUTTON} Page");
 const u8 gText_TextSpeed[] = _("Text speed");
 const u8 gText_BattleScene[] = _("Battle scene");
 const u8 gText_BattleStyle[] = _("Battle style");
@@ -1499,6 +1502,9 @@ const u8 gText_Sound[] = _("Sound");
 const u8 gText_Frame[] = _("Frame");
 const u8 gText_OptionMenuCancel[] = _("Cancel");
 const u8 gText_ButtonMode[] = _("Button mode");
+const u8 gText_AutoRun[] = _("Auto-run");
+const u8 gText_MarkAllSeen[] = _("All Pokémon seen");
+const u8 gText_LevelCap[] = _("Level cap");
 const u8 gText_TextSpeedSlow[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Slow");
 const u8 gText_TextSpeedMid[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Mid");
 const u8 gText_TextSpeedFast[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Fast");
@@ -1513,6 +1519,8 @@ const u8 gText_FrameTypeNumber[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}");
 const u8 gText_ButtonTypeNormal[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Normal");
 const u8 gText_ButtonTypeLR[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}LR");
 const u8 gText_ButtonTypeLEqualsA[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}L=A");
+const u8 gText_OptionsOn[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+const u8 gText_OptionsOff[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 const u8 gText_NumPlayerLink[] = _("{STR_VAR_1}P Link");
 const u8 gText_BronzeCard[] = _("Bronze");
 const u8 gText_CopperCard[] = _("Copper");
@@ -1884,3 +1892,6 @@ const u8 gText_ViewStats[] =          _("Stats");
 // show day/night in pokedex area screen
 const u8 gText_AButtonDay[] = _("{A_BUTTON} Day");
 const u8 gText_AButtonNight[] = _("{A_BUTTON} Night");
+
+// friendship on summary screen
+const u8 gText_Max[] = _("Max");

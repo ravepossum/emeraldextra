@@ -58,6 +58,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CyclingTria
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CyclingTriathleteF;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nurse;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ItemBall;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GoldItemBall;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTree;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeEarlyStages;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeLateStages;
@@ -312,6 +313,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F] =     &gObjectEventGraphicsInfo_CyclingTriathleteF,
     [OBJ_EVENT_GFX_NURSE] =                    &gObjectEventGraphicsInfo_Nurse,
     [OBJ_EVENT_GFX_ITEM_BALL] =                &gObjectEventGraphicsInfo_ItemBall,
+    [OBJ_EVENT_GFX_GOLD_ITEM_BALL] =           &gObjectEventGraphicsInfo_GoldItemBall,
     [OBJ_EVENT_GFX_BERRY_TREE] =               &gObjectEventGraphicsInfo_BerryTree,
     [OBJ_EVENT_GFX_BERRY_TREE_EARLY_STAGES] =  &gObjectEventGraphicsInfo_BerryTreeEarlyStages,
     [OBJ_EVENT_GFX_BERRY_TREE_LATE_STAGES] =   &gObjectEventGraphicsInfo_BerryTreeLateStages,
@@ -499,6 +501,43 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_PLUSLE] =                   &gObjectEventGraphicsInfo_Plusle,
     [OBJ_EVENT_GFX_MINUN] =                    &gObjectEventGraphicsInfo_Minun,
     [OBJ_EVENT_GFX_SHARPEDO_SWIM] =            &gObjectEventGraphicsInfo_SharpedoSwim,
+    [OBJ_EVENT_GFX_RS_BRENDAN_NORMAL] =        &gObjectEventGraphicsInfo_RubySapphireBrendanNormal,
+    [OBJ_EVENT_GFX_RS_BRENDAN_MACH_BIKE] =     &gObjectEventGraphicsInfo_RubySapphireBrendanMachBike,
+    [OBJ_EVENT_GFX_RS_BRENDAN_ACRO_BIKE] =     &gObjectEventGraphicsInfo_RubySapphireBrendanAcroBike,
+    [OBJ_EVENT_GFX_RS_BRENDAN_SURFING] =       &gObjectEventGraphicsInfo_RubySapphireBrendanSurfing,
+    [OBJ_EVENT_GFX_RS_BRENDAN_FIELD_MOVE] =    &gObjectEventGraphicsInfo_RubySapphireBrendanFieldMove,
+    [OBJ_EVENT_GFX_RS_BRENDAN_UNDERWATER] =    &gObjectEventGraphicsInfo_RubySapphireBrendanUnderwater,
+    [OBJ_EVENT_GFX_RS_BRENDAN_FISHING] =       &gObjectEventGraphicsInfo_RubySapphireBrendanFishing,
+    [OBJ_EVENT_GFX_RS_BRENDAN_WATERING] =      &gObjectEventGraphicsInfo_RubySapphireBrendanWatering,
+    [OBJ_EVENT_GFX_RS_BRENDAN_DECORATING] =    &gObjectEventGraphicsInfo_RubySapphireBrendanDecorating,
+    [OBJ_EVENT_GFX_RS_MAY_NORMAL] =            &gObjectEventGraphicsInfo_RubySapphireMayNormal,
+    [OBJ_EVENT_GFX_RS_MAY_MACH_BIKE] =         &gObjectEventGraphicsInfo_RubySapphireMayMachBike,
+    [OBJ_EVENT_GFX_RS_MAY_ACRO_BIKE] =         &gObjectEventGraphicsInfo_RubySapphireMayAcroBike,
+    [OBJ_EVENT_GFX_RS_MAY_SURFING] =           &gObjectEventGraphicsInfo_RubySapphireMaySurfing,
+    [OBJ_EVENT_GFX_RS_MAY_FIELD_MOVE] =        &gObjectEventGraphicsInfo_RubySapphireMayFieldMove,
+    [OBJ_EVENT_GFX_RS_MAY_UNDERWATER] =        &gObjectEventGraphicsInfo_RubySapphireMayUnderwater,
+    [OBJ_EVENT_GFX_RS_MAY_FISHING] =           &gObjectEventGraphicsInfo_RubySapphireMayFishing,
+    [OBJ_EVENT_GFX_RS_MAY_WATERING] =          &gObjectEventGraphicsInfo_RubySapphireMayWatering,
+    [OBJ_EVENT_GFX_RS_MAY_DECORATING] =        &gObjectEventGraphicsInfo_RubySapphireMayDecorating,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_NORMAL] =      &gObjectEventGraphicsInfo_ORASBrendanNormal,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_MACH_BIKE] =   &gObjectEventGraphicsInfo_ORASBrendanMachBike,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_ACRO_BIKE] =   &gObjectEventGraphicsInfo_ORASBrendanAcroBike,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_SURFING] =     &gObjectEventGraphicsInfo_ORASBrendanSurfing,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_FIELD_MOVE] =  &gObjectEventGraphicsInfo_ORASBrendanFieldMove,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_UNDERWATER] =  &gObjectEventGraphicsInfo_ORASBrendanUnderwater,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_FISHING] =     &gObjectEventGraphicsInfo_ORASBrendanFishing,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_WATERING] =    &gObjectEventGraphicsInfo_ORASBrendanWatering,
+    [OBJ_EVENT_GFX_ORAS_BRENDAN_DECORATING] =  &gObjectEventGraphicsInfo_ORASBrendanDecorating,
+    [OBJ_EVENT_GFX_ORAS_MAY_NORMAL] =          &gObjectEventGraphicsInfo_ORASMayNormal,
+    [OBJ_EVENT_GFX_ORAS_MAY_MACH_BIKE] =       &gObjectEventGraphicsInfo_ORASMayMachBike,
+    [OBJ_EVENT_GFX_ORAS_MAY_ACRO_BIKE] =       &gObjectEventGraphicsInfo_ORASMayAcroBike,
+    [OBJ_EVENT_GFX_ORAS_MAY_SURFING] =         &gObjectEventGraphicsInfo_ORASMaySurfing,
+    [OBJ_EVENT_GFX_ORAS_MAY_FIELD_MOVE] =      &gObjectEventGraphicsInfo_ORASMayFieldMove,
+    [OBJ_EVENT_GFX_ORAS_MAY_UNDERWATER] =      &gObjectEventGraphicsInfo_ORASMayUnderwater,
+    [OBJ_EVENT_GFX_ORAS_MAY_FISHING] =         &gObjectEventGraphicsInfo_ORASMayFishing,
+    [OBJ_EVENT_GFX_ORAS_MAY_WATERING] =        &gObjectEventGraphicsInfo_ORASMayWatering,
+    [OBJ_EVENT_GFX_ORAS_MAY_DECORATING] =      &gObjectEventGraphicsInfo_ORASMayDecorating,
+    [OBJ_EVENT_GFX_CREATOR] =                  &gObjectEventGraphicsInfo_Creator,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

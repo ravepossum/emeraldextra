@@ -583,6 +583,12 @@ static void GetTMNumberAndMoveString(u8 * dest, u16 itemId)
         ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_HM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 1);
         StringAppend(gStringVar4, gStringVar1);
     }
+    else if (itemId >= ITEM_TM100)
+    {
+        StringAppend(gStringVar4, gText_NumberClear01);
+        ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_TM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 3);
+        StringAppend(gStringVar4, gStringVar1);
+    }
     else
     {
         StringAppend(gStringVar4, gText_NumberClear01);
@@ -1013,7 +1019,7 @@ static void InitWindowTemplatesAndPals(void)
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
     LoadMessageBoxGfx(0, 0x64, BG_PLTT_ID(11));
-    LoadUserWindowBorderGfx(0, 0x78, BG_PLTT_ID(13));
+    LoadUserWindowBorderGfx(0, 0x78, BG_PLTT_ID(14));
     LoadPalette(gTMCaseMainWindowPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
     LoadPalette(gTMCaseMainWindowPalette, BG_PLTT_ID(10), PLTT_SIZE_4BPP);
     LoadPalette(sPal3Override, BG_PLTT_ID(15) + 6, sizeof(sPal3Override));

@@ -599,7 +599,7 @@ static bool8 EncounterOddsCheck(u16 encounterRate)
 static bool8 WildEncounterCheck(u32 encounterRate, bool8 ignoreAbility)
 {
     encounterRate *= 16;
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
         encounterRate = encounterRate * 80 / 100;
     ApplyFluteEncounterRateMod(&encounterRate);
     ApplyCleanseTagEncounterRateMod(&encounterRate);
@@ -1186,6 +1186,9 @@ u16 GetRandomMonForm(u16 species)
 {
     int i, formCount = 0;
     bool32 shouldRandomize = FALSE;
+    const u16 *formTable;
+    u16 formTerminator;
+    int speciesFormIndex;
 
     for(i = 0; (gRandomFormSpecies[i] != SPECIES_NONE && !shouldRandomize); i++)
     {
@@ -1195,18 +1198,18 @@ u16 GetRandomMonForm(u16 species)
     if (!shouldRandomize)
         return species;
 
-    const u16 *formTable = GetSpeciesFormTable(species);
+    formTable = GetSpeciesFormTable(species);
 
     if (formTable == NULL)
         return species;
     
-    u16 formTerminator = (species == SPECIES_MINIOR) ? SPECIES_MINIOR_CORE_RED : FORM_SPECIES_END;
+    formTerminator = (species == SPECIES_MINIOR) ? SPECIES_MINIOR_CORE_RED : FORM_SPECIES_END;
 
     for (i = 0; formTable[i] != formTerminator; i++)
     {
         formCount++;
     }
 
-    int speciesFormIndex = Random() % formCount;
+    speciesFormIndex = Random() % formCount;
     return formTable[speciesFormIndex];
 }

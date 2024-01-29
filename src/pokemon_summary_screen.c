@@ -96,7 +96,9 @@ enum {
 #define PSS_LABEL_WINDOW_PROMPT_EVS 21
 #define PSS_LABEL_WINDOW_PROMPT_STATS 22
 
-#define PSS_LABEL_WINDOW_END 23
+#define PSS_LABEL_WINDOW_POKEMON_INFO_FRIENDSHIP 23
+
+#define PSS_LABEL_WINDOW_END 24
 
 // Dynamic fields for the Pokemon Info page
 #define PSS_DATA_WINDOW_INFO_ORIGINAL_TRAINER 0
@@ -266,6 +268,7 @@ static void PrintInfoPageText(void);
 static void Task_PrintInfoPage(u8);
 static void PrintMonOTName(void);
 static void PrintMonOTID(void);
+static void PrintMonFriendship(void);
 static void PrintMonAbilityName(void);
 static void PrintMonAbilityDescription(void);
 static void BufferMonTrainerMemo(void);
@@ -606,6 +609,15 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .height = 2,
         .paletteNum = 7,
         .baseBlock = 713,
+    },
+    [PSS_LABEL_WINDOW_POKEMON_INFO_FRIENDSHIP] = {
+        .bg = 0,
+        .tilemapLeft = 27,
+        .tilemapTop = 6,
+        .width = 3,
+        .height = 2,
+        .paletteNum = 6,
+        .baseBlock = 729,
     },
     [PSS_LABEL_WINDOW_END] = DUMMY_WIN_TEMPLATE
 };
@@ -2921,6 +2933,7 @@ static void PrintMonInfo(void)
     FillWindowPixelBuffer(PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER, PIXEL_FILL(0));
     FillWindowPixelBuffer(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME, PIXEL_FILL(0));
     FillWindowPixelBuffer(PSS_LABEL_WINDOW_PORTRAIT_SPECIES, PIXEL_FILL(0));
+    FillWindowPixelBuffer(PSS_LABEL_WINDOW_POKEMON_INFO_FRIENDSHIP, PIXEL_FILL(0));
     if (!sMonSummaryScreen->summary.isEgg)
         PrintNotEggInfo();
     else
@@ -3104,6 +3117,7 @@ static void PutPageWindowTilemaps(u8 page)
         if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
             PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
+        PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_FRIENDSHIP);
         break;
     case PSS_PAGE_SKILLS:
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
@@ -3155,6 +3169,7 @@ static void ClearPageWindowTilemaps(u8 page)
         if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
             ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
+        ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_FRIENDSHIP);
         break;
     case PSS_PAGE_SKILLS:
         ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IVS);
@@ -3248,6 +3263,7 @@ static void PrintInfoPageText(void)
     {
         PrintMonOTName();
         PrintMonOTID();
+        PrintMonFriendship();
         PrintMonAbilityName();
         PrintMonAbilityDescription();
         BufferMonTrainerMemo();
@@ -3279,6 +3295,9 @@ static void Task_PrintInfoPage(u8 taskId)
         PrintMonTrainerMemo();
         break;
     case 7:
+        PrintMonFriendship();
+        break;
+    case 8:
         DestroyTask(taskId);
         return;
     }
@@ -3309,6 +3328,18 @@ static void PrintMonOTID(void)
         xPos = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar1, 56);
         PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ID), gStringVar1, xPos, 1, 0, 1);
     }
+}
+
+static void PrintMonFriendship(void)
+{
+    u16 friendship = sMonSummaryScreen->summary.friendship;
+
+    if (friendship < MAX_FRIENDSHIP)
+        ConvertIntToDecimalStringN(gStringVar1, friendship, STR_CONV_MODE_LEFT_ALIGN, 5);
+    else
+        StringCopy(gStringVar1, gText_Max);
+
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_FRIENDSHIP, gStringVar1, 1, 1, 0, 0);
 }
 
 static void PrintMonAbilityName(void)

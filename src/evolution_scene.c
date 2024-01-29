@@ -1754,6 +1754,7 @@ void TryEvolveMilcery(void)
 {
     u16 slotId = gSpecialVar_0x8004;
     struct Pokemon *mon = &gPlayerParty[slotId];
+    u16 targetSpecies = SPECIES_NONE;
 
     DebugPrintfLevel(MGBA_LOG_WARN,"Slot ID: %d",gSpecialVar_0x8004);
     DebugPrintfLevel(MGBA_LOG_WARN,"Item ID: %d",gSpecialVar_0x8005);
@@ -1761,7 +1762,7 @@ void TryEvolveMilcery(void)
     DebugPrintfLevel(MGBA_LOG_WARN,"Direction: %d",gSpecialVar_0x8006);
     DebugPrintfLevel(MGBA_LOG_WARN,"Time of Day: %d",GetTimeOfDay());
 
-    u16 targetSpecies = sMilceryEvoTable[gSpecialVar_0x8005 - MILCERY_EVO_ITEM_OFFSET][gSpecialVar_0x8007][gSpecialVar_0x8006][GetTimeOfDay()];
+    targetSpecies = sMilceryEvoTable[gSpecialVar_0x8005 - MILCERY_EVO_ITEM_OFFSET][gSpecialVar_0x8007][gSpecialVar_0x8006][GetTimeOfDay()];
 
     DebugPrintfLevel(MGBA_LOG_WARN,"Target species: %d",targetSpecies);
 

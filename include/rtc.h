@@ -39,5 +39,6 @@ u32 RtcGetMinuteCount(void);
 u32 RtcGetLocalDayCount(void);
 void RtcAdvanceTime(u32 hours, u32 minutes, u32 seconds);
 void RtcAdvanceTimeTo(u32 hour, u32 minute, u32 second);
+void FormatDecimalTimeWithoutSeconds(u8 *dest, s8 hour, s8 minute, bool8 is24Hour);
 
 #endif // GUARD_RTC_UTIL_H

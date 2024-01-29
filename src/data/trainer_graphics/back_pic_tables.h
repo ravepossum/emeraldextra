@@ -8,6 +8,8 @@ const struct MonCoords gTrainerBackPicCoords[] =
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_WALLY] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_STEVEN] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_ORAS_BRENDAN] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_ORAS_MAY] = {.size = 8, .y_offset = 4},
 };
 
 // this table goes functionally unused, since none of these pics are compressed
@@ -40,10 +42,20 @@ const struct CompressedSpriteSheet gTrainerBackPicTable[] =
         .size = TRAINER_PIC_SIZE * ARRAY_COUNT(gTrainerBackPicTable_RubySapphireBrendan),
         .tag = TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN,
     },
+    [TRAINER_BACK_PIC_ORAS_BRENDAN] = {
+        .data = (const u32 *)gTrainerBackPic_ORASBrendan,
+        .size = TRAINER_PIC_SIZE * ARRAY_COUNT(gTrainerBackPicTable_ORASBrendan),
+        .tag = TRAINER_BACK_PIC_ORAS_BRENDAN,
+    },
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] = {
         .data = (const u32 *)gTrainerBackPic_RubySapphireMay,
         .size = TRAINER_PIC_SIZE * ARRAY_COUNT(gTrainerBackPicTable_RubySapphireMay),
         .tag = TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY,
+    },
+    [TRAINER_BACK_PIC_ORAS_MAY] = {
+        .data = (const u32 *)gTrainerBackPic_ORASMay,
+        .size = TRAINER_PIC_SIZE * ARRAY_COUNT(gTrainerBackPicTable_ORASMay),
+        .tag = TRAINER_BACK_PIC_ORAS_MAY,
     },
     [TRAINER_BACK_PIC_WALLY] = {
         .data = (const u32 *)gTrainerBackPic_Wally,
@@ -69,4 +81,6 @@ const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
     TRAINER_BACK_PAL(RUBY_SAPPHIRE_MAY, gTrainerPalette_RubySapphireMay),
     TRAINER_BACK_PAL(WALLY, gTrainerPalette_Wally),
     TRAINER_BACK_PAL(STEVEN, gTrainerPalette_Steven),
+    TRAINER_BACK_PAL(ORAS_BRENDAN, gTrainerPalette_ORASBrendan),
+    TRAINER_BACK_PAL(ORAS_MAY, gTrainerPalette_ORASMay),
 };

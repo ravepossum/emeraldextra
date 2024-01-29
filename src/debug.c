@@ -1448,8 +1448,8 @@ static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId)
             {
                 Debug_RedrawListMenu(taskId);
                 func(taskId);
-            } 
-            else 
+            }
+            else
             {
                 func(taskId);
                 Debug_RedrawListMenu(taskId);

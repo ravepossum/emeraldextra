@@ -308,7 +308,15 @@ extern const u8 gText_FrameType[];
 extern const u8 gText_ButtonTypeNormal[];
 extern const u8 gText_ButtonTypeLR[];
 extern const u8 gText_ButtonTypeLEqualsA[];
+extern const u8 gText_AutoRun[];
+extern const u8 gText_MarkAllSeen[];
+extern const u8 gText_LevelCap[];
+extern const u8 gText_OptionsOn[];
+extern const u8 gText_OptionsOff[];
 extern const u8 gText_Option[];
+extern const u8 gText_SmallDot[];
+extern const u8 gText_LargeDot[];
+extern const u8 gText_PageNav[];
 extern const u8 gText_OptionMenu[];
 extern const u8 gText_TextSpeed[];
 extern const u8 gText_BattleScene[];
@@ -531,6 +539,7 @@ extern const u8 gText_Plus[];
 extern const u8 gText_CryOf[];
 extern const u8 gText_SizeComparedTo[];
 extern const u8 gText_PokedexRegistration[];
+extern const u8 gText_Pokedex[];
 extern const u8 gText_NumberClear01[];
 extern const u8 gText_5MarksPokemon[];
 extern const u8 gText_UnkHeight[];
@@ -3090,5 +3099,8 @@ extern const u8 gText_ViewStats[];
 // show day/night in pokedex area screen
 extern const u8 gText_AButtonDay[];
 extern const u8 gText_AButtonNight[];
+
+// friendship on summary screen
+extern const u8 gText_Max[];
 
 #endif // GUARD_STRINGS_H

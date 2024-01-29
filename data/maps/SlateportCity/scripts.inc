@@ -564,7 +564,6 @@ SlateportCity_EventScript_PowerTMClerk::
 	.align 2
 SlateportCity_Pokemart_PowerTMs:
 	.2byte ITEM_TM_HIDDEN_POWER
-	.2byte ITEM_TM_SECRET_POWER
 	.2byte ITEM_NONE
 	release
 	end
@@ -1111,7 +1110,7 @@ SlateportCity_Text_BuyTooMuch:
 SlateportCity_Text_GetNameRaterToHelpYou:
 	.string "If you want to change your Pokémon's\n"
 	.string "Ability, you'll have to get the Ability\l"
-	.string "Master to help you.$"
+	.string "Guru to help you.$"
 
 SlateportCity_Text_CantChangeTradeMonName:
 	.string "You can change the nickname of any\n"
@@ -1495,10 +1494,7 @@ SlateportCity_EventScript_Gentleman::
 SlateportCity_EventScript_NatureGuru::
 	lock
 	faceplayer
-	message SlateportCity_EventScript_NatureGuru_Text_0
-	waitmessage
-	pokemart SlateportCity_Pokemart_NatureGuru
-	msgbox gText_PleaseComeAgain
+	msgbox SlateportCity_EventScript_NatureGuru_Text_0
 	release
 	end
 
@@ -1514,6 +1510,11 @@ SlateportCity_EventScript_AbilityGuru::
 	end
 
 
+SlateportCity_EventScript_Gentleman2::
+	msgbox SlateportCity_EventScript_Gentleman2_Text_0, MSGBOX_NPC
+	return
+
+
 SlateportCity_EventScript_Cook_Text_0:
 	.string "I sell my own sweets, baked fresh daily!$"
 
@@ -1522,8 +1523,7 @@ SlateportCity_EventScript_Cook_Text_1:
 
 SlateportCity_EventScript_IndividualGuru_Text_0:
 	.string "I'm the Individual Guru!\p"
-	.string "I'm stil working on setting up my\n"
-	.string "training program.$"
+	.string "I'm stil setting up my training program.$"
 
 SlateportCity_EventScript_IndividualGuru_HyperTrain_Text_0:
 	.string "Which Pokémon should Hyper Train?$"
@@ -1553,13 +1553,18 @@ SlateportCity_EventScript_Gentleman_Text_0:
 
 SlateportCity_EventScript_NatureGuru_Text_0:
 	.string "I'm the Nature Guru!\p"
-	.string "It's in my nature to supply your\n"
-	.string "Nature-changing needs!$"
+	.string "I'm still setting up my training program.$"
 
 SlateportCity_EventScript_AbilityGuru_Text_0:
 	.string "I'm the Ability Guru!\p"
 	.string "I've got the ability to equip your\n"
 	.string "Pokémon with new Abilities!$"
+
+SlateportCity_EventScript_Gentleman2_Text_0:
+	.string "The Contest Hall is currently under\n"
+	.string "construction.\p"
+	.string "We're terribly sorry for any\n"
+	.string "inconvenience.$"
 
 SlateportCity_Text_GoingToCompeteInBattleTent::
 	.string "The battles at the Battle Tent here use\n"

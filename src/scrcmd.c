@@ -29,6 +29,7 @@
 #include "menu.h"
 #include "money.h"
 #include "mystery_event_script.h"
+#include "outfit_menu.h"
 #include "palette.h"
 #include "party_menu.h"
 #include "pokemon_storage_system.h"
@@ -1005,6 +1006,7 @@ bool8 ScrCmd_applymovement(struct ScriptContext *ctx)
     u16 localId = VarGet(ScriptReadHalfword(ctx));
     const void *movementScript = (const void *)ScriptReadWord(ctx);
 
+    gObjectEvents[GetObjectEventIdByLocalId(localId)].directionOverwrite = DIR_NONE;
     ScriptMovement_StartObjectMovementScript(localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, movementScript);
     sMovingNpcId = localId;
     return FALSE;
@@ -1017,6 +1019,7 @@ bool8 ScrCmd_applymovementat(struct ScriptContext *ctx)
     u8 mapGroup = ScriptReadByte(ctx);
     u8 mapNum = ScriptReadByte(ctx);
 
+    gObjectEvents[GetObjectEventIdByLocalId(localId)].directionOverwrite = DIR_NONE;
     ScriptMovement_StartObjectMovementScript(localId, mapNum, mapGroup, movementScript);
     sMovingNpcId = localId;
     return FALSE;
@@ -1887,7 +1890,14 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
         }
     }
 
-    if (gSpecialVar_Result == PARTY_SIZE && PlayerHasMove(moveId)){  // If no mon have the move, but the player has the HM in bag, use the first mon
+    if (gSpecialVar_Result == PARTY_SIZE && PlayerHasMove(moveId)) // If no mon have the move, but the player has the HM in bag, use the first mon
+    {  
+            gSpecialVar_Result = 0;
+            gSpecialVar_0x8004 = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL);
+    }
+
+    if (gSpecialVar_Result == PARTY_SIZE && (moveId == MOVE_SECRET_POWER) && FlagGet(FLAG_RECEIVED_SECRET_POWER))
+    {
             gSpecialVar_Result = 0;
             gSpecialVar_0x8004 = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL);
     }
@@ -2541,4 +2551,33 @@ bool8 ScrCmd_pokevial(struct ScriptContext *ctx)
 void ScrCmd_stopse(struct ScriptContext *ctx)
 {
     m4aSongNumStop(ScriptReadHalfword(ctx));
+}
+
+bool8 ScrCmd_unlockoutfit(struct ScriptContext *ctx)
+{
+    u8 outfitId = VarGet(ScriptReadByte(ctx));
+
+    UnlockOutfit(outfitId);
+    return TRUE;
+}
+
+bool8 ScrCmd_getoutfitstatus(struct ScriptContext *ctx)
+{
+    u8 outfitId = VarGet(ScriptReadByte(ctx));
+    u8 data = ScriptReadByte(ctx);
+
+    gSpecialVar_Result = GetOutfitData(outfitId, data);
+    return TRUE;
+}
+
+bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 outfit = VarGet(ScriptReadHalfword(ctx));
+    u8 type = ScriptReadByte(ctx);
+    const u8 *str = NULL;
+
+    str = (type == OUTFIT_MENU_BUFFER_DESC) ? gOutfits[outfit].desc : gOutfits[outfit].name;
+    StringCopy(sScriptStringVars[stringVarIndex], str);
+    return FALSE;
 }

@@ -747,7 +747,7 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_BG1_ON
                                     | DISPCNT_BG2_ON
                                     | DISPCNT_OBJ_ON);
-        CreatePressStartBanner(START_BANNER_X, 108);
+        CreatePressStartBanner(START_BANNER_X, 128);
         CreateCopyrightBanner(START_BANNER_X, 148);
         gTasks[taskId].tBg1Y = 0;
         gTasks[taskId].func = Task_TitleScreenPhase3;
@@ -850,9 +850,9 @@ static void UpdateLegendaryMarkingColor(u8 frameNum)
     if ((frameNum % 4) == 0) // Change color every 4th frame
     {
         s32 intensity = Cos(frameNum, 128) + 128;
-        s32 r = 31 - ((intensity * 32 - intensity) / 256);
-        s32 g = 0;
-        s32 b = 0;
+        s32 r = 30;// - ((intensity * 32 - intensity) / 256);
+        s32 g = 28 - ((intensity * 22 - intensity) / 256);
+        s32 b = 11 - ((intensity * 12 - intensity) / 256);
         //s32 g = 31 - (intensity * 22 / 256);
         //s32 b = 12;
 

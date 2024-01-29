@@ -567,7 +567,6 @@ SlateportCity_EventScript_PowerTMClerk::
 	.align 2
 SlateportCity_Pokemart_PowerTMs:
 	.2byte ITEM_TM_HIDDEN_POWER
-	.2byte ITEM_TM_SECRET_POWER
 	.2byte ITEM_NONE
 	release
 	end
@@ -1114,7 +1113,7 @@ SlateportCity_Text_BuyTooMuch:
 SlateportCity_Text_GetNameRaterToHelpYou:
 	.string "If you want to change your Pokémon's\n"
 	.string "Ability, you'll have to get the Ability\l"
-	.string "Master to help you.$"
+	.string "Guru to help you.$"
 
 SlateportCity_Text_CantChangeTradeMonName:
 	.string "You can change the nickname of any\n"
@@ -1442,7 +1441,7 @@ script SlateportCity_EventScript_Cook {
 script SlateportCity_EventScript_IndividualGuru {
 	lock
 	faceplayer
-    msgbox(format("I'm the Individual Guru!\pI'm stil working on setting up my training program."))
+    msgbox(format("I'm the Individual Guru!\pI'm stil setting up my training program."))
 	// message(format("I'm the Individual Guru! I'll help your Pokémon express their unique personalities!\pWhat would you like to do today?"))
     // waitmessage
     // dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE,"Hyper Train a stat","Reduce a stat","Check stats","Cancel")
@@ -1508,10 +1507,11 @@ script SlateportCity_EventScript_Gentleman {
 script SlateportCity_EventScript_NatureGuru {
 	lock
 	faceplayer
-    message(format("I'm the Nature Guru!\pIt's in my nature to supply your Nature-changing needs!"))
-	waitmessage
-	pokemart(SlateportCity_Pokemart_NatureGuru)
-	msgbox(gText_PleaseComeAgain)
+	msgbox(format("I'm the Nature Guru!\pI'm still setting up my training program."))
+    //message(format("I'm the Nature Guru!\pIt's in my nature to supply your Nature-changing needs!"))
+	//waitmessage
+	//pokemart(SlateportCity_Pokemart_NatureGuru)
+	//msgbox(gText_PleaseComeAgain)
 	release
 	end
 }
@@ -1525,4 +1525,8 @@ script SlateportCity_EventScript_AbilityGuru {
 	msgbox(gText_PleaseComeAgain)
 	release
 	end
+}
+
+script SlateportCity_EventScript_Gentleman2 {
+	msgbox(format("The Contest Hall is currently under construction.\pWe're terribly sorry for any inconvenience."),MSGBOX_NPC)
 }

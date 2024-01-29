@@ -1,0 +1,19 @@
+mapscripts VerdanturfTown_House3_MapScripts {}
+
+script VerdanturfTown_House3_EventScript_Man {
+    lock
+    faceplayer
+    if(!flag(FLAG_RECEIVED_TM_SWIFT))
+    {
+        msgbox(format("The best things in life are the ones you can rely on.\pLet me share my favorite TM with you."))
+        giveitem(ITEM_TM54)
+        setflag(FLAG_RECEIVED_TM_SWIFT)
+        msgbox(format("Swift will always strike true and never miss the target."))
+    }
+    else
+    {
+        msgbox(format("Having a good routine is key."))
+    }
+    release
+    end
+}
