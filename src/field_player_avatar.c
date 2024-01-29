@@ -143,7 +143,6 @@ static u8 Fishing_EndNoMon(struct Task *);
 static void AlignFishingAnimationFrames(void);
 
 static u8 TrySpinPlayerForWarp(struct ObjectEvent *, s16 *);
-static void PlayerGoSlow(u8 direction);
 
 // .rodata
 
@@ -416,7 +415,23 @@ static bool8 ForcedMovement_None(void)
 static bool8 DoForcedMovement(u8 direction, void (*moveFunc)(u8))
 {
     struct PlayerAvatar *playerAvatar = &gPlayerAvatar;
-    u8 collision = CheckForPlayerAvatarCollision(direction);
+
+    u8 collision;
+
+    // Check for sideways stairs onto ice movement.
+    switch (direction)
+    {
+    case DIR_NORTHWEST:
+    case DIR_SOUTHWEST:
+        direction = DIR_WEST;
+        break;
+    case DIR_NORTHEAST:
+    case DIR_SOUTHEAST:
+        direction = DIR_EAST;
+        break;
+    }
+
+    collision = CheckForPlayerAvatarCollision(direction);
 
     playerAvatar->flags |= PLAYER_AVATAR_FLAG_FORCED_MOVE;
     if (collision)
@@ -613,7 +628,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         else if (FlagGet(FLAG_SYS_DEXNAV_SEARCH) && (heldKeys & A_BUTTON))
         {
             gPlayerAvatar.creeping = TRUE;
-            PlayerGoSlow(direction);
+            PlayerWalkSlow(direction);
         }
         else
         {
@@ -625,24 +640,44 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 
     if ((heldKeys & B_BUTTON) && IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior) == 0)
     {
-        if (VarGet(VAR_AUTO_RUN))
-            PlayerWalkNormal(direction);
+        if (ObjectMovingOnRockStairs(&gObjectEvents[gPlayerAvatar.objectEventId], direction))
+        {
+            if (VarGet(VAR_AUTO_RUN))
+                PlayerWalkSlow(direction);
+            else
+                PlayerRunSlow(direction);
+        }
         else
-            PlayerRun(direction);
+        {
+            if (VarGet(VAR_AUTO_RUN))
+                PlayerWalkNormal(direction);
+            else
+                PlayerRun(direction);
+        }
 
         return;
     }
     else if (FlagGet(FLAG_SYS_DEXNAV_SEARCH) && (heldKeys & A_BUTTON))
     {
         gPlayerAvatar.creeping = TRUE;
-        PlayerGoSlow(direction);
+        PlayerWalkSlow(direction);
     }
     else
     {
-        if (VarGet(VAR_AUTO_RUN))
-            PlayerRun(direction);
+        if (ObjectMovingOnRockStairs(&gObjectEvents[gPlayerAvatar.objectEventId], direction))
+        {
+            if (VarGet(VAR_AUTO_RUN))
+                PlayerRunSlow(direction);
+            else
+                PlayerWalkSlow(direction);
+        }
         else
-            PlayerWalkNormal(direction);
+        {
+            if (VarGet(VAR_AUTO_RUN))
+                PlayerRun(direction);
+            else
+                PlayerWalkNormal(direction);
+        }
 
         gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
     }
@@ -946,9 +981,14 @@ void PlayerSetAnimId(u8 movementActionId, u8 copyableMovement)
 }
 
 // slow
-static void PlayerGoSlow(u8 direction)
+void PlayerWalkSlow(u8 direction)
 {
     PlayerSetAnimId(GetWalkSlowMovementAction(direction), 2);
+}
+
+void PlayerRunSlow(u8 direction)
+{
+    PlayerSetAnimId(GetPlayerRunSlowMovementAction(direction), 2);
 }
 
 void PlayerWalkNormal(u8 direction)
@@ -2210,4 +2250,72 @@ static u8 TrySpinPlayerForWarp(struct ObjectEvent *object, s16 *delayTimer)
 void SetPlayerAvatarVsSeeker(void)
 {
     SetPlayerAvatarAnimation(PLAYER_AVATAR_GFX_VSSEEKER, 0);
+}
+
+//sideways stairs
+u8 GetRightSideStairsDirection(u8 direction)
+{
+    switch (direction)
+    {
+    case DIR_WEST:
+        return DIR_NORTHWEST;
+    case DIR_EAST:
+        return DIR_SOUTHEAST;
+    default:
+        if (direction > DIR_EAST)
+            direction -= DIR_EAST;
+
+        return direction;
+    }           
+}
+
+u8 GetLeftSideStairsDirection(u8 direction)
+{
+    switch (direction)
+    {
+    case DIR_WEST:
+        return DIR_SOUTHWEST;
+    case DIR_EAST:
+        return DIR_NORTHEAST;
+    default:
+        if (direction > DIR_EAST)
+            direction -= DIR_EAST;
+
+        return direction;
+    }
+}
+
+bool8 ObjectMovingOnRockStairs(struct ObjectEvent *objectEvent, u8 direction)
+{
+    #if SLOW_MOVEMENT_ON_STAIRS
+        s16 x = objectEvent->currentCoords.x;
+        s16 y = objectEvent->currentCoords.y;
+
+        #if FOLLOW_ME_IMPLEMENTED
+            if (PlayerHasFollower() && (objectEvent->isPlayer || objectEvent->localId == GetFollowerLocalId()))
+                return FALSE;
+        #endif
+
+        switch (direction)
+        {
+        case DIR_NORTH:
+            return MetatileBehavior_IsRockStairs(MapGridGetMetatileBehaviorAt(x,y));
+        case DIR_SOUTH:
+            MoveCoords(DIR_SOUTH, &x, &y);
+            return MetatileBehavior_IsRockStairs(MapGridGetMetatileBehaviorAt(x,y));
+        case DIR_WEST:
+        case DIR_EAST:
+        case DIR_NORTHEAST:
+        case DIR_NORTHWEST:
+        case DIR_SOUTHWEST:
+        case DIR_SOUTHEAST:
+            // directionOverwrite is only used for sideways stairs motion
+            if (objectEvent->directionOverwrite)
+                return TRUE;
+        default:
+            return FALSE;
+        }
+    #else
+        return FALSE;
+    #endif
 }
