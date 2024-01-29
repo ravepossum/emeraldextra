@@ -53,8 +53,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-      "x": 7,
-      "y": 11,
+      "x": 13,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
       "movement_range_x": 0,
@@ -140,6 +140,20 @@
       "y": 25,
       "elevation": 0,
       "dest_map": "MAP_ROUTE135",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 4,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_VERDANTURF_TOWN_HOUSE2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_VERDANTURF_TOWN_HOUSE3",
       "dest_warp_id": "0"
     }
   ],

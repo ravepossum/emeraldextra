@@ -1162,3 +1162,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
 
 	.include "data/maps/SlateportCity_House3/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_House2/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_House3/scripts.inc"

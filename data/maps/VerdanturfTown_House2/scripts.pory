@@ -1,0 +1,23 @@
+mapscripts VerdanturfTown_House2_MapScripts {}
+
+script VerdanturfTown_House2_EventScript_BlackBelt {
+    lock
+    faceplayer
+    if(!flag(FLAG_RECEIVED_PROTECTIVE_PADS))
+    {
+        msgbox(format("I'm trying to be more conscious of my health while training. You should too. Take these!"))
+        giveitem(ITEM_PROTECTIVE_PADS)
+        setflag(FLAG_RECEIVED_PROTECTIVE_PADS)
+        msgbox(format("Those will protect your Pokémon from contact moves in battle."))
+    }
+    else
+    {
+        msgbox(format("The air out here gets me invigorated for my training routine!"))
+    }
+    release
+    end
+}
+
+script VerdanturfTown_House2_EventScript_Beauty {
+    msgbox(format("I love how easy it is to get to Mauville from here.\pSometimes I even like to visit the Game Corner…"),MSGBOX_NPC)
+}
