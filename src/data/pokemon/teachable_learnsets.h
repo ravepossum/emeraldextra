@@ -13153,7 +13153,6 @@ static const u16 sWooperTeachableLearnset[] = {
     MOVE_GUARD_SWAP,
     MOVE_HAIL,
     MOVE_HELPING_HAND,
-    MOVE_HIDDEN_POWER,
     MOVE_HYDRO_PUMP,
     MOVE_ICE_BEAM,
     MOVE_ICE_PUNCH,
@@ -13170,7 +13169,6 @@ static const u16 sWooperTeachableLearnset[] = {
     MOVE_RAIN_DANCE,
     MOVE_RECOVER,
     MOVE_REST,
-    MOVE_RETURN,
     MOVE_ROCK_SLIDE,
     MOVE_ROCK_TOMB,
     MOVE_ROUND,
@@ -63669,7 +63667,6 @@ static const u16 sOinkologneTeachableLearnset[] = {
     MOVE_ZEN_HEADBUTT,
     MOVE_UNAVAILABLE,
 };
-
 static const u16 sTarountulaTeachableLearnset[] = {
     MOVE_BODY_SLAM,
     MOVE_BUG_BUZZ,

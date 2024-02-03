@@ -536,7 +536,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         PALETTES(OinkologneMale),
         ICON(OinkologneMale, 1),
         //.footprint = gMonFootprint_Oinkologne,
-        .levelUpLearnset = sOinkologneMaleLevelUpLearnset,
+        LEARNSETS(OinkologneMale),
 
     },
 
