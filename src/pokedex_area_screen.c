@@ -10,6 +10,7 @@
 #include "palette.h"
 #include "pokedex.h"
 #include "pokedex_area_screen.h"
+#include "pokedex_plus_hgss.h"
 #include "region_map.h"
 #include "roamer.h"
 #include "sound.h"
@@ -210,7 +211,6 @@ static const struct SpriteTemplate sAreaUnknownSpriteTemplate =
 };
 
 static u8 windid;
-static const u8 sFontColor_Black[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, 5};
 
 static const struct WindowTemplate sTimeOfDayWindowTemplate =
 {
@@ -221,6 +221,13 @@ static const struct WindowTemplate sTimeOfDayWindowTemplate =
     .height = 2,
     .paletteNum = 0,
     .baseBlock = 0x16C
+};
+
+static const u8 sTimeOfDayFontColors[HGSS_COLOR_COUNT][3] = 
+{
+    {TEXT_COLOR_TRANSPARENT, 0x1, 0x5},
+    {TEXT_COLOR_TRANSPARENT, 0x1, 0x5},
+    {TEXT_COLOR_TRANSPARENT, 0x2, 0x3},
 };
 
 static void ResetDrawAreaGlowState(void)
@@ -712,7 +719,7 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         DrawTextBorderInner(windid, 0x242, 12);
         FillWindowPixelBuffer(windid, PIXEL_FILL(7));
         PutWindowTilemap(windid);
-        AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_AButtonDay);
+        AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sTimeOfDayFontColors[HGSS_COLOR_MODE], TEXT_SKIP_DRAW, gText_AButtonDay);
         CopyWindowToVram(windid, COPYWIN_FULL);
         break;
     case 11:
@@ -763,12 +770,12 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             if (sPokedexAreaScreen->state == TIME_DAY)
             {
                 sPokedexAreaScreen->state = TIME_NIGHT;
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_AButtonNight);
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sTimeOfDayFontColors[HGSS_COLOR_MODE], TEXT_SKIP_DRAW, gText_AButtonNight);
             }
             else
             {
                 sPokedexAreaScreen->state = TIME_DAY;
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_AButtonDay);
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sTimeOfDayFontColors[HGSS_COLOR_MODE], TEXT_SKIP_DRAW, gText_AButtonDay);
             }
 
             PlaySE(SE_DEX_PAGE);
