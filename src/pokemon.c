@@ -6185,6 +6185,7 @@ u16 GetRandomRentalSpecies(void)
 {
     u16 species = SPECIES_NONE;
     bool32 isLegalMon = FALSE;
+    const struct Evolution *evolutions;
     do
     {
         species = (Random() % (NUM_SPECIES - 1)) + 1;
@@ -6200,6 +6201,11 @@ u16 GetRandomRentalSpecies(void)
 
         // exclude a bunch of other random forms
         if (species > SPECIES_OGERPON_TEAL_MASK)
+            isLegalMon = FALSE;
+
+        // only pick fully evolved mons
+        evolutions = GetSpeciesEvolutions(species);
+        if (evolutions != NULL)
             isLegalMon = FALSE;
 
     } while (!isLegalMon);
