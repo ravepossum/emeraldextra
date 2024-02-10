@@ -1673,9 +1673,9 @@ static void ChangeSummaryState (s16 *taskData, u8 taskId)
 }
 
 // draw button prompts when cycling between stats, IVs and EVs
-static void DrawStatsButtonPrompt (s16 *taskData)
+static void DrawStatsButtonPrompt (u8 mode)
 {
-    switch (taskData[3])
+    switch (mode)
     {
         case 0:
             // print IVs prompt
@@ -1740,7 +1740,7 @@ static void Task_HandleInput(u8 taskId)
             } else {
                 // Cycle through IVs/EVs/stats on pressing A
                 ChangeSummaryState(data, taskId);
-                DrawStatsButtonPrompt(data);
+                DrawStatsButtonPrompt(data[3]);
                 PlaySE(SE_SELECT);
                 BufferIvOrEvStats(data[3]);
             }
@@ -1865,6 +1865,9 @@ static void Task_ChangeSummaryMon(u8 taskId)
         break;
     case 11:
         PrintPageSpecificText(sMonSummaryScreen->currPageIndex);
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+            DrawStatsButtonPrompt(0);
+
         LimitEggSummaryPageDisplay();
         break;
     case 12:
