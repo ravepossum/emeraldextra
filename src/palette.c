@@ -98,6 +98,20 @@ void FillPalette(u16 value, u16 offset, u16 size)
     CpuFill16(value, &gPlttBufferFaded[offset], size);
 }
 
+void StandardMenuPalette_HandleColorMode(u16 offset, u8 colorMode)
+{
+    u16 palette;
+    if (colorMode == UI_COLOR_DARK)
+    {
+        palette = RGB_BLACK;
+        LoadPalette(&palette, offset + 1, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 2, PLTT_SIZEOF(1));
+        palette = RGB(9,9,9);
+        LoadPalette(&palette, offset + 3, PLTT_SIZEOF(1));
+    }
+}
+
 void TransferPlttBuffer(void)
 {
     if (!gPaletteFade.bufferTransferDisabled)

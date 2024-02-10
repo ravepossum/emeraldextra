@@ -2371,6 +2371,7 @@ static void LoadPartyMenuWindows(void)
     LoadUserWindowBorderGfx(0, 0x4F, BG_PLTT_ID(13));
     LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(14), PLTT_SIZE_4BPP);
     LoadPalette(gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+    StandardMenuPalette_HandleColorMode(BG_PLTT_ID(15), VarGet(UI_COLOR_MODE));
 }
 
 static void CreateCancelConfirmWindows(bool8 chooseHalf)
