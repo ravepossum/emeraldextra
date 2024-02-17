@@ -126,6 +126,7 @@ static void BuyMenuBuildListMenuTemplate(void);
 static void BuyMenuInitBgs(void);
 static void BuyMenuInitWindows(void);
 static void BuyMenuDecompressBgGraphics(void);
+static void BuyMenuPalette_HandleColorMode(u16 offset, u8 colorMode);
 static void BuyMenuSetListEntry(struct ListMenuItem *, u16, u8 *);
 static void BuyMenuAddItemIcon(u16, u8);
 static void BuyMenuRemoveItemIcon(u16, u8);
@@ -745,6 +746,27 @@ static void BuyMenuDecompressBgGraphics(void)
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
     LZDecompressWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
     LoadCompressedPalette(gShopMenu_Pal, BG_PLTT_ID(12), PLTT_SIZE_4BPP);
+    BuyMenuPalette_HandleColorMode(BG_PLTT_ID(12), VarGet(UI_COLOR_MODE));
+}
+
+static void BuyMenuPalette_HandleColorMode(u16 offset, u8 colorMode)
+{
+    if (colorMode == UI_COLOR_DARK)
+    {
+        u16 palette;
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, offset + 1, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_BORDER;
+        LoadPalette(&palette, offset + 2, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_OUTER_BORDER;
+        LoadPalette(&palette, offset + 8, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_LIGHT;
+        LoadPalette(&palette, offset + 9, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_DARK;
+        LoadPalette(&palette, offset + 10, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_INNER_BORDER;
+        LoadPalette(&palette, offset + 11, PLTT_SIZEOF(1));
+    }
 }
 
 static void BuyMenuInitWindows(void)

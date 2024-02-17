@@ -2371,7 +2371,10 @@ static void LoadPartyMenuWindows(void)
     LoadUserWindowBorderGfx(0, 0x4F, BG_PLTT_ID(13));
     LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(14), PLTT_SIZE_4BPP);
     LoadPalette(gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
-    StandardMenuPalette_HandleColorMode(BG_PLTT_ID(15), VarGet(UI_COLOR_MODE));
+    DebugPrintfLevel(MGBA_LOG_WARN,"overriding pal here",0);
+    OverrideUIFramePalette_HandleColorMode(BG_PLTT_ID(13), VarGet(UI_COLOR_MODE));
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(14), VarGet(UI_COLOR_MODE));
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(15), VarGet(UI_COLOR_MODE));
 }
 
 static void CreateCancelConfirmWindows(bool8 chooseHalf)
@@ -3080,6 +3083,8 @@ static void Task_TryCreateSelectionWindow(u8 taskId)
     if (CreateSelectionWindow(taskId))
     {
         gTasks[taskId].data[0] = 0xFF;
+        //DebugPrintfLevel(MGBA_LOG_WARN,"overriding pal here",0);
+        //OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(14), VarGet(UI_COLOR_MODE));
         gTasks[taskId].func = Task_HandleSelectionMenuInput;
     }
 }

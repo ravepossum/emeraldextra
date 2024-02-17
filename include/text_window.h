@@ -26,6 +26,8 @@ void DrawTextBorderInner(u8 windowId, u16 tileNum, u8 palNum);
 void rbox_fill_rectangle(u8 windowId);
 const u16 *GetTextWindowPalette(u8 id);
 const u16 *GetOverworldTextboxPalettePtr(void);
+void OverrideUIFramePalette_HandleColorMode(u16 palOffset, u8 colorMode);
+void OverrideUITextPalette_HandleColorMode(u16 palOffset, u8 colorMode);
 
 //NEW
 void LoadDexNavWindowGfx(u8 windowId, u16 destOffset, u8 palOffset);

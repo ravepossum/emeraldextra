@@ -411,12 +411,12 @@ static const u16 sMainMenuTextPal[] = INCBIN_U16("graphics/interface/main_menu_t
 
 static const u8 sTextColor_Headers[UI_COLOR_MODE_COUNT][3] = {
     [UI_COLOR_LIGHT]    = {TEXT_DYNAMIC_COLOR_1, TEXT_DYNAMIC_COLOR_2, TEXT_DYNAMIC_COLOR_3},
-    [UI_COLOR_DARK]     = {TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_5, TEXT_DYNAMIC_COLOR_3},
+    [UI_COLOR_DARK]     = {TEXT_DYNAMIC_COLOR_1, TEXT_DYNAMIC_COLOR_5, TEXT_DYNAMIC_COLOR_3},
 };
 
 static const u8 sTextColor_MenuInfo[UI_COLOR_MODE_COUNT][3] = {
     [UI_COLOR_LIGHT]    = {TEXT_DYNAMIC_COLOR_1, TEXT_COLOR_WHITE, TEXT_DYNAMIC_COLOR_3},
-    [UI_COLOR_DARK]     = {TEXT_DYNAMIC_COLOR_4, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY},
+    [UI_COLOR_DARK]     = {TEXT_DYNAMIC_COLOR_1, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY},
 };
 
 static const struct BgTemplate sMainMenuBgTemplates[] = {
@@ -761,10 +761,10 @@ static void Task_DisplayMainMenu(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 7);
 
-        palette = VarGet(UI_COLOR_MODE) == UI_COLOR_LIGHT ? RGB_BLACK : RGB_WHITE;
+        palette = VarGet(UI_COLOR_MODE) == UI_COLOR_LIGHT ? RGB_UI_DARK_BLACK : RGB_WHITE;
         LoadPalette(&palette, BG_PLTT_ID(15) + 14, PLTT_SIZEOF(1));
 
-        palette = VarGet(UI_COLOR_MODE) == UI_COLOR_LIGHT ? RGB_WHITE : RGB_BLACK;
+        palette = VarGet(UI_COLOR_MODE) == UI_COLOR_LIGHT ? RGB_WHITE : RGB_UI_DARK_BLACK;
         LoadPalette(&palette, BG_PLTT_ID(15) + 10, PLTT_SIZEOF(1));
 
         palette = VarGet(UI_COLOR_MODE) == UI_COLOR_LIGHT ? RGB(12, 12, 12) : RGB(26, 26, 25);
@@ -2208,11 +2208,11 @@ static void LoadMainMenuWindowFrameTiles(u8 bgId, u16 tileOffset)
 
     if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
     {
-        palette = RGB_BLACK;
+        palette = RGB_UI_DARK_BLACK;
         LoadPalette(&palette, BG_PLTT_ID(2) + 14, PLTT_SIZEOF(1));
-        palette = RGB(11,12,11);
+        palette = RGB_UI_DARK_FRAME_CORNER;
         LoadPalette(&palette, BG_PLTT_ID(2) + 7, PLTT_SIZEOF(1));
-        palette = RGB(8,8,8);
+        palette = RGB_UI_DARK_FRAME_BORDER;
         LoadPalette(&palette, BG_PLTT_ID(2) + 8, PLTT_SIZEOF(1));
     }
 }

@@ -2609,7 +2609,7 @@ static void LoadBagMenuTextWindows(void)
     LoadMessageBoxGfx_HandleColorMode(0, 10, BG_PLTT_ID(13), VarGet(UI_COLOR_MODE));
     ListMenuLoadStdPalAt(BG_PLTT_ID(12), 1);
     LoadPalette(&gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
-    StandardMenuPalette_HandleColorMode(BG_PLTT_ID(15), VarGet(UI_COLOR_MODE));
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(15), VarGet(UI_COLOR_MODE));
     for (i = 0; i <= WIN_POCKET_NAME; i++)
     {
         FillWindowPixelBuffer(i, PIXEL_FILL(0));

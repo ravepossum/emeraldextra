@@ -229,11 +229,11 @@ static void LoadUIFrameColorPalette(u8 frameType, u8 colorMode)
     LoadPalette(GetWindowFrameTilesPal(frameType)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
     if (colorMode == UI_COLOR_DARK)
     {
-        palette = RGB_BLACK;
+        palette = RGB_UI_DARK_BLACK;
         LoadPalette(&palette, BG_PLTT_ID(7) + 14, PLTT_SIZEOF(1));
-        palette = RGB(11,12,11);
+        palette = RGB_UI_DARK_FRAME_CORNER;
         LoadPalette(&palette, BG_PLTT_ID(7) + 7, PLTT_SIZEOF(1));
-        palette = RGB(8,8,8);
+        palette = RGB_UI_DARK_FRAME_BORDER;
         LoadPalette(&palette, BG_PLTT_ID(7) + 8, PLTT_SIZEOF(1));
     }
 }
@@ -245,11 +245,11 @@ static void LoadUITextColorPalette(u8 colorMode)
     LoadPalette(sOptionMenuText_Pal, BG_PLTT_ID(1), sizeof(sOptionMenuText_Pal));
     if (colorMode == UI_COLOR_DARK)
     {
-        palette = RGB_BLACK;
+        palette = RGB_UI_DARK_BLACK;
         LoadPalette(&palette, BG_PLTT_ID(1) + 1, PLTT_SIZEOF(1));
         palette = RGB_WHITE;
         LoadPalette(&palette, BG_PLTT_ID(1) + 6, PLTT_SIZEOF(1));
-        palette = RGB(9,9,9);
+        palette = RGB_UI_DARK_TEXT_SHADOW;
         LoadPalette(&palette, BG_PLTT_ID(1) + 7, PLTT_SIZEOF(1));
     }
 }

@@ -102,19 +102,9 @@ void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 
 void LoadMessageBoxGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset, u8 colorMode)
 {
-    u16 palette;
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x1C0, destOffset);
     LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, PLTT_SIZE_4BPP);
-
-    if (colorMode == UI_COLOR_DARK)
-    {
-        palette = RGB_BLACK;
-        LoadPalette(&palette, palOffset + 1, PLTT_SIZEOF(1));
-        palette = RGB_WHITE;
-        LoadPalette(&palette, palOffset + 2, PLTT_SIZEOF(1));
-        palette = RGB(9,9,9);
-        LoadPalette(&palette, palOffset + 3, PLTT_SIZEOF(1));
-    }
+    OverrideUITextPalette_HandleColorMode(palOffset, colorMode);
 }
 
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
@@ -135,24 +125,42 @@ void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
 
 void LoadWindowGfx_HandleColorMode(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset, u8 colorMode)
 {
-    u16 palette;
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sWindowFrames[frameId].tiles, 0x120, destOffset);
     LoadPalette(sWindowFrames[frameId].pal, palOffset, PLTT_SIZE_4BPP);
-
-    if (colorMode == UI_COLOR_DARK)
-    {
-        palette = RGB_BLACK;
-        LoadPalette(&palette, palOffset + 14, PLTT_SIZEOF(1));
-        palette = RGB(11,12,11);
-        LoadPalette(&palette, palOffset + 7, PLTT_SIZEOF(1));
-        palette = RGB(8,8,8);
-        LoadPalette(&palette, palOffset + 8, PLTT_SIZEOF(1));
-    }
+    OverrideUIFramePalette_HandleColorMode(palOffset, colorMode);
 }
 
 void LoadUserWindowBorderGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset, u8 colorMode)
 {
     LoadWindowGfx_HandleColorMode(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset, colorMode);
+}
+
+void OverrideUIFramePalette_HandleColorMode(u16 palOffset, u8 colorMode)
+{
+    if (colorMode == UI_COLOR_DARK)
+    {
+        u16 palette;
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, palOffset + 14, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_CORNER;
+        LoadPalette(&palette, palOffset + 7, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_BORDER;
+        LoadPalette(&palette, palOffset + 8, PLTT_SIZEOF(1));
+    }
+}
+
+void OverrideUITextPalette_HandleColorMode(u16 palOffset, u8 colorMode)
+{
+    if (colorMode == UI_COLOR_DARK)
+    {
+        u16 palette;
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, palOffset + 1, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, palOffset + 2, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, palOffset + 3, PLTT_SIZEOF(1));
+    }
 }
 
 void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum)
