@@ -223,7 +223,10 @@ static const struct BgTemplate sBgTemplates[3] =
     },
 };
 
-static const u8 sTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY};
+static const u8 sTextColors[UI_COLOR_MODE][3] = {
+    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY},
+    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY},
+};
 
 static const struct OamData sOam_Hand =
 {
@@ -481,7 +484,7 @@ void CB2_ChooseStarter(void)
     InitWindows(sWindowTemplates);
 
     DeactivateAllTextPrinters();
-    LoadUserWindowBorderGfx(0, 0x2A8, BG_PLTT_ID(13));
+    LoadUserWindowBorderGfx_HandleColorMode(0, 0x2A8, BG_PLTT_ID(13));
     ClearScheduledBgCopiesToVram();
     ScanlineEffect_Stop();
     ResetTasks();
@@ -491,6 +494,7 @@ void CB2_ChooseStarter(void)
     ResetAllPicSprites();
 
     LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(14), PLTT_SIZE_4BPP);
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(14));
     LoadPalette(gBirchBagGrass_Pal, BG_PLTT_ID(0), sizeof(gBirchBagGrass_Pal));
     LoadCompressedSpriteSheet(&sSpriteSheet_PokeballSelect[0]);
     LoadCompressedSpriteSheet(&sSpriteSheet_StarterCircle[0]);
@@ -662,10 +666,10 @@ static void CreateStarterPokemonLabel(u8 selection)
     FillWindowPixelBuffer(sStarterLabelWindowId, PIXEL_FILL(0));
 
     width = GetStringCenterAlignXOffset(FONT_NARROW, categoryText, 0x68);
-    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NARROW, width, 1, sTextColors, 0, categoryText);
+    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NARROW, width, 1, sTextColors[VarGet(UI_COLOR_MODE)], 0, categoryText);
 
     width = GetStringCenterAlignXOffset(FONT_NORMAL, speciesName, 0x68);
-    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NORMAL, width, 17, sTextColors, 0, speciesName);
+    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NORMAL, width, 17, sTextColors[VarGet(UI_COLOR_MODE)], 0, speciesName);
 
     PutWindowTilemap(sStarterLabelWindowId);
     ScheduleBgCopyTilemapToVram(0);

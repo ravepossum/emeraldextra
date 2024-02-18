@@ -1367,7 +1367,7 @@ static bool32 MatchCall_EndCall(u8 taskId)
         ChangeBgY(0, 0, BG_COORD_SET);
         if (!sMatchCallState.triggeredFromScript)
         {
-            LoadMessageBoxAndBorderGfx();
+            LoadMessageBoxAndBorderGfx_HandleColorMode();
             playerObjectId = GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
             ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
             ScriptMovement_UnfreezeObjectEvents();

@@ -3582,7 +3582,7 @@ static u8 CreateTask_ListenForWonderDistributor(struct RfuIncomingPlayerList * l
 
 static bool32 UR_PrintFieldMessage(const u8 *src)
 {
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     DrawDialogueFrame(0, TRUE);
     StringExpandPlaceholders(gStringVar4, src);
     AddTextPrinterWithCustomSpeedForMessage(FALSE, 1);
@@ -3602,7 +3602,7 @@ static bool8 PrintOnTextbox(u8 *textState, const u8 *str)
     switch (*textState)
     {
     case 0:
-        LoadMessageBoxAndBorderGfx();
+        LoadMessageBoxAndBorderGfx_HandleColorMode();
         DrawDialogueFrame(0, TRUE);
         StringExpandPlaceholders(gStringVar4, str);
         AddTextPrinterForMessage_2(TRUE);

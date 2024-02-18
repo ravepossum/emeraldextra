@@ -166,7 +166,7 @@ void InitTextBoxGfxAndPrinters(void)
     ChangeBgX(0, 0, BG_COORD_SET);
     ChangeBgY(0, 0, BG_COORD_SET);
     DeactivateAllTextPrinters();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
 }
 
 u16 RunTextPrintersAndIsPrinter0Active(void)

@@ -1247,8 +1247,8 @@ static void SlotMachineSetup_LoadGfxAndTilemaps(void)
     LoadMenuGfx();
     LoadMenuAndReelOverlayTilemaps();
     LoadSlotMachineGfx();
-    LoadMessageBoxGfx(0, 0x200, BG_PLTT_ID(15));
-    LoadUserWindowBorderGfx(0, 0x214, BG_PLTT_ID(14));
+    LoadMessageBoxGfx_HandleColorMode(0, 0x200, BG_PLTT_ID(15));
+    LoadUserWindowBorderGfx_HandleColorMode(0, 0x214, BG_PLTT_ID(14));
     PutWindowTilemap(0);
 }
 

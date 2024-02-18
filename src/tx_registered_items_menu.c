@@ -361,7 +361,7 @@ static void TxRegItemsMenu_RefreshListMenu(void)
 {
     u16 i;
     u8 windowId = TxRegItemsMenu_InitWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     SetStandardWindowBorderStyle(windowId , 0);
 
     for(i = 0; i < TxRegItemsMenuItemPageInfo.count - 1; i++)

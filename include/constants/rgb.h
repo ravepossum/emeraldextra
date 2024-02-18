@@ -27,14 +27,18 @@
 #define RGB_LIME_GREEN  RGB2GBA(222, 230, 49)
 
 // dark mode UI colors
-#define RGB_UI_DARK_BLACK           RGB(3, 3, 3)
-#define RGB_UI_DARK_TEXT_SHADOW     RGB(9, 9, 9)
-#define RGB_UI_DARK_MESSAGE_BORDER  RGB(5, 5, 5)
-#define RGB_UI_DARK_FRAME_BORDER    RGB(8, 8, 8)
-#define RGB_UI_DARK_FRAME_CORNER    RGB(11, 12, 11)
-#define RGB_UI_SHOP_OUTER_BORDER    RGB(4, 11, 14)
-#define RGB_UI_SHOP_INNER_BORDER    RGB(5, 6, 9)
-#define RGB_UI_SHOP_LIGHT           RGB(7, 10, 12)
-#define RGB_UI_SHOP_DARK            RGB(2, 3, 5)
+#define RGB_UI_DARK_BLACK               RGB(3, 3, 3)
+#define RGB_UI_DARK_TEXT_SHADOW         RGB(9, 9, 9)
+#define RGB_UI_DARK_TEXT_RED            RGB(31, 2, 2)
+#define RGB_UI_DARK_TEXT_SHADOW_RED     RGB(18, 10, 8)
+#define RGB_UI_DARK_TEXT_GREEN          RGB(6, 27, 2)
+#define RGB_UI_DARK_TEXT_SHADOW_GREEN   RGB(9, 13, 9)
+#define RGB_UI_DARK_MESSAGE_BORDER      RGB(5, 5, 5)
+#define RGB_UI_DARK_FRAME_BORDER        RGB(8, 8, 8)
+#define RGB_UI_DARK_FRAME_CORNER        RGB(11, 12, 11)
+#define RGB_UI_SHOP_OUTER_BORDER        RGB(4, 11, 14)
+#define RGB_UI_SHOP_INNER_BORDER        RGB(5, 6, 9)
+#define RGB_UI_SHOP_LIGHT               RGB(7, 10, 12)
+#define RGB_UI_SHOP_DARK                RGB(2, 3, 5)
 
 #endif // GUARD_RGB_H

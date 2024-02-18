@@ -1055,7 +1055,7 @@ static void Debug_ShowMenu(void (*HandleInput)(u8), struct ListMenuTemplate LMte
 
     // create window
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateMain);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -1751,7 +1751,7 @@ static void DebugAction_Util_Warp_Warp(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateExtra);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -2050,7 +2050,7 @@ static void DebugAction_Util_Weather(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateWeather);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -2249,7 +2249,7 @@ static void DebugAction_FlagsVars_Flags(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateExtra);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -2340,7 +2340,7 @@ static void DebugAction_FlagsVars_Vars(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateExtra);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -2773,7 +2773,7 @@ static void DebugAction_Give_Item(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateExtra);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -2982,7 +2982,7 @@ static void DebugAction_Give_PokemonSimple(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateExtra);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -3022,7 +3022,7 @@ static void DebugAction_Give_PokemonComplex(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateExtra);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -3916,7 +3916,7 @@ static void DebugAction_Sound_SE(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateSound);
     DrawStdWindowFrame(windowId, FALSE);
 
@@ -3998,7 +3998,7 @@ static void DebugAction_Sound_MUS(u8 taskId)
     RemoveWindow(gTasks[taskId].tWindowId);
 
     HideMapNamePopUpWindow();
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowId = AddWindow(&sDebugMenuWindowTemplateSound);
     DrawStdWindowFrame(windowId, FALSE);
 

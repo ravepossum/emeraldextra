@@ -1685,6 +1685,8 @@ bool32 IsEventIslandMapSecId(u8 mapSecId)
 
 void CB2_OpenFlyMap(void)
 {
+    u16 palette;
+
     switch (gMain.state)
     {
     case 0:
@@ -1748,6 +1750,11 @@ void CB2_OpenFlyMap(void)
     case 7:
         LoadPalette(sRegionMapFramePal, BG_PLTT_ID(1), sizeof(sRegionMapFramePal));
         OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(1));
+        if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+        {
+            palette = RGB_UI_DARK_BLACK;
+            LoadPalette(&palette, BG_PLTT_ID(1) + 15, PLTT_SIZEOF(1));
+        }
         PutWindowTilemap(WIN_FLY_TO_WHERE);
         FillWindowPixelBuffer(WIN_FLY_TO_WHERE, PIXEL_FILL(0));
         AddTextPrinterParameterized(WIN_FLY_TO_WHERE, FONT_NORMAL, gText_FlyToWhere, 0, 1, 0, NULL);

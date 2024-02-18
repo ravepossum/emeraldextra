@@ -164,6 +164,14 @@ void OverrideUITextPalette_HandleColorMode(u16 palOffset)
         LoadPalette(&palette, palOffset + 2, PLTT_SIZEOF(1));
         palette = RGB_UI_DARK_TEXT_SHADOW;
         LoadPalette(&palette, palOffset + 3, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_RED;
+        LoadPalette(&palette, palOffset + 4, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_RED;
+        LoadPalette(&palette, palOffset + 5, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_GREEN;
+        LoadPalette(&palette, palOffset + 6, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_GREEN;
+        LoadPalette(&palette, palOffset + 7, PLTT_SIZEOF(1));
         palette = RGB_UI_DARK_MESSAGE_BORDER;
         LoadPalette(&palette, palOffset + 13, PLTT_SIZEOF(1));
     }

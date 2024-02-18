@@ -1317,7 +1317,7 @@ bool8 ScrCmd_messageinstant(struct ScriptContext *ctx)
 
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     DrawDialogueFrame(0, TRUE);
     AddTextPrinterParameterized(0, FONT_NORMAL, msg, 0, 1, 0, NULL);
     return FALSE;
@@ -1687,7 +1687,7 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
 
     winTemplate = CreateWindowTemplate(0, xWindow, yWindow + 1, width, height, 0xF, 0x1);
     sBrailleWindowId = AddWindow(&winTemplate);
-    LoadUserWindowBorderGfx(sBrailleWindowId, 0x214, BG_PLTT_ID(14));
+    LoadUserWindowBorderGfx_HandleColorMode(sBrailleWindowId, 0x214, BG_PLTT_ID(14));
     DrawStdWindowFrame(sBrailleWindowId, FALSE);
     PutWindowTilemap(sBrailleWindowId);
     FillWindowPixelBuffer(sBrailleWindowId, PIXEL_FILL(1));
