@@ -126,7 +126,7 @@ static void BuyMenuBuildListMenuTemplate(void);
 static void BuyMenuInitBgs(void);
 static void BuyMenuInitWindows(void);
 static void BuyMenuDecompressBgGraphics(void);
-static void BuyMenuPalette_HandleColorMode(u16 offset, u8 colorMode);
+static void BuyMenuPalette_HandleColorMode(u16 offset);
 static void BuyMenuSetListEntry(struct ListMenuItem *, u16, u8 *);
 static void BuyMenuAddItemIcon(u16, u8);
 static void BuyMenuRemoveItemIcon(u16, u8);
@@ -746,12 +746,12 @@ static void BuyMenuDecompressBgGraphics(void)
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
     LZDecompressWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
     LoadCompressedPalette(gShopMenu_Pal, BG_PLTT_ID(12), PLTT_SIZE_4BPP);
-    BuyMenuPalette_HandleColorMode(BG_PLTT_ID(12), VarGet(UI_COLOR_MODE));
+    BuyMenuPalette_HandleColorMode(BG_PLTT_ID(12));
 }
 
-static void BuyMenuPalette_HandleColorMode(u16 offset, u8 colorMode)
+static void BuyMenuPalette_HandleColorMode(u16 offset)
 {
-    if (colorMode == UI_COLOR_DARK)
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
     {
         u16 palette;
         palette = RGB_UI_DARK_BLACK;
@@ -773,8 +773,8 @@ static void BuyMenuInitWindows(void)
 {
     InitWindows(sShopBuyMenuWindowTemplates);
     DeactivateAllTextPrinters();
-    LoadUserWindowBorderGfx_HandleColorMode(WIN_MONEY, 1, BG_PLTT_ID(13), VarGet(UI_COLOR_MODE));
-    LoadMessageBoxGfx_HandleColorMode(WIN_MONEY, 0xA, BG_PLTT_ID(14), VarGet(UI_COLOR_MODE));
+    LoadUserWindowBorderGfx_HandleColorMode(WIN_MONEY, 1, BG_PLTT_ID(13));
+    LoadMessageBoxGfx_HandleColorMode(WIN_MONEY, 0xA, BG_PLTT_ID(14));
     PutWindowTilemap(WIN_MONEY);
     PutWindowTilemap(WIN_ITEM_LIST);
     PutWindowTilemap(WIN_ITEM_DESCRIPTION);

@@ -14,11 +14,11 @@ extern const u16 gTextWindowFrame1_Pal[];
 
 const struct TilesPal *GetWindowFrameTilesPal(u8 id);
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset);
-void LoadMessageBoxGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset, u8 colorMode);
+void LoadMessageBoxGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset);
 void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset);
-void LoadWindowGfx_HandleColorMode(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset, u8 colorMode);
-void LoadUserWindowBorderGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset, u8 colorMode);
+void LoadWindowGfx_HandleColorMode(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset);
+void LoadUserWindowBorderGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadUserWindowBorderGfxOnBg(u8 bg, u16 destOffset, u8 palOffset);
 void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum);
@@ -26,8 +26,8 @@ void DrawTextBorderInner(u8 windowId, u16 tileNum, u8 palNum);
 void rbox_fill_rectangle(u8 windowId);
 const u16 *GetTextWindowPalette(u8 id);
 const u16 *GetOverworldTextboxPalettePtr(void);
-void OverrideUIFramePalette_HandleColorMode(u16 palOffset, u8 colorMode);
-void OverrideUITextPalette_HandleColorMode(u16 palOffset, u8 colorMode);
+void OverrideUIFramePalette_HandleColorMode(u16 palOffset);
+void OverrideUITextPalette_HandleColorMode(u16 palOffset);
 
 //NEW
 void LoadDexNavWindowGfx(u8 windowId, u16 destOffset, u8 palOffset);

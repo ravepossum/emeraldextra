@@ -1550,7 +1550,7 @@ static void Task_PCMainMenu(u8 taskId)
     case STATE_LOAD:
         CreateMainMenu(task->tSelectedOption, &task->tWindowId);
         //todo fix this showing dark mode in text window or just commit to also making message box dark mode?
-        LoadMessageBoxAndBorderGfx_HandleColorMode(VarGet(VAR_UI_COLOR));
+        LoadMessageBoxAndBorderGfx_HandleColorMode();
         DrawDialogueFrame(0, FALSE);
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
         AddTextPrinterParameterized2(0, FONT_NORMAL, sMainMenuTexts[task->tSelectedOption].desc, TEXT_SKIP_DRAW, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
@@ -3878,6 +3878,9 @@ static void InitPalettesAndSprites(void)
     LoadPalette(sInterface_Pal, BG_PLTT_ID(0), sizeof(sInterface_Pal));
     LoadPalette(sPkmnDataGray_Pal, BG_PLTT_ID(2), sizeof(sPkmnDataGray_Pal));
     LoadPalette(sTextWindows_Pal, BG_PLTT_ID(15), sizeof(sTextWindows_Pal));
+    OverrideUIFramePalette_HandleColorMode(BG_PLTT_ID(13));
+    OverrideUIFramePalette_HandleColorMode(BG_PLTT_ID(14));
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(15));
     if (sStorage->boxOption != OPTION_MOVE_ITEMS)
         LoadPalette(sScrollingBg_Pal, BG_PLTT_ID(3), sizeof(sScrollingBg_Pal));
     else

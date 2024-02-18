@@ -1,6 +1,7 @@
 #include "global.h"
 #include "text.h"
 #include "text_window.h"
+#include "event_data.h"
 #include "window.h"
 #include "palette.h"
 #include "bg.h"
@@ -100,11 +101,11 @@ void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
     LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, PLTT_SIZE_4BPP);
 }
 
-void LoadMessageBoxGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset, u8 colorMode)
+void LoadMessageBoxGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x1C0, destOffset);
     LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, PLTT_SIZE_4BPP);
-    OverrideUITextPalette_HandleColorMode(palOffset, colorMode);
+    OverrideUITextPalette_HandleColorMode(palOffset);
 }
 
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
@@ -123,21 +124,21 @@ void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
     LoadWindowGfx(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset);
 }
 
-void LoadWindowGfx_HandleColorMode(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset, u8 colorMode)
+void LoadWindowGfx_HandleColorMode(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sWindowFrames[frameId].tiles, 0x120, destOffset);
     LoadPalette(sWindowFrames[frameId].pal, palOffset, PLTT_SIZE_4BPP);
-    OverrideUIFramePalette_HandleColorMode(palOffset, colorMode);
+    OverrideUIFramePalette_HandleColorMode(palOffset);
 }
 
-void LoadUserWindowBorderGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset, u8 colorMode)
+void LoadUserWindowBorderGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset)
 {
-    LoadWindowGfx_HandleColorMode(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset, colorMode);
+    LoadWindowGfx_HandleColorMode(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset);
 }
 
-void OverrideUIFramePalette_HandleColorMode(u16 palOffset, u8 colorMode)
+void OverrideUIFramePalette_HandleColorMode(u16 palOffset)
 {
-    if (colorMode == UI_COLOR_DARK)
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
     {
         u16 palette;
         palette = RGB_UI_DARK_BLACK;
@@ -149,9 +150,9 @@ void OverrideUIFramePalette_HandleColorMode(u16 palOffset, u8 colorMode)
     }
 }
 
-void OverrideUITextPalette_HandleColorMode(u16 palOffset, u8 colorMode)
+void OverrideUITextPalette_HandleColorMode(u16 palOffset)
 {
-    if (colorMode == UI_COLOR_DARK)
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
     {
         u16 palette;
         palette = RGB_UI_DARK_BLACK;

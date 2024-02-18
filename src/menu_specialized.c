@@ -705,7 +705,7 @@ void InitMoveRelearnerWindows(bool8 useContestWindow)
 
     InitWindows(sMoveRelearnerWindowTemplates);
     DeactivateAllTextPrinters();
-    LoadUserWindowBorderGfx(0, 1, BG_PLTT_ID(14));
+    LoadUserWindowBorderGfx_HandleColorMode(0, 1, BG_PLTT_ID(14));
     LoadPalette(gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
 
     for (i = 0; i < ARRAY_COUNT(sMoveRelearnerWindowTemplates) - 1; i++)
@@ -726,6 +726,7 @@ void InitMoveRelearnerWindows(bool8 useContestWindow)
     DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_MOVE_LIST, FALSE, 1, 0xE);
     DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_MSG, FALSE, 1, 0xE);
     MoveRelearnerDummy();
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(15));
     ScheduleBgCopyTilemapToVram(1);
 }
 

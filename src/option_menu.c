@@ -241,7 +241,6 @@ static void LoadUIFrameColorPalette(u8 frameType, u8 colorMode)
 static void LoadUITextColorPalette(u8 colorMode)
 {
     u16 palette;
-    DebugPrintfLevel(MGBA_LOG_WARN,"color mode: %d", colorMode);
     LoadPalette(sOptionMenuText_Pal, BG_PLTT_ID(1), sizeof(sOptionMenuText_Pal));
     if (colorMode == UI_COLOR_DARK)
     {

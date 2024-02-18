@@ -222,10 +222,10 @@ void LoadMessageBoxAndBorderGfx(void)
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(STD_WINDOW_PALETTE_NUM));
 }
 
-void LoadMessageBoxAndBorderGfx_HandleColorMode(u8 colorMode)
+void LoadMessageBoxAndBorderGfx_HandleColorMode()
 {
-    LoadMessageBoxGfx_HandleColorMode(0, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM), colorMode);
-    LoadUserWindowBorderGfx_HandleColorMode(0, STD_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(STD_WINDOW_PALETTE_NUM), colorMode);
+    LoadMessageBoxGfx_HandleColorMode(0, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
+    LoadUserWindowBorderGfx_HandleColorMode(0, STD_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(STD_WINDOW_PALETTE_NUM));
 }
 
 void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
@@ -443,7 +443,7 @@ void SetStandardWindowBorderStyle(u8 windowId, bool8 copyToVram)
 
 void LoadMessageBoxAndFrameGfx(u8 windowId, bool8 copyToVram)
 {
-    LoadMessageBoxGfx_HandleColorMode(windowId, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM), VarGet(UI_COLOR_MODE));
+    LoadMessageBoxGfx_HandleColorMode(windowId, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
     DrawDialogFrameWithCustomTileAndPalette(windowId, copyToVram, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM);
 }
 
@@ -471,7 +471,7 @@ static u16 UNUSED Menu_GetStdPalColor(u8 colorNum)
 
 void DisplayItemMessageOnField(u8 taskId, const u8 *string, TaskFunc callback)
 {
-    LoadMessageBoxAndBorderGfx_HandleColorMode(VarGet(UI_COLOR_MODE));
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, FONT_NORMAL, GetPlayerTextSpeedDelay(), string, callback);
     CopyWindowToVram(0, COPYWIN_FULL);
 }

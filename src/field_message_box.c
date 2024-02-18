@@ -30,7 +30,7 @@ static void Task_DrawFieldMessage(u8 taskId)
     switch (task->tState)
     {
         case 0:
-           LoadMessageBoxAndBorderGfx_HandleColorMode(VarGet(UI_COLOR_MODE));
+           LoadMessageBoxAndBorderGfx_HandleColorMode();
            task->tState++;
            break;
         case 1:
