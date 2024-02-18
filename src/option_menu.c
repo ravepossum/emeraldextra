@@ -956,8 +956,8 @@ static void UITheme_DrawChoices(u8 selection)
     styles[0] = 0;
     styles[1] = 0;
     styles[selection] = 1;
-    DrawOptionMenuChoice(gText_UIThemeDark, 104, YPOS_UITHEME, styles[1]);
-    DrawOptionMenuChoice(gText_UIThemeLight, GetStringRightAlignXOffset(FONT_NORMAL, gText_UIThemeLight, 198), YPOS_UITHEME, styles[0]);
+    DrawOptionMenuChoice(gText_UIThemeLight, 104, YPOS_UITHEME, styles[0]);
+    DrawOptionMenuChoice(gText_UIThemeDark, GetStringRightAlignXOffset(FONT_NORMAL, gText_UIThemeDark, 198), YPOS_UITHEME, styles[1]);
 }
 
 static void DrawHeaderText(void)
