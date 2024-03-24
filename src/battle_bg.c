@@ -821,7 +821,7 @@ void LoadBattleMenuWindowGfx(void)
     {
         // Load graphics for the Battle Arena referee's mid-battle messages.
         Menu_LoadStdPalAt(BG_PLTT_ID(7));
-        // dark mode todo - add override here
+        // dark mode todo - add override here for arena
         LoadMessageBoxGfx_HandleColorMode(0, 0x30, BG_PLTT_ID(7));
         gPlttBufferUnfaded[BG_PLTT_ID(7) + 6] = 0;
         CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(7) + 6], &gPlttBufferFaded[BG_PLTT_ID(7) + 6], PLTT_SIZEOF(1));
@@ -861,6 +861,10 @@ static void BattleCursorPalette_HandleColorMode(u16 offset)
         LoadPalette(&palette, offset + 7, PLTT_SIZEOF(1));
         palette = RGB_WHITE;
         LoadPalette(&palette, offset + 9, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, offset + 14, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 15, PLTT_SIZEOF(1));
     }
 }
 
