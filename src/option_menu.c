@@ -28,6 +28,7 @@
 #define tAutoRun data[7]
 #define tMarkAllSeen data[8]
 #define tLevelCap data[9]
+#define tUITheme data[10]
 
 // menu page 1
 enum
@@ -48,6 +49,7 @@ enum
     MENUITEM_AUTORUN,
     MENUITEM_MARKALLSEEN,
     MENUITEM_LEVELCAP,
+    MENUITEM_UITHEME,
     MENUITEM_CANCEL_PG2,
     MENUITEM_COUNT_PG2,
 };
@@ -70,6 +72,7 @@ enum
 #define YPOS_AUTORUN      (MENUITEM_AUTORUN * 16)
 #define YPOS_MARKALLSEEN  (MENUITEM_MARKALLSEEN * 16)
 #define YPOS_LEVELCAP     (MENUITEM_LEVELCAP * 16)
+#define YPOS_UITHEME      (MENUITEM_UITHEME * 16)
 
 #define PAGE_COUNT 2
 
@@ -98,9 +101,13 @@ static u8   MarkAllSeen_ProcessInput(u8 selection);
 static void MarkAllSeen_DrawChoices(u8 selection);
 static u8   LevelCap_ProcessInput(u8 selection);
 static void LevelCap_DrawChoices(u8 selection);
+static u8   UITheme_ProcessInput(u8 selection);
+static void UITheme_DrawChoices(u8 selection);
 static void DrawHeaderText(void);
 static void DrawOptionMenuTexts(void);
 static void DrawBgWindowFrames(void);
+static void LoadUIFrameColorPalette(u8 frameType, u8 colorMode);
+static void LoadUITextColorPalette(u8 colorMode);
 
 EWRAM_DATA static bool8 sArrowPressed = FALSE;
 EWRAM_DATA static u8 sCurrPage = 0;
@@ -125,6 +132,7 @@ static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
     [MENUITEM_AUTORUN]      = gText_AutoRun,
     [MENUITEM_MARKALLSEEN]  = gText_MarkAllSeen,
     [MENUITEM_LEVELCAP]     = gText_LevelCap,
+    [MENUITEM_UITHEME]      = gText_UITheme,
     [MENUITEM_CANCEL_PG2]   = gText_OptionMenuCancel,
 };
 
@@ -188,6 +196,7 @@ static void ReadAllCurrentSettings(u8 taskId)
     gTasks[taskId].tAutoRun         = VarGet(VAR_AUTO_RUN);
     gTasks[taskId].tMarkAllSeen     = FlagGet(FLAG_DEX_ALL_SEEN);
     gTasks[taskId].tLevelCap        = FlagGet(FLAG_LEVEL_CAP);
+    gTasks[taskId].tUITheme         = VarGet(VAR_UI_COLOR);
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -209,8 +218,39 @@ static void DrawOptionsPg2(u8 taskId)
     AutoRun_DrawChoices(gTasks[taskId].tAutoRun);
     MarkAllSeen_DrawChoices(gTasks[taskId].tMarkAllSeen);
     LevelCap_DrawChoices(gTasks[taskId].tLevelCap);
+    UITheme_DrawChoices(gTasks[taskId].tUITheme);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
+}
+
+static void LoadUIFrameColorPalette(u8 frameType, u8 colorMode)
+{
+    u16 palette;
+    LoadPalette(GetWindowFrameTilesPal(frameType)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
+    if (colorMode == UI_COLOR_DARK)
+    {
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, BG_PLTT_ID(7) + 14, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_CORNER;
+        LoadPalette(&palette, BG_PLTT_ID(7) + 7, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_BORDER;
+        LoadPalette(&palette, BG_PLTT_ID(7) + 8, PLTT_SIZEOF(1));
+    }
+}
+
+static void LoadUITextColorPalette(u8 colorMode)
+{
+    u16 palette;
+    LoadPalette(sOptionMenuText_Pal, BG_PLTT_ID(1), sizeof(sOptionMenuText_Pal));
+    if (colorMode == UI_COLOR_DARK)
+    {
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, BG_PLTT_ID(1) + 1, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, BG_PLTT_ID(1) + 6, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, BG_PLTT_ID(1) + 7, PLTT_SIZEOF(1));
+    }
 }
 
 
@@ -282,11 +322,11 @@ void CB2_InitOptionMenu(void)
         break;
     case 4:
         LoadPalette(sOptionMenuBg_Pal, BG_PLTT_ID(0), sizeof(sOptionMenuBg_Pal));
-        LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
+        LoadUIFrameColorPalette(gSaveBlock2Ptr->optionsWindowFrameType, VarGet(UI_COLOR_MODE));
         gMain.state++;
         break;
     case 5:
-        LoadPalette(sOptionMenuText_Pal, BG_PLTT_ID(1), sizeof(sOptionMenuText_Pal));
+        LoadUITextColorPalette(VarGet(UI_COLOR_MODE));
         gMain.state++;
         break;
     case 6:
@@ -350,6 +390,17 @@ static u8 Process_ChangePage(u8 CurrentPage)
 
 static void Task_ChangePage(u8 taskId)
 {
+    gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].tTextSpeed;
+    gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].tBattleSceneOff;
+    gSaveBlock2Ptr->optionsBattleStyle = gTasks[taskId].tBattleStyle;
+    gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
+    gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
+    gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
+    VarSet(VAR_AUTO_RUN, gTasks[taskId].tAutoRun);
+    gTasks[taskId].tMarkAllSeen == 0 ? FlagClear(FLAG_DEX_ALL_SEEN) : FlagSet(FLAG_DEX_ALL_SEEN);
+    gTasks[taskId].tLevelCap == 0 ? FlagClear(FLAG_LEVEL_CAP) : FlagSet(FLAG_LEVEL_CAP);
+    VarSet(VAR_UI_COLOR, gTasks[taskId].tUITheme);
+
     DrawHeaderText();
     PutWindowTilemap(1);
     DrawOptionMenuTexts();
@@ -533,6 +584,13 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
             if (previousOption != gTasks[taskId].tLevelCap)
                 LevelCap_DrawChoices(gTasks[taskId].tLevelCap);
             break;
+        case MENUITEM_UITHEME:
+            previousOption = gTasks[taskId].tUITheme;
+            gTasks[taskId].tUITheme = UITheme_ProcessInput(gTasks[taskId].tUITheme);
+
+            if (previousOption != gTasks[taskId].tUITheme)
+                UITheme_DrawChoices(gTasks[taskId].tUITheme);
+            break;
         default:
             return;
         }
@@ -556,6 +614,7 @@ static void Task_OptionMenuSave(u8 taskId)
     VarSet(VAR_AUTO_RUN, gTasks[taskId].tAutoRun);
     gTasks[taskId].tMarkAllSeen == 0 ? FlagClear(FLAG_DEX_ALL_SEEN) : FlagSet(FLAG_DEX_ALL_SEEN);
     gTasks[taskId].tLevelCap == 0 ? FlagClear(FLAG_LEVEL_CAP) : FlagSet(FLAG_LEVEL_CAP);
+    VarSet(VAR_UI_COLOR, gTasks[taskId].tUITheme);
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -721,7 +780,7 @@ static u8 FrameType_ProcessInput(u8 selection)
             selection = 0;
 
         LoadBgTiles(1, GetWindowFrameTilesPal(selection)->tiles, 0x120, 0x1A2);
-        LoadPalette(GetWindowFrameTilesPal(selection)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
+        LoadUIFrameColorPalette(selection, VarGet(UI_COLOR_MODE));
         sArrowPressed = TRUE;
     }
     if (JOY_NEW(DPAD_LEFT))
@@ -732,7 +791,7 @@ static u8 FrameType_ProcessInput(u8 selection)
             selection = WINDOW_FRAMES_COUNT - 1;
 
         LoadBgTiles(1, GetWindowFrameTilesPal(selection)->tiles, 0x120, 0x1A2);
-        LoadPalette(GetWindowFrameTilesPal(selection)->pal, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
+        LoadUIFrameColorPalette(selection, VarGet(UI_COLOR_MODE));
         sArrowPressed = TRUE;
     }
     return selection;
@@ -876,6 +935,29 @@ static void LevelCap_DrawChoices(u8 selection)
     styles[selection] = 1;
     DrawOptionMenuChoice(gText_OptionsOn, 104, YPOS_LEVELCAP, styles[1]);
     DrawOptionMenuChoice(gText_OptionsOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_OptionsOff, 198), YPOS_LEVELCAP, styles[0]);
+}
+
+static u8 UITheme_ProcessInput(u8 selection)
+{
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+        LoadUIFrameColorPalette(gSaveBlock2Ptr->optionsWindowFrameType, selection);
+        LoadUITextColorPalette(selection);
+    }
+
+    return selection;
+}
+
+static void UITheme_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+    DrawOptionMenuChoice(gText_UIThemeLight, 104, YPOS_UITHEME, styles[0]);
+    DrawOptionMenuChoice(gText_UIThemeDark, GetStringRightAlignXOffset(FONT_NORMAL, gText_UIThemeDark, 198), YPOS_UITHEME, styles[1]);
 }
 
 static void DrawHeaderText(void)

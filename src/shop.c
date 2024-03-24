@@ -4,6 +4,7 @@
 #include "decompress.h"
 #include "decoration.h"
 #include "decoration_inventory.h"
+#include "event_data.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
@@ -125,6 +126,7 @@ static void BuyMenuBuildListMenuTemplate(void);
 static void BuyMenuInitBgs(void);
 static void BuyMenuInitWindows(void);
 static void BuyMenuDecompressBgGraphics(void);
+static void BuyMenuPalette_HandleColorMode(u16 offset);
 static void BuyMenuSetListEntry(struct ListMenuItem *, u16, u8 *);
 static void BuyMenuAddItemIcon(u16, u8);
 static void BuyMenuRemoveItemIcon(u16, u8);
@@ -744,14 +746,35 @@ static void BuyMenuDecompressBgGraphics(void)
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
     LZDecompressWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
     LoadCompressedPalette(gShopMenu_Pal, BG_PLTT_ID(12), PLTT_SIZE_4BPP);
+    BuyMenuPalette_HandleColorMode(BG_PLTT_ID(12));
+}
+
+static void BuyMenuPalette_HandleColorMode(u16 offset)
+{
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        u16 palette;
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, offset + 1, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_BORDER;
+        LoadPalette(&palette, offset + 2, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_OUTER_BORDER;
+        LoadPalette(&palette, offset + 8, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_LIGHT;
+        LoadPalette(&palette, offset + 9, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_DARK;
+        LoadPalette(&palette, offset + 10, PLTT_SIZEOF(1));
+        palette = RGB_UI_SHOP_INNER_BORDER;
+        LoadPalette(&palette, offset + 11, PLTT_SIZEOF(1));
+    }
 }
 
 static void BuyMenuInitWindows(void)
 {
     InitWindows(sShopBuyMenuWindowTemplates);
     DeactivateAllTextPrinters();
-    LoadUserWindowBorderGfx(WIN_MONEY, 1, BG_PLTT_ID(13));
-    LoadMessageBoxGfx(WIN_MONEY, 0xA, BG_PLTT_ID(14));
+    LoadUserWindowBorderGfx_HandleColorMode(WIN_MONEY, 1, BG_PLTT_ID(13));
+    LoadMessageBoxGfx_HandleColorMode(WIN_MONEY, 0xA, BG_PLTT_ID(14));
     PutWindowTilemap(WIN_MONEY);
     PutWindowTilemap(WIN_ITEM_LIST);
     PutWindowTilemap(WIN_ITEM_DESCRIPTION);

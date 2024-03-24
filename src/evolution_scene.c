@@ -1373,7 +1373,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
         case T_MVSTATE_PRINT_YES_NO:
             if (!IsTextPrinterActive(0) && !IsSEPlaying())
             {
-                LoadUserWindowBorderGfx(0, 0xA8, BG_PLTT_ID(14));
+                LoadUserWindowBorderGfx_HandleColorMode(0, 0xA8, BG_PLTT_ID(14));
                 CreateYesNoMenu(&gTradeEvolutionSceneYesNoWindowTemplate, 0xA8, 0xE, 0);
                 sEvoCursorPos = 0;
                 gTasks[taskId].tLearnMoveState++;

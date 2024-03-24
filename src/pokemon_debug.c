@@ -7,6 +7,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "data.h"
+#include "event_data.h"
 #include "decompress.h"
 #include "field_weather.h"
 #include "gpu_regs.h"
@@ -44,6 +45,7 @@ extern const struct BattleBackground sBattleTerrainTable[];
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
 extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
+extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar_dark[2];
 extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] ;
 static const u16 sBgColor[] = {RGB_WHITE};
 
@@ -791,7 +793,11 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
     if (gSpeciesInfo[species].enemyMonElevation == 0)
         invisible = TRUE;
     LoadCompressedSpriteSheet(&gSpriteSheet_EnemyShadow);
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar_dark[0]);
+    else
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
+
     x = sBattlerCoords[0][1].x;
     y = sBattlerCoords[0][1].y;
 

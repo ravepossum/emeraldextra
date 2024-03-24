@@ -293,7 +293,7 @@ static const u8 sText_PkmnAnchorsItselfWith[] = _("{B_DEF_NAME_WITH_PREFIX} anch
 static const u8 sText_PkmnCutsAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\ncuts {B_DEF_NAME_WITH_PREFIX}'s Attack!");
 static const u8 sText_PkmnPreventsStatLossWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nprevents stat loss!");
 static const u8 sText_PkmnHurtsWith[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt by\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
-static const u8 sText_PkmnTraced[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} TRACED\n{B_BUFF1}'s {B_BUFF2}!");
+static const u8 sText_PkmnTraced[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} Traced\n{B_BUFF1}'s {B_BUFF2}!");
 static const u8 sText_PkmnsXPreventsBurns[] = _("{B_EFF_NAME_WITH_PREFIX}'s {B_EFF_ABILITY}\nprevents burns!");
 static const u8 sText_PkmnsXBlocksY[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nblocks {B_CURRENT_MOVE}!");
 static const u8 sText_PkmnsXBlocksY2[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nblocks {B_CURRENT_MOVE}!");
@@ -2250,24 +2250,24 @@ static const u8 sText_EmptyStatus[] = _("$$$$$$$");
 static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
 {
     [B_WIN_MSG] = {
-        .fillValue = PIXEL_FILL(0xF),
+        .fillValue = PIXEL_FILL(0x1),
         .fontId = FONT_NORMAL,
         .x = 0,
         .y = 1,
         .speed = 1,
-        .fgColor = 1,
-        .bgColor = 15,
-        .shadowColor = 6,
+        .fgColor = 15,
+        .bgColor = 1,
+        .shadowColor = 14,
     },
     [B_WIN_ACTION_PROMPT] = {
-        .fillValue = PIXEL_FILL(0xF),
+        .fillValue = PIXEL_FILL(0x1),
         .fontId = FONT_NORMAL,
         .x = 1,
         .y = 1,
         .speed = 0,
-        .fgColor = 1,
-        .bgColor = 15,
-        .shadowColor = 6,
+        .fgColor = 15,
+        .bgColor = 1,
+        .shadowColor = 14,
     },
     [B_WIN_ACTION_MENU] = {
         .fillValue = PIXEL_FILL(0xE),
@@ -2325,9 +2325,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
         .x = 0,
         .y = 1,
         .speed = 0,
-        .fgColor = 12,
+        .fgColor = 13,
         .bgColor = 14,
-        .shadowColor = 11,
+        .shadowColor = 15,
     },
     [B_WIN_DUMMY] = {
         .fillValue = PIXEL_FILL(0xE),
@@ -2345,9 +2345,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
         .x = 2,
         .y = 1,
         .speed = 0,
-        .fgColor = 12,
+        .fgColor = 13,
         .bgColor = 14,
-        .shadowColor = 11,
+        .shadowColor = 15,
     },
     [B_WIN_MOVE_TYPE] = {
         .fillValue = PIXEL_FILL(0xE),
@@ -2527,9 +2527,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
         .x = 2,
         .y = 1,
         .speed = 0,
-        .fgColor = 12,
+        .fgColor = 13,
         .bgColor = 14,
-        .shadowColor = 11,
+        .shadowColor = 15,
     }
 };
 
@@ -2546,14 +2546,14 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
         .shadowColor = 6,
     },
     [B_WIN_ACTION_PROMPT] = {
-        .fillValue = PIXEL_FILL(0xF),
+        .fillValue = PIXEL_FILL(0x1),
         .fontId = FONT_NORMAL,
         .x = 1,
         .y = 1,
         .speed = 0,
-        .fgColor = 1,
-        .bgColor = 15,
-        .shadowColor = 6,
+        .fgColor = 15,
+        .bgColor = 1,
+        .shadowColor = 14,
     },
     [B_WIN_ACTION_MENU] = {
         .fillValue = PIXEL_FILL(0xE),
@@ -2611,9 +2611,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
         .x = 0,
         .y = 1,
         .speed = 0,
-        .fgColor = 12,
+        .fgColor = 13,
         .bgColor = 14,
-        .shadowColor = 11,
+        .shadowColor = 15,
     },
     [B_WIN_DUMMY] = {
         .fillValue = PIXEL_FILL(0xE),
@@ -2631,9 +2631,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
         .x = 2,
         .y = 1,
         .speed = 0,
-        .fgColor = 12,
+        .fgColor = 13,
         .bgColor = 14,
-        .shadowColor = 11,
+        .shadowColor = 15,
     },
     [B_WIN_MOVE_TYPE] = {
         .fillValue = PIXEL_FILL(0xE),
@@ -2806,9 +2806,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
         .x = 2,
         .y = 1,
         .speed = 0,
-        .fgColor = 12,
+        .fgColor = 13,
         .bgColor = 14,
-        .shadowColor = 11,
+        .shadowColor = 15,
     },
 };
 

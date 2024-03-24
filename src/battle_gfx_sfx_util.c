@@ -7,6 +7,7 @@
 #include "battle_interface.h"
 #include "main.h"
 #include "dma3.h"
+#include "event_data.h"
 #include "malloc.h"
 #include "graphics.h"
 #include "random.h"
@@ -62,6 +63,28 @@ static const struct CompressedSpriteSheet sSpriteSheets_DoublesOpponentHealthbox
     {gHealthboxDoublesOpponentGfx, 0x800, TAG_HEALTHBOX_OPPONENT2_TILE}
 };
 
+static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthbox_dark =
+{
+    gHealthboxSinglesPlayerGfx_dark, 0x1000, TAG_HEALTHBOX_PLAYER1_TILE
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentHealthbox_dark =
+{
+    gHealthboxSinglesOpponentGfx_dark, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
+};
+
+static const struct CompressedSpriteSheet sSpriteSheets_DoublesPlayerHealthbox_dark[2] =
+{
+    {gHealthboxDoublesPlayerGfx_dark, 0x800, TAG_HEALTHBOX_PLAYER1_TILE},
+    {gHealthboxDoublesPlayerGfx_dark, 0x800, TAG_HEALTHBOX_PLAYER2_TILE}
+};
+
+static const struct CompressedSpriteSheet sSpriteSheets_DoublesOpponentHealthbox_dark[2] =
+{
+    {gHealthboxDoublesOpponentGfx_dark, 0x800, TAG_HEALTHBOX_OPPONENT1_TILE},
+    {gHealthboxDoublesOpponentGfx_dark, 0x800, TAG_HEALTHBOX_OPPONENT2_TILE}
+};
+
 static const struct CompressedSpriteSheet sSpriteSheet_SafariHealthbox =
 {
     gHealthboxSafariGfx, 0x1000, TAG_HEALTHBOX_SAFARI_TILE
@@ -79,6 +102,12 @@ const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2] =
 {
     {gBattleInterface_BallStatusBarPal, TAG_HEALTHBOX_PAL},
     {gBattleInterface_BallDisplayPal, TAG_HEALTHBAR_PAL}
+};
+
+const struct SpritePalette sSpritePalettes_HealthBoxHealthBar_dark[2] =
+{
+    {gBattleInterface_BallStatusBarPal_dark, TAG_HEALTHBOX_PAL},
+    {gBattleInterface_BallDisplayPal_dark, TAG_HEALTHBAR_PAL}
 };
 
 // code
@@ -675,20 +704,46 @@ void BattleLoadAllHealthBoxesGfxAtOnce(void)
     u8 numberOfBattlers = 0;
     u8 i;
 
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar_dark[0]);
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar_dark[1]);
+    }
+    else
+    {
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+    }
     if (!IsDoubleBattle())
     {
-        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
-        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
+        if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+        {
+            LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox_dark);
+            LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox_dark);
+        }
+        else
+        {
+            LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+            LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
+        }
         numberOfBattlers = 2;
     }
     else
     {
-        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
-        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[1]);
-        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
-        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
+        if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+        {
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox_dark[0]);
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox_dark[1]);
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox_dark[0]);
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox_dark[1]);
+        }
+        else
+        {
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[1]);
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
+            LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
+        }
         numberOfBattlers = MAX_BATTLERS_COUNT;
     }
     for (i = 0; i < numberOfBattlers; i++)
@@ -703,8 +758,16 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
     {
         if (state == 1)
         {
-            LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
-            LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+            if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+            {
+                LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar_dark[0]);
+                LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar_dark[1]);
+            }
+            else
+            {
+                LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
+                LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+            }
             MegaIndicator_LoadSpritesGfx();
         }
         else if (!IsDoubleBattle())
@@ -712,12 +775,22 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             if (state == 2)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+                {
                     LoadCompressedSpriteSheet(&sSpriteSheet_SafariHealthbox);
+                }
                 else
-                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+                {
+                    if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+                        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox_dark);
+                    else
+                        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+                }
             }
             else if (state == 3)
-                LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
+                    if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+                        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox_dark);
+                    else
+                        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
             else if (state == 4)
                 LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(0)]);
             else if (state == 5)
@@ -730,16 +803,61 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             if (state == 2)
             {
                 if (WhichBattleCoords(0))
-                    LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
+                {
+                    if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+                    {
+                        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox_dark[0]);
+                    } 
+                    else
+                    {
+                        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
+                    }
+                }
                 else
-                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+                {
+                    if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+                    {
+                        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox_dark);
+                    } 
+                    else
+                    {
+                        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+                    }
+                }
             }
             else if (state == 3)
-                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[1]);
+            {
+                if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+                {
+                        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox_dark[1]);
+                } 
+                else
+                {
+                    LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[1]);
+                }
+            }
             else if (state == 4)
-                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
+            {
+                if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+                {
+                        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox_dark[0]);
+                } 
+                else
+                {
+                    LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
+                }
+            }
             else if (state == 5)
-                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
+            {
+                if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
+                {
+                        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox_dark[1]);
+                } 
+                else
+                {
+                    LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
+                }
+            }
             else if (state == 6)
                 LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(0)]);
             else if (state == 7)

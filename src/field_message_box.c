@@ -1,5 +1,6 @@
 #include "global.h"
 #include "menu.h"
+#include "event_data.h"
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
@@ -29,7 +30,7 @@ static void Task_DrawFieldMessage(u8 taskId)
     switch (task->tState)
     {
         case 0:
-           LoadMessageBoxAndBorderGfx();
+           LoadMessageBoxAndBorderGfx_HandleColorMode();
            task->tState++;
            break;
         case 1:

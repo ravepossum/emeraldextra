@@ -1019,11 +1019,12 @@ static void InitWindowTemplatesAndPals(void)
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
     LoadMessageBoxGfx(0, 0x64, BG_PLTT_ID(11));
-    LoadUserWindowBorderGfx(0, 0x78, BG_PLTT_ID(14));
+    LoadUserWindowBorderGfx_HandleColorMode(0, 0x78, BG_PLTT_ID(14));
     LoadPalette(gTMCaseMainWindowPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
     LoadPalette(gTMCaseMainWindowPalette, BG_PLTT_ID(10), PLTT_SIZE_4BPP);
     LoadPalette(sPal3Override, BG_PLTT_ID(15) + 6, sizeof(sPal3Override));
     LoadPalette(sPal3Override, BG_PLTT_ID(13) + 6, sizeof(sPal3Override));
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(15));
     ListMenuLoadStdPalAt(BG_PLTT_ID(12), 0x01);
     for (i = 0; i < ARRAY_COUNT(sWindowTemplates) - 1; i++)
         FillWindowPixelBuffer(i, 0x00);

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "config.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
@@ -54,6 +55,7 @@
 
 #define TAG_THROBBER 0x1000
 static const u16 sThrobber_Pal[] = INCBIN_U16("graphics/text_window/throbber.gbapal");
+static const u16 sThrobber_Pal_dark[] = INCBIN_U16("graphics/text_window/throbber_dark.gbapal");
 const u32 gThrobber_Gfx[] = INCBIN_U32("graphics/text_window/throbber.4bpp.lz");
 static u8 spriteId;
 
@@ -96,13 +98,17 @@ static const struct CompressedSpriteSheet sSpriteSheet_Throbber[] =
         .size = 0x3200,
         .tag = TAG_THROBBER
     },
-    {}
+    {},
 };
 
 static const struct SpritePalette sSpritePalettes_Throbber[] =
 {
     {
         .data = sThrobber_Pal,
+        .tag = TAG_THROBBER
+    },
+    {
+        .data = sThrobber_Pal_dark,
         .tag = TAG_THROBBER
     },
     {},
@@ -122,7 +128,7 @@ static const struct SpriteTemplate sSpriteTemplate_Throbber =
 void ShowThrobber(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Throbber[0]);
-    LoadSpritePalettes(sSpritePalettes_Throbber);
+    LoadSpritePalettes(&sSpritePalettes_Throbber[VarGet(UI_COLOR_MODE)]);
 
     // 217 and 123 are the x and y coordinates (in pixels)
     spriteId = CreateSprite(&sSpriteTemplate_Throbber, 217, 123, 2);
@@ -648,7 +654,7 @@ static bool32 InitStartMenuStep(void)
         sInitStartMenuData[0]++;
         break;
     case 2:
-        LoadMessageBoxAndBorderGfx();
+        LoadMessageBoxAndBorderGfx_HandleColorMode();
         DrawStdWindowFrame(AddStartMenuWindow(sNumStartMenuActions), FALSE);
         sInitStartMenuData[1] = 0;
         sInitStartMenuData[0]++;

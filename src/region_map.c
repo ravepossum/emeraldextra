@@ -1685,6 +1685,8 @@ bool32 IsEventIslandMapSecId(u8 mapSecId)
 
 void CB2_OpenFlyMap(void)
 {
+    u16 palette;
+
     switch (gMain.state)
     {
     case 0:
@@ -1723,7 +1725,7 @@ void CB2_OpenFlyMap(void)
         gMain.state++;
         break;
     case 3:
-        LoadUserWindowBorderGfx(0, 0x65, BG_PLTT_ID(13));
+        LoadUserWindowBorderGfx_HandleColorMode(0, 0x65, BG_PLTT_ID(13));
         ClearScheduledBgCopiesToVram();
         gMain.state++;
         break;
@@ -1747,6 +1749,12 @@ void CB2_OpenFlyMap(void)
         break;
     case 7:
         LoadPalette(sRegionMapFramePal, BG_PLTT_ID(1), sizeof(sRegionMapFramePal));
+        OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(1));
+        if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+        {
+            palette = RGB_UI_DARK_BLACK;
+            LoadPalette(&palette, BG_PLTT_ID(1) + 15, PLTT_SIZEOF(1));
+        }
         PutWindowTilemap(WIN_FLY_TO_WHERE);
         FillWindowPixelBuffer(WIN_FLY_TO_WHERE, PIXEL_FILL(0));
         AddTextPrinterParameterized(WIN_FLY_TO_WHERE, FONT_NORMAL, gText_FlyToWhere, 0, 1, 0, NULL);
@@ -1815,6 +1823,7 @@ static void DrawFlyDestTextWindow(void)
                     namePrinted = TRUE;
                     ClearStdWindowAndFrameToTransparent(WIN_MAPSEC_NAME, FALSE);
                     DrawStdFrameWithCustomTileAndPalette(WIN_MAPSEC_NAME_TALL, FALSE, 101, 13);
+                    OverrideUIFramePalette_HandleColorMode(BG_PLTT_ID(13));
                     AddTextPrinterParameterized(WIN_MAPSEC_NAME_TALL, FONT_NORMAL, sFlyMap->regionMap.mapSecName, 0, 1, 0, NULL);
                     name = sMultiNameFlyDestinations[i].name[sFlyMap->regionMap.posWithinMapSec];
                     AddTextPrinterParameterized(WIN_MAPSEC_NAME_TALL, FONT_NORMAL, name, GetStringRightAlignXOffset(FONT_NORMAL, name, 96), 17, 0, NULL);
@@ -1830,6 +1839,7 @@ static void DrawFlyDestTextWindow(void)
             {
                 ClearStdWindowAndFrameToTransparent(WIN_MAPSEC_NAME_TALL, FALSE);
                 DrawStdFrameWithCustomTileAndPalette(WIN_MAPSEC_NAME, FALSE, 101, 13);
+                OverrideUIFramePalette_HandleColorMode(BG_PLTT_ID(13));
             }
             else
             {
@@ -1848,6 +1858,8 @@ static void DrawFlyDestTextWindow(void)
         {
             ClearStdWindowAndFrameToTransparent(WIN_MAPSEC_NAME_TALL, FALSE);
             DrawStdFrameWithCustomTileAndPalette(WIN_MAPSEC_NAME, FALSE, 101, 13);
+            OverrideUIFramePalette_HandleColorMode(BG_PLTT_ID(13));
+
         }
         FillWindowPixelBuffer(WIN_MAPSEC_NAME, PIXEL_FILL(1));
         CopyWindowToVram(WIN_MAPSEC_NAME, COPYWIN_GFX);

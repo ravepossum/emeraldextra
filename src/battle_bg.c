@@ -9,6 +9,7 @@
 #include "data.h"
 #include "day_night.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "link.h"
@@ -759,6 +760,8 @@ const struct BattleBackground sBattleTerrainTable[] =
 };
 
 static void UNUSED CB2_UnusedBattleInit(void);
+static void BattleMenuPalette_HandleColorMode(u16 offset);
+static void BattleCursorPalette_HandleColorMode(u16 offset);
 
 static void UNUSED UnusedBattleInit(void)
 {
@@ -809,17 +812,59 @@ void InitBattleBgsVideo(void)
 
 void LoadBattleMenuWindowGfx(void)
 {
-    LoadUserWindowBorderGfx(2, 0x12, BG_PLTT_ID(1));
-    LoadUserWindowBorderGfx(2, 0x22, BG_PLTT_ID(1));
+    LoadUserWindowBorderGfx_HandleColorMode(2, 0x12, BG_PLTT_ID(1));
+    LoadUserWindowBorderGfx_HandleColorMode(2, 0x22, BG_PLTT_ID(1));
     LoadCompressedPalette(gBattleWindowTextPalette, BG_PLTT_ID(5), PLTT_SIZE_4BPP);
-
+    BattleMenuPalette_HandleColorMode(BG_PLTT_ID(5));
+    BattleCursorPalette_HandleColorMode(BG_PLTT_ID(0));
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
     {
         // Load graphics for the Battle Arena referee's mid-battle messages.
         Menu_LoadStdPalAt(BG_PLTT_ID(7));
-        LoadMessageBoxGfx(0, 0x30, BG_PLTT_ID(7));
+        // dark mode todo - add override here for arena
+        LoadMessageBoxGfx_HandleColorMode(0, 0x30, BG_PLTT_ID(7));
         gPlttBufferUnfaded[BG_PLTT_ID(7) + 6] = 0;
         CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(7) + 6], &gPlttBufferFaded[BG_PLTT_ID(7) + 6], PLTT_SIZEOF(1));
+    }
+}
+
+static void BattleMenuPalette_HandleColorMode(u16 offset)
+{
+    u16 palette;
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        palette = RGB_UI_DARK_TEXT_RED;
+        LoadPalette(&palette, offset + 1, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_RED;
+        LoadPalette(&palette, offset + 3, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_GREEN;
+        LoadPalette(&palette, offset + 5, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_GREEN;
+        LoadPalette(&palette, offset + 6, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 13, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, offset + 14, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, offset + 15, PLTT_SIZEOF(1));
+    }
+}
+
+static void BattleCursorPalette_HandleColorMode(u16 offset)
+{
+    u16 palette;
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, offset + 1, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, offset + 7, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 9, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, offset + 14, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 15, PLTT_SIZEOF(1));
     }
 }
 

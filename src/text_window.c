@@ -1,10 +1,12 @@
 #include "global.h"
 #include "text.h"
 #include "text_window.h"
+#include "event_data.h"
 #include "window.h"
 #include "palette.h"
 #include "bg.h"
 #include "graphics.h"
+#include "constants/rgb.h"
 
 const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1.4bpp");
 static const u8 sTextWindowFrame2_Gfx[] = INCBIN_U8("graphics/text_window/2.4bpp");
@@ -26,6 +28,7 @@ static const u8 sTextWindowFrame17_Gfx[] = INCBIN_U8("graphics/text_window/17.4b
 static const u8 sTextWindowFrame18_Gfx[] = INCBIN_U8("graphics/text_window/18.4bpp");
 static const u8 sTextWindowFrame19_Gfx[] = INCBIN_U8("graphics/text_window/19.4bpp");
 static const u8 sTextWindowFrame20_Gfx[] = INCBIN_U8("graphics/text_window/20.4bpp");
+static const u8 sTextWindowFrame21_Gfx[] = INCBIN_U8("graphics/text_window/21.4bpp");
 
 const u16 gTextWindowFrame1_Pal[] = INCBIN_U16("graphics/text_window/1.gbapal");
 static const u16 sTextWindowFrame2_Pal[] = INCBIN_U16("graphics/text_window/2.gbapal");
@@ -47,6 +50,7 @@ static const u16 sTextWindowFrame17_Pal[] = INCBIN_U16("graphics/text_window/17.
 static const u16 sTextWindowFrame18_Pal[] = INCBIN_U16("graphics/text_window/18.gbapal");
 static const u16 sTextWindowFrame19_Pal[] = INCBIN_U16("graphics/text_window/19.gbapal");
 static const u16 sTextWindowFrame20_Pal[] = INCBIN_U16("graphics/text_window/20.gbapal");
+static const u16 sTextWindowFrame21_Pal[] = INCBIN_U16("graphics/text_window/21.gbapal");
 
 static const u16 sTextWindowPalettes[][16] =
 {
@@ -78,7 +82,8 @@ static const struct TilesPal sWindowFrames[WINDOW_FRAMES_COUNT] =
     {sTextWindowFrame17_Gfx, sTextWindowFrame17_Pal},
     {sTextWindowFrame18_Gfx, sTextWindowFrame18_Pal},
     {sTextWindowFrame19_Gfx, sTextWindowFrame19_Pal},
-    {sTextWindowFrame20_Gfx, sTextWindowFrame20_Pal}
+    {sTextWindowFrame20_Gfx, sTextWindowFrame20_Pal},
+    {sTextWindowFrame21_Gfx, sTextWindowFrame21_Pal}
 };
 
 static const u16 sTextWindowDexnavFrame[] = INCBIN_U16("graphics/text_window/dexnav_pal.gbapal");
@@ -99,6 +104,13 @@ void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
     LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, PLTT_SIZE_4BPP);
 }
 
+void LoadMessageBoxGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x1C0, destOffset);
+    LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, PLTT_SIZE_4BPP);
+    OverrideUITextPalette_HandleColorMode(palOffset);
+}
+
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadUserWindowBorderGfx(windowId, destOffset, palOffset);
@@ -113,6 +125,56 @@ void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
 void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadWindowGfx(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset);
+}
+
+void LoadWindowGfx_HandleColorMode(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sWindowFrames[frameId].tiles, 0x120, destOffset);
+    LoadPalette(sWindowFrames[frameId].pal, palOffset, PLTT_SIZE_4BPP);
+    OverrideUIFramePalette_HandleColorMode(palOffset);
+}
+
+void LoadUserWindowBorderGfx_HandleColorMode(u8 windowId, u16 destOffset, u8 palOffset)
+{
+    LoadWindowGfx_HandleColorMode(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset);
+}
+
+void OverrideUIFramePalette_HandleColorMode(u16 palOffset)
+{
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        u16 palette;
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, palOffset + 14, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_CORNER;
+        LoadPalette(&palette, palOffset + 7, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_FRAME_BORDER;
+        LoadPalette(&palette, palOffset + 8, PLTT_SIZEOF(1));
+    }
+}
+
+void OverrideUITextPalette_HandleColorMode(u16 palOffset)
+{
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        u16 palette;
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, palOffset + 1, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, palOffset + 2, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, palOffset + 3, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_RED;
+        LoadPalette(&palette, palOffset + 4, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_RED;
+        LoadPalette(&palette, palOffset + 5, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_GREEN;
+        LoadPalette(&palette, palOffset + 6, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_GREEN;
+        LoadPalette(&palette, palOffset + 7, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_MESSAGE_BORDER;
+        LoadPalette(&palette, palOffset + 13, PLTT_SIZEOF(1));
+    }
 }
 
 void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum)

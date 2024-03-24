@@ -675,7 +675,7 @@ static void CB2_EggHatch(void)
         // Print the nickname prompt
         if (!IsTextPrinterActive(sEggHatchData->windowId))
         {
-            LoadUserWindowBorderGfx(sEggHatchData->windowId, 0x140, BG_PLTT_ID(14));
+            LoadUserWindowBorderGfx_HandleColorMode(sEggHatchData->windowId, 0x140, BG_PLTT_ID(14));
             CreateYesNoMenu(&sYesNoWinTemplate, 0x140, 0xE, 0);
             sEggHatchData->state++;
         }

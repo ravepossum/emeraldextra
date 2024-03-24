@@ -80,4 +80,11 @@
 #define DEMO_MODE                    FALSE   // If TRUE, game is in demo mode
 #define POKEDEX_PLUS_HGSS            TRUE   // If TRUE, enables the custom HGSS style Pokedex.
 #define SUMMARY_SCREEN_NATURE_COLORS TRUE    // If TRUE, nature-based stat boosts and reductions will be red and blue in the summary screen.
+
+#define UI_COLOR_LIGHT               0
+#define UI_COLOR_DARK                1
+#define UI_COLOR_MODE_COUNT          2
+
+#define UI_COLOR_MODE               VAR_UI_COLOR // determines if UI should use light or dark mode
+
 #endif // GUARD_CONFIG_H

@@ -681,6 +681,10 @@ const u16 gBattleInterface_BallStatusBarPal[] = INCBIN_U16("graphics/battle_inte
 
 const u16 gBattleInterface_BallDisplayPal[] = INCBIN_U16("graphics/battle_interface/ball_display.gbapal");
 
+const u16 gBattleInterface_BallStatusBarPal_dark[] = INCBIN_U16("graphics/battle_interface/ball_status_bar_dark.gbapal");
+
+const u16 gBattleInterface_BallDisplayPal_dark[] = INCBIN_U16("graphics/battle_interface/ball_display_dark.gbapal");
+
 const u8 gHealthboxElementsGfxTable[] = INCBIN_U8("graphics/battle_interface/hpbar.4bpp",
                                                   "graphics/battle_interface/expbar.4bpp",
                                                   "graphics/battle_interface/status.4bpp",
@@ -694,6 +698,21 @@ const u8 gHealthboxElementsGfxTable[] = INCBIN_U8("graphics/battle_interface/hpb
                                                   "graphics/battle_interface/status4.4bpp",
                                                   "graphics/battle_interface/healthbox_doubles_frameend.4bpp",
                                                   "graphics/battle_interface/healthbox_doubles_frameend_bar.4bpp");
+
+const u8 gHealthboxElementsGfxTable_dark[] = INCBIN_U8("graphics/battle_interface/hpbar.4bpp",
+                                                       "graphics/battle_interface/expbar.4bpp",
+                                                       "graphics/battle_interface/status.4bpp",
+                                                       "graphics/battle_interface/misc.4bpp",
+                                                       "graphics/battle_interface/hpbar_anim.4bpp",
+                                                       "graphics/battle_interface/misc_frameend.4bpp",
+                                                       "graphics/battle_interface/ball_display.4bpp",
+                                                       "graphics/battle_interface/ball_caught_indicator.4bpp",
+                                                       "graphics/battle_interface/status2.4bpp", // these three duplicate sets of graphics are for the opponent/partner pokemon
+                                                       "graphics/battle_interface/status3.4bpp",
+                                                       "graphics/battle_interface/status4.4bpp",
+                                                       "graphics/battle_interface/healthbox_doubles_frameend.4bpp",
+                                                       "graphics/battle_interface/healthbox_doubles_frameend_bar_dark.4bpp");
+
 const u32 gBattleInterfaceGfx_UnusedWindow3[] = INCBIN_U32("graphics/battle_interface/unused_window3.4bpp.lz");
 const u32 gBattleInterfaceGfx_UnusedWindow4[] = INCBIN_U32("graphics/battle_interface/unused_window4.4bpp.lz");
 
@@ -958,6 +977,10 @@ const u32 gHealthboxSinglesPlayerGfx[] = INCBIN_U32("graphics/battle_interface/h
 const u32 gHealthboxSinglesOpponentGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_opponent.4bpp.lz");
 const u32 gHealthboxDoublesPlayerGfx[] = INCBIN_U32( "graphics/battle_interface/healthbox_doubles_player.4bpp.lz");
 const u32 gHealthboxDoublesOpponentGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_doubles_opponent.4bpp.lz");
+const u32 gHealthboxSinglesPlayerGfx_dark[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_player_dark.4bpp.lz");
+const u32 gHealthboxSinglesOpponentGfx_dark[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_opponent_dark.4bpp.lz");
+const u32 gHealthboxDoublesPlayerGfx_dark[] = INCBIN_U32( "graphics/battle_interface/healthbox_doubles_player_dark.4bpp.lz");
+const u32 gHealthboxDoublesOpponentGfx_dark[] = INCBIN_U32("graphics/battle_interface/healthbox_doubles_opponent_dark.4bpp.lz");
 const u32 gHealthboxSafariGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_safari.4bpp.lz");
 
 const u32 gUnusedGfx_Shadow[] = INCBIN_U32("graphics/unused/shadow.4bpp.lz");
