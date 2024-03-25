@@ -1,11 +1,11 @@
 gText_PkmnTransferredSomeonesPC::
-	.string "{STR_VAR_2} was transferred to\n"
+	.string "{STR_VAR_2_FIXED} was transferred to\n"
 	.string "Someone's PC.\p"
 	.string "It was placed in \n"
 	.string "Box “{STR_VAR_1}.”$"
 
 gText_PkmnTransferredLanettesPC::
-	.string "{STR_VAR_2} was transferred to\n"
+	.string "{STR_VAR_2_FIXED} was transferred to\n"
 	.string "Lanette's PC.\p"
 	.string "It was placed in \n"
 	.string "Box “{STR_VAR_1}.”$"
@@ -13,13 +13,13 @@ gText_PkmnTransferredLanettesPC::
 gText_PkmnTransferredSomeonesPCBoxFull::
 	.string "Box “{STR_VAR_3}” on\n"
 	.string "Someone's PC was full.\p"
-	.string "{STR_VAR_2} was transferred to\n"
+	.string "{STR_VAR_2_FIXED} was transferred to\n"
 	.string "Box “{STR_VAR_1}.”$"
 
 gText_PkmnTransferredLanettesPCBoxFull::
 	.string "Box “{STR_VAR_3}” on\n"
 	.string "Lanette's PC was full.\p"
-	.string "{STR_VAR_2} was transferred to\n"
+	.string "{STR_VAR_2_FIXED} was transferred to\n"
 	.string "Box “{STR_VAR_1}.”$"
 
 gText_NoMoreRoomForPokemon::

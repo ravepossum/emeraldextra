@@ -597,7 +597,7 @@ static void GetTMNumberAndMoveString(u8 * dest, u16 itemId)
     }
     StringAppend(gStringVar4, sText_SingleSpace);
     StringAppend(gStringVar4, gText_FontShort);
-    StringAppend(gStringVar4, gMoveNames[ItemIdToBattleMoveId(itemId)]);
+    StringAppend(gStringVar4, gMovesInfo[ItemIdToBattleMoveId(itemId)].name);
     StringCopy(dest, gStringVar4);
 }
 
@@ -1087,7 +1087,6 @@ static void DrawMoveInfoUIMarkers(void)
 static void TMCase_MoveCursor_UpdatePrintedTMInfo(u16 itemId)
 {
     u8 i;
-    u16 move;
     const u8 * str;
 
     FillWindowPixelRect(WIN_MOVE_INFO, 0, 0, 0, 40, 48);
@@ -1102,31 +1101,31 @@ static void TMCase_MoveCursor_UpdatePrintedTMInfo(u16 itemId)
     else
     {
         // Draw type icon
-        move = ItemIdToBattleMoveId(itemId);
-        BlitMenuInfoIcon(WIN_MOVE_INFO, gBattleMoves[move].type + 1, 0, 0);
+        u16 move = ItemIdToBattleMoveId(itemId);
+        BlitMenuInfoIcon(WIN_MOVE_INFO, gMovesInfo[move].type + 1, 0, 0);
 
         // Print power
-        if (gBattleMoves[move].power < 2)
+        if (gMovesInfo[move].power < 2)
             str = gText_ThreeDashes;
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
             str = gStringVar1;
         }
         AddTextPrinterParameterized_ColorByIndex(WIN_MOVE_INFO, FONT_SHORT_COPY_1, str, 7, 12, 0, 0, TEXT_SKIP_DRAW, COLOR_MOVE_INFO);
 
         // Print accuracy
-        if (gBattleMoves[move].accuracy == 0)
+        if (gMovesInfo[move].accuracy == 0)
             str = gText_ThreeDashes;
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
             str = gStringVar1;
         }
         AddTextPrinterParameterized_ColorByIndex(WIN_MOVE_INFO, FONT_SHORT_COPY_1, str, 7, 24, 0, 0, TEXT_SKIP_DRAW, COLOR_MOVE_INFO);
 
         // Print PP
-        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].pp, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].pp, STR_CONV_MODE_RIGHT_ALIGN, 3);
         AddTextPrinterParameterized_ColorByIndex(WIN_MOVE_INFO, FONT_SHORT_COPY_1, gStringVar1, 7, 36, 0, 0, TEXT_SKIP_DRAW, COLOR_MOVE_INFO);
         CopyWindowToVram(WIN_MOVE_INFO, COPYWIN_GFX);
     }

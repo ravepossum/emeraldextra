@@ -709,7 +709,6 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
     case 10:
         if (POKEDEX_PLUS_HGSS)
             LoadHGSSScreenSelectBarSubmenu();
-            
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_ALL);
         StartAreaGlow();
         ShowBg(2);

@@ -3140,6 +3140,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Sidney"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_PURPLE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SETUP_FIRST_TURN,
         .party = TRAINER_PARTY(sParty_Sidney),
     },
@@ -3152,6 +3154,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Phoebe"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_Phoebe),
     },
@@ -3164,6 +3168,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Glacia"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_PINK,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_Glacia),
     },
@@ -3176,6 +3182,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Drake"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_BLUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_Drake),
     },
@@ -3190,8 +3198,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_ELITE_FLAGS,
         .party = TRAINER_PARTY(sParty_Roxanne1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_BRAWLY_1] =
@@ -3204,8 +3212,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_ELITE_FLAGS,
         .party = TRAINER_PARTY(sParty_Brawly1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_WATTSON_1] =
@@ -3218,8 +3226,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_ELITE_FLAGS,
         .party = TRAINER_PARTY(sParty_Wattson1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_FLANNERY_1] =
@@ -3232,8 +3240,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_Flannery1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_NORMAN_1] =
@@ -3246,8 +3254,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_Norman1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_WINONA_1] =
@@ -3260,8 +3268,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_RISKY,
         .party = TRAINER_PARTY(sParty_Winona1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_TATE_AND_LIZA_1] =
@@ -3274,8 +3282,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_TateAndLiza1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_JUAN_1] =
@@ -3288,8 +3296,8 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_Juan1),
-        .hasCustomTransition = TRUE,
-        .transition = B_TRANSITION_MUGSHOT,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_GREEN,
     },
 
     [TRAINER_JERRY_1] =
@@ -4044,6 +4052,8 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Wallace"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
         .doubleBattle = FALSE,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_YELLOW,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = TRAINER_PARTY(sParty_Wallace),
     },

@@ -809,31 +809,6 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
     gSprites[data->frontShadowSpriteId].invisible = invisible;
 }
 
-//Tile functions (footprints)
-static void DrawFootprintCustom(u8 windowId, u16 species)
-{
-    u8 footprint[32 * 4] = {0};
-    const u8 *footprintGfx = gSpeciesInfo[species].footprint;
-    u32 i, j, tileIdx = 0;
-
-    if (footprintGfx != NULL)
-    {
-        for (i = 0; i < 32; i++)
-        {
-            u8 tile = footprintGfx[i];
-            for (j = 0; j < 4; j++)
-            {
-                u8 value = ((tile >> (2 * j)) & 1 ? 2 : 0);
-                if (tile & (2 << (2 * j)))
-                    value |= 0x20;
-                footprint[tileIdx] = value;
-                tileIdx++;
-            }
-        }
-    }
-    CopyToWindowPixelBuffer(windowId, footprint, sizeof(footprint), 0);
-}
-
 //Battle background functions
 static void LoadBattleBg(u8 battleBgType, u8 battleTerrain)
 {
@@ -1145,7 +1120,7 @@ void CB2_Debug_Pokemon(void)
             palette = GetMonSpritePalStructCustom(species, data->isFemale, data->isShiny);
             LoadCompressedSpritePaletteWithTag(palette, species);
             //Front
-            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
             data->isShiny = FALSE;
             data->isFemale = FALSE;
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 1);
@@ -1160,7 +1135,7 @@ void CB2_Debug_Pokemon(void)
             LoadAndCreateEnemyShadowSpriteCustom(data, species);
 
             //Back
-            HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+            HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 4);
             SetMultiuseSpriteTemplateToPokemon(species, 2);
             offset_y = gSpeciesInfo[species].backPicYOffset;
@@ -1192,7 +1167,7 @@ void CB2_Debug_Pokemon(void)
             PrintBattleBgName(taskId);
 
             //Footprint
-            DrawFootprintCustom(WIN_FOOTPRINT, species);
+            DrawFootprint(WIN_FOOTPRINT, species);
             CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
 
             gMain.state++;
@@ -1697,7 +1672,7 @@ static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
     palette = GetMonSpritePalStructCustom(species, data->isFemale, data->isShiny);
     LoadCompressedSpritePaletteWithTag(palette, species);
     //Front
-    HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+    HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 1);
     SetMultiuseSpriteTemplateToPokemon(species, 1);
     gMultiuseSpriteTemplate.paletteTag = species;
@@ -1710,7 +1685,7 @@ static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
     LoadAndCreateEnemyShadowSpriteCustom(data, species);
 
     //Back
-    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 5);
     SetMultiuseSpriteTemplateToPokemon(species, 2);
     offset_y = gSpeciesInfo[species].backPicYOffset;
@@ -1743,7 +1718,7 @@ static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
     SetArrowInvisibility(data);
 
     //Footprint
-    DrawFootprintCustom(WIN_FOOTPRINT, species);
+    DrawFootprint(WIN_FOOTPRINT, species);
     CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
 }
 
