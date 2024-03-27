@@ -59,6 +59,88 @@ enum {
     PSS_PAGE_COUNT,
 };
 
+// static const u8 sText_IVRankingE[] = _("E");
+// static const u8 sText_IVRankingD[] = _("D");
+// static const u8 sText_IVRankingC[] = _("C");
+// static const u8 sText_IVRankingB[] = _("B");
+// static const u8 sText_IVRankingA[] = _("A");
+// static const u8 sText_IVRankingS[] = _("S");
+// static const u8 sText_IVRankingPlus[] = _("+");
+// static const u8 sText_IVRankingMinus[] = _("-");
+// static const u8 sText_IVRankingEmpty[] = _(" ");
+
+// static const u8 *const sIVRankingsToText[MAX_IV_MASK + 1] = {
+//     sText_IVRankingE,
+//     sText_IVRankingE,
+//     sText_IVRankingE,
+//     sText_IVRankingE,
+//     sText_IVRankingD,
+//     sText_IVRankingD,
+//     sText_IVRankingD,
+//     sText_IVRankingD,
+//     sText_IVRankingD,
+//     sText_IVRankingD,
+//     sText_IVRankingC,
+//     sText_IVRankingC,
+//     sText_IVRankingC,
+//     sText_IVRankingC,
+//     sText_IVRankingC,
+//     sText_IVRankingC,
+//     sText_IVRankingB,
+//     sText_IVRankingB,
+//     sText_IVRankingB,
+//     sText_IVRankingB,
+//     sText_IVRankingB,
+//     sText_IVRankingB,
+//     sText_IVRankingA,
+//     sText_IVRankingA,
+//     sText_IVRankingA,
+//     sText_IVRankingA,
+//     sText_IVRankingA,
+//     sText_IVRankingA,
+//     sText_IVRankingS,
+//     sText_IVRankingS,
+//     sText_IVRankingS,
+//     sText_IVRankingS,
+// };
+
+// static const u8* GetIVSuffix(u8 iv);
+
+// static const u8* GetIVSuffix(u8 iv) {
+//    switch(iv % 3)
+//    {
+//     case 0:
+//         return sText_IVRankingEmpty;
+//         break;
+//     case 1:
+//         return sText_IVRankingMinus;
+//         break;
+//     case 2:
+//         return sText_IVRankingPlus;
+//         break;
+//    }
+//    return 0;
+// }
+
+#define IV_ICON_EMINUS 0
+#define IV_ICON_E 1
+#define IV_ICON_EPLUS 2
+#define IV_ICON_DMINUS 3
+#define IV_ICON_D 4
+#define IV_ICON_DPLUS 5
+#define IV_ICON_CMINUS 6
+#define IV_ICON_C 7
+#define IV_ICON_CPLUS 8
+#define IV_ICON_BMINUS 9
+#define IV_ICON_B 10
+#define IV_ICON_BPLUS 11
+#define IV_ICON_AMINUS 12
+#define IV_ICON_A 13
+#define IV_ICON_APLUS 14
+#define IV_ICON_S 15
+
+#define NUM_IV_GRADES 16
+
 // Screen titles (upper left)
 #define PSS_LABEL_WINDOW_POKEMON_INFO_TITLE 0
 #define PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE 1
@@ -203,6 +285,12 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     s16 switchCounter; // Used for various switch statement cases that decompress/load graphics or Pokémon data
     u8 unk_filler4[6];
     u8 categoryIconSpriteId;
+    u8 ivGradeIconSpriteIdHP;
+    u8 ivGradeIconSpriteIdAtk;
+    u8 ivGradeIconSpriteIdDef;
+    u8 ivGradeIconSpriteIdSpA;
+    u8 ivGradeIconSpriteIdSpD;
+    u8 ivGradeIconSpriteIdSpe;
 } *sMonSummaryScreen = NULL;
 
 EWRAM_DATA u8 gLastViewedMonIndex = 0;
@@ -788,9 +876,13 @@ static const u8 sMovesPPLayout[] = _("{PP}{DYNAMIC 0}/{DYNAMIC 1}");
 #define TAG_MOVE_TYPES 30002
 #define TAG_MON_MARKINGS 30003
 #define TAG_CATEGORY_ICONS 30004
+#define TAG_IV_GRADES 30005
 
 static const u16 sCategoryIcons_Pal[] = INCBIN_U16("graphics/interface/category_icons.gbapal");
 static const u32 sCategoryIcons_Gfx[] = INCBIN_U32("graphics/interface/category_icons.4bpp.lz");
+
+static const u16 sIVGrades_Pal[] = INCBIN_U16("graphics/summary_screen/iv_grades.gbapal");
+static const u32 sIVGrades_Gfx[] = INCBIN_U32("graphics/summary_screen/iv_grades.4bpp.lz");
 
 static const struct OamData sOamData_CategoryIcons =
 {
@@ -843,6 +935,136 @@ static const struct SpriteTemplate sSpriteTemplate_CategoryIcons =
     .paletteTag = TAG_CATEGORY_ICONS,
     .oam = &sOamData_CategoryIcons,
     .anims = sSpriteAnimTable_CategoryIcons,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
+};
+
+static const struct OamData sOamData_IVGrades =
+{
+    .size = SPRITE_SIZE(16x8),
+    .shape = SPRITE_SHAPE(16x8),
+    .priority = 0,
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_IVGrades =
+{
+    .data = sIVGrades_Gfx,
+    .size = NUM_IV_GRADES * (16 * 8),
+    .tag = TAG_IV_GRADES,
+};
+
+static const struct SpritePalette sSpritePal_IVGrades =
+{
+    .data = sIVGrades_Pal,
+    .tag = TAG_IV_GRADES
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeEMinus[] = {
+    ANIMCMD_FRAME(IV_ICON_EMINUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeE[] = {
+    ANIMCMD_FRAME(IV_ICON_E * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeEPlus[] = {
+    ANIMCMD_FRAME(IV_ICON_EPLUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeDMinus[] = {
+    ANIMCMD_FRAME(IV_ICON_DMINUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeD[] = {
+    ANIMCMD_FRAME(IV_ICON_D * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeDPlus[] = {
+    ANIMCMD_FRAME(IV_ICON_DPLUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeCMinus[] = {
+    ANIMCMD_FRAME(IV_ICON_CMINUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeC[] = {
+    ANIMCMD_FRAME(IV_ICON_C * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeCPlus[] = {
+    ANIMCMD_FRAME(IV_ICON_CPLUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeBMinus[] = {
+    ANIMCMD_FRAME(IV_ICON_BMINUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeB[] = {
+    ANIMCMD_FRAME(IV_ICON_B * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeBPlus[] = {
+    ANIMCMD_FRAME(IV_ICON_BPLUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeAMinus[] = {
+    ANIMCMD_FRAME(IV_ICON_AMINUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeA[] = {
+    ANIMCMD_FRAME(IV_ICON_A * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeAPlus[] = {
+    ANIMCMD_FRAME(IV_ICON_APLUS * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IVGradeS[] = {
+    ANIMCMD_FRAME(IV_ICON_S * 2, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sSpriteAnimTable_IVGrades[NUM_IV_GRADES] = {
+    sSpriteAnim_IVGradeEMinus,
+    sSpriteAnim_IVGradeE,
+    sSpriteAnim_IVGradeEPlus,
+    sSpriteAnim_IVGradeDMinus,
+    sSpriteAnim_IVGradeD,
+    sSpriteAnim_IVGradeDPlus,
+    sSpriteAnim_IVGradeCMinus,
+    sSpriteAnim_IVGradeC,
+    sSpriteAnim_IVGradeCPlus,
+    sSpriteAnim_IVGradeBMinus,
+    sSpriteAnim_IVGradeB,
+    sSpriteAnim_IVGradeBPlus,
+    sSpriteAnim_IVGradeAMinus,
+    sSpriteAnim_IVGradeA,
+    sSpriteAnim_IVGradeAPlus,
+    sSpriteAnim_IVGradeS,
+};
+
+static const struct SpriteTemplate sSpriteTemplate_IVGrades =
+{
+    .tileTag = TAG_IV_GRADES,
+    .paletteTag = TAG_IV_GRADES,
+    .oam = &sOamData_IVGrades,
+    .anims = sSpriteAnimTable_IVGrades,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
@@ -1200,6 +1422,69 @@ static void DestroyCategoryIcon(void)
     sMonSummaryScreen->categoryIconSpriteId = 0xFF;
 }
 
+static void ShowIVGradeIcons(u8 hp, u8 atk, u8 def, u8 spA, u8 spD, u8 spe)
+{
+    if (sMonSummaryScreen->ivGradeIconSpriteIdHP == 0xFF)
+        sMonSummaryScreen->ivGradeIconSpriteIdHP = CreateSprite(&sSpriteTemplate_IVGrades, 154, 64, 0);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdAtk == 0xFF)
+        sMonSummaryScreen->ivGradeIconSpriteIdAtk = CreateSprite(&sSpriteTemplate_IVGrades, 154, 80, 0);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdDef == 0xFF)
+        sMonSummaryScreen->ivGradeIconSpriteIdDef = CreateSprite(&sSpriteTemplate_IVGrades, 154, 96, 0);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdSpA == 0xFF)
+        sMonSummaryScreen->ivGradeIconSpriteIdSpA = CreateSprite(&sSpriteTemplate_IVGrades, 227, 64, 0);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdSpD == 0xFF)
+        sMonSummaryScreen->ivGradeIconSpriteIdSpD = CreateSprite(&sSpriteTemplate_IVGrades, 227, 80, 0);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdSpe == 0xFF)
+        sMonSummaryScreen->ivGradeIconSpriteIdSpe = CreateSprite(&sSpriteTemplate_IVGrades, 227, 96, 0);
+
+    gSprites[sMonSummaryScreen->ivGradeIconSpriteIdHP].invisible = FALSE;
+    gSprites[sMonSummaryScreen->ivGradeIconSpriteIdAtk].invisible = FALSE;
+    gSprites[sMonSummaryScreen->ivGradeIconSpriteIdDef].invisible = FALSE;
+    gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpA].invisible = FALSE;
+    gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpD].invisible = FALSE;
+    gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpe].invisible = FALSE;
+
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdHP], hp/2);
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdAtk], atk/2);
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdDef], def/2);
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpA], spA/2);
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpD], spD/2);
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpe], spe/2);
+}
+
+static void DestroyIVGradeIcons(void)
+{
+    if (sMonSummaryScreen->ivGradeIconSpriteIdHP != 0xFF)
+        DestroySprite(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdHP]);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdAtk != 0xFF)
+        DestroySprite(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdAtk]);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdDef != 0xFF)
+        DestroySprite(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdDef]);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdSpA != 0xFF)
+        DestroySprite(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpA]);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdSpD != 0xFF)
+        DestroySprite(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpD]);
+
+    if (sMonSummaryScreen->ivGradeIconSpriteIdSpe != 0xFF)
+        DestroySprite(&gSprites[sMonSummaryScreen->ivGradeIconSpriteIdSpe]);
+
+    sMonSummaryScreen->ivGradeIconSpriteIdHP = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdAtk = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdDef = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdSpA = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdSpD = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdSpe = 0xFF;
+}
+
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
 {
     sMonSummaryScreen = AllocZeroed(sizeof(*sMonSummaryScreen));
@@ -1235,6 +1520,12 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
 
     sMonSummaryScreen->currPageIndex = sMonSummaryScreen->minPageIndex;
     sMonSummaryScreen->categoryIconSpriteId = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdHP = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdAtk = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdDef = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdSpA = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdSpD = 0xFF;
+    sMonSummaryScreen->ivGradeIconSpriteIdSpe = 0xFF;
     SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
 
     if (gMonSpritesGfxPtr == NULL)
@@ -1483,6 +1774,8 @@ static bool8 DecompressGraphics(void)
         LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
         LoadCompressedSpriteSheet(&sSpriteSheet_CategoryIcons);
         LoadSpritePalette(&sSpritePal_CategoryIcons);
+        LoadCompressedSpriteSheet(&sSpriteSheet_IVGrades);
+        LoadSpritePalette(&sSpritePal_IVGrades);
         sMonSummaryScreen->switchCounter = 0;
         return TRUE;
     }
@@ -3667,6 +3960,7 @@ static void BufferIvOrEvStats(u8 mode)
         spe = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_IV);
         break;
     case 2: // ev mode
+        DestroyIVGradeIcons();
         hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV);
         atk = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV);
         def = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV);
@@ -3697,8 +3991,43 @@ static void BufferIvOrEvStats(u8 mode)
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
         PrintRightColumnStats();
         break;
-    case 1:
-    case 2:
+    case 1: // iv mode
+        DebugPrintfLevel(MGBA_LOG_DEBUG,"hp:%d",hp);
+        DebugPrintfLevel(MGBA_LOG_DEBUG,"atk:%d",atk);
+        DebugPrintfLevel(MGBA_LOG_DEBUG,"def:%d",def);
+        DebugPrintfLevel(MGBA_LOG_DEBUG,"spA:%d",spA);
+        DebugPrintfLevel(MGBA_LOG_DEBUG,"spD:%d",spD);
+        DebugPrintfLevel(MGBA_LOG_DEBUG,"spe:%d",spe);
+        StringCopy(gStringVar4, gText_EmptyString2);
+        PrintLeftColumnStats();
+        PrintRightColumnStats();
+        ShowIVGradeIcons(hp, atk, def, spA, spD, spe);
+        ScheduleBgCopyTilemapToVram(0);
+        // StringCopy(gStringVar1, sIVRankingsToText[hp]);
+        // StringAppend(gStringVar1, GetIVSuffix(hp));
+        // DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
+        // StringCopy(gStringVar2, sIVRankingsToText[atk]);
+        // StringAppend(gStringVar2, GetIVSuffix(atk));
+        // DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gStringVar2);
+        // StringCopy(gStringVar3, sIVRankingsToText[def]);
+        // StringAppend(gStringVar3, GetIVSuffix(def));
+        // DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gStringVar3);
+        // DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayoutIVEV);
+        // PrintLeftColumnStats();
+
+        // StringCopy(gStringVar1, sIVRankingsToText[spA]);
+        // StringAppend(gStringVar1, GetIVSuffix(spA));
+        // DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
+        // StringCopy(gStringVar2, sIVRankingsToText[spD]);
+        // StringAppend(gStringVar2, GetIVSuffix(spD));
+        // DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gStringVar2);
+        // StringCopy(gStringVar3, sIVRankingsToText[spe]);
+        // StringAppend(gStringVar3, GetIVSuffix(spe));
+        // DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gStringVar3);
+        // DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
+        // PrintRightColumnStats();
+        break;
+    case 2: // ev mode
         BufferStat(gStringVar1, 0, hp, 0, 7);
         BufferStat(gStringVar2, 0, atk, 1, 7);
         BufferStat(gStringVar3, 0, def, 2, 7);
