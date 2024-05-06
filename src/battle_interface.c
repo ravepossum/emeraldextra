@@ -3108,14 +3108,14 @@ static void PrintOnAbilityPopUp(const u8 *str, u8 *spriteTileData1, u8 *spriteTi
 }
 
 static const u8 sText_Spaces20[]= _("                    ");
-static void ClearAbilityName(u8 spriteId1, u8 spriteId2)
+static void ClearAbilityName(u8 spriteId1, u8 spriteId2, u32 color1, u32 color2, u32 color3)
 {
     PrintOnAbilityPopUp(sText_Spaces20,
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32) + 256,
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId2].oam.tileNum * 32) + 256,
                         5, 12,
                         4,
-                        7, 9, 1);
+                        color1, color2, color3);
 }
 
 static void PrintBattlerOnAbilityPopUp(u8 battlerId, u8 spriteId1, u8 spriteId2)
@@ -3174,6 +3174,8 @@ static void PrintAbilityOnAbilityPopUp(u32 ability, u8 spriteId1, u8 spriteId2)
 
     if (VarGet(VAR_UI_COLOR) == UI_COLOR_DARK)
         fgColor = 10;
+
+    ClearAbilityName(spriteId1, spriteId2, bgColor, fgColor, shadowColor);
 
     PrintOnAbilityPopUp(gAbilitiesInfo[ability].name,
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32) + 256,
@@ -3304,15 +3306,15 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
     if (B_ABILITY_POP_UP == FALSE)
         return;
 
+    if (gBattleScripting.abilityPopupOverwrite != 0)
+        ability = gBattleScripting.abilityPopupOverwrite;
+
     if (gTestRunnerEnabled)
     {
         TestRunner_Battle_RecordAbilityPopUp(battlerId, ability);
         if (gTestRunnerHeadless)
             return;
     }
-
-    if (gBattleScripting.abilityPopupOverwrite != 0)
-        ability = gBattleScripting.abilityPopupOverwrite;
 
     if (!gBattleStruct->activeAbilityPopUps)
     {
@@ -3384,7 +3386,6 @@ void UpdateAbilityPopup(u8 battlerId)
     u8 spriteId2 = gBattleStruct->abilityPopUpSpriteIds[battlerId][1];
     u16 ability = (gBattleScripting.abilityPopupOverwrite != 0) ? gBattleScripting.abilityPopupOverwrite : gBattleMons[battlerId].ability;
 
-    ClearAbilityName(spriteId1, spriteId2);
     PrintAbilityOnAbilityPopUp(ability, spriteId1, spriteId2);
     RestoreOverwrittenPixels((void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32));
 }
