@@ -578,7 +578,7 @@ const struct Item gItemsInfo[] =
     [ITEM_HYPER_POTION] =
     {
         .name = _("Hyper Potion"),
-        .price = (I_PRICE >= GEN_2 || I_PRICE <= GEN_6) ? 1200 : 1500,
+        .price = (I_PRICE >= GEN_2 && I_PRICE <= GEN_6) ? 1200 : 1500,
         .holdEffectParam = 120,
         .description = COMPOUND_STRING(
             "Restores the HP of\n"
@@ -1781,7 +1781,7 @@ const struct Item gItemsInfo[] =
     [ITEM_EXP_CANDY_XL] =
     {
         .name = _("Exp.Candy XL"),
-        .pluralName = _("Exp.Candies L"),
+        .pluralName = _("Exp.Candies XL"),
         .price = 10000,
         .holdEffectParam = EXP_30000,
         .description = COMPOUND_STRING(
@@ -3682,7 +3682,7 @@ const struct Item gItemsInfo[] =
         .name = _("Dubious Disc"),
         .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
         .description = COMPOUND_STRING(
-            "A transparent device\n"
+            "A clear device\n"
             "overflowing with\n"
             "dubious data."),
         .pocket = POCKET_ITEMS,
@@ -9414,7 +9414,7 @@ const struct Item gItemsInfo[] =
             "Fires an icy cold\n"
             "beam that may\n"
         #if B_USE_FROSTBITE == TRUE
-            "give the foe frostbite."),
+            "inflict frostbite."),
         #else
             "freeze the foe."),
         #endif
@@ -9430,11 +9430,13 @@ const struct Item gItemsInfo[] =
         .name = _("TM14"),
         .price = 5500,
         .description = COMPOUND_STRING(
+        #if B_USE_FROSTBITE == TRUE
+            "A snow-and-wind\n"
+            "attack that may\n"
+            "inflict frostbite."),
+        #else
             "A brutal snow-and-\n"
             "wind attack that\n"
-        #if B_USE_FROSTBITE == TRUE
-            "may give the foe frostbite."),
-        #else
             "may freeze the foe."),
         #endif
         .importance = I_REUSABLE_TMS,

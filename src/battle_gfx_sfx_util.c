@@ -624,6 +624,7 @@ void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
         if (B_TRANSFORM_SHINY >= GEN_4)
         {
             currentPersonality = gTransformedPersonalities[battler];
+            isShiny = gTransformedShininess[battler];
         }
         else
         {
@@ -1018,8 +1019,8 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
         {
             if (B_TRANSFORM_SHINY >= GEN_4 && trackEnemyPersonality)
             {
-                personalityValue = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerAtk]], MON_DATA_PERSONALITY);
-                isShiny = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerAtk]], MON_DATA_IS_SHINY);
+                personalityValue = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerDef]], MON_DATA_PERSONALITY);
+                isShiny = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerDef]], MON_DATA_IS_SHINY);
             }
             else
             {
@@ -1036,8 +1037,8 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
         {
             if (B_TRANSFORM_SHINY >= GEN_4 && trackEnemyPersonality)
             {
-                personalityValue = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerAtk]], MON_DATA_PERSONALITY);
-                isShiny = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerAtk]], MON_DATA_IS_SHINY);
+                personalityValue = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerDef]], MON_DATA_PERSONALITY);
+                isShiny = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerDef]], MON_DATA_IS_SHINY);
             }
             else
             {
