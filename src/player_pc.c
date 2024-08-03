@@ -577,7 +577,7 @@ void CB2_PlayerPCExitBagMenu(void)
 
 static void ItemStorage_ReshowAfterBagMenu(void)
 {
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     DrawDialogueFrame(0, TRUE);
     InitItemStorageMenu(CreateTask(ItemStorage_HandleReturnToProcessInput, 0), 1);
     FadeInFromBlack();
@@ -810,7 +810,7 @@ static void Mailbox_ReshowAfterMail(void)
 {
     u8 taskId;
 
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     taskId = CreateTask(Mailbox_HandleReturnToProcessInput, 0);
     if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count) == TRUE)
         Mailbox_DrawMailboxMenu(taskId);
@@ -918,7 +918,7 @@ static void Mailbox_UpdateMailListAfterDeposit(void)
        && gPlayerPCItemPageInfo.itemsAbove != 0)
         gPlayerPCItemPageInfo.itemsAbove--;
     SetPlayerPCListCount(taskId);
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     if (MailboxMenu_Alloc(gPlayerPCItemPageInfo.count) == TRUE)
         Mailbox_DrawMailboxMenu(taskId);
     else

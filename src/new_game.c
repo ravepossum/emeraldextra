@@ -94,11 +94,20 @@ static void InitPlayerTrainerId(void)
 static void SetDefaultOptions(void)
 {
     gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_MID;
-    gSaveBlock2Ptr->optionsWindowFrameType = 0;
+    gSaveBlock2Ptr->optionsWindowFrameType = 20;
     gSaveBlock2Ptr->optionsSound = OPTIONS_SOUND_MONO;
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
+    gSaveBlock2Ptr->currOutfitId = DEFAULT_OUTFIT;
+}
+
+static void SetDefaultFlagsAndVars(void)
+{
+    VarSet(VAR_AUTO_RUN, 1);
+    FlagClear(FLAG_DEX_ALL_SEEN);
+    FlagSet(FLAG_LEVEL_CAP);
+    VarSet(VAR_UI_COLOR, 0);
 }
 
 static void ClearPokedexFlags(void)
@@ -156,11 +165,6 @@ void SetDemoMode(void)
     #endif
 }
 
-void SetLevelCapFlag(void)
-{
-    FlagSet(FLAG_LEVEL_CAP);
-}
-
 static void ResetOutfitData(void)
 {
     u16 i;
@@ -187,6 +191,7 @@ void NewGameInitData(void)
     ResetPokedex();
     ClearFrontierRecord();
     ClearSav1();
+    ClearSav3();
     ClearAllMail();
     gSaveBlock2Ptr->specialSaveWarpFlags = 0;
     gSaveBlock2Ptr->gcnLinkFlags = 0;
@@ -234,13 +239,12 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     SetDemoMode();
-    SetLevelCapFlag();
+    SetDefaultFlagsAndVars();
     RtcInitLocalTimeOffset(12, 0);
     InitTimeBasedEvents();
     memset(gSaveBlock1Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock1Ptr->dexNavSearchLevels));
     gSaveBlock1Ptr->dexNavChain = 0;
     ResetOutfitData();
-    gSaveBlock2Ptr->currOutfitId = DEFAULT_OUTFIT;
 }
 
 static void ResetMiniGamesRecords(void)

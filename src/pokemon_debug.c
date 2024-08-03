@@ -7,6 +7,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "data.h"
+#include "event_data.h"
 #include "decompress.h"
 #include "field_weather.h"
 #include "gpu_regs.h"
@@ -44,6 +45,7 @@ extern const struct BattleBackground sBattleTerrainTable[];
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
 extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
+extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar_dark[2];
 extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] ;
 static const u16 sBgColor[] = {RGB_WHITE};
 
@@ -791,7 +793,11 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
     if (gSpeciesInfo[species].enemyMonElevation == 0)
         invisible = TRUE;
     LoadCompressedSpriteSheet(&gSpriteSheet_EnemyShadow);
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar_dark[0]);
+    else
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
+
     x = sBattlerCoords[0][1].x;
     y = sBattlerCoords[0][1].y;
 
@@ -801,31 +807,6 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
     gSprites[data->frontShadowSpriteId].callback = SpriteCB_EnemyShadowCustom;
     gSprites[data->frontShadowSpriteId].oam.priority = 0;
     gSprites[data->frontShadowSpriteId].invisible = invisible;
-}
-
-//Tile functions (footprints)
-static void DrawFootprintCustom(u8 windowId, u16 species)
-{
-    u8 footprint[32 * 4] = {0};
-    const u8 *footprintGfx = gSpeciesInfo[species].footprint;
-    u32 i, j, tileIdx = 0;
-
-    if (footprintGfx != NULL)
-    {
-        for (i = 0; i < 32; i++)
-        {
-            u8 tile = footprintGfx[i];
-            for (j = 0; j < 4; j++)
-            {
-                u8 value = ((tile >> (2 * j)) & 1 ? 2 : 0);
-                if (tile & (2 << (2 * j)))
-                    value |= 0x20;
-                footprint[tileIdx] = value;
-                tileIdx++;
-            }
-        }
-    }
-    CopyToWindowPixelBuffer(windowId, footprint, sizeof(footprint), 0);
 }
 
 //Battle background functions
@@ -1139,7 +1120,7 @@ void CB2_Debug_Pokemon(void)
             palette = GetMonSpritePalStructCustom(species, data->isFemale, data->isShiny);
             LoadCompressedSpritePaletteWithTag(palette, species);
             //Front
-            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
             data->isShiny = FALSE;
             data->isFemale = FALSE;
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 1);
@@ -1154,7 +1135,7 @@ void CB2_Debug_Pokemon(void)
             LoadAndCreateEnemyShadowSpriteCustom(data, species);
 
             //Back
-            HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+            HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 4);
             SetMultiuseSpriteTemplateToPokemon(species, 2);
             offset_y = gSpeciesInfo[species].backPicYOffset;
@@ -1186,7 +1167,7 @@ void CB2_Debug_Pokemon(void)
             PrintBattleBgName(taskId);
 
             //Footprint
-            DrawFootprintCustom(WIN_FOOTPRINT, species);
+            DrawFootprint(WIN_FOOTPRINT, species);
             CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
 
             gMain.state++;
@@ -1691,7 +1672,7 @@ static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
     palette = GetMonSpritePalStructCustom(species, data->isFemale, data->isShiny);
     LoadCompressedSpritePaletteWithTag(palette, species);
     //Front
-    HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+    HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 1);
     SetMultiuseSpriteTemplateToPokemon(species, 1);
     gMultiuseSpriteTemplate.paletteTag = species;
@@ -1704,7 +1685,7 @@ static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
     LoadAndCreateEnemyShadowSpriteCustom(data, species);
 
     //Back
-    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->spritesGfx[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 5);
     SetMultiuseSpriteTemplateToPokemon(species, 2);
     offset_y = gSpeciesInfo[species].backPicYOffset;
@@ -1737,7 +1718,7 @@ static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
     SetArrowInvisibility(data);
 
     //Footprint
-    DrawFootprintCustom(WIN_FOOTPRINT, species);
+    DrawFootprint(WIN_FOOTPRINT, species);
     CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
 }
 

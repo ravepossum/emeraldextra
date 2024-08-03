@@ -597,7 +597,7 @@ static void GetTMNumberAndMoveString(u8 * dest, u16 itemId)
     }
     StringAppend(gStringVar4, sText_SingleSpace);
     StringAppend(gStringVar4, gText_FontShort);
-    StringAppend(gStringVar4, gMoveNames[ItemIdToBattleMoveId(itemId)]);
+    StringAppend(gStringVar4, gMovesInfo[ItemIdToBattleMoveId(itemId)].name);
     StringCopy(dest, gStringVar4);
 }
 
@@ -1019,11 +1019,12 @@ static void InitWindowTemplatesAndPals(void)
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
     LoadMessageBoxGfx(0, 0x64, BG_PLTT_ID(11));
-    LoadUserWindowBorderGfx(0, 0x78, BG_PLTT_ID(14));
+    LoadUserWindowBorderGfx_HandleColorMode(0, 0x78, BG_PLTT_ID(14));
     LoadPalette(gTMCaseMainWindowPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
     LoadPalette(gTMCaseMainWindowPalette, BG_PLTT_ID(10), PLTT_SIZE_4BPP);
     LoadPalette(sPal3Override, BG_PLTT_ID(15) + 6, sizeof(sPal3Override));
     LoadPalette(sPal3Override, BG_PLTT_ID(13) + 6, sizeof(sPal3Override));
+    OverrideUITextPalette_HandleColorMode(BG_PLTT_ID(15));
     ListMenuLoadStdPalAt(BG_PLTT_ID(12), 0x01);
     for (i = 0; i < ARRAY_COUNT(sWindowTemplates) - 1; i++)
         FillWindowPixelBuffer(i, 0x00);
@@ -1086,7 +1087,6 @@ static void DrawMoveInfoUIMarkers(void)
 static void TMCase_MoveCursor_UpdatePrintedTMInfo(u16 itemId)
 {
     u8 i;
-    u16 move;
     const u8 * str;
 
     FillWindowPixelRect(WIN_MOVE_INFO, 0, 0, 0, 40, 48);
@@ -1101,31 +1101,31 @@ static void TMCase_MoveCursor_UpdatePrintedTMInfo(u16 itemId)
     else
     {
         // Draw type icon
-        move = ItemIdToBattleMoveId(itemId);
-        BlitMenuInfoIcon(WIN_MOVE_INFO, gBattleMoves[move].type + 1, 0, 0);
+        u16 move = ItemIdToBattleMoveId(itemId);
+        BlitMenuInfoIcon(WIN_MOVE_INFO, gMovesInfo[move].type + 1, 0, 0);
 
         // Print power
-        if (gBattleMoves[move].power < 2)
+        if (gMovesInfo[move].power < 2)
             str = gText_ThreeDashes;
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
             str = gStringVar1;
         }
         AddTextPrinterParameterized_ColorByIndex(WIN_MOVE_INFO, FONT_SHORT_COPY_1, str, 7, 12, 0, 0, TEXT_SKIP_DRAW, COLOR_MOVE_INFO);
 
         // Print accuracy
-        if (gBattleMoves[move].accuracy == 0)
+        if (gMovesInfo[move].accuracy == 0)
             str = gText_ThreeDashes;
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
             str = gStringVar1;
         }
         AddTextPrinterParameterized_ColorByIndex(WIN_MOVE_INFO, FONT_SHORT_COPY_1, str, 7, 24, 0, 0, TEXT_SKIP_DRAW, COLOR_MOVE_INFO);
 
         // Print PP
-        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].pp, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].pp, STR_CONV_MODE_RIGHT_ALIGN, 3);
         AddTextPrinterParameterized_ColorByIndex(WIN_MOVE_INFO, FONT_SHORT_COPY_1, gStringVar1, 7, 36, 0, 0, TEXT_SKIP_DRAW, COLOR_MOVE_INFO);
         CopyWindowToVram(WIN_MOVE_INFO, COPYWIN_GFX);
     }
@@ -1231,9 +1231,9 @@ static void DrawPartyMonIcons(void)
 
         //create icon sprite
         #ifndef POKEMON_EXPANSION
-            spriteIdData[i] = CreateMonIcon(species, SpriteCb_MonIcon, icon_x, icon_y, 1, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY), TRUE);
+            spriteIdData[i] = CreateMonIcon(species, SpriteCb_MonIcon, icon_x, icon_y, 1, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY), TRUE);
         #else
-            spriteIdData[i] = CreateMonIcon(species, SpriteCb_MonIcon, icon_x, icon_y, 1, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY));
+            spriteIdData[i] = CreateMonIcon(species, SpriteCb_MonIcon, icon_x, icon_y, 1, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY));
         #endif
 
         //Set priority, stop movement and save original palette position

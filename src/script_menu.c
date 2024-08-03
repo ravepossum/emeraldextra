@@ -331,10 +331,8 @@ void MultichoiceDynamic_DestroyStack(void)
 static void MultichoiceDynamic_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *list)
 {
     u8 taskId;
-
     if (!onInit)
         PlaySE(SE_SELECT);
-
     taskId = FindTaskIdByFunc(Task_HandleScrollingMultichoiceInput);
     if (taskId != TASK_NONE)
     {
@@ -361,7 +359,7 @@ static void DrawMultichoiceMenuDynamic(u8 left, u8 top, u8 argc, struct ListMenu
     {
         width = DisplayTextAndGetWidth(items[i].name, width);
     }
-    LoadMessageBoxAndBorderGfx();
+    LoadMessageBoxAndBorderGfx_HandleColorMode();
     windowHeight = (argc < maxBeforeScroll) ? argc * 2 : maxBeforeScroll * 2;
     newWidth = ConvertPixelWidthToTileWidth(width);
     left = ScriptMenu_AdjustLeftCoordFromWidth(left, newWidth);

@@ -34,16 +34,6 @@
 #define LOG_HANDLER (LOG_HANDLER_MGBA_PRINT)
 #endif
 
-#define ENGLISH
-
-#ifdef ENGLISH
-#define UNITS_IMPERIAL
-#define CHAR_DEC_SEPARATOR CHAR_PERIOD // Period is used as a decimal separator only in the UK and the US.
-#else
-#define UNITS_METRIC
-#define CHAR_DEC_SEPARATOR CHAR_COMMA
-#endif
-
 // Uncomment to fix some identified minor bugs
 #define BUGFIX
 
@@ -80,4 +70,19 @@
 #define DEMO_MODE                    FALSE   // If TRUE, game is in demo mode
 #define POKEDEX_PLUS_HGSS            TRUE   // If TRUE, enables the custom HGSS style Pokedex.
 #define SUMMARY_SCREEN_NATURE_COLORS TRUE    // If TRUE, nature-based stat boosts and reductions will be red and blue in the summary screen.
+#define HQ_RANDOM                    FALSE   // If TRUE, replaces the default RNG with an implementation of SFC32 RNG. May break code that relies on RNG.
+
+// Measurement system constants to be used for UNITS
+#define UNITS_IMPERIAL               0       // Inches, feet, pounds
+#define UNITS_METRIC                 1       // meters, kilograms
+
+#define UNITS                        UNITS_IMPERIAL
+#define CHAR_DEC_SEPARATOR           CHAR_PERIOD // CHAR_PERIOD is used as a decimal separator only in the UK and the US. The rest of the world uses CHAR_COMMA.
+
+#define UI_COLOR_LIGHT               0
+#define UI_COLOR_DARK                1
+#define UI_COLOR_MODE_COUNT          2
+
+#define UI_COLOR_MODE               VAR_UI_COLOR // determines if UI should use light or dark mode
+
 #endif // GUARD_CONFIG_H

@@ -8,6 +8,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "link.h"
@@ -26,9 +27,9 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/battle_anim.h"
+#include "constants/battle_partner.h"
 
 // .rodata
-static const u16 sUnrefArray[] = {0x0300, 0x0000}; //OamData?
 
 static const struct OamData sVsLetter_V_OamData =
 {
@@ -758,6 +759,8 @@ const struct BattleBackground sBattleTerrainTable[] =
 };
 
 static void UNUSED CB2_UnusedBattleInit(void);
+static void BattleMenuPalette_HandleColorMode(u16 offset);
+static void BattleCursorPalette_HandleColorMode(u16 offset);
 
 static void UNUSED UnusedBattleInit(void)
 {
@@ -808,17 +811,59 @@ void InitBattleBgsVideo(void)
 
 void LoadBattleMenuWindowGfx(void)
 {
-    LoadUserWindowBorderGfx(2, 0x12, BG_PLTT_ID(1));
-    LoadUserWindowBorderGfx(2, 0x22, BG_PLTT_ID(1));
+    LoadUserWindowBorderGfx_HandleColorMode(2, 0x12, BG_PLTT_ID(1));
+    LoadUserWindowBorderGfx_HandleColorMode(2, 0x22, BG_PLTT_ID(1));
     LoadCompressedPalette(gBattleWindowTextPalette, BG_PLTT_ID(5), PLTT_SIZE_4BPP);
-
+    BattleMenuPalette_HandleColorMode(BG_PLTT_ID(5));
+    BattleCursorPalette_HandleColorMode(BG_PLTT_ID(0));
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
     {
         // Load graphics for the Battle Arena referee's mid-battle messages.
         Menu_LoadStdPalAt(BG_PLTT_ID(7));
-        LoadMessageBoxGfx(0, 0x30, BG_PLTT_ID(7));
+        // dark mode todo - add override here for arena
+        LoadMessageBoxGfx_HandleColorMode(0, 0x30, BG_PLTT_ID(7));
         gPlttBufferUnfaded[BG_PLTT_ID(7) + 6] = 0;
         CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(7) + 6], &gPlttBufferFaded[BG_PLTT_ID(7) + 6], PLTT_SIZEOF(1));
+    }
+}
+
+static void BattleMenuPalette_HandleColorMode(u16 offset)
+{
+    u16 palette;
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        palette = RGB_UI_DARK_TEXT_RED;
+        LoadPalette(&palette, offset + 1, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_RED;
+        LoadPalette(&palette, offset + 3, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW_GREEN;
+        LoadPalette(&palette, offset + 5, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_GREEN;
+        LoadPalette(&palette, offset + 6, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 13, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, offset + 14, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, offset + 15, PLTT_SIZEOF(1));
+    }
+}
+
+static void BattleCursorPalette_HandleColorMode(u16 offset)
+{
+    u16 palette;
+    if (VarGet(UI_COLOR_MODE) == UI_COLOR_DARK)
+    {
+        palette = RGB_UI_DARK_BLACK;
+        LoadPalette(&palette, offset + 1, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, offset + 7, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 9, PLTT_SIZEOF(1));
+        palette = RGB_UI_DARK_TEXT_SHADOW;
+        LoadPalette(&palette, offset + 14, PLTT_SIZEOF(1));
+        palette = RGB_WHITE;
+        LoadPalette(&palette, offset + 15, PLTT_SIZEOF(1));
     }
 }
 
@@ -860,7 +905,7 @@ void DrawMainBattleBackground(void)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+            u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
             if (trainerClass == TRAINER_CLASS_LEADER)
             {
                 LZDecompressVram(gBattleTerrainTiles_Stadium, (void *)(BG_CHAR_ADDR(2)));
@@ -1218,7 +1263,7 @@ void DrawBattleEntryBackground(void)
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_EREADER_TRAINER))
     {
-        if (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || gPartnerTrainerId == TRAINER_STEVEN_PARTNER || gPartnerTrainerId >= TRAINER_CUSTOM_PARTNER)
+        if (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
         {
             LZDecompressVram(gBattleTerrainAnimTiles_Building, (void *)(BG_CHAR_ADDR(1)));
             LZDecompressVram(gBattleTerrainAnimTilemap_Building, (void *)(BG_SCREEN_ADDR(28)));
@@ -1261,7 +1306,7 @@ void DrawBattleEntryBackground(void)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+            u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
             if (trainerClass == TRAINER_CLASS_LEADER)
             {
                 LZDecompressVram(gBattleTerrainAnimTiles_Building, (void *)(BG_CHAR_ADDR(1)));
@@ -1326,7 +1371,7 @@ bool8 LoadChosenBattleElement(u8 caseId)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             {
-                u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+                u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
                 if (trainerClass == TRAINER_CLASS_LEADER)
                 {
                     LZDecompressVram(gBattleTerrainTiles_Stadium, (void *)(BG_CHAR_ADDR(2)));
@@ -1388,7 +1433,7 @@ bool8 LoadChosenBattleElement(u8 caseId)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             {
-                u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+                u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
                 if (trainerClass == TRAINER_CLASS_LEADER)
                 {
                     LZDecompressVram(gBattleTerrainTilemap_Stadium, (void *)(BG_SCREEN_ADDR(26)));
@@ -1450,7 +1495,7 @@ bool8 LoadChosenBattleElement(u8 caseId)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             {
-                u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+                u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
                 if (trainerClass == TRAINER_CLASS_LEADER)
                 {
                     LoadCompressedPalette(gBattleTerrainPalette_StadiumLeader, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
