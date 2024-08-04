@@ -1,4 +1,3 @@
-const struct Trainer gTrainers[] = {
     [TRAINER_NONE] =
     {
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
@@ -10342,4 +10341,3 @@ const struct Trainer gTrainers[] = {
         .hasCustomTransition = TRUE,
         .transition = B_TRANSITION_SWIRL,
     }
-};

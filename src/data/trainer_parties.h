@@ -11906,4 +11906,3 @@ static const struct TrainerMon sParty_PhoebeRoute136[] = {
     .moves = {MOVE_SHADOW_SNEAK, MOVE_CONFUSE_RAY, MOVE_DISABLE, MOVE_PAYBACK},
     }
 };
-

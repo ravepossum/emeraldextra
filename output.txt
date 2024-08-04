@@ -1,0 +1,9 @@
+Updating ITEM_TM244: adding iconPic = gItemIcon_TM, iconPalette = gItemIconPalette_NormalTMHM
+Updating ITEM_TM245: adding iconPic = gItemIcon_TM, iconPalette = gItemIconPalette_NormalTMHM
+Updating ITEM_TM246: adding iconPic = gItemIcon_TM, iconPalette = gItemIconPalette_NormalTMHM
+Updating ITEM_POKEVIAL: adding iconPic = gItemIcon_Pokevial, iconPalette = gItemIconPalette_Pokevial
+Updating ITEM_TARAS_LETTER: adding iconPic = gItemIcon_HarborMail, iconPalette = gItemIconPalette_HarborMail
+Updating ITEM_INFINITE_REPEL: adding iconPic = gItemIcon_Repel, iconPalette = gItemIconPalette_InfiniteRepel
+Updating ITEM_OUTFIT_BOX: adding iconPic = gItemIcon_OutfitBox, iconPalette = gItemIconPalette_OutfitBox
+<_io.TextIOWrapper name='./src/data/items.h' mode='w' encoding='UTF-8'>
+items.h has been updated
